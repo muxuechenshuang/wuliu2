@@ -74,7 +74,7 @@
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="${pageContext.request.contextPath}/lixing/query_jzl.jsp">查件</a>
+										<li><a href="${pageContext.request.contextPath}/lixing/query_ry.jsp">查件</a>
 										</li>
 										<li><a href="${pageContext.request.contextPath}/lixing/branchquery_ry.jsp">服务网点查询</a>
 										</li>
