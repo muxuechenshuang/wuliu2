@@ -119,8 +119,8 @@
 										<li><a href="${pageContext.request.contextPath}/lpq/fenpei2.jsp">分配工单</a>
 										</li>
 									</ul></li>
-									
-								<!-- 任一 -->	
+
+								<!--李佳和  -->
 								<li><a><i class="fa fa-home"></i>分公司管理<span
 										class="fa fa-chevron-down"></span>
 								</a>
@@ -133,7 +133,7 @@
 										</li>
 										<!-- <li><a href="fenpei_ry.jsp">工单分配</a> -->
 										</li>
-										<!--李佳和  -->
+
 										
 										<li><a href="${pageContext.request.contextPath}/addwangdian_ljh.jsp">添加网点</a></li>
 										<li><a href="${pageContext.request.contextPath}/chuku_ljh.jsp">出库</a></li>
