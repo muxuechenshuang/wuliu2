@@ -6,35 +6,35 @@
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
       <div class="x_title">
-        <h2>员工<i class="fa fa-user"></i><small>${devUserSession.devName}</small></h2>
+        <h2>订单<i class="fa fa-user"></i><small>${devUserSession.devName}</small></h2>
              <div class="clearfix"></div>
       </div>
       <div class="x_title">
-            <h2>员工信息</h2>
+            <h2>订单信息</h2>
           <div class="clearfix"></div>
       </div>
       <div class="x_content1">
         <form class="form-horizontal form-label-left" >
           <input type="hidden" name="id" value="${appInfo.id}">
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">网点编号 <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">工单编号 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input class="form-control col-md-7 col-xs-12" value="飞鸟" 
+              <input class="form-control col-md-7 col-xs-12" value="2" 
               type="text" readonly="readonly">
             </div>
           </div>
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">网点名称 <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">寄件人电话 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="text" class="form-control col-md-7 col-xs-12" 
-              value="$18399009123" readonly="readonly">
+              value="18399009123" readonly="readonly">
             </div>
           </div>
           
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">邮箱 <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">寄件人地址 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input class="form-control col-md-7 col-xs-12" 
@@ -42,7 +42,7 @@
             </div>
           </div>
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">电话 <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">物品类别 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input class="form-control col-md-7 col-xs-12" readonly="readonly"
@@ -50,23 +50,16 @@
             </div>
           </div>
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">地址 <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">收件人姓名 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" value="${appInfo.softwareSize}"
+              <input type="text" value="李普强"
               class="form-control col-md-7 col-xs-12" readonly="readonly">
             </div>
           </div>
+          
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">负责人 <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" value="${appInfo.softwareSize}"
-              class="form-control col-md-7 col-xs-12" readonly="readonly">
-            </div>
-          </div>          
-          <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">用户名 <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">收件人电话 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="text" value="157699989898"
@@ -75,13 +68,31 @@
           </div>
           
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="select">密码 <span class="required">*</span></label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="select">收件人地址 <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="text" class="form-control col-md-7 col-xs-12" 
               	value="深圳北六" readonly="readonly">
             
             </div>
           </div>
+         
+          <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">所属地区 <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+            	<input type="text" class="form-control col-md-7 col-xs-12" 
+              	value="${appInfo.statusName}" readonly="readonly">
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">所属城市 <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <textarea class="form-control col-md-7 col-xs-12" readonly="readonly"> 
+              ${appInfo.appInfo}</textarea>
+            </div>
+          </div>
+          
          
         </form>
         </div>
@@ -94,8 +105,8 @@
     
      <div class="form-group">
         <div class="col-md-6 col-md-offset-3">
-           <button type="button" class="btn btn-primary" id="back">确认</button>
-          <button type="button" class="btn btn-primary" id="back">返回</button>
+           <button type="button" class="btn btn-primary" id="back">保存</button>
+          <button type="button" class="btn btn-primary" id="ba">返回</button>
         </div>
       </div>
     <div class="clearfix"></div>

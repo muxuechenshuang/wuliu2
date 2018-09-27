@@ -7,7 +7,7 @@
 		<div class="x_panel">
 			<div class="x_title">
 				<h2>
-					工单详情<i class="fa fa-user"></i><small>${devUserSession.devName}</small>
+					工单详情<i class="fa fa-user"></i><small></small>
 				</h2>
 				<div class="clearfix"></div>
 			</div>
@@ -179,15 +179,7 @@
 								readonly="readonly" value="笔记本电脑 " type="text">
 						</div>
 					</div>
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							for="number">备注 <span class="required">*</span>
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" value="${appInfo.softwareSize}"
-								class="form-control col-md-7 col-xs-12" readonly="readonly">
-						</div>
-					</div>
+				
 
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
@@ -254,7 +246,52 @@
 								value="深圳北六" readonly="readonly">
 						</div>
 					</div>
+					<div class="item form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12"
+							for="name">送快递员工号<span class="required">*</span>
+						</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<input class="form-control col-md-7 col-xs-12" value="湖南理工南院"
+								type="text" readonly="readonly">
+						</div>
+					</div>
+					<div class="item form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12"
+							for="name">实际体积 <span class="required">*</span>
+						</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<input class="form-control col-md-7 col-xs-12"
+								readonly="readonly" value="笔记本电脑 " type="text">
+						</div>
+					</div>
+					<div class="item form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12"
+							for="number">生成时间 <span class="required">*</span>
+						</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<input type="text" value="${appInfo.softwareSize}"
+								class="form-control col-md-7 col-xs-12" readonly="readonly">
+						</div>
+					</div>
 
+					<div class="item form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12"
+							for="number">初次入库时间 <span class="required">*</span>
+						</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<input type="text" value="157699989898"
+								class="form-control col-md-7 col-xs-12" readonly="readonly">
+						</div>
+					</div>
+
+					<div class="item form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12"
+							for="select">初次出库时间<span class="required">*</span></label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<input type="text" class="form-control col-md-7 col-xs-12"
+								value="深圳北六" readonly="readonly">
+						</div>
+					</div>
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
 							for="name">二次入库时间<span class="required">*</span>
@@ -301,6 +338,16 @@
 								value="深圳北六" readonly="readonly">
 						</div>
 					</div>
+					
+						<div class="item form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12"
+							for="number">备注 <span class="required">*</span>
+						</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<input type="text" value="${appInfo.softwareSize}"
+								class="form-control col-md-7 col-xs-12" readonly="readonly">
+						</div>
+					</div>
 				</form>
 			</div>
 			<div class="x_content" style="display: block;">
@@ -309,7 +356,8 @@
 			</div>
 			<div class="form-group">
 				<div class="col-md-6 col-md-offset-3">
-					<button type="button" class="btn btn-primary" id="back">返回</button>
+				<button type="button" class="btn btn-primary" id="back">保存</button>
+					<button type="button" class="btn btn-primary" id="bac">返回</button>
 				</div>
 			</div>
 			<div class="clearfix"></div>

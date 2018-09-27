@@ -91,7 +91,7 @@
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="${pageContext.request.contextPath}/xlh/dindan_xlh.jsp">待处理定单</a>
+										<li><a href="${pageContext.request.contextPath}/xlh/dindan_xlh.jsp">订单查询</a>
 										</li>
 										<li><a href="${pageContext.request.contextPath}/xlh/gondan_xlh.jsp">查询工单</a>
 										</li>
@@ -106,19 +106,17 @@
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="yuangong2.jsp">员工</a>
+										<li><a href="${pageContext.request.contextPath}/lpq/yuangong2.jsp">员工管理</a>
 										</li>
-										<li><a href="yuangongxiangqing2.jsp">员工详情</a>
-										</li>
-										<li><a href="chaxun_lpq.jsp">查看用户订单</a>
+
+										<li><a href="${pageContext.request.contextPath}/lpq/chaxun_lpq.jsp">查看用户订单</a>
 										</li>
 									<!-- 	<li><a href="shenghe_lpq.jsp">审核订单</a>
 										</li> -->
-										<li><a href="gongdan_lpq.jsp">确认工单</a>
+										<li><a href="${pageContext.request.contextPath}/lpq/gongdan_lpq.jsp">确认工单</a>
 										</li>
-										<li><a href="fenpei2.jsp">分配工单</a>
+										<li><a href="${pageContext.request.contextPath}/lpq/fenpei2.jsp">分配工单</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath}/kuaidiyuan_ry.jsp">快递员管理</a></li>
 									</ul></li>
 									
 								<!-- 任一 -->	
