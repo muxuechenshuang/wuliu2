@@ -29,7 +29,7 @@
 	<link href="${pageContext.request.contextPath }/statics/css/dropzone.min.css" rel="stylesheet">
 	<!-- Custom Theme Style -->
 	<link href="${pageContext.request.contextPath }/statics/css/custom.min.css"	rel="stylesheet">
-	
+
 	<!-- add localcss 2016-8-18 -->
 	<link href='${pageContext.request.contextPath }/statics/localcss/appinfoadd.css' rel='stylesheet'>
 	<link href='${pageContext.request.contextPath }/statics/localcss/appinfolist.css' rel='stylesheet'>
@@ -84,9 +84,9 @@
 										<li><a href="${pageContext.request.contextPath}/lixing/send_ry.jsp">寄件服务</a>
 										</li>
 									</ul></li>
-								
-								
-								
+
+
+
 								<!--肖林辉  -->
 								<li><a><i class="fa fa-home"></i>快递员  肖林辉<span
 										class="fa fa-chevron-down"></span>
@@ -103,7 +103,7 @@
 										<li><a href="${pageContext.request.contextPath}/xlh/echarts_xlh.jsp">图形报表</a>
 										</li>
 									</ul></li>
-								
+
 								<!--李普强  -->
 								<li><a><i class="fa fa-home"></i> 网点(李普强) <span
 										class="fa fa-chevron-down"></span>
@@ -135,10 +135,10 @@
 										<li><a href="${pageContext.request.contextPath}/ljh/chuku.jsp">出库</a></li>
 										<li><a href="${pageContext.request.contextPath}/ljh/ruku.jsp">入库</a></li>
 									</ul>
-									
+
 								</li>
-								
-								
+
+
 								<!--张展  -->
 								<li><a><i class="fa fa-home"></i>总公司管理<span
 										class="fa fa-chevron-down"></span>
@@ -250,7 +250,3 @@
 			<!-- /top navigation -->
 			<div class="right_col" role="main">
 				<div class="">
-                </div>
-            </div>
-        </div>
-    </div>
