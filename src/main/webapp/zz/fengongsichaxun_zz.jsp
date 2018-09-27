@@ -1,6 +1,6 @@
 &nbsp;<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
-<%@include file="common/header.jsp"%>
+<%@include file="../common/header.jsp"%>
 <div class="clearfix"></div>
 <div class="row">
 	<div class="col-md-12">
@@ -159,4 +159,4 @@
 		</div>
 	</div>
 </div>
-<%@include file="common/footer.jsp"%>
+<%@include file="../common/footer.jsp"%>

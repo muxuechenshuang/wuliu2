@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <!-- 	返货单详情 -->
-<%@include file="common/header.jsp"%>
+<%@include file="../common/header.jsp"%>
 <div class="clearfix"></div>
 <div class="row">
 
@@ -95,8 +95,7 @@
 										创建时间</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
-										style="width: 200px;
-										aria-label="Last name: activate to sort column ascending">
+										style="" Last name: activate to sort column ascending">
 										审核状态</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
@@ -174,6 +173,6 @@
 	</div>
 </div>
 </div>
-<%@include file="common/footer.jsp"%>
+<%@include file="../common/footer.jsp"%>
 <script src="${pageContext.request.contextPath }/statics/localjs/rollpage.js"></script>
 <script src="${pageContext.request.contextPath }/statics/localjs/applist.js"></script>
