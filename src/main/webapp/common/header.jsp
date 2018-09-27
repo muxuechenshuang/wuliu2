@@ -120,24 +120,18 @@
 										</li>
 									</ul></li>
 
-								<!--李佳和  -->
+								<!--李家和  -->
 								<li><a><i class="fa fa-home"></i>分公司管理<span
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="${pageContext.request.contextPath}/wangdianchaxun_zz.jsp">网点管理</a></li>
-										<li><a href="${pageContext.request.contextPath}/kuaidiyuan_ry.jsp">快递员管理</a></li>
-										<li><a href="addkuaidiyuan_ry.jsp">新增快递员</a>
-										</li>
-										<li><a href="gongdan_ry.jsp">工单查询</a>
-										</li>
-										<!-- <li><a href="fenpei_ry.jsp">工单分配</a> -->
-										</li>
-
-										
-										<li><a href="${pageContext.request.contextPath}/addwangdian_ljh.jsp">添加网点</a></li>
-										<li><a href="${pageContext.request.contextPath}/chuku_ljh.jsp">出库</a></li>
-										<li><a href="${pageContext.request.contextPath}/ruku_ljh.jsp">入库</a></li>
+										<li><a href="${pageContext.request.contextPath}/ljh/wangdianchaxun_zz.jsp">网点管理</a></li>
+										<li><a href="${pageContext.request.contextPath}/ljh/kuaidiyuan_ry.jsp">快递员管理</a></li>
+										<li><a href="${pageContext.request.contextPath}/ljh/addkuaidiyuan.jsp">新增快递员</a></li>
+										<li><a href="${pageContext.request.contextPath}/ljh/gongdan_ry.jsp">工单查询</a>
+										<li><a href="${pageContext.request.contextPath}/ljh/addwangdian.jsp">添加网点</a></li>
+										<li><a href="${pageContext.request.contextPath}/ljh/chuku.jsp">出库</a></li>
+										<li><a href="${pageContext.request.contextPath}/ljh/ruku.jsp">入库</a></li>
 									</ul>
 									
 								</li>

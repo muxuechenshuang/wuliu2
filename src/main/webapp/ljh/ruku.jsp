@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="common/header.jsp"%>
+<%@include file="../common/header.jsp"%>
 
 <div class="page-title">
 	<div class="title_left">
@@ -145,36 +145,36 @@
 							<td>1</td>
 							<td>2</td>
 							<td>初始入库</td>
-							<td><button id="send" type="submit" class="btn btn-success">入库</button>
-							<button type="button" class="btn btn-primary" id="back">合包</button></td>
+							<td><button  type="submit" class="btn btn-success">入库</button>
+							<button type="button" class="btn btn-primary" >合包</button></td>
 						</tr>
 						<tr>
 							<td>2</td>
 							<td>2</td>
 							<td>初始入库</td>
-							<td><button id="send" type="submit" class="btn btn-success">入库</button>
-							<button type="button" class="btn btn-primary" id="back">合包</button></td>
+							<td><button  type="submit" class="btn btn-success">入库</button>
+							<button type="button" class="btn btn-primary" >合包</button></td>
 						</tr>
 						<tr>
 							<td>3</td>
 							<td>2</td>
 							<td>二次入库</td>
 							<td><button id="send" type="submit" class="btn btn-success">入库</button>
-							<button type="button" class="btn btn-primary" id="back">合包</button></td>
+							<button type="button" class="btn btn-primary" >合包</button></td>
 						</tr>
 						<tr>
 							<td>4</td>
 							<td>2</td>
 							<td>二次入库</td>
-							<td><button id="send" type="submit" class="btn btn-success">入库</button>
-							<button type="button" class="btn btn-primary" id="back">合包</button></td>
+							<td><button  type="submit" class="btn btn-success">入库</button>
+							<button type="button" class="btn btn-primary" >合包</button></td>
 						</tr>
 						<tr>
 							<td>5</td>
 							<td>2</td>
 							<td>中转入库</td>
-							<td><button id="send" type="submit" class="btn btn-success">入库</button>
-							<button type="button" class="btn btn-primary" id="back">合包</button></td>
+							<td><button  type="submit" class="btn btn-success">入库</button>
+							<button type="button" class="btn btn-primary">合包</button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -185,83 +185,8 @@
 
 
 
-<%@include file="common/footer.jsp"%>
-<!-- Datatables -->
-<script>
-	$(document).ready(function() {
-		var handleDataTableButtons = function() {
-			if ($("#datatable-buttons").length) {
-				$("#datatable-buttons").DataTable({
-					dom : "Bfrtip",
-					buttons : [ {
-						extend : "copy",
-						className : "btn-sm"
-					}, {
-						extend : "csv",
-						className : "btn-sm"
-					}, {
-						extend : "excel",
-						className : "btn-sm"
-					}, {
-						extend : "pdfHtml5",
-						className : "btn-sm"
-					}, {
-						extend : "print",
-						className : "btn-sm"
-					}, ],
-					responsive : true
-				});
-			}
-		};
+<%@include file="../common/footer.jsp"%>
 
-		TableManageButtons = function() {
-			"use strict";
-			return {
-				init : function() {
-					handleDataTableButtons();
-				}
-			};
-		}();
-
-		$('#datatable').dataTable();
-
-		$('#datatable-keytable').DataTable({
-			keys : true
-		});
-
-		$('#datatable-responsive').DataTable();
-
-		$('#datatable-scroller').DataTable({
-			ajax : "js/datatables/json/scroller-demo.json",
-			deferRender : true,
-			scrollY : 380,
-			scrollCollapse : true,
-			scroller : true
-		});
-
-		$('#datatable-fixed-header').DataTable({
-			fixedHeader : true
-		});
-
-		var $datatable = $('#datatable-checkbox');
-
-		$datatable.dataTable({
-			'order' : [ [ 1, 'asc' ] ],
-			'columnDefs' : [ {
-				orderable : false,
-				targets : [ 0 ]
-			} ]
-		});
-		$datatable.on('draw.dt', function() {
-			$('input').iCheck({
-				checkboxClass : 'icheckbox_flat-green'
-			});
-		});
-
-		TableManageButtons.init();
-	});
-</script>
-<!-- /Datatables -->
 
 
 
