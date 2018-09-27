@@ -154,16 +154,15 @@
 										</li>
 <%-- 										<li><a href="${pageContext.request.contextPath}/addinfo_zz.jsp">订单信息补全</a> --%>
 <!-- 										</li> -->
-										<li><a href="${pageContext.request.contextPath}/gondan2_zz.jsp">查询工单（总部）</a>
+										<li><a href="${pageContext.request.contextPath}/zz/gondan2_zz.jsp">查询工单（总部）</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath}/fanhuodanlist_zz.jsp">返货单查询</a>
+										<li><a href="${pageContext.request.contextPath}/zz/fanhuodanlist_zz.jsp">返货单查询</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath}/fanhuodanxiangqing_zz.jsp">审核返货单</a>
+										<li><a href="${pageContext.request.contextPath}/zz/fanhuodanxiangqing_zz.jsp">审核返货单</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath}/fengongsitianjia_zz.jsp">新增分公司</a></li>
-										<li><a href="${pageContext.request.contextPath}/fengongsichaxun_zz.jsp">分公司管理</a></li>
-										<li><a href="${pageContext.request.contextPath}/wangdianchaxun_zz.jsp">网点管理</a></li>
-										<li><a href="${pageContext.request.contextPath}/kuaidiyuan_ry.jsp">快递员管理</a></li>
+										<li><a href="${pageContext.request.contextPath}/zz/fengongsitianjia_zz.jsp">新增分公司</a></li>
+										<li><a href="${pageContext.request.contextPath}/zz/fengongsichaxun_zz.jsp">分公司管理</a></li>
+										<li><a href="${pageContext.request.contextPath}/zz/wangdianchaxun_zz.jsp">网点管理</a></li>
 							</ul></li>
 						</div>
 
