@@ -11,7 +11,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>APP开发者平台wwwwx</title>
+<title>飞鸟物流</title>
 
 
 	<!-- Bootstrap -->
@@ -69,7 +69,7 @@
 						<div class="menu_section">
 							<h3>${devUserSession.devName }</h3>
 							<ul class="nav side-menu">
-								<!--蒋梓伦  -->
+
 								<li>
 								<li><a><i class="fa fa-edit"></i> 客户(任一)<span
 										class="fa fa-chevron-down"></span>
@@ -88,7 +88,7 @@
 								
 								
 								<!--肖林辉  -->
-								<li><a><i class="fa fa-home"></i>快递员角22222  肖林辉<span
+								<li><a><i class="fa fa-home"></i>快递员  肖林辉<span
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
@@ -99,6 +99,8 @@
 										<li><a href="${pageContext.request.contextPath}/xlh/xianqian_xlh.jsp">工单详情</a>
 										</li>
 										<li><a href="${pageContext.request.contextPath}/xlh/addinfo_xlh.jsp">生成工单</a>
+										</li>
+										<li><a href="${pageContext.request.contextPath}/xlh/echarts_xlh.jsp">图形报表</a>
 										</li>
 									</ul></li>
 								
