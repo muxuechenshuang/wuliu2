@@ -74,13 +74,13 @@
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="query_jzl.jsp">查件</a>
+										<li><a href="${pageContext.request.contextPath}/lixing/query_jzl.jsp">查件</a>
 										</li>
-										<li><a href="branchquery_ry.jsp">服务网点查询</a>
+										<li><a href="${pageContext.request.contextPath}/lixing/branchquery_ry.jsp">服务网点查询</a>
 										</li>
-										<li><a href="moneyestimate_ry.jsp">运费时效查询</a>
+										<li><a href="${pageContext.request.contextPath}/lixing/moneyestimate_ry.jsp">运费时效查询</a>
 										</li>
-										<li><a href="send_ry.jsp">寄件服务</a>
+										<li><a href="${pageContext.request.contextPath}/lixing/send_ry.jsp">寄件服务</a>
 										</li>
 									</ul></li>
 								
