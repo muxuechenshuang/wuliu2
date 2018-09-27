@@ -98,6 +98,8 @@
 										</li>
 										<li><a href="${pageContext.request.contextPath}/xlh/xianqian_xlh.jsp">工单详情</a>
 										</li>
+										<li><a href="${pageContext.request.contextPath}/xlh/addinfo_xlh.jsp">生成工单</a>
+										</li>
 										<li><a href="${pageContext.request.contextPath}/xlh/echarts_xlh.jsp">图形报表</a>
 										</li>
 									</ul></li>
