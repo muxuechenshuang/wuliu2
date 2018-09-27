@@ -306,7 +306,7 @@
 					            </td>
 					            <td>已分配：张三</td>
 										<td>李四</td>
-								<td></td>
+
 								 <td><a href="" class="btn btn-primary">分配</a>
 								 <a href="querengongdan2.jsp" class="btn btn-primary">工单详情</a></td>
 								</tr>
