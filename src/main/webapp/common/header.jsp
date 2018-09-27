@@ -11,7 +11,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>APP开发者平台</title>
+<title>APP开发者平台wwwwx</title>
+
 
 	<!-- Bootstrap -->
 	<link href="${pageContext.request.contextPath }/statics/css/bootstrap.min.css" rel="stylesheet">
@@ -74,20 +75,20 @@
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="query_jzl.jsp">查件</a>
+										<li><a href="${pageContext.request.contextPath}/lixing/query_ry.jsp">查件</a>
 										</li>
-										<li><a href="branchquery_ry.jsp">服务网点查询</a>
+										<li><a href="${pageContext.request.contextPath}/lixing/branchquery_ry.jsp">服务网点查询</a>
 										</li>
-										<li><a href="moneyestimate_ry.jsp">运费时效查询</a>
+										<li><a href="${pageContext.request.contextPath}/lixing/moneyestimate_ry.jsp">运费时效查询</a>
 										</li>
-										<li><a href="send_ry.jsp">寄件服务</a>
+										<li><a href="${pageContext.request.contextPath}/lixing/send_ry.jsp">寄件服务</a>
 										</li>
 									</ul></li>
 								
 								
 								
 								<!--肖林辉  -->
-								<li><a><i class="fa fa-home"></i>快递员角色  肖林辉<span
+								<li><a><i class="fa fa-home"></i>快递员角22222  肖林辉<span
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
