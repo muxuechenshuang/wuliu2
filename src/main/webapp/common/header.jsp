@@ -91,7 +91,7 @@
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="${pageContext.request.contextPath}/xlh/dindan_xlh.jsp">待处理定单</a>
+										<li><a href="${pageContext.request.contextPath}/xlh/dindan_xlh.jsp">订单查询</a>
 										</li>
 										<li><a href="${pageContext.request.contextPath}/xlh/gondan_xlh.jsp">查询工单</a>
 										</li>
