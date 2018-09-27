@@ -153,6 +153,11 @@
 										style="width: 124px;"
 										aria-label="Last name: activate to sort column ascending">
 										工单状态</th>
+									<th class="sorting" tabindex="0"
+										aria-controls="datatable-responsive" rowspan="1" colspan="1"
+										style="width: 124px;"
+										aria-label="Last name: activate to sort column ascending">
+										委托</th>
 										<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										style="width: 124px;"
@@ -184,6 +189,7 @@
 						</div>
 					            </td>
 					            <td>已分配：张三</td>
+									<td></td>
 								 <td><a href="" class="btn btn-primary">分配</a>
 								 <a href="querengongdan2.jsp" class="btn btn-primary">工单详情</a></td>
 								</tr>
@@ -211,6 +217,7 @@
 						</div>
 					            </td>
 					            <td>已分配：李四</td>
+										<td></td>
 								 <td><a href="" class="btn btn-primary">分配</a>
 								 <a href="querengongdan2.jsp" class="btn btn-primary">工单详情</a></td>
 								</tr>
@@ -239,6 +246,7 @@
 						</div>
 					            </td>
 					            <td>未分配</td>
+										<td></td>
 								 <td><a href="" class="btn btn-primary">分配</a>
 								 <a href="querengongdan2.jsp" class="btn btn-primary">工单详情</a></td>
 								</tr>
@@ -268,6 +276,7 @@
 						</div>
 					            </td>
 					            <td>已分配：张三</td>
+										<td>李四</td>
 								 <td><a href="" class="btn btn-primary">分配</a>
 								 <a href="querengongdan2.jsp" class="btn btn-primary">工单详情</a></td>
 								</tr>
@@ -296,6 +305,8 @@
 						</div>
 					            </td>
 					            <td>已分配：张三</td>
+										<td>李四</td>
+								<td></td>
 								 <td><a href="" class="btn btn-primary">分配</a>
 								 <a href="querengongdan2.jsp" class="btn btn-primary">工单详情</a></td>
 								</tr>
