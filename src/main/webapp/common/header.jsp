@@ -11,7 +11,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>APP开发者平台wwwwx</title>
+<title>飞鸟物流</title>
 
 
 	<!-- Bootstrap -->
@@ -29,7 +29,7 @@
 	<link href="${pageContext.request.contextPath }/statics/css/dropzone.min.css" rel="stylesheet">
 	<!-- Custom Theme Style -->
 	<link href="${pageContext.request.contextPath }/statics/css/custom.min.css"	rel="stylesheet">
-	
+
 	<!-- add localcss 2016-8-18 -->
 	<link href='${pageContext.request.contextPath }/statics/localcss/appinfoadd.css' rel='stylesheet'>
 	<link href='${pageContext.request.contextPath }/statics/localcss/appinfolist.css' rel='stylesheet'>
@@ -69,7 +69,7 @@
 						<div class="menu_section">
 							<h3>${devUserSession.devName }</h3>
 							<ul class="nav side-menu">
-								<!--蒋梓伦  -->
+
 								<li>
 								<li><a><i class="fa fa-edit"></i> 客户(任一)<span
 										class="fa fa-chevron-down"></span>
@@ -84,11 +84,11 @@
 										<li><a href="${pageContext.request.contextPath}/lixing/send_ry.jsp">寄件服务</a>
 										</li>
 									</ul></li>
-								
-								
-								
+
+
+
 								<!--肖林辉  -->
-								<li><a><i class="fa fa-home"></i>快递员角22222  肖林辉<span
+								<li><a><i class="fa fa-home"></i>快递员  肖林辉<span
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
@@ -100,8 +100,10 @@
 										</li>
 										<li><a href="${pageContext.request.contextPath}/xlh/addinfo_xlh.jsp">生成工单</a>
 										</li>
+										<li><a href="${pageContext.request.contextPath}/xlh/echarts_xlh.jsp">图形报表</a>
+										</li>
 									</ul></li>
-								
+
 								<!--李普强  -->
 								<li><a><i class="fa fa-home"></i> 网点(李普强) <span
 										class="fa fa-chevron-down"></span>
@@ -119,54 +121,42 @@
 										<li><a href="${pageContext.request.contextPath}/lpq/fenpei2.jsp">分配工单</a>
 										</li>
 									</ul></li>
-									
-								<!-- 任一 -->	
+
+								<!--李家和  -->
 								<li><a><i class="fa fa-home"></i>分公司管理<span
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="${pageContext.request.contextPath}/wangdianchaxun_zz.jsp">网点管理</a></li>
-										<li><a href="${pageContext.request.contextPath}/kuaidiyuan_ry.jsp">快递员管理</a></li>
-										<li><a href="addkuaidiyuan_ry.jsp">新增快递员</a>
-										</li>
-										<li><a href="gongdan_ry.jsp">工单查询</a>
-										</li>
-										<!-- <li><a href="fenpei_ry.jsp">工单分配</a> -->
-										</li>
-										<!--李佳和  -->
-										
-										<li><a href="${pageContext.request.contextPath}/addwangdian_ljh.jsp">添加网点</a></li>
-										<li><a href="${pageContext.request.contextPath}/chuku_ljh.jsp">出库</a></li>
-										<li><a href="${pageContext.request.contextPath}/ruku_ljh.jsp">入库</a></li>
+										<li><a href="${pageContext.request.contextPath}/ljh/wangdianchaxun_zz.jsp">网点管理</a></li>
+										<li><a href="${pageContext.request.contextPath}/ljh/kuaidiyuan_ry.jsp">快递员管理</a></li>
+										<li><a href="${pageContext.request.contextPath}/ljh/addkuaidiyuan.jsp">新增快递员</a></li>
+										<li><a href="${pageContext.request.contextPath}/ljh/gongdan_ry.jsp">工单查询</a>
+										<li><a href="${pageContext.request.contextPath}/ljh/addwangdian.jsp">添加网点</a></li>
+										<li><a href="${pageContext.request.contextPath}/ljh/chuku.jsp">出库</a></li>
+										<li><a href="${pageContext.request.contextPath}/ljh/ruku.jsp">入库</a></li>
 									</ul>
-									
+
 								</li>
-								
-								
+
+
 								<!--张展  -->
 								<li><a><i class="fa fa-home"></i>总公司管理<span
 										class="fa fa-chevron-down"></span>
 								</a>
 
 									<ul class="nav child_menu">
-<%-- 										<li><a href="${pageContext.request.contextPath}/gondan_zz.jsp">查询工单</a> --%>
-<!-- 										</li> -->
-										<%-- <li><a href="${pageContext.request.contextPath}/xiangqing_zz.jsp">工单详情</a> --%>
+
+										<li><a href="${pageContext.request.contextPath}/zz/gondan2_zz.jsp">查询工单（总部）</a>
 										</li>
-<%-- 										<li><a href="${pageContext.request.contextPath}/addinfo_zz.jsp">订单信息补全</a> --%>
-<!-- 										</li> -->
-										<li><a href="${pageContext.request.contextPath}/gondan2_zz.jsp">查询工单（总部）</a>
+										<li><a href="${pageContext.request.contextPath}/zz/fanhuodanlist_zz.jsp">返货单查询</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath}/fanhuodanlist_zz.jsp">返货单查询</a>
+										<li><a href="${pageContext.request.contextPath}/zz/fanhuodanxiangqing_zz.jsp">审核返货单</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath}/fanhuodanxiangqing_zz.jsp">审核返货单</a>
-										</li>
-										<li><a href="${pageContext.request.contextPath}/fengongsitianjia_zz.jsp">新增分公司</a></li>
-										<li><a href="${pageContext.request.contextPath}/fengongsichaxun_zz.jsp">分公司管理</a></li>
-										<li><a href="${pageContext.request.contextPath}/wangdianchaxun_zz.jsp">网点管理</a></li>
-										<li><a href="${pageContext.request.contextPath}/kuaidiyuan_ry.jsp">快递员管理</a></li>
+										<li><a href="${pageContext.request.contextPath}/zz/fengongsitianjia_zz.jsp">新增分公司</a></li>
+										<li><a href="${pageContext.request.contextPath}/zz/fengongsichaxun_zz.jsp">分公司管理</a></li>
+										<li><a href="${pageContext.request.contextPath}/zz/wangdianchaxun_zz.jsp">网点管理</a></li>
 							</ul></li>
-						</div>
+						</ul></div>
 
 
 					</div>

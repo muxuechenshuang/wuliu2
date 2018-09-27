@@ -15,6 +15,10 @@
     <!-- dropzone -->
     <script src="${pageContext.request.contextPath }/statics/js/dropzone.js"></script>  
     
+     <script src="${pageContext.request.contextPath }/statics/js/jquery.dataTables.min.js"></script> 
+     
+     <script src="${pageContext.request.contextPath }/statics/js/icheck.min.js"></script> 
+    
       <!-- Bootstrap -->
 	<%-- <script src="${pageContext.request.contextPath }/statics/js/jquery.dataTables.min.js"></script>
 	<script src="${pageContext.request.contextPath }/statics/js/dataTables.bootstrap.min.js"></script>
