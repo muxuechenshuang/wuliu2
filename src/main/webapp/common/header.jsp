@@ -149,12 +149,7 @@
 								</a>
 
 									<ul class="nav child_menu">
-<%-- 										<li><a href="${pageContext.request.contextPath}/gondan_zz.jsp">查询工单</a> --%>
-<!-- 										</li> -->
-										<%-- <li><a href="${pageContext.request.contextPath}/xiangqing_zz.jsp">工单详情</a> --%>
-										</li>
-<%-- 										<li><a href="${pageContext.request.contextPath}/addinfo_zz.jsp">订单信息补全</a> --%>
-<!-- 										</li> -->
+
 										<li><a href="${pageContext.request.contextPath}/zz/gondan2_zz.jsp">查询工单（总部）</a>
 										</li>
 										<li><a href="${pageContext.request.contextPath}/zz/fanhuodanlist_zz.jsp">返货单查询</a>
@@ -165,7 +160,7 @@
 										<li><a href="${pageContext.request.contextPath}/zz/fengongsichaxun_zz.jsp">分公司管理</a></li>
 										<li><a href="${pageContext.request.contextPath}/zz/wangdianchaxun_zz.jsp">网点管理</a></li>
 							</ul></li>
-						</div>
+						</ul></div>
 
 
 					</div>
@@ -259,3 +254,7 @@
 			<!-- /top navigation -->
 			<div class="right_col" role="main">
 				<div class="">
+                </div>
+            </div>
+        </div>
+    </div>
