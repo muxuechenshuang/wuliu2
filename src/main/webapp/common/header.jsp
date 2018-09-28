@@ -120,6 +120,8 @@
 										</li>
 										<li><a href="${pageContext.request.contextPath}/lpq/fenpei2.jsp">分配工单</a>
 										</li>
+										<li><a href="${pageContext.request.contextPath}/lpq/mix-line-bar.jsp">网点报表</a>
+										</li>
 									</ul></li>
 
 								<!--李家和  -->
