@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.forest.dao.UesrfunctionMapper">
+  <resultMap id="BaseResultMap" type="com.forest.wu.pojo.Uesrfunction">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userName" jdbcType="VARCHAR" property="userName" />
+    <result column="function1" jdbcType="VARCHAR" property="function1" />
+    <result column="function2" jdbcType="VARCHAR" property="function2" />
+    <result column="function3" jdbcType="VARCHAR" property="function3" />
+    <result column="function4" jdbcType="VARCHAR" property="function4" />
+    <result column="function5" jdbcType="VARCHAR" property="function5" />
+    <result column="function6" jdbcType="VARCHAR" property="function6" />
+    <result column="function7" jdbcType="VARCHAR" property="function7" />
+    <result column="function8" jdbcType="VARCHAR" property="function8" />
+    <result column="function9" jdbcType="VARCHAR" property="function9" />
+    <result column="function10" jdbcType="VARCHAR" property="function10" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userName, function1, function2, function3, function4, function5, function6, function7, 
+    function8, function9, function10
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from uesrfunction
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from uesrfunction
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.forest.wu.pojo.Uesrfunction">
+    insert into uesrfunction (id, userName, function1, 
+      function2, function3, function4, 
+      function5, function6, function7, 
+      function8, function9, function10
+      )
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{function1,jdbcType=VARCHAR}, 
+      #{function2,jdbcType=VARCHAR}, #{function3,jdbcType=VARCHAR}, #{function4,jdbcType=VARCHAR}, 
+      #{function5,jdbcType=VARCHAR}, #{function6,jdbcType=VARCHAR}, #{function7,jdbcType=VARCHAR}, 
+      #{function8,jdbcType=VARCHAR}, #{function9,jdbcType=VARCHAR}, #{function10,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.forest.wu.pojo.Uesrfunction">
+    insert into uesrfunction
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userName != null">
+        userName,
+      </if>
+      <if test="function1 != null">
+        function1,
+      </if>
+      <if test="function2 != null">
+        function2,
+      </if>
+      <if test="function3 != null">
+        function3,
+      </if>
+      <if test="function4 != null">
+        function4,
+      </if>
+      <if test="function5 != null">
+        function5,
+      </if>
+      <if test="function6 != null">
+        function6,
+      </if>
+      <if test="function7 != null">
+        function7,
+      </if>
+      <if test="function8 != null">
+        function8,
+      </if>
+      <if test="function9 != null">
+        function9,
+      </if>
+      <if test="function10 != null">
+        function10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="function1 != null">
+        #{function1,jdbcType=VARCHAR},
+      </if>
+      <if test="function2 != null">
+        #{function2,jdbcType=VARCHAR},
+      </if>
+      <if test="function3 != null">
+        #{function3,jdbcType=VARCHAR},
+      </if>
+      <if test="function4 != null">
+        #{function4,jdbcType=VARCHAR},
+      </if>
+      <if test="function5 != null">
+        #{function5,jdbcType=VARCHAR},
+      </if>
+      <if test="function6 != null">
+        #{function6,jdbcType=VARCHAR},
+      </if>
+      <if test="function7 != null">
+        #{function7,jdbcType=VARCHAR},
+      </if>
+      <if test="function8 != null">
+        #{function8,jdbcType=VARCHAR},
+      </if>
+      <if test="function9 != null">
+        #{function9,jdbcType=VARCHAR},
+      </if>
+      <if test="function10 != null">
+        #{function10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.forest.wu.pojo.Uesrfunction">
+    update uesrfunction
+    <set>
+      <if test="userName != null">
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="function1 != null">
+        function1 = #{function1,jdbcType=VARCHAR},
+      </if>
+      <if test="function2 != null">
+        function2 = #{function2,jdbcType=VARCHAR},
+      </if>
+      <if test="function3 != null">
+        function3 = #{function3,jdbcType=VARCHAR},
+      </if>
+      <if test="function4 != null">
+        function4 = #{function4,jdbcType=VARCHAR},
+      </if>
+      <if test="function5 != null">
+        function5 = #{function5,jdbcType=VARCHAR},
+      </if>
+      <if test="function6 != null">
+        function6 = #{function6,jdbcType=VARCHAR},
+      </if>
+      <if test="function7 != null">
+        function7 = #{function7,jdbcType=VARCHAR},
+      </if>
+      <if test="function8 != null">
+        function8 = #{function8,jdbcType=VARCHAR},
+      </if>
+      <if test="function9 != null">
+        function9 = #{function9,jdbcType=VARCHAR},
+      </if>
+      <if test="function10 != null">
+        function10 = #{function10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.forest.wu.pojo.Uesrfunction">
+    update uesrfunction
+    set userName = #{userName,jdbcType=VARCHAR},
+      function1 = #{function1,jdbcType=VARCHAR},
+      function2 = #{function2,jdbcType=VARCHAR},
+      function3 = #{function3,jdbcType=VARCHAR},
+      function4 = #{function4,jdbcType=VARCHAR},
+      function5 = #{function5,jdbcType=VARCHAR},
+      function6 = #{function6,jdbcType=VARCHAR},
+      function7 = #{function7,jdbcType=VARCHAR},
+      function8 = #{function8,jdbcType=VARCHAR},
+      function9 = #{function9,jdbcType=VARCHAR},
+      function10 = #{function10,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

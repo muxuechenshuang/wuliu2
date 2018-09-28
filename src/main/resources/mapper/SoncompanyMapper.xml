@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.forest.dao.SoncompanyMapper">
+  <resultMap id="BaseResultMap" type="com.forest.wu.pojo.Soncompany">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="companyNum" jdbcType="VARCHAR" property="companyNum" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="companyName" jdbcType="VARCHAR" property="companyName" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="logo" jdbcType="VARCHAR" property="logo" />
+    <result column="numberofCenter" jdbcType="VARCHAR" property="numberofCenter" />
+    <result column="role" jdbcType="INTEGER" property="role" />
+    <result column="managerName" jdbcType="VARCHAR" property="managerName" />
+  </resultMap>
+  <insert id="insert" parameterType="com.forest.wu.pojo.Soncompany">
+    insert into soncompany (id, companyNum, name, 
+      password, email, phone, 
+      companyName, address, logo, 
+      numberofCenter, role, managerName
+      )
+    values (#{id,jdbcType=INTEGER}, #{companyNum,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{companyName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, 
+      #{numberofCenter,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, #{managerName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.forest.wu.pojo.Soncompany">
+    insert into soncompany
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="companyNum != null">
+        companyNum,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="companyName != null">
+        companyName,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="logo != null">
+        logo,
+      </if>
+      <if test="numberofCenter != null">
+        numberofCenter,
+      </if>
+      <if test="role != null">
+        role,
+      </if>
+      <if test="managerName != null">
+        managerName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="companyNum != null">
+        #{companyNum,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null">
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null">
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="numberofCenter != null">
+        #{numberofCenter,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null">
+        #{role,jdbcType=INTEGER},
+      </if>
+      <if test="managerName != null">
+        #{managerName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
