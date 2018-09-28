@@ -87,7 +87,7 @@
 								
 								
 								<!--肖林辉  -->
-								<li><a><i class="fa fa-home"></i>快递员角22222  肖林辉<span
+								<li><a><i class="fa fa-home"></i>快递员  肖林辉<span
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
@@ -116,6 +116,8 @@
 										<li><a href="${pageContext.request.contextPath}/lpq/gongdan_lpq.jsp">确认工单</a>
 										</li>
 										<li><a href="${pageContext.request.contextPath}/lpq/fenpei2.jsp">分配工单</a>
+										</li>
+										<li><a href="${pageContext.request.contextPath}/lpq/mix-line-bar.jsp">网点报表</a>
 										</li>
 									</ul></li>
 									
