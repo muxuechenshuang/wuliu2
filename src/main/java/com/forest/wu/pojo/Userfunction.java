@@ -1,6 +1,6 @@
 package com.forest.wu.pojo;
 
-public class Uesrfunction {
+public class Userfunction {
     private Integer id;
 
     private String userName;

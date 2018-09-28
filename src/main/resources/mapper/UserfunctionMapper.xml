@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.forest.dao.UesrfunctionMapper">
-  <resultMap id="BaseResultMap" type="com.forest.wu.pojo.Uesrfunction">
+<mapper namespace="com.forest.dao.UserfunctionMapper">
+  <resultMap id="BaseResultMap" type="com.forest.wu.pojo.Userfunction">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="userName" jdbcType="VARCHAR" property="userName" />
     <result column="function1" jdbcType="VARCHAR" property="function1" />
@@ -22,15 +22,15 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from uesrfunction
+    from userfunction
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from uesrfunction
+    delete from userfunction
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.forest.wu.pojo.Uesrfunction">
-    insert into uesrfunction (id, userName, function1, 
+  <insert id="insert" parameterType="com.forest.wu.pojo.Userfunction">
+    insert into userfunction (id, userName, function1, 
       function2, function3, function4, 
       function5, function6, function7, 
       function8, function9, function10
@@ -41,8 +41,8 @@
       #{function8,jdbcType=VARCHAR}, #{function9,jdbcType=VARCHAR}, #{function10,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.forest.wu.pojo.Uesrfunction">
-    insert into uesrfunction
+  <insert id="insertSelective" parameterType="com.forest.wu.pojo.Userfunction">
+    insert into userfunction
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -120,8 +120,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.forest.wu.pojo.Uesrfunction">
-    update uesrfunction
+  <update id="updateByPrimaryKeySelective" parameterType="com.forest.wu.pojo.Userfunction">
+    update userfunction
     <set>
       <if test="userName != null">
         userName = #{userName,jdbcType=VARCHAR},
@@ -159,8 +159,8 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.forest.wu.pojo.Uesrfunction">
-    update uesrfunction
+  <update id="updateByPrimaryKey" parameterType="com.forest.wu.pojo.Userfunction">
+    update userfunction
     set userName = #{userName,jdbcType=VARCHAR},
       function1 = #{function1,jdbcType=VARCHAR},
       function2 = #{function2,jdbcType=VARCHAR},
