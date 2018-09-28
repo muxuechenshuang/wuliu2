@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.forest.dao.RepertoryMapper">
+  <resultMap id="BaseResultMap" type="com.forest.wu.pojo.Repertory">
+    <id column="storeId" jdbcType="BIGINT" property="storeId" />
+    <result column="packageId" jdbcType="BIGINT" property="packageId" />
+    <result column="getUnit" jdbcType="VARCHAR" property="getUnit" />
+    <result column="sendUnit" jdbcType="VARCHAR" property="sendUnit" />
+    <result column="intoTime" jdbcType="TIMESTAMP" property="intoTime" />
+    <result column="outTime" jdbcType="TIMESTAMP" property="outTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    storeId, packageId, getUnit, sendUnit, intoTime, outTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from repertory
+    where storeId = #{storeId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from repertory
+    where storeId = #{storeId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.forest.wu.pojo.Repertory">
+    insert into repertory (storeId, packageId, getUnit, 
+      sendUnit, intoTime, outTime
+      )
+    values (#{storeId,jdbcType=BIGINT}, #{packageId,jdbcType=BIGINT}, #{getUnit,jdbcType=VARCHAR}, 
+      #{sendUnit,jdbcType=VARCHAR}, #{intoTime,jdbcType=TIMESTAMP}, #{outTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.forest.wu.pojo.Repertory">
+    insert into repertory
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="storeId != null">
+        storeId,
+      </if>
+      <if test="packageId != null">
+        packageId,
+      </if>
+      <if test="getUnit != null">
+        getUnit,
+      </if>
+      <if test="sendUnit != null">
+        sendUnit,
+      </if>
+      <if test="intoTime != null">
+        intoTime,
+      </if>
+      <if test="outTime != null">
+        outTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="storeId != null">
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="packageId != null">
+        #{packageId,jdbcType=BIGINT},
+      </if>
+      <if test="getUnit != null">
+        #{getUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="sendUnit != null">
+        #{sendUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="intoTime != null">
+        #{intoTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outTime != null">
+        #{outTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.forest.wu.pojo.Repertory">
+    update repertory
+    <set>
+      <if test="packageId != null">
+        packageId = #{packageId,jdbcType=BIGINT},
+      </if>
+      <if test="getUnit != null">
+        getUnit = #{getUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="sendUnit != null">
+        sendUnit = #{sendUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="intoTime != null">
+        intoTime = #{intoTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outTime != null">
+        outTime = #{outTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where storeId = #{storeId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.forest.wu.pojo.Repertory">
+    update repertory
+    set packageId = #{packageId,jdbcType=BIGINT},
+      getUnit = #{getUnit,jdbcType=VARCHAR},
+      sendUnit = #{sendUnit,jdbcType=VARCHAR},
+      intoTime = #{intoTime,jdbcType=TIMESTAMP},
+      outTime = #{outTime,jdbcType=TIMESTAMP}
+    where storeId = #{storeId,jdbcType=BIGINT}
+  </update>
+</mapper>

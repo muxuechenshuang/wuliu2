@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.forest.dao.Product_outMapper">
+  <resultMap id="BaseResultMap" type="com.forest.wu.pojo.Product_out">
+    <id column="outId" jdbcType="BIGINT" property="outId" />
+    <result column="sendUnit" jdbcType="VARCHAR" property="sendUnit" />
+    <result column="getUnit" jdbcType="VARCHAR" property="getUnit" />
+    <result column="out_time" jdbcType="TIMESTAMP" property="out_time" />
+    <result column="productNum" jdbcType="BIGINT" property="productNum" />
+    <result column="packageId" jdbcType="BIGINT" property="packageId" />
+    <result column="packageWeight" jdbcType="DOUBLE" property="packageWeight" />
+    <result column="out_status" jdbcType="INTEGER" property="out_status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    outId, sendUnit, getUnit, out_time, productNum, packageId, packageWeight, out_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_out
+    where outId = #{outId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from product_out
+    where outId = #{outId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.forest.wu.pojo.Product_out">
+    insert into product_out (outId, sendUnit, getUnit, 
+      out_time, productNum, packageId, 
+      packageWeight, out_status)
+    values (#{outId,jdbcType=BIGINT}, #{sendUnit,jdbcType=VARCHAR}, #{getUnit,jdbcType=VARCHAR}, 
+      #{out_time,jdbcType=TIMESTAMP}, #{productNum,jdbcType=BIGINT}, #{packageId,jdbcType=BIGINT}, 
+      #{packageWeight,jdbcType=DOUBLE}, #{out_status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.forest.wu.pojo.Product_out">
+    insert into product_out
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="outId != null">
+        outId,
+      </if>
+      <if test="sendUnit != null">
+        sendUnit,
+      </if>
+      <if test="getUnit != null">
+        getUnit,
+      </if>
+      <if test="out_time != null">
+        out_time,
+      </if>
+      <if test="productNum != null">
+        productNum,
+      </if>
+      <if test="packageId != null">
+        packageId,
+      </if>
+      <if test="packageWeight != null">
+        packageWeight,
+      </if>
+      <if test="out_status != null">
+        out_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="outId != null">
+        #{outId,jdbcType=BIGINT},
+      </if>
+      <if test="sendUnit != null">
+        #{sendUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="getUnit != null">
+        #{getUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="out_time != null">
+        #{out_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productNum != null">
+        #{productNum,jdbcType=BIGINT},
+      </if>
+      <if test="packageId != null">
+        #{packageId,jdbcType=BIGINT},
+      </if>
+      <if test="packageWeight != null">
+        #{packageWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="out_status != null">
+        #{out_status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.forest.wu.pojo.Product_out">
+    update product_out
+    <set>
+      <if test="sendUnit != null">
+        sendUnit = #{sendUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="getUnit != null">
+        getUnit = #{getUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="out_time != null">
+        out_time = #{out_time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productNum != null">
+        productNum = #{productNum,jdbcType=BIGINT},
+      </if>
+      <if test="packageId != null">
+        packageId = #{packageId,jdbcType=BIGINT},
+      </if>
+      <if test="packageWeight != null">
+        packageWeight = #{packageWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="out_status != null">
+        out_status = #{out_status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where outId = #{outId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.forest.wu.pojo.Product_out">
+    update product_out
+    set sendUnit = #{sendUnit,jdbcType=VARCHAR},
+      getUnit = #{getUnit,jdbcType=VARCHAR},
+      out_time = #{out_time,jdbcType=TIMESTAMP},
+      productNum = #{productNum,jdbcType=BIGINT},
+      packageId = #{packageId,jdbcType=BIGINT},
+      packageWeight = #{packageWeight,jdbcType=DOUBLE},
+      out_status = #{out_status,jdbcType=INTEGER}
+    where outId = #{outId,jdbcType=BIGINT}
+  </update>
+</mapper>

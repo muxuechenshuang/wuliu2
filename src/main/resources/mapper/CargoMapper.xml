@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.forest.dao.CargoMapper">
+  <resultMap id="BaseResultMap" type="com.forest.wu.pojo.Cargo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="cargoId" jdbcType="VARCHAR" property="cargoId" />
+    <result column="cargoType" jdbcType="INTEGER" property="cargoType" />
+    <result column="cargoVolume" jdbcType="INTEGER" property="cargoVolume" />
+    <result column="cargoWeight" jdbcType="INTEGER" property="cargoWeight" />
+    <result column="gid" jdbcType="VARCHAR" property="gid" />
+    <result column="packageId" jdbcType="VARCHAR" property="packageId" />
+    <result column="into_status" jdbcType="INTEGER" property="into_status" />
+    <result column="out_status" jdbcType="INTEGER" property="out_status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, cargoId, cargoType, cargoVolume, cargoWeight, gid, packageId, into_status, out_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cargo
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from cargo
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.forest.wu.pojo.Cargo">
+    insert into cargo (id, cargoId, cargoType, 
+      cargoVolume, cargoWeight, gid, 
+      packageId, into_status, out_status
+      )
+    values (#{id,jdbcType=BIGINT}, #{cargoId,jdbcType=VARCHAR}, #{cargoType,jdbcType=INTEGER}, 
+      #{cargoVolume,jdbcType=INTEGER}, #{cargoWeight,jdbcType=INTEGER}, #{gid,jdbcType=VARCHAR}, 
+      #{packageId,jdbcType=VARCHAR}, #{into_status,jdbcType=INTEGER}, #{out_status,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.forest.wu.pojo.Cargo">
+    insert into cargo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="cargoId != null">
+        cargoId,
+      </if>
+      <if test="cargoType != null">
+        cargoType,
+      </if>
+      <if test="cargoVolume != null">
+        cargoVolume,
+      </if>
+      <if test="cargoWeight != null">
+        cargoWeight,
+      </if>
+      <if test="gid != null">
+        gid,
+      </if>
+      <if test="packageId != null">
+        packageId,
+      </if>
+      <if test="into_status != null">
+        into_status,
+      </if>
+      <if test="out_status != null">
+        out_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="cargoId != null">
+        #{cargoId,jdbcType=VARCHAR},
+      </if>
+      <if test="cargoType != null">
+        #{cargoType,jdbcType=INTEGER},
+      </if>
+      <if test="cargoVolume != null">
+        #{cargoVolume,jdbcType=INTEGER},
+      </if>
+      <if test="cargoWeight != null">
+        #{cargoWeight,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null">
+        #{gid,jdbcType=VARCHAR},
+      </if>
+      <if test="packageId != null">
+        #{packageId,jdbcType=VARCHAR},
+      </if>
+      <if test="into_status != null">
+        #{into_status,jdbcType=INTEGER},
+      </if>
+      <if test="out_status != null">
+        #{out_status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.forest.wu.pojo.Cargo">
+    update cargo
+    <set>
+      <if test="cargoId != null">
+        cargoId = #{cargoId,jdbcType=VARCHAR},
+      </if>
+      <if test="cargoType != null">
+        cargoType = #{cargoType,jdbcType=INTEGER},
+      </if>
+      <if test="cargoVolume != null">
+        cargoVolume = #{cargoVolume,jdbcType=INTEGER},
+      </if>
+      <if test="cargoWeight != null">
+        cargoWeight = #{cargoWeight,jdbcType=INTEGER},
+      </if>
+      <if test="gid != null">
+        gid = #{gid,jdbcType=VARCHAR},
+      </if>
+      <if test="packageId != null">
+        packageId = #{packageId,jdbcType=VARCHAR},
+      </if>
+      <if test="into_status != null">
+        into_status = #{into_status,jdbcType=INTEGER},
+      </if>
+      <if test="out_status != null">
+        out_status = #{out_status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.forest.wu.pojo.Cargo">
+    update cargo
+    set cargoId = #{cargoId,jdbcType=VARCHAR},
+      cargoType = #{cargoType,jdbcType=INTEGER},
+      cargoVolume = #{cargoVolume,jdbcType=INTEGER},
+      cargoWeight = #{cargoWeight,jdbcType=INTEGER},
+      gid = #{gid,jdbcType=VARCHAR},
+      packageId = #{packageId,jdbcType=VARCHAR},
+      into_status = #{into_status,jdbcType=INTEGER},
+      out_status = #{out_status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

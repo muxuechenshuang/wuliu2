@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.forest.dao.Order_infoMapper">
+  <resultMap id="BaseResultMap" type="com.forest.wu.pojo.Order_info">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sName" jdbcType="VARCHAR" property="sName" />
+    <result column="gName" jdbcType="VARCHAR" property="gName" />
+    <result column="sTel" jdbcType="VARCHAR" property="sTel" />
+    <result column="gTel" jdbcType="VARCHAR" property="gTel" />
+    <result column="gAddress" jdbcType="VARCHAR" property="gAddress" />
+    <result column="sAddress" jdbcType="VARCHAR" property="sAddress" />
+    <result column="product" jdbcType="VARCHAR" property="product" />
+    <result column="preWeight" jdbcType="DOUBLE" property="preWeight" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="orderNumber" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="preVolume" jdbcType="VARCHAR" property="preVolume" />
+    <result column="riseTime" jdbcType="TIMESTAMP" property="riseTime" />
+    <result column="finishTime" jdbcType="TIMESTAMP" property="finishTime" />
+    <result column="reasonForCancle" jdbcType="VARCHAR" property="reasonForCancle" />
+    <result column="userId" jdbcType="BIGINT" property="userId" />
+    <result column="entrust" jdbcType="VARCHAR" property="entrust" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, sName, gName, sTel, gTel, gAddress, sAddress, product, preWeight, comment, orderNumber, 
+    status, preVolume, riseTime, finishTime, reasonForCancle, userId, entrust
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from order_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.forest.wu.pojo.Order_info">
+    insert into order_info (id, sName, gName, 
+      sTel, gTel, gAddress, 
+      sAddress, product, preWeight, 
+      comment, orderNumber, status, 
+      preVolume, riseTime, finishTime, 
+      reasonForCancle, userId, entrust
+      )
+    values (#{id,jdbcType=INTEGER}, #{sName,jdbcType=VARCHAR}, #{gName,jdbcType=VARCHAR}, 
+      #{sTel,jdbcType=VARCHAR}, #{gTel,jdbcType=VARCHAR}, #{gAddress,jdbcType=VARCHAR}, 
+      #{sAddress,jdbcType=VARCHAR}, #{product,jdbcType=VARCHAR}, #{preWeight,jdbcType=DOUBLE}, 
+      #{comment,jdbcType=VARCHAR}, #{orderNumber,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{preVolume,jdbcType=VARCHAR}, #{riseTime,jdbcType=TIMESTAMP}, #{finishTime,jdbcType=TIMESTAMP}, 
+      #{reasonForCancle,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{entrust,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.forest.wu.pojo.Order_info">
+    insert into order_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sName != null">
+        sName,
+      </if>
+      <if test="gName != null">
+        gName,
+      </if>
+      <if test="sTel != null">
+        sTel,
+      </if>
+      <if test="gTel != null">
+        gTel,
+      </if>
+      <if test="gAddress != null">
+        gAddress,
+      </if>
+      <if test="sAddress != null">
+        sAddress,
+      </if>
+      <if test="product != null">
+        product,
+      </if>
+      <if test="preWeight != null">
+        preWeight,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+      <if test="orderNumber != null">
+        orderNumber,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="preVolume != null">
+        preVolume,
+      </if>
+      <if test="riseTime != null">
+        riseTime,
+      </if>
+      <if test="finishTime != null">
+        finishTime,
+      </if>
+      <if test="reasonForCancle != null">
+        reasonForCancle,
+      </if>
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="entrust != null">
+        entrust,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sName != null">
+        #{sName,jdbcType=VARCHAR},
+      </if>
+      <if test="gName != null">
+        #{gName,jdbcType=VARCHAR},
+      </if>
+      <if test="sTel != null">
+        #{sTel,jdbcType=VARCHAR},
+      </if>
+      <if test="gTel != null">
+        #{gTel,jdbcType=VARCHAR},
+      </if>
+      <if test="gAddress != null">
+        #{gAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sAddress != null">
+        #{sAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="product != null">
+        #{product,jdbcType=VARCHAR},
+      </if>
+      <if test="preWeight != null">
+        #{preWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNumber != null">
+        #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="preVolume != null">
+        #{preVolume,jdbcType=VARCHAR},
+      </if>
+      <if test="riseTime != null">
+        #{riseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishTime != null">
+        #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reasonForCancle != null">
+        #{reasonForCancle,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="entrust != null">
+        #{entrust,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.forest.wu.pojo.Order_info">
+    update order_info
+    <set>
+      <if test="sName != null">
+        sName = #{sName,jdbcType=VARCHAR},
+      </if>
+      <if test="gName != null">
+        gName = #{gName,jdbcType=VARCHAR},
+      </if>
+      <if test="sTel != null">
+        sTel = #{sTel,jdbcType=VARCHAR},
+      </if>
+      <if test="gTel != null">
+        gTel = #{gTel,jdbcType=VARCHAR},
+      </if>
+      <if test="gAddress != null">
+        gAddress = #{gAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sAddress != null">
+        sAddress = #{sAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="product != null">
+        product = #{product,jdbcType=VARCHAR},
+      </if>
+      <if test="preWeight != null">
+        preWeight = #{preWeight,jdbcType=DOUBLE},
+      </if>
+      <if test="comment != null">
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNumber != null">
+        orderNumber = #{orderNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="preVolume != null">
+        preVolume = #{preVolume,jdbcType=VARCHAR},
+      </if>
+      <if test="riseTime != null">
+        riseTime = #{riseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishTime != null">
+        finishTime = #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reasonForCancle != null">
+        reasonForCancle = #{reasonForCancle,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        userId = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="entrust != null">
+        entrust = #{entrust,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.forest.wu.pojo.Order_info">
+    update order_info
+    set sName = #{sName,jdbcType=VARCHAR},
+      gName = #{gName,jdbcType=VARCHAR},
+      sTel = #{sTel,jdbcType=VARCHAR},
+      gTel = #{gTel,jdbcType=VARCHAR},
+      gAddress = #{gAddress,jdbcType=VARCHAR},
+      sAddress = #{sAddress,jdbcType=VARCHAR},
+      product = #{product,jdbcType=VARCHAR},
+      preWeight = #{preWeight,jdbcType=DOUBLE},
+      comment = #{comment,jdbcType=VARCHAR},
+      orderNumber = #{orderNumber,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      preVolume = #{preVolume,jdbcType=VARCHAR},
+      riseTime = #{riseTime,jdbcType=TIMESTAMP},
+      finishTime = #{finishTime,jdbcType=TIMESTAMP},
+      reasonForCancle = #{reasonForCancle,jdbcType=VARCHAR},
+      userId = #{userId,jdbcType=BIGINT},
+      entrust = #{entrust,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
