@@ -1,6 +1,6 @@
 package com.forest.wu.pojo;
 
-public class Uesr {
+public class Role {
     private Integer id;
 
     private String name;

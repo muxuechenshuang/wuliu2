@@ -1,9 +1,9 @@
 package com.forest.wu.pojo;
 
-public class Cencompany {
+public class User {
     private Integer id;
 
-    private String name;
+    private String username;
 
     private String password;
 
@@ -11,13 +11,11 @@ public class Cencompany {
 
     private String phone;
 
-    private String companyname;
-
-    private String address;
+    private String sex;
 
     private String logo;
 
-    private String role;
+    private Integer parentid;
 
     public Integer getId() {
         return id;
@@ -27,12 +25,12 @@ public class Cencompany {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
     }
 
     public String getPassword() {
@@ -59,20 +57,12 @@ public class Cencompany {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public String getCompanyname() {
-        return companyname;
+    public String getSex() {
+        return sex;
     }
 
-    public void setCompanyname(String companyname) {
-        this.companyname = companyname == null ? null : companyname.trim();
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
+    public void setSex(String sex) {
+        this.sex = sex == null ? null : sex.trim();
     }
 
     public String getLogo() {
@@ -83,11 +73,11 @@ public class Cencompany {
         this.logo = logo == null ? null : logo.trim();
     }
 
-    public String getRole() {
-        return role;
+    public Integer getParentid() {
+        return parentid;
     }
 
-    public void setRole(String role) {
-        this.role = role == null ? null : role.trim();
+    public void setParentid(Integer parentid) {
+        this.parentid = parentid;
     }
 }
