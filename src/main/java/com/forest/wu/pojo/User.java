@@ -1,9 +1,7 @@
 package com.forest.wu.pojo;
 
-import java.util.Date;
-
 public class User {
-    private Long id;
+    private Integer id;
 
     private String username;
 
@@ -15,19 +13,15 @@ public class User {
 
     private String sex;
 
-    private String address;
+    private String logo;
 
-    private String portrait;
+    private Integer parentid;
 
-    private String role;
-
-    private Date time;
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -71,35 +65,19 @@ public class User {
         this.sex = sex == null ? null : sex.trim();
     }
 
-    public String getAddress() {
-        return address;
+    public String getLogo() {
+        return logo;
     }
 
-    public void setAddress(String address) {
-        this.address = address == null ? null : address.trim();
+    public void setLogo(String logo) {
+        this.logo = logo == null ? null : logo.trim();
     }
 
-    public String getPortrait() {
-        return portrait;
+    public Integer getParentid() {
+        return parentid;
     }
 
-    public void setPortrait(String portrait) {
-        this.portrait = portrait == null ? null : portrait.trim();
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role == null ? null : role.trim();
-    }
-
-    public Date getTime() {
-        return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
+    public void setParentid(Integer parentid) {
+        this.parentid = parentid;
     }
 }
