@@ -27,16 +27,7 @@
                             </div>
                         </li>
 
-                        <li>
-                            <div class="form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12">物件编号</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="querySoftwareName" type="text"
-                                           class="form-control col-md-7 col-xs-12"
-                                           value="${querySoftwareName }">
-                                </div>
-                            </div>
-                        </li>
+
 
                         <li>
                             <div class="form-group">
