@@ -2,6 +2,7 @@ package com.forest.wu.dao;
 
 import com.forest.wu.pojo.Repertory;
 
+@Repository
 public interface RepertoryMapper {
     int deleteByPrimaryKey(Long storeId);
 

@@ -1,8 +1,10 @@
 package com.forest.wu.service.impl;
 
 
+import com.forest.wu.dao.UserMapper;
 import com.forest.wu.pojo.User;
 import com.forest.wu.service.CourierService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,10 +17,11 @@ import java.util.List;
  **/
 @Service
 public class CourierServiceImpl implements CourierService {
-
+    @Autowired
+     private UserMapper userMapper;
 
     @Override
     public List<User> selectUsers() {
-        return null;
+        return userMapper.selectU();
     }
 }

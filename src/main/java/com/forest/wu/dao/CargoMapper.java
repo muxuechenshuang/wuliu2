@@ -2,6 +2,7 @@ package com.forest.wu.dao;
 
 import com.forest.wu.pojo.Cargo;
 
+@Repository
 public interface CargoMapper {
     int deleteByPrimaryKey(Long id);
 
