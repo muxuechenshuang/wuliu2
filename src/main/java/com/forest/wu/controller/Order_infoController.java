@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 import java.util.List;
 
@@ -32,8 +33,16 @@ public class Order_infoController {
     public String allOrder(Model model){
         List<Order_info> orderList=orderService.selectAllOrder();
         model.addAttribute("order",orderList);
-        return "xlh/dindan_xlh.jsp";
+        return "xlh/dindan_xlh";
     }
+
+    @RequestMapping("/someorder")
+    public String someOrder(@RequestParam("order_info")Order_info order, Model model){
+        List<Order_info> orderList=orderService.selectSomeOrder(order);
+        model.addAttribute("order",orderList);
+        return "xlh/dindan_xlh";
+    }
+
 
 
 }

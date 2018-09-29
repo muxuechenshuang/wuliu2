@@ -6,6 +6,7 @@ import com.forest.wu.service.Order_infoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
 
 /**
@@ -27,7 +28,12 @@ public class Order_infoServiceImpl implements Order_infoService {
     **/
     @Override
     public List<Order_info> selectAllOrder() {
-        List<Order_info>  orderList = orderMapper.selectAll();
+        List<Order_info>  orderList = orderMapper.selectAllOrder();
         return orderList;
+    }
+
+    @Override
+    public List<Order_info> selectSomeOrder(Order_info order) {
+        return orderMapper.selectSomeOrder(order);
     }
 }

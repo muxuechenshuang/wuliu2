@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.forest.dao.Order_infoMapper">
+<mapper namespace="com.forest.wu.dao.Order_infoMapper">
   <resultMap id="BaseResultMap" type="com.forest.wu.pojo.Order_info">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="sName" jdbcType="VARCHAR" property="sName" />
@@ -21,67 +21,109 @@
     <result column="userId" jdbcType="BIGINT" property="userId" />
     <result column="entrust" jdbcType="VARCHAR" property="entrust" />
   </resultMap>
-
-
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.forest.wu.pojo.Order_info">
+    <result column="courierNumber" jdbcType="VARBINARY" property="courierNumber" />
+  </resultMap>
   <sql id="Base_Column_List">
     id, sName, gName, sTel, gTel, gAddress, sAddress, product, preWeight, comment, orderNumber, 
     status, preVolume, riseTime, finishTime, reasonForCancle, userId, entrust
   </sql>
-
-
+  
     <!--肖林辉
    查询所有订单
    返回订单集合
  -->
-    <select id="selectAll"  resultMap="BaseResultMap">
+    <select id="selectAllOrder"  resultType="com.forest.wu.pojo.Order_info">
         select
         <include refid="Base_Column_List" />
         from order_info
     </select>
 
   <!--肖林辉
-    查询订单  条件查询
-    参数订单对象
-    返回订单集合
-  -->
-  <select id="selectOrderByOption" parameterType="com.forest.wu.pojo.Order_info"  resultMap="BaseResultMap" >
-      select
-      <include refid="Base_Column_List" />
-      from order_info
-      <where>
-          <if test="id != null">
-              id=#{id},
-          </if>
-          <if test="sName != null">
-              sName=#{sName},
-          </if>
+   模糊查询,根据条件查询
+   返回订单集合
+ -->
+  <select id="selectSomeOrder"  parameterType="com.forest.wu.pojo.Order_info" resultType="com.forest.wu.pojo.Order_info">
+    select
+    <include refid="Base_Column_List" />
+    from order_info
+    <where>
+      1=1
+      <if test="orderNumber != null">
+        and orderNumber like concat('%',#{orderNumber},'%')
+      </if>
+      <if test="sName != null">
+        and sName like concat('%',#{sName},'%')
+      </if>
+      <if test="gName != null">
+        and gName like concat('%',#{gName},'%')
+      </if>
+      <if test="sTel != null">
+        sTel like concat('%',#{sTel},'%')
+      </if>
+      <if test="gTel != null">
+        gTel,
+      </if>
+      <if test="gAddress != null">
+        gAddress,
+      </if>
+      <if test="sAddress != null">
+        sAddress,
+      </if>
+      <if test="product != null">
+        product,
+      </if>
+      <if test="preWeight != null">
+        preWeight,
+      </if>
+      <if test="comment != null">
+        comment,
+      </if>
+      <if test="orderNumber != null">
+        orderNumber,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="preVolume != null">
+        preVolume,
+      </if>
+      <if test="riseTime != null">
+        riseTime,
+      </if>
+      <if test="finishTime != null">
+        finishTime,
+      </if>
+      <if test="reasonForCancle != null">
+        reasonForCancle,
+      </if>
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="entrust != null">
+        entrust,
+      </if>
+      <if test="courierNumber != null">
+        courierNumber,
+      </if>
 
-          <if test="sTel != null">
-              sTel = #{sTel},
-          </if>
 
 
-          <if test="sAddress != null">
-              sAddress = #{sAddress},
-          </if>
-
-          <if test="orderNumber != null">
-              orderNumber = #{orderNumber},
-          </if>
-
-          <if test="userId != null">
-              userId,
-          </if>
-      </where>
-      order by riseTime desc
+    </where>
+    order by riseTime desc
   </select>
 
 
 
 
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <sql id="Blob_Column_List">
+    courierNumber
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from order_info
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -95,15 +137,15 @@
       sAddress, product, preWeight, 
       comment, orderNumber, status, 
       preVolume, riseTime, finishTime, 
-      reasonForCancle, userId, entrust
-      )
+      reasonForCancle, userId, entrust, 
+      courierNumber)
     values (#{id,jdbcType=INTEGER}, #{sName,jdbcType=VARCHAR}, #{gName,jdbcType=VARCHAR}, 
       #{sTel,jdbcType=VARCHAR}, #{gTel,jdbcType=VARCHAR}, #{gAddress,jdbcType=VARCHAR}, 
       #{sAddress,jdbcType=VARCHAR}, #{product,jdbcType=VARCHAR}, #{preWeight,jdbcType=DOUBLE}, 
       #{comment,jdbcType=VARCHAR}, #{orderNumber,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
       #{preVolume,jdbcType=VARCHAR}, #{riseTime,jdbcType=TIMESTAMP}, #{finishTime,jdbcType=TIMESTAMP}, 
-      #{reasonForCancle,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{entrust,jdbcType=VARCHAR}
-      )
+      #{reasonForCancle,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{entrust,jdbcType=VARCHAR}, 
+      #{courierNumber,jdbcType=VARBINARY})
   </insert>
   <insert id="insertSelective" parameterType="com.forest.wu.pojo.Order_info">
     insert into order_info
@@ -162,6 +204,9 @@
       <if test="entrust != null">
         entrust,
       </if>
+      <if test="courierNumber != null">
+        courierNumber,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -217,6 +262,9 @@
       </if>
       <if test="entrust != null">
         #{entrust,jdbcType=VARCHAR},
+      </if>
+      <if test="courierNumber != null">
+        #{courierNumber,jdbcType=VARBINARY},
       </if>
     </trim>
   </insert>
@@ -274,7 +322,32 @@
       <if test="entrust != null">
         entrust = #{entrust,jdbcType=VARCHAR},
       </if>
+      <if test="courierNumber != null">
+        courierNumber = #{courierNumber,jdbcType=VARBINARY},
+      </if>
     </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.forest.wu.pojo.Order_info">
+    update order_info
+    set sName = #{sName,jdbcType=VARCHAR},
+      gName = #{gName,jdbcType=VARCHAR},
+      sTel = #{sTel,jdbcType=VARCHAR},
+      gTel = #{gTel,jdbcType=VARCHAR},
+      gAddress = #{gAddress,jdbcType=VARCHAR},
+      sAddress = #{sAddress,jdbcType=VARCHAR},
+      product = #{product,jdbcType=VARCHAR},
+      preWeight = #{preWeight,jdbcType=DOUBLE},
+      comment = #{comment,jdbcType=VARCHAR},
+      orderNumber = #{orderNumber,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      preVolume = #{preVolume,jdbcType=VARCHAR},
+      riseTime = #{riseTime,jdbcType=TIMESTAMP},
+      finishTime = #{finishTime,jdbcType=TIMESTAMP},
+      reasonForCancle = #{reasonForCancle,jdbcType=VARCHAR},
+      userId = #{userId,jdbcType=BIGINT},
+      entrust = #{entrust,jdbcType=VARCHAR},
+      courierNumber = #{courierNumber,jdbcType=VARBINARY}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.forest.wu.pojo.Order_info">

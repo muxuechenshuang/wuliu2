@@ -13,16 +13,16 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <form method="post" action="list">
+                <form method="post" action="${pageContext.request.contextPath}/order/someorder">
                     <input type="hidden" name="pageIndex" value="1" />
                     <ul>
                         <li>
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12">订单号</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="querySoftwareName" type="text"
+                                    <input name="orderNumber" type="text"
                                            class="form-control col-md-7 col-xs-12"
-                                           value="${querySoftwareName }">
+                                           value="${orderNumber}">
                                 </div>
                             </div>
                         </li>
@@ -120,46 +120,51 @@
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         style="width: 124px;"
                                         aria-label="First name: activate to sort column descending"
-                                        aria-sort="ascending">工作单号</th>
+                                        aria-sort="ascending">订单号</th>
+
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        style="width: 100px;"
+                                        aria-label="Last name: activate to sort column ascending">
+                                        寄件人姓名</th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         style="width: 80px;"
                                         aria-label="Last name: activate to sort column ascending">
-                                        目标城市</th>
+                                        寄件人电话</th>
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        style="width: 100px;"
+                                        aria-label="Last name: activate to sort column ascending">
+                                        寄件人地址 </th>
+
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        style="width: 100px;"
+                                        aria-label="Last name: activate to sort column ascending">
+                                        收件人姓名</th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         style="width: 80px;"
-                                        aria-label="Last name: activate to sort column ascending">
-                                        目标网点</th>
-                                    <th class="sorting" tabindex="0"
-                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                        style="width: 80px;"
-                                        aria-label="Last name: activate to sort column ascending">
-                                        收件人</th>
-                                    <th class="sorting" tabindex="0"
-                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                        style="width: 200px;
-										aria-label=" Last name:
-                                        activate to sort columnascending">收件人地址</th>
-                                    <th class="sorting" tabindex="0"
-                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                        style="width: 124px;"
                                         aria-label="Last name: activate to sort column ascending">
                                         收件人电话</th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        style="width: 100px;"
+                                        aria-label="Last name: activate to sort column ascending">
+                                        收件人地址</th>
+
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         style="width: 66px;"
                                         aria-label="Last name: activate to sort column ascending">
-                                        尺寸</th>
+                                        体积</th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         style="width: 66px;"
                                         aria-label="Last name: activate to sort column ascending">
                                         重量</th>
-                                    <th class="sorting_asc" tabindex="0"
-                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                        aria-label="First name: activate to sort column descending"
-                                        aria-sort="ascending">取件员ID</th>
+
                                     <th class="sorting_asc" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         aria-label="First name: activate to sort column descending"
@@ -169,14 +174,19 @@
                                 <tbody>
                                 <c:forEach var="orderL" items="${order}" varStatus="status">
                                     <tr role="row" class="odd">
-                                        <td tabindex="0" class="sorting_1">${appInfo.softwareName}</td>
+                                        <td tabindex="0" class="s                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     orting_1">${orderL.orderNumber}</td>
                                         <td>${orderL.sName }</td>
                                         <td>${orderL.sTel}</td>
-                                        <td>${appInfo.flatformName }</td>
-                                        <td>${appInfo.categoryLevel1Name } -> ${appInfo.categoryLevel2Name } -> ${appInfo.categoryLevel3Name }</td>
-                                        <td><span id="appInfoStatus${appInfo.id}">${appInfo.statusName }</span></td>
-                                        <td>${appInfo.downloads }</td>
-                                        <td>${appInfo.versionNo }</td>
+                                        <td>${orderL.sAddress }</td>
+
+                                        <td>${orderL.gName }</td>
+                                        <td>${orderL.gTel}</td>
+                                        <td>${orderL.gAddress }</td>
+
+
+                                        <td>${orderL.preVolume }</td>
+                                        <td>${orderL.preWeight}</td>
+
                                         <td>
 
 
@@ -215,36 +225,6 @@
                                     </tr>
                                 </c:forEach>
 
-
-
-
-                                <tr>
-                                    <td>A123123</td>
-                                    <td>李普强</td>
-                                    <td>13588888888</td>
-                                    <td>市场部</td>
-                                    <td>湖南</td>
-                                    <td>岳阳</td>
-                                    <td>相思树</td>
-                                    <td>8991233883893</td>
-                                    <td>男</td>
-
-                                    <td><div class="btn-group">
-                                        <button type="button" class="btn btn-danger">操作</button>
-                                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                            <span class="caret"></span>
-                                            <span class="sr-only">Toggle Dropdown</span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">查看</a>
-                                            </li>
-                                            <li><a href="#">委托</a>
-                                            </li>
-
-
-                                        </ul>
-                                    </div></td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>
