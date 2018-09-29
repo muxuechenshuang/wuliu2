@@ -8,9 +8,9 @@ public class Workorder {
     private String orderNum;
 
     private String workNum;
-
+    //合包号
     private String packageId;
-
+    //物件编号
     private String productNum;
 
     private String sName;
@@ -36,7 +36,7 @@ public class Workorder {
     private String productType;
 
     private String realWeight;
-
+    //
     private String workStatus;
 
     private String comment;
