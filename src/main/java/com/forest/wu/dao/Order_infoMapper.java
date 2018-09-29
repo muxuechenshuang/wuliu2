@@ -1,9 +1,10 @@
 package com.forest.wu.dao;
 
 import com.forest.wu.pojo.Order_info;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public interface Order_infoMapper {
     int deleteByPrimaryKey(Integer id);
 
