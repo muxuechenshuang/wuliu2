@@ -3,19 +3,21 @@ package com.forest.wu.pojo;
 public class User {
     private Integer id;
 
-    private String username;//用户名
+    private String username;
 
-    private String password;//密码
+    private String password;
 
-    private String email;//邮箱
+    private String email;
 
-    private String phone;//电话
+    private String phone;
 
-    private String sex;//性别
+    private String sex;
 
-    private String logo;//logo地址
+    private String logo;
 
-    private Integer parentid;//地址
+    private Integer parentid;
+
+    private Integer type;
 
     public Integer getId() {
         return id;
@@ -79,5 +81,13 @@ public class User {
 
     public void setParentid(Integer parentid) {
         this.parentid = parentid;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

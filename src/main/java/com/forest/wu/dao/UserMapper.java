@@ -2,6 +2,8 @@ package com.forest.wu.dao;
 
 import com.forest.wu.pojo.User;
 
+import java.util.List;
+
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,13 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    /*
+    * @author:李普强
+    * @Description描述：
+    * @Date: 10:24 2018/9/29
+    * @Param参数：
+    * @return返回值：
+    **/
+    List<User> selectU();
 }
