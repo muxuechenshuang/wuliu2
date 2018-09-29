@@ -167,11 +167,11 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="appInfo" items="${appInfoList }" varStatus="status">
+                                <c:forEach var="orderL" items="${order}" varStatus="status">
                                     <tr role="row" class="odd">
                                         <td tabindex="0" class="sorting_1">${appInfo.softwareName}</td>
-                                        <td>${appInfo.APKName }</td>
-                                        <td>${appInfo.softwareSize }</td>
+                                        <td>${orderL.sName }</td>
+                                        <td>${orderL.sTel}</td>
                                         <td>${appInfo.flatformName }</td>
                                         <td>${appInfo.categoryLevel1Name } -> ${appInfo.categoryLevel2Name } -> ${appInfo.categoryLevel3Name }</td>
                                         <td><span id="appInfoStatus${appInfo.id}">${appInfo.statusName }</span></td>

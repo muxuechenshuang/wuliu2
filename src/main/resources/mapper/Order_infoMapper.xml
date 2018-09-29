@@ -28,6 +28,17 @@
     status, preVolume, riseTime, finishTime, reasonForCancle, userId, entrust
   </sql>
 
+
+    <!--肖林辉
+   查询所有订单
+   返回订单集合
+ -->
+    <select id="selectAll"  resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from order_info
+    </select>
+
   <!--肖林辉
     查询订单  条件查询
     参数订单对象

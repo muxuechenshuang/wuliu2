@@ -20,12 +20,12 @@ public interface Order_infoMapper {
 
     /**
     * @author: 肖林辉
-    * @Description   根据查询条件查询出对应的订单
+    * @Description   根据查询条件查询出对应的订单,没有条件则查全部
     * @Date: 9:20 2018/9/29/029
     * @Param：[order_info]
     * @return：java.util.List<com.forest.wu.pojo.Order_info>
     **/
-    List<Order_info> selectOrderByOption(Order_info order);
+    List<Order_info> selectAll();
 
 
 }
