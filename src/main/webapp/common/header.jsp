@@ -109,7 +109,7 @@
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="${pageContext.request.contextPath}/lpq/yuangong2.jsp">员工管理</a>
+										<li><a href="${pageContext.request.contextPath}/WEB-INF/jsp/lpq/yuangong2.jsp">员工管理</a>
 										</li>
 
 										<li><a href="${pageContext.request.contextPath}/lpq/chaxun_lpq.jsp">查看用户订单</a>
@@ -120,7 +120,7 @@
 										</li>
 										<li><a href="${pageContext.request.contextPath}/lpq/fenpei2.jsp">分配工单</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath}/lpq/mix-line-bar.jsp">网点报表</a>
+										<li><a href="${pageContext.request.contextPath}/lpq/yue.jsp">网点报表</a>
 										</li>
 									</ul></li>
 
