@@ -44,58 +44,25 @@
           <if test="sName != null">
               sName=#{sName},
           </if>
-          <if test="gName != null">
-              gName = #{gName},
-          </if>
+
           <if test="sTel != null">
               sTel = #{sTel},
           </if>
-          <if test="gTel != null">
-              gTel = #{gTel},
-          </if>
-          <if test="gAddress != null">
-              gAddress = #{gAddress},
-          </if>
+
+
           <if test="sAddress != null">
               sAddress = #{sAddress},
           </if>
-          <if test="product != null">
-              product,
-          </if>
-          <if test="preWeight != null">
-              preWeight,
-          </if>
-          <if test="comment != null">
-              comment,
-          </if>
+
           <if test="orderNumber != null">
               orderNumber = #{orderNumber},
           </if>
-          <if test="status != null">
-              status,
-          </if>
-          <if test="preVolume != null">
-              preVolume,
-          </if>
-          <if test="riseTime != null">
-              riseTime,
-          </if>
-          <if test="finishTime != null">
-              finishTime,
-          </if>
-          <if test="reasonForCancle != null">
-              reasonForCancle,
-          </if>
+
           <if test="userId != null">
               userId,
           </if>
-          <if test="entrust != null">
-              entrust,
-          </if>
-
-
       </where>
-
+      order by riseTime desc
   </select>
 
 
