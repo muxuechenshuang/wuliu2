@@ -2,7 +2,6 @@ package com.forest.wu.dao;
 
 import com.forest.wu.pojo.Organization;
 
-@Repository
 public interface OrganizationMapper {
     int deleteByPrimaryKey(Integer id);
 

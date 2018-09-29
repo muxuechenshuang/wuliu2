@@ -2,7 +2,6 @@ package com.forest.wu.dao;
 
 import com.forest.wu.pojo.Function;
 
-@Repository
 public interface FunctionMapper {
     int deleteByPrimaryKey(Integer id);
 

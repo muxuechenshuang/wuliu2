@@ -2,7 +2,6 @@ package com.forest.wu.dao;
 
 import com.forest.wu.pojo.Workorder;
 
-@Repository
 public interface WorkorderMapper {
     int deleteByPrimaryKey(Integer id);
 

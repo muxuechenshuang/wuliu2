@@ -2,7 +2,6 @@ package com.forest.wu.dao;
 
 import com.forest.wu.pojo.Role;
 
-@Repository
 public interface RoleMapper {
     int deleteByPrimaryKey(Integer id);
 

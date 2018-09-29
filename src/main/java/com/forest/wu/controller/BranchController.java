@@ -25,7 +25,9 @@ public class BranchController {
    public String selectUser(Model model){
        List<User> listUser= courierService.selectUsers();
        model.addAttribute("listUser",listUser);
-        return  "";
+       System.out.print("李普强");
+       System.out.print(listUser);
+        return  "lpq/yuangong2";
     }
 
 }

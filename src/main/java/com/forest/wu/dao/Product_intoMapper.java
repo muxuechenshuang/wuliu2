@@ -2,7 +2,6 @@ package com.forest.wu.dao;
 
 import com.forest.wu.pojo.Product_into;
 
-@Repository
 public interface Product_intoMapper {
     int deleteByPrimaryKey(Long receiptId);
 
