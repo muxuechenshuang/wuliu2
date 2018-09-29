@@ -21,10 +21,86 @@
     <result column="userId" jdbcType="BIGINT" property="userId" />
     <result column="entrust" jdbcType="VARCHAR" property="entrust" />
   </resultMap>
+
+
   <sql id="Base_Column_List">
     id, sName, gName, sTel, gTel, gAddress, sAddress, product, preWeight, comment, orderNumber, 
     status, preVolume, riseTime, finishTime, reasonForCancle, userId, entrust
   </sql>
+
+  <!--肖林辉
+    查询订单  条件查询
+    参数订单对象
+    返回订单集合
+  -->
+  <select id="selectOrderByOption" parameterType="com.forest.wu.pojo.Order_info"  resultMap="BaseResultMap" >
+      select
+      <include refid="Base_Column_List" />
+      from order_info
+      <where>
+          <if test="id != null">
+              id=#{id},
+          </if>
+          <if test="sName != null">
+              sName=#{sName},
+          </if>
+          <if test="gName != null">
+              gName = #{gName},
+          </if>
+          <if test="sTel != null">
+              sTel = #{sTel},
+          </if>
+          <if test="gTel != null">
+              gTel = #{gTel},
+          </if>
+          <if test="gAddress != null">
+              gAddress = #{gAddress},
+          </if>
+          <if test="sAddress != null">
+              sAddress = #{sAddress},
+          </if>
+          <if test="product != null">
+              product,
+          </if>
+          <if test="preWeight != null">
+              preWeight,
+          </if>
+          <if test="comment != null">
+              comment,
+          </if>
+          <if test="orderNumber != null">
+              orderNumber = #{orderNumber},
+          </if>
+          <if test="status != null">
+              status,
+          </if>
+          <if test="preVolume != null">
+              preVolume,
+          </if>
+          <if test="riseTime != null">
+              riseTime,
+          </if>
+          <if test="finishTime != null">
+              finishTime,
+          </if>
+          <if test="reasonForCancle != null">
+              reasonForCancle,
+          </if>
+          <if test="userId != null">
+              userId,
+          </if>
+          <if test="entrust != null">
+              entrust,
+          </if>
+
+
+      </where>
+
+  </select>
+
+
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
