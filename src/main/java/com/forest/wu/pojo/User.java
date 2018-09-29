@@ -1,5 +1,7 @@
 package com.forest.wu.pojo;
 
+import java.util.Date;
+
 public class User {
     private Integer id;
 
@@ -18,6 +20,26 @@ public class User {
     private Integer parentid;
 
     private Integer type;
+
+    private Date time;//时间
+
+    private String picpath;//
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    public String getPicpath() {
+        return picpath;
+    }
+
+    public void setPicpath(String picpath) {
+        this.picpath = picpath;
+    }
 
     public Integer getId() {
         return id;
