@@ -3,19 +3,19 @@ package com.forest.wu.pojo;
 public class User {
     private Integer id;
 
-    private String username;
+    private String username;//用户名
 
-    private String password;
+    private String password;//密码
 
-    private String email;
+    private String email;//邮箱
 
-    private String phone;
+    private String phone;//电话
 
-    private String sex;
+    private String sex;//性别
 
-    private String logo;
+    private String logo;//logo地址
 
-    private Integer parentid;
+    private Integer parentid;//地址
 
     public Integer getId() {
         return id;
