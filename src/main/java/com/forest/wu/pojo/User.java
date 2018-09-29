@@ -17,6 +17,8 @@ public class User {
 
     private Integer parentid;
 
+    private Integer type;
+
     public Integer getId() {
         return id;
     }
@@ -79,5 +81,13 @@ public class User {
 
     public void setParentid(Integer parentid) {
         this.parentid = parentid;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

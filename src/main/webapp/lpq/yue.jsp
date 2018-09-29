@@ -1,9 +1,9 @@
 &nbsp;<%@ page language="java" contentType="text/html; charset=UTF-8"
                pageEncoding="UTF-8" isELIgnored="false"%>
 <%@include file="../common/header.jsp"%>
-<h3><a href="javascript:;">月度表</a>&nbsp;&nbsp;&nbsp;
-    <a href="dataset-simple1.jsp">季度表</a>&nbsp;&nbsp;
-    <a href="nian.jsp">年度表</a></h3>
+<h3><a href="yue.jsp">月度表</a>&nbsp;&nbsp;&nbsp;
+   <a href="jidu.jsp">季度表</a>&nbsp;&nbsp;
+   <a href="nian.jsp">年度表</a></h3>
        <div id="container" style="height: 50%"></div>
 
        <%@include file="../common/footer.jsp"%>
