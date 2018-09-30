@@ -41,15 +41,7 @@
 								<input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
 							</div>
 						</div>
-					</li>
-						<li>
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">负责人：</label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
-							</div>
-						</div>
-					</li>
+
 				
 					<li><button type="submit" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询 </button>
 					 </li>
@@ -95,10 +87,6 @@
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
-										负责人</th>
-									<th class="sorting" tabindex="0"
-										aria-controls="datatable-responsive" rowspan="1" colspan="1"
-										aria-label="Last name: activate to sort column ascending">
 										用户名</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
@@ -112,18 +100,15 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-								 <td>1</td>
-								 <td>北京飞鸟</td>
-								 <td>666666666@163.com</td>
-								 <td>8888888</td>
-								 <td>北京</td>
-								 <td>YYF</td>
-								 <td>beijingfeiniao</td>
-								 <td>123456</td>
-								 <td><a href="wangdianxiangqing_zz.jsp" class="btn btn-primary">查看/修改</a></td>
-								</tr>
-								
+								<c:forEach items="${wdList}" var="wd">
+                                    <tr>
+                                        <td>${wd.id}</td>
+                                        <td>${wd.name}</td>
+                                        <td>${wd.phone}</td>
+                                        <td>${wd.site}</td>
+                                        <td><a href="wangdianxiangqing_zz.jsp" class="btn btn-primary">查看/修改</a></td>
+                                    </tr>
+                                </c:forEach>
 							</tbody>
 						</table>
 					</div>

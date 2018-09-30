@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.forest.dao.Product_intoMapper">
+<mapper namespace="com.forest.wu.dao.Product_intoMapper">
   <resultMap id="BaseResultMap" type="com.forest.wu.pojo.Product_into">
     <id column="receiptId" jdbcType="BIGINT" property="receiptId" />
     <result column="sendUnit" jdbcType="VARCHAR" property="sendUnit" />
