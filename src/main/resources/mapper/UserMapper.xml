@@ -213,4 +213,21 @@
       type = #{type,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>-->
+  <!-- 查找用户表所需的登录信息 -->
+  <select id="selectULogin"  resultType="com.forest.wu.pojo.User">
+    select u.*,o.name,uf.*,d.valueName
+    from user u, organization o, userfunction uf,dictionary d
+    where 1=1
+
+      <if test="parentid != null">
+      and u.parentid=o.id
+      </if>
+      <if test="type != null">
+      and  u.type=uf.id
+      </if>
+      <if test="type != null">
+        and   u.type=d.valueId and d.typeCode='userRole'
+      </if>
+
+  </select>
 </mapper>
