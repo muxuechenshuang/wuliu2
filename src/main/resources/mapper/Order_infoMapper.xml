@@ -55,57 +55,12 @@
       <if test="sName != null">
         and sName like concat('%',#{sName},'%')
       </if>
-      <if test="gName != null">
-        and gName like concat('%',#{gName},'%')
+      <if test="sTel != null ">
+        and sTel like concat('%',#{sTel},'%')
       </if>
-      <if test="sTel != null">
-        sTel like concat('%',#{sTel},'%')
-      </if>
-      <if test="gTel != null">
-        gTel,
-      </if>
-      <if test="gAddress != null">
-        gAddress,
-      </if>
-      <if test="sAddress != null">
-        sAddress,
-      </if>
-      <if test="product != null">
-        product,
-      </if>
-      <if test="preWeight != null">
-        preWeight,
-      </if>
-      <if test="comment != null">
-        comment,
-      </if>
-      <if test="orderNumber != null">
-        orderNumber,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="preVolume != null">
-        preVolume,
-      </if>
-      <if test="riseTime != null">
-        riseTime,
-      </if>
-      <if test="finishTime != null">
-        finishTime,
-      </if>
-      <if test="reasonForCancle != null">
-        reasonForCancle,
-      </if>
-      <if test="userId != null">
-        userId,
-      </if>
-      <if test="entrust != null">
-        entrust,
-      </if>
-      <if test="courierNumber != null">
-        courierNumber,
-      </if>
+
+
+
 
 
 
