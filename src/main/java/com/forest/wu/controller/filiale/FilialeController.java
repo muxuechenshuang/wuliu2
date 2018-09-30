@@ -32,7 +32,7 @@ public class FilialeController {
                                 @RequestParam(value = "phone",required = false)String phone,
                                 @RequestParam(value = "pageIndex", required = false) String pageIndex){
 
-        List<Organization> wdList = null;
+        List<Organization> wdList = null;//网点对象集合
         Integer wdId=null;
         String wdName=null;
         String wdPhone=null;
@@ -46,7 +46,7 @@ public class FilialeController {
             wdPhone = phone;
         }
         try {
-            Integer pageNum=1;
+            Integer pageNum=1;//当前页
             PageHelper.startPage(pageNum, PageSupport.PAGE_SIZE);
             wdList = wdService.getWdListByCondition(wdId,wdName,wdPhone);
         } catch (Exception e) {

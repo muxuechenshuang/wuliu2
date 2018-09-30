@@ -1,5 +1,6 @@
 package com.forest.wu.dao;
 
+import com.forest.wu.pojo.Order_info;
 import com.forest.wu.pojo.User;
 import javafx.scene.chart.ValueAxis;
 import org.apache.ibatis.annotations.Param;
@@ -67,4 +68,16 @@ public interface UserMapper {
     **/
 
     int updateUser(User user);
+
+    /*
+    * @author:李普强
+    * @Description描述：模糊查询，查询订单对象集合
+    * @Date: 15:38 2018/9/30
+    * @Param参数：订单对象order_info
+    * @return返回值：订单对象集合
+    **/
+    List<Order_info> selectOrder(@Param(value = "id") Integer id,
+                                 @Param(value = "sName") String sName,
+                                 @Param(value = "sTel") String sTel,
+                                 @Param(value = "status") Integer status);
 }

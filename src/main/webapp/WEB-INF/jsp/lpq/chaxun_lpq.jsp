@@ -1,6 +1,7 @@
 &nbsp;<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
-<%@include file="../common/header.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="../../../common/header.jsp"%>
 <div class="clearfix"></div>
 <div class="row">
 	<div class="col-md-12">
@@ -13,14 +14,13 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
-				<form method="post" action="list">
-					<input type="hidden" name="pageIndex" value="1" />
+				<form method="post" action="${pageContext.request.contextPath}/wuliu/ding">
 			    <ul>
 					<li>
 						<div class="form-group">
 							<label class="control-label col-md-4 col-sm-4 col-xs-12">订单编号：</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
+								<input name="id" type="text" class="form-control col-md-7 col-xs-12" value="">
 							</div>
 						</div>
 					</li>
@@ -29,12 +29,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-4 col-sm-4 col-xs-12">寄件人姓名：</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<select name="queryStatus" class="form-control">
-									   <option value="" selected="selected">--请选择--</option>
-									   <option value="">张三</option>
-									   <option value="">李四</option>
-									   <option value="">王五</option>
-        						</select>
+								<input name="sName" type="text" class="form-control col-md-7 col-xs-12" value="">
 							</div>
 						</div>
 					</li>
@@ -42,7 +37,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-4 col-sm-4 col-xs-12">寄件人手机：</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
+								<input name="sTel" type="text" class="form-control col-md-7 col-xs-12" value="">
 							</div>
 						</div>
 					</li>
@@ -51,28 +46,17 @@
 						<div class="form-group">
 							<label class="control-label col-md-4 col-sm-4 col-xs-12">订单状态：</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<select name="queryStatus" class="form-control">
+								<select name="status" class="form-control">
 									   <option value="" selected="selected">--请选择--</option>
-									   <option value="">发货状态</option>
-									   <option value="">签收状态</option>
-									   <option value="">异常状态</option>
+									   <option value="1">已预约</option>
+									   <option value="2">正在进行</option>
+									   <option value="3">已完成</option>
+									   <option value="4">已取消</option>
         						</select>
 							</div>
 						</div>
 					</li>
-					<li>
-						<div class="form-group">
-							<label class="control-label col-md-4 col-sm-4 col-xs-12">所属网点：</label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-								<select name="queryStatus" class="form-control">
-									   <option value="" selected="selected">--请选择--</option>
-									   <option value="">HA12212</option>
-									   <option value="">AK43423</option>
-									   <option value="">LP32323</option>
-        						</select>
-							</div>
-						</div>
-					</li>
+
 					<li><button type="submit" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询 </button>
 					<button type="submit" class="btn btn-primary"> 返 &nbsp;&nbsp;&nbsp;&nbsp;回 </button></li>
 					 <li></li>
@@ -147,14 +131,17 @@
 								</tr>
 							</thead>
 							<tbody>
+							<c:forEach items="${listOrder}" var="order" varStatus="add">
+
+
 								<tr>
-								 <td>HH111111</td>
-								 <td>李普强</td>
-								 <td>13688888888</td>
-								 <td>岳阳</td>
-								 <td>50KG</td>
-								 <td>200元</td>
-								 <td>发发发</td>
+								 <td>${order.id}</td>
+								 <td>${order.sName}</td>
+								 <td>${order.sTel}</td>
+								 <td>${order.sAddress}</td>
+								 <td>${order.preWeight}</td>
+								 <td>12元</td>
+								 <td>${order.comment}</td>
 								 <td>
 								 
 								 	<div class="form-group">
@@ -172,121 +159,12 @@
 								 <td>已分配：张三</td>
 									<td>李四</td>
 								 <td><a href="" class="btn btn-primary">分配</a>
-								 <a href="shenghexiangqing3.jsp" class="btn btn-primary">订单详情</a></td>
+								 <a href=${pageContext.request.contextPath}/wuliu/dingdan" class="btn btn-primary">订单详情</a></td>
 								</tr>
-								
-								
-								<tr>
-								 <td>HH111111</td>
-								 <td>李普强</td>
-								 <td>13688888888</td>
-								 <td>岳阳</td>
-								 <td>50KG</td>
-								 <td>200元</td>
-								 <td>发发发</td>
-								 <td>
-								 
-								 	<div class="form-group">
-							<div class="col-md-6 col-sm-6 col-xs-12">
-								<select id="queryCategoryLeve" name="queryCategoryLevel1" class="form-control">
-									   <option value="">--请选择--</option>
-									   <option value="">张三</option>
-									   <option value="">李四</option>
-									   <option value="">王五</option>
-        						</select>
-							</div>
-						</div>
-								 
-								 </td>
-								 <td>未分配</td>
-									<td>李四</td>
-								 <td><a href="" class="btn btn-primary">分配</a>
-								 <a href="shenghexiangqing3.jsp" class="btn btn-primary">订单详情</a></td>
-								</tr>
-								
-								
-								<tr>
-								 <td>HH111111</td>
-								 <td>李普强</td>
-								 <td>13688888888</td>
-								 <td>岳阳</td>
-								 <td>50KG</td>
-								 <td>200元</td>
-								 <td>发发发</td>
-								 <td>
-								 
-								 	<div class="form-group">
-							<div class="col-md-6 col-sm-6 col-xs-12">
-								<select id="queryCategoryLe" name="queryCategoryLevel1" class="form-control">
-									   <option value="">--请选择--</option>
-									   <option value="">张三</option>
-									   <option value="">李四</option>
-									   <option value="">王五</option>
-        						</select>
-							</div>
-						</div>
-								 
-								 </td>
-								 <td>已分配：张三</td>
-									<td>李四</td>
-								 <td><a href="" class="btn btn-primary">分配</a>
-								 <a href="shenghexiangqing3.jsp" class="btn btn-primary">订单详情</a></td>
-								</tr>
-								
-								<tr>
-								 <td>HH111111</td>
-								 <td>李普强</td>
-								 <td>13688888888</td>
-								 <td>岳阳</td>
-								 <td>50KG</td>
-								 <td>200元</td>
-								 <td>发发发</td>
-								 <td>
-								 
-								 	<div class="form-group">
-							<div class="col-md-6 col-sm-6 col-xs-12">
-								<select id="queryCategoryLev1" name="queryCategoryLevel1" class="form-control">
-									   <option value="">--请选择--</option>
-									   <option value="">张三</option>
-									   <option value="">李四</option>
-									   <option value="">王五</option>
-        						</select>
-							</div>
-						</div>
-								 
-								 </td>
-								 <td>已分配：王五</td>
-									<td>李四</td>
-								 <td><a href="" class="btn btn-primary">分配</a>
-								 <a href="shenghexiangqing3.jsp" class="btn btn-primary">订单详情</a></td>
-								</tr>
-								<tr>
-								 <td>HH111111</td>
-								 <td>李普强</td>
-								 <td>13688888888</td>
-								 <td>岳阳</td>
-								 <td>50KG</td>
-								 <td>200元</td>
-								 <td>发发发</td>
-								 <td>
-								 
-								 	<div class="form-group">
-							<div class="col-md-6 col-sm-6 col-xs-12">
-								<select id="queryCategoryLevel1" name="queryCategoryLevel1" class="form-control">
-									   <option value="">--请选择--</option>
-									   <option value="">张三</option>
-									   <option value="">李四</option>
-									   <option value="">王五</option>
-        						</select>
-							</div>
-						</div>
-								 
-								 </td>
-								 <td>已分配：李四</td>
-									<td></td>
-								 <td><a href="" class="btn btn-primary">分配</a>
-								 <a href="shenghexiangqing3.jsp" class="btn btn-primary">订单详情</a></td>
-								</tr>
+
+
+							</c:forEach>
+
 							</tbody>
 						</table>
 					</div>
@@ -334,4 +212,4 @@
 		</div>
 	</div>
 </div>
-<%@include file="../common/footer.jsp"%>
+<%@include file="../../../common/footer.jsp"%>

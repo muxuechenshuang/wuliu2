@@ -15,6 +15,29 @@
   <sql id="Base_Column_List">
     id, username, password, email, phone, sex, logo, parentid, type
   </sql>
+    <!--查询订单-->
+    <select id="selectOrder" resultType="com.forest.wu.pojo.Order_info">
+        select * from order_info  where 1=1
+        <if test="id!=null">
+            and id =#{id}
+
+        </if>
+        <if test="sName!=null">
+            and sName like concat('%',#{sName},'%')
+
+        </if>
+        <if test="sTel!=null">
+            and sTel =#{sTel}
+
+        </if>
+        <if test="status!=null">
+            and status=#{status}
+
+        </if>
+         order  by riseTime
+    </select>
+
+
     <!--更新修改一个快递员信息-->
     <update id="updateUser" >
         update user set username=#{username},email=#{email},phone=#{phone},

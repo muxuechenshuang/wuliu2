@@ -21,7 +21,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">员工编号：</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input name="id" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
+								<input name="id" type="text" class="form-control col-md-7 col-xs-12" value="${id}">
 							</div>
 						</div>
 					</li>
@@ -31,7 +31,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">姓名：</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input name="username" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
+								<input name="username" type="text" class="form-control col-md-7 col-xs-12" value="${username }">
 							</div>
 						</div>
 					   </li>
@@ -39,7 +39,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">手机号：</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input name="phone" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
+								<input name="phone" type="text" class="form-control col-md-7 col-xs-12" value="${phone}">
 							</div>
 						</div>
 					   </li>
@@ -47,7 +47,7 @@
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">邮箱：</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input name="email" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
+								<input name="email" type="text" class="form-control col-md-7 col-xs-12" value="${email}">
 							</div>
 						</div>
 					   </li>
