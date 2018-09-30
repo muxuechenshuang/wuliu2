@@ -7,7 +7,7 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                    订单查询 <i class="fa fa-user"></i><small>${devUserSession.devName}
+                    订单查询
                 </small>
                 </h2>
                 <div class="clearfix"></div>
@@ -22,7 +22,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input name="orderNumber" type="text"
                                            class="form-control col-md-7 col-xs-12"
-                                           value="${orderNumber}">
+                                           value="">
                                 </div>
                             </div>
                         </li>
@@ -33,9 +33,9 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12">寄件人姓名</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="querySoftwareName" type="text"
+                                    <input name="" type="text"
                                            class="form-control col-md-7 col-xs-12"
-                                           value="${querySoftwareName }">
+                                           value="">
                                 </div>
                             </div>
                         </li>
