@@ -1,9 +1,9 @@
 package com.forest.wu.pojo;
 
 public class Role {
-    private Integer id;
+    private Integer id;//ID
 
-    private String name;
+    private String name;//角色名
 
     public Integer getId() {
         return id;
@@ -18,6 +18,6 @@ public class Role {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 }

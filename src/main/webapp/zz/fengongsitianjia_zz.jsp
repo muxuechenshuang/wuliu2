@@ -29,7 +29,7 @@
                placeholder="分公司名称" type="text" maxlength="50">
             </div>
           </div>
-          <div class="item form-group">
+         <%-- <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">分公司用户名 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -46,7 +46,7 @@
                data-validate-length-range="20" data-validate-words="1" name="softwareName"  required="required"
                placeholder="分公司名称" type="text" maxlength="50">
             </div>
-          </div>
+          </div>--%>
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">分公司邮箱 <span class="required">*</span>
             </label>
