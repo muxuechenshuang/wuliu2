@@ -14,6 +14,9 @@ import java.util.List;
 **/
 @Repository
 public interface OrganizationMapper {
+
+
+
     /**
     * @author: 李家和
     * @Description 通过id删除网点，分公司

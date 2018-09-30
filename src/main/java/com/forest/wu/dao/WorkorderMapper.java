@@ -1,7 +1,9 @@
 package com.forest.wu.dao;
 
 import com.forest.wu.pojo.Workorder;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface WorkorderMapper {
     int deleteByPrimaryKey(Integer id);
 

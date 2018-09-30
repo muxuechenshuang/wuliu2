@@ -19,6 +19,16 @@ public class Organization {
 
     private String site;//地址
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    private String city;//城市
+
 
     public Integer getId() {
         return id;
