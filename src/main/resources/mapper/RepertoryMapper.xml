@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.forest.dao.RepertoryMapper">
+<mapper namespace="com.forest.wu.dao.RepertoryMapper">
   <resultMap id="BaseResultMap" type="com.forest.wu.pojo.Repertory">
     <id column="storeId" jdbcType="BIGINT" property="storeId" />
     <result column="packageId" jdbcType="BIGINT" property="packageId" />

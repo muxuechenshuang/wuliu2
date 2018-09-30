@@ -39,6 +39,8 @@ public class Order_info {
 
     private String entrust;
 
+    private byte[] courierNumber;
+
     public Integer getId() {
         return id;
     }
@@ -181,5 +183,13 @@ public class Order_info {
 
     public void setEntrust(String entrust) {
         this.entrust = entrust == null ? null : entrust.trim();
+    }
+
+    public byte[] getCourierNumber() {
+        return courierNumber;
+    }
+
+    public void setCourierNumber(byte[] courierNumber) {
+        this.courierNumber = courierNumber;
     }
 }
