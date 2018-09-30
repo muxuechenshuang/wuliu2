@@ -138,7 +138,7 @@
 								 <td>${courier.email}</td>
 								 <td>${courier.parentid}</td>
 								<td></td>
-								 <td><a href="../../../lpq/yuangongxiangqing2.jsp" class="btn btn-primary">个人详情</a></td>
+								 <td><a href="${pageContext.request.contextPath}/wuliu/xiang?id=${courier.id}" class="btn btn-primary">个人详情</a></td>
 								</tr>
 
 							</c:forEach>
@@ -151,35 +151,28 @@
 				<div class="row">
 					<div class="col-sm-5">
 						<div class="dataTables_info" id="datatable-responsive_info"
-							role="status" aria-live="polite">共${pages.totalCount }条记录
-							${pages.currentPageNo }/${pages.totalPageCount }页</div>
+							role="status" aria-live="polite">共${page.count }条记录
+							${page.pageNo }/${page.pageCount }页</div>
 					</div>
 					<div class="col-sm-7">
 						<div class="dataTables_paginate paging_simple_numbers"
 							id="datatable-responsive_paginate">
 							<ul class="pagination">
-								<c:if test="${pages.currentPageNo > 1}">
-									<li class="paginate_button previous"><a
-										href="javascript:page_nav(document.forms[0],1);"
-										aria-controls="datatable-responsive" data-dt-idx="0"
-										tabindex="0">首页</a>
+								<c:if test="${page.pageNo > 1}">
+									<li class="paginate_button previous">
+										<a href="${pageContext.request.contextPath}/wuliu/list?pageIndex=1">
+										首页</a>
 									</li>
-									<li class="paginate_button "><a
-										href="javascript:page_nav(document.forms[0],${pages.currentPageNo-1});"
-										aria-controls="datatable-responsive" data-dt-idx="1"
-										tabindex="0">上一页</a>
+									<li class="paginate_button "><a href="${pageContext.request.contextPath}/wuliu/list?pageIndex=${page.pageNo-1}"
+										>上一页</a>
 									</li>
 								</c:if>
-								<c:if test="${pages.currentPageNo < pages.totalPageCount }">
-									<li class="paginate_button "><a
-										href="javascript:page_nav(document.forms[0],${pages.currentPageNo+1 });"
-										aria-controls="datatable-responsive" data-dt-idx="1"
-										tabindex="0">下一页</a>
+								<c:if test="${page.pageNo < page.pageCount }">
+									<li class="paginate_button "><a href="${pageContext.request.contextPath}/wuliu/list?pageIndex=${page.pageNo+1}"
+										>下一页</a>
 									</li>
-									<li class="paginate_button next"><a
-										href="javascript:page_nav(document.forms[0],${pages.totalPageCount });"
-										aria-controls="datatable-responsive" data-dt-idx="7"
-										tabindex="0">最后一页</a>
+									<li class="paginate_button next"><a href="${pageContext.request.contextPath}/wuliu/list?pageIndex=${page.pageCount}"
+									>最后一页</a>
 									</li>
 								</c:if>
 							</ul>

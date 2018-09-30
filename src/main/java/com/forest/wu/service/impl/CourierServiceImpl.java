@@ -33,4 +33,14 @@ public class CourierServiceImpl implements CourierService {
 
         return userMapper.count(id,username,phone,email);
     }
+
+    @Override
+    public User getUser(String id) {
+        return userMapper.getUser(id);
+    }
+
+    @Override
+    public int updateUser(User user) {
+        return userMapper.updateUser(user);
+    }
 }
