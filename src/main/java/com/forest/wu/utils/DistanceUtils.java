@@ -5,28 +5,25 @@ package com.forest.wu.utils;
  *
  * @author 任一
  * @create 2018-09-28 14:17
- *
+ * <p>
  * 直线距离计算工具类
  **/
 public class DistanceUtils {
-    private String cityA;
-    private String cityB;
-
     private final static String BEIJING = "北京";
     private final static String SHANGHAI = "上海";
     private final static String SHENZHEN = "深圳";
     private final static String CHENGDU = "成都";
 
-    public void setCityA(String cityA) {
-        this.cityA = cityA;
-    }
-
-    public void setCityB(String cityB) {
-        this.cityB = cityB;
-    }
-
-
-    public int getDistance() {
+    /**
+     *
+     * @author: 任一
+     * @Description
+     * @Date: 13:38 2018/9/29
+     * @Param：String
+     * @return：int
+     *
+     */
+    public static int getDistance(String cityA,String cityB) {
         int distance = 0;
 
         //北京<--->上海

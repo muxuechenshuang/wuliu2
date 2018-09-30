@@ -46,4 +46,15 @@ public interface OrganizationMapper {
     int updateByPrimaryKeySelective(Organization record);
 
     int updateByPrimaryKey(Organization record);
+
+    /**
+     *
+     * @author: 任一
+     * @Description
+     * @Date: 16:11 2018/9/29
+     * @Param：
+     * @return：List<String>
+     * 查询设有分公司的城市列表
+     */
+    List<String> cityList();
 }
