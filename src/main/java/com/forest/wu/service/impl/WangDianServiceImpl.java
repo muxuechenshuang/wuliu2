@@ -1,7 +1,8 @@
-package com.forest.wu.service;
+package com.forest.wu.service.impl;
 
 import com.forest.wu.dao.OrganizationMapper;
 import com.forest.wu.pojo.Organization;
+import com.forest.wu.service.WangDianService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -59,5 +60,10 @@ public class WangDianServiceImpl implements WangDianService {
             flag = true;
         }
         return flag;
+    }
+
+    @Override
+    public int getWdCount() throws Exception {
+        return orgMapper.selectWdCount();
     }
 }
