@@ -2,8 +2,9 @@ package com.forest.wu.controller.filiale;
 
 import com.forest.wu.pojo.Organization;
 import com.forest.wu.service.WangDianService;
-import com.forest.wu.utils.PageSupport;
+import com.forest.wu.utils.Constants;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,32 +28,41 @@ public class FilialeController {
     private WangDianService wdService;
 
     @RequestMapping("/wd/query")
-    public String getWdInfoList(Model model, @RequestParam(value = "id",required = false) String id,
-                                @RequestParam(value = "name",required = false)String name,
-                                @RequestParam(value = "phone",required = false)String phone,
+    public String getWdInfoList(Model model, @RequestParam(value = "queryWdId",required = false) String id,
+                                @RequestParam(value = "queryWdName",required = false)String name,
+                                @RequestParam(value = "queryWdPhone",required = false)String phone,
                                 @RequestParam(value = "pageIndex", required = false) String pageIndex){
 
         List<Organization> wdList = null;
         Integer wdId=null;
         String wdName=null;
         String wdPhone=null;
+        Integer pageNum=1;
         if (!StringUtils.isEmpty(id)){
             wdId=Integer.parseInt(id);
         }
         if(!StringUtils.isEmpty(name)){
-            wdName = name;
+            wdName = "%"+name+"%";
         }
         if(!StringUtils.isEmpty(phone)){
             wdPhone = phone;
         }
+        if(!StringUtils.isEmpty(pageIndex)){
+            pageNum = Integer.parseInt(pageIndex);
+        }
         try {
-            Integer pageNum=1;
-            PageHelper.startPage(pageNum, PageSupport.PAGE_SIZE);
+            //分页
+            PageHelper.startPage(pageNum, Constants.PAGE_SIZE);
             wdList = wdService.getWdListByCondition(wdId,wdName,wdPhone);
+            PageInfo<Organization> p = new PageInfo<Organization>(wdList);
+            model.addAttribute("page",p);
+            model.addAttribute("wdList",wdList);
+            model.addAttribute("queryWdId",wdId);
+            model.addAttribute("queryWdName",wdName);
+            model.addAttribute("queryWdPhone",wdPhone);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        model.addAttribute("wdList",wdList);
         return "ljh/wangdianchaxun";
     }
 
