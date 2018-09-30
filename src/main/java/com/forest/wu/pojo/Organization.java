@@ -1,17 +1,24 @@
 package com.forest.wu.pojo;
-
+/**
+* @author: 李家和
+* @Description 添加注释
+* @Date: 10:56 2018/9/29
+* @Param：
+* @return：
+**/
 public class Organization {
-    private Integer id;
+    private Integer id;//组织id
 
-    private String name;
+    private String name;//组织名称
 
-    private Integer parentId;
+    private Integer parentId;//所属上级id
 
-    private Integer type;
+    private Integer type;//组织类型id
 
-    private String phone;
+    private String phone;//电话
 
-    private String site;
+    private String site;//地址
+
 
     public Integer getId() {
         return id;
