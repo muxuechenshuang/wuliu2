@@ -47,5 +47,23 @@ public interface OrganizationMapper {
 
     int updateByPrimaryKey(Organization record);
 
+    /**
+    * @author: 李家和
+    * @Description 查询网点总数量
+    * @Date: 16:43 2018/9/30
+    * @Param：[]
+    * @return：int
+    **/
     int selectWdCount();
+
+    /**
+     *
+     * @author: 任一
+     * @Description
+     * @Date: 16:11 2018/9/29
+     * @Param：
+     * @return：List<String>
+     * 查询设有分公司的城市列表
+     */
+    List<String> cityList();
 }

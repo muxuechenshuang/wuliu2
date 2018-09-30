@@ -129,4 +129,10 @@
       site = #{site,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="cityList" resultType="String">
+    select city
+    from organization
+    where type = 2
+  </select>
 </mapper>
