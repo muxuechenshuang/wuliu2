@@ -33,20 +33,33 @@ public class Order_infoController {
     * @return：List<Order_info>
     **/
     @RequestMapping("/allorder")
-    public String allOrder(Model model){
+    public String allOrder(@RequestParam(required = true,defaultValue = "1")Integer pageIndex,Model model){
+        PageHelper.startPage(pageIndex, PageSupport.PAGE_SIZE);
         List<Order_info> orderList=orderService.selectAllOrder();
+        PageInfo<Order_info> p=new PageInfo<Order_info>(orderList);
+        model.addAttribute("pageIndex",p);
         model.addAttribute("order",orderList);
         return "xlh/dindan_xlh";
     }
 
     @RequestMapping("/someorder")
-    public String someOrder(@RequestParam(required = true,defaultValue = "1")Integer pageIndex,Order_info order, Model model){
-        PageHelper.startPage(pageIndex, PageSupport.PAGE_SIZE);
+    public String someOrder(@RequestParam(required = true,defaultValue = "1")Integer pageIndex,
+                            @RequestParam(value = "orderNumber",required = false)String queryOrderNum,
+                            @RequestParam(value = "sName",required = false)String querysName,
+                            @RequestParam(value = "sTel",required = false)String querysTel,
+                            Order_info order, Model model){
 
+        PageHelper.startPage(pageIndex, PageSupport.PAGE_SIZE);
         List<Order_info> orderList=orderService.selectSomeOrder(order);
         PageInfo<Order_info> p=new PageInfo<Order_info>(orderList);
         model.addAttribute("pageIndex",p);
         model.addAttribute("order",orderList);
+
+        //回显
+        model.addAttribute("queryNumber",queryOrderNum);
+        model.addAttribute("querysName",querysName);
+        model.addAttribute("querysTel",querysTel);
+
         return "xlh/dindan_xlh";
     }
 
