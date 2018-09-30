@@ -20,8 +20,17 @@ public class CourierServiceImpl implements CourierService {
     @Autowired
      private UserMapper userMapper;
 
+
+
     @Override
-    public List<User> selectUsers() {
-        return userMapper.selectU();
+    public List<User> selectUsers(String id, String username, String phone, String email, Integer pageNo, Integer pageSize) {
+        return userMapper.selectUser(id,username,phone,email,pageNo,pageSize);
+    }
+
+
+    @Override
+    public int count(String id, String username, String phone, String email) {
+
+        return userMapper.count(id,username,phone,email);
     }
 }

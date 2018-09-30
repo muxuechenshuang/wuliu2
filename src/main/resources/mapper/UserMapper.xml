@@ -16,12 +16,43 @@
     id, username, password, email, phone, sex, logo, parentid, type
   </sql>
 
-  <select id="selectU" resultType="com.forest.wu.pojo.User">
-     select * from user where type=3
+  <select id="selectUser" resultType="com.forest.wu.pojo.User">
+     select * from user where 1=1
+      <if test="id!=''">
+        and id like concat('%',#{id},'%')
+      </if>
+     <if test="username!=''">
+        and username like concat('%',#{username},'%')
+     </if>
+    <if test="phone!=''">
+      and phone like concat('%',#{phone},'%')
+    </if>
+    <if test="email!=''">
+      and email like concat('%',#{email},'%')
+    </if>
+
+    order by time limit #{pageNo},#{pageSize}
+
   </select>
 
+<select id="count" resultType="int" >
 
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  select count(1) from user where 1=1
+  <if test="id!=''">
+    and id like concat('%',#{id},'%')
+  </if>
+  <if test="username!=''">
+    and username like concat('%',#{username},'%')
+  </if>
+  <if test="phone!=''">
+    and phone like concat('%',#{phone},'%')
+  </if>
+  <if test="email!=''">
+    and email like concat('%',#{email},'%')
+  </if>
+
+</select>
+  <!--<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user
@@ -143,5 +174,5 @@
       parentid = #{parentid,jdbcType=INTEGER},
       type = #{type,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
-  </update>
+  </update>-->
 </mapper>

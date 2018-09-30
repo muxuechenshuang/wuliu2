@@ -1,7 +1,7 @@
 package com.forest.wu.pojo;
 
 import java.util.Date;
-
+//返货单
 public class Return {
     private String id;
 

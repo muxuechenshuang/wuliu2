@@ -157,6 +157,7 @@
 										<li><a href="${pageContext.request.contextPath}/zz/fengongsitianjia_zz.jsp">新增分公司</a></li>
 										<li><a href="${pageContext.request.contextPath}/zz/fengongsichaxun_zz.jsp">分公司管理</a></li>
 										<li><a href="${pageContext.request.contextPath}/zz/wangdianchaxun_zz.jsp">网点管理</a></li>
+                                        <li><a href="${pageContext.request.contextPath}/zz/baobiao1_zz.jsp">报表</a></li>
 							</ul></li>
 						</ul></div>
 
