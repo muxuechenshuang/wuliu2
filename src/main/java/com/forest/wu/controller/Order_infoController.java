@@ -2,7 +2,7 @@ package com.forest.wu.controller;
 
 import com.forest.wu.pojo.Order_info;
 import com.forest.wu.service.Order_infoService;
-import com.forest.wu.utils.PageSupport;
+import com.forest.wu.utils.Constants;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class Order_infoController {
     **/
     @RequestMapping("/allorder")
     public String allOrder(@RequestParam(required = true,defaultValue = "1")Integer pageIndex,Model model){
-        PageHelper.startPage(pageIndex, PageSupport.PAGE_SIZE);
+        PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
         List<Order_info> orderList=orderService.selectAllOrder();
         PageInfo<Order_info> p=new PageInfo<Order_info>(orderList);
         model.addAttribute("pageIndex",p);
@@ -49,7 +49,7 @@ public class Order_infoController {
                             @RequestParam(value = "sTel",required = false)String querysTel,
                             Order_info order, Model model){
 
-        PageHelper.startPage(pageIndex, PageSupport.PAGE_SIZE);
+        PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
         List<Order_info> orderList=orderService.selectSomeOrder(order);
         PageInfo<Order_info> p=new PageInfo<Order_info>(orderList);
         model.addAttribute("pageIndex",p);
