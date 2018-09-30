@@ -61,4 +61,9 @@ public class WangDianServiceImpl implements WangDianService {
         }
         return flag;
     }
+
+    @Override
+    public int getWdCount() throws Exception {
+        return orgMapper.selectWdCount();
+    }
 }

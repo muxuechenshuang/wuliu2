@@ -23,13 +23,18 @@
         and id=#{id}
       </if>
       <if test="name!=null and name!=''">
-        and name=#{name}
+        and name like  #{name}
       </if>
       <if test="phone!=null and phone!=''">
         and phone=#{phone}
       </if>
       and type=3
     </trim>
+  </select>
+
+  <!--获得网点总数量-->
+  <select id="selectWdCount" resultType="int">
+    select count(1) from organization where type =3
   </select>
 
 
@@ -124,4 +129,10 @@
       site = #{site,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="cityList" resultType="String">
+    select city
+    from organization
+    where type = 2
+  </select>
 </mapper>

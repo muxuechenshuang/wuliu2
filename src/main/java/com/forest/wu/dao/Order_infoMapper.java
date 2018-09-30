@@ -17,8 +17,6 @@ public interface Order_infoMapper {
 
     int updateByPrimaryKeySelective(Order_info record);
 
-    int updateByPrimaryKeyWithBLOBs(Order_info record);
-
     int updateByPrimaryKey(Order_info record);
 
 
@@ -42,3 +40,4 @@ public interface Order_infoMapper {
     **/
     List<Order_info> selectSomeOrder(Order_info order);
 }
+

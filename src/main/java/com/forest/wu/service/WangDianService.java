@@ -20,4 +20,6 @@ public interface WangDianService {
     public boolean delWdById(Integer id) throws Exception;
 
     public boolean addWd(Organization wd) throws Exception;
+
+    public int getWdCount()throws Exception;
 }

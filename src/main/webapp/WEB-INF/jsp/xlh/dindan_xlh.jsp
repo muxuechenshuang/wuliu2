@@ -22,7 +22,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input name="orderNumber" type="text"
                                            class="form-control col-md-7 col-xs-12"
-                                           value="">
+                                           value="${queryNumber}">
                                 </div>
                             </div>
                         </li>
@@ -35,7 +35,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input name="sName" type="text"
                                            class="form-control col-md-7 col-xs-12"
-                                           value="">
+                                           value="${querysName}">
                                 </div>
                             </div>
                         </li>
@@ -45,22 +45,12 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input name="sTel" type="text"
                                            class="form-control col-md-7 col-xs-12"
-                                           value="">
+                                           value="${querysTel}">
                                 </div>
                             </div>
                         </li>
 
-                        <li>
-                            <div class="form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12">寄件人城市</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select id="queryCategoryLevel1" name="sAddress"
-                                            class="form-control">
-                                        <option value="">--请选择--</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </li>
+
 
                         <li><button type="submit" class="btn btn-primary">查
                             &nbsp;&nbsp;&nbsp;&nbsp;询</button></li>
@@ -165,28 +155,14 @@
                                                     <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
-                                                    <li>
-                                                        <c:choose>
-                                                            <c:when test="${appInfo.status == 2 || appInfo.status == 5}">
-                                                                <a class="saleSwichOpen" saleSwitch="open" appinfoid=${appInfo.id }  appsoftwarename=${appInfo.softwareName } data-toggle="tooltip" data-placement="top" title="" data-original-title="恭喜您，您的审核已经通过，您可以点击上架发布您的APP">上架</a>
-                                                            </c:when>
-                                                            <c:when test="${appInfo.status == 4}">
-                                                                <a class="saleSwichClose" saleSwitch="close" appinfoid=${appInfo.id }  appsoftwarename=${appInfo.softwareName } data-toggle="tooltip" data-placement="top" title="" data-original-title="您可以点击下架来停止发布您的APP，市场将不提供APP的下载">下架</a>
-                                                            </c:when>
-                                                        </c:choose>
-                                                    </li>
-                                                    <li><a class="addVersion" appinfoid="${appInfo.id }" data-toggle="tooltip" data-placement="top" title="" data-original-title="新增APP版本信息">新增版本</a>
+
+                                                    <li><a class="addVersion" appinfoid="${appInfo.id }" data-toggle="tooltip" data-placement="top" title="" data-original-title="查看">查看</a>
                                                     </li>
                                                     <li><a class="modifyVersion"
                                                            appinfoid="${appInfo.id }" versionid="${appInfo.versionId }" status="${appInfo.status }"
                                                            statusname="${appInfo.statusName }"
-                                                           data-toggle="tooltip" data-placement="top" title="" data-original-title="修改APP最新版本信息">修改版本</a>
+                                                           data-toggle="tooltip" data-placement="top" title="" data-original-title="委托">委托</a>
                                                     </li>
-                                                    <li><a  class="modifyAppInfo"
-                                                            appinfoid="${appInfo.id }" status="${appInfo.status }" statusname="${appInfo.statusName }"
-                                                            data-toggle="tooltip" data-placement="top" title="" data-original-title="修改APP基础信息">修改</a></li>
-                                                    <li><a  class="viewApp" appinfoid=${appInfo.id }  data-toggle="tooltip" data-placement="top" title="" data-original-title="查看APP基础信息以及全部版本信息">查看</a></li>
-                                                    <li><a  class="deleteApp" appinfoid=${appInfo.id }  appsoftwarename=${appInfo.softwareName } data-toggle="tooltip" data-placement="top" title="" data-original-title="删除APP基础信息以及全部版本信息">删除</a></li>
                                                 </ul>
                                             </div>
                                         </td>
@@ -200,30 +176,30 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="dataTables_info" id="datatable-responsive_info"
-                                 role="status" aria-live="polite">共${pages.totalCount }条记录
-                                ${pages.currentPageNo }/${pages.totalPageCount }页</div>
+                                 role="status" aria-live="polite">共${pageIndex.total}条记录
+                                ${pageIndex.pageNum}/${pageIndex.pages }页</div>
                         </div>
                         <div class="col-sm-7">
                             <div class="dataTables_paginate paging_simple_numbers"
                                  id="datatable-responsive_paginate">
                                 <ul class="pagination">
-                                    <c:if test="${pages.currentPageNo > 1}">
+                                    <c:if test="${pageIndex.pages > 1}">
                                         <li class="paginate_button previous"><a
                                                 href="javascript:page_nav(document.forms[0],1);"
                                                 aria-controls="datatable-responsive" data-dt-idx="0"
                                                 tabindex="0">首页</a></li>
                                         <li class="paginate_button "><a
-                                                href="javascript:page_nav(document.forms[0],${pages.currentPageNo-1});"
+                                                href="javascript:page_nav(document.forms[0],${pageIndex.pageNum-1});"
                                                 aria-controls="datatable-responsive" data-dt-idx="1"
                                                 tabindex="0">上一页</a></li>
                                     </c:if>
-                                    <c:if test="${pages.currentPageNo < pages.totalPageCount }">
+                                    <c:if test="${pageIndex.pageNum < pageIndex.total }">
                                         <li class="paginate_button "><a
-                                                href="javascript:page_nav(document.forms[0],${pages.currentPageNo+1 });"
+                                                href="javascript:page_nav(document.forms[0],${pageIndex.pageNum+1 });"
                                                 aria-controls="datatable-responsive" data-dt-idx="1"
                                                 tabindex="0">下一页</a></li>
                                         <li class="paginate_button next"><a
-                                                href="javascript:page_nav(document.forms[0],${pages.totalPageCount });"
+                                                href="javascript:page_nav(document.forms[0],${pageIndex.total });"
                                                 aria-controls="datatable-responsive" data-dt-idx="7"
                                                 tabindex="0">最后一页</a></li>
                                     </c:if>
