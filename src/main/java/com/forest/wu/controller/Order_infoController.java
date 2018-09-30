@@ -41,7 +41,16 @@ public class Order_infoController {
         model.addAttribute("order",orderList);
         return "xlh/dindan_xlh";
     }
-
+    
+    
+    /**
+    * @author: 肖林辉 
+    * @Description   按条件查询,模糊查询
+    * @Date: 16:28 2018/9/30/030
+    * @Param：[pageIndex, queryOrderNum, querysName, querysTel, order, model]
+    * @return：java.lang.String
+    **/
+    
     @RequestMapping("/someorder")
     public String someOrder(@RequestParam(required = true,defaultValue = "1")Integer pageIndex,
                             @RequestParam(value = "orderNumber",required = false)String queryOrderNum,
@@ -63,6 +72,19 @@ public class Order_infoController {
         return "xlh/dindan_xlh";
     }
 
+    /**
+    * @author: 肖林辉 
+    * @Description  订单页面跳转到订单详情页面
+    * @Date: 16:29 2018/9/30/030
+    * @Param：
+    * @return：
+    **/
 
+    /*@RequestMapping("/toorderxianqing")
+    public String toOrderXianqing(@RequestParam(value = "orderid",required = false) String orderid,Model model){
+
+        return "xlh/orderxianqian_xlh";
+    }
+*/
 
 }

@@ -156,7 +156,7 @@
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
 
-                                                    <li><a class="addVersion" appinfoid="${appInfo.id }" data-toggle="tooltip" data-placement="top" title="" data-original-title="查看">查看</a>
+                                                    <li><a href="${pageContext.request.contextPath}/order/toorderxianqing" class="addVersion"  data-toggle="tooltip" data-placement="top" title="" data-original-title="查看">查看</a>
                                                     </li>
                                                     <li><a class="modifyVersion"
                                                            appinfoid="${appInfo.id }" versionid="${appInfo.versionId }" status="${appInfo.status }"
