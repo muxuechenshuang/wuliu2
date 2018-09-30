@@ -2,6 +2,8 @@ package com.forest.wu.controller.filiale;
 
 import com.forest.wu.pojo.Organization;
 import com.forest.wu.service.WangDianService;
+import com.forest.wu.utils.PageSupport;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,6 +46,8 @@ public class FilialeController {
             wdPhone = phone;
         }
         try {
+            Integer pageNum=1;
+            PageHelper.startPage(pageNum, PageSupport.PAGE_SIZE);
             wdList = wdService.getWdListByCondition(wdId,wdName,wdPhone);
         } catch (Exception e) {
             e.printStackTrace();

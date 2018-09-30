@@ -13,6 +13,7 @@
     id, name, parentId, type, phone, site
   </sql>
 
+  <!--按条件查询网点-->
   <select id="selectByCondition"  resultType="com.forest.wu.pojo.Organization">
     select 
     <include refid="Base_Column_List" />
