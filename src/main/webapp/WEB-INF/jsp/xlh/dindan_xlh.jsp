@@ -33,7 +33,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12">寄件人姓名</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="" type="text"
+                                    <input name="sName" type="text"
                                            class="form-control col-md-7 col-xs-12"
                                            value="">
                                 </div>
@@ -43,56 +43,24 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12">寄件人电话</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="querySoftwareName" type="text"
+                                    <input name="sTel" type="text"
                                            class="form-control col-md-7 col-xs-12"
-                                           value="${querySoftwareName }">
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12">寄件人网点</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select id="queryCategoryLevel1" name="queryCategoryLevel1"
-                                            class="form-control">
-                                        <option value="">--请选择--</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12">寄件人城市</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select id="queryCategoryLevel1" name="queryCategoryLevel1"
-                                            class="form-control">
-                                        <option value="">--请选择--</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12">工单状态</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <!-- 							queryStatus要与controller中参数保持一致,queryStatus为APP状态参数 -->
-                                    <select name="queryStatus" class="form-control">
-                                        <option value="">--请选择--</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12">收快递员工号</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="querySoftwareName" type="text"
-                                           class="form-control col-md-7 col-xs-12"
-                                           value="${querySoftwareName }">
+                                           value="">
                                 </div>
                             </div>
                         </li>
 
+                        <li>
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">寄件人城市</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select id="queryCategoryLevel1" name="sAddress"
+                                            class="form-control">
+                                        <option value="">--请选择--</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
 
                         <li><button type="submit" class="btn btn-primary">查
                             &nbsp;&nbsp;&nbsp;&nbsp;询</button></li>

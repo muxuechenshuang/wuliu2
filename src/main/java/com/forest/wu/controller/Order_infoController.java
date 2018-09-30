@@ -23,7 +23,7 @@ public class Order_infoController {
     private Order_infoService  orderService;
 
     /**
-    * @author: 肖林辉
+    * @author: 肖林辉111
     * @Description  查询所有
     * @Date: 10:36 2018/9/29/029
     * @Param：[]
@@ -37,9 +37,10 @@ public class Order_infoController {
     }
 
     @RequestMapping("/someorder")
-    public String someOrder(@RequestParam("order_info")Order_info order, Model model){
+    public String someOrder(Order_info order, Model model){
         List<Order_info> orderList=orderService.selectSomeOrder(order);
         model.addAttribute("order",orderList);
+        System.out.print(model+">>>>>>>>>>>>>>>>>>>>>>>>>>");
         return "xlh/dindan_xlh";
     }
 
