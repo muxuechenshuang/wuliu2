@@ -91,8 +91,8 @@
 
 
                             <!--肖林辉  -->
-                            <c:if test="${user.type==2}">
-                            <li><a><i class="fa fa-home"></i>快递员 肖林辉<span
+
+                            <li><a><i class="fa fa-home"></i>快递员 肖林辉${user.type}<span
                                     class="fa fa-chevron-down"></span>
                             </a>
                                 <ul class="nav child_menu">
@@ -108,7 +108,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            </c:if>
+
 
                             <!--李普强  -->
                             <li><a><i class="fa fa-home"></i> 网点(李普强) <span
