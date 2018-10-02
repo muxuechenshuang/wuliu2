@@ -62,6 +62,8 @@ public class LoginController {
     //注册页面
     @RequestMapping(value = "/login",method= RequestMethod.POST)
     public String userLogin(User user){
+        User login = userService.addLogin(user);
+        login.setType(1);
         return "/indexBootstrap/index";
     }
 }
