@@ -12,15 +12,15 @@
             </div>
 
             <div class="x_content1">
-                <form class="form-horizontal form-label-left"
+                <form class="form-horizontal form-label-left" action="${pageContext.request.contextPath}/order/saveworkorder"
                      >
-                    <input type="hidden" name="id" value="${order.id}">
+                    <%--<input type="hidden" name="id" value="${order.id}">--%>
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">订单号 <span
                                 class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" value="${order.id}" disabled
+                            <input class="form-control col-md-7 col-xs-12" name="orderNum" value="${order.id}" readonly
                                    type="text">
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                                 class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" name="workNumber" value="${workNumber}" disabled
+                            <input class="form-control col-md-7 col-xs-12" name="workNum" value="${workNumber}" readonly
                                    type="text">
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                                 class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" value="${order.sName}" disabled
+                            <input class="form-control col-md-7 col-xs-12" name="sName" value="${order.sName}" readonly
                                    type="text">
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                                 class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" value="${order.sTel}" disabled
+                            <input class="form-control col-md-7 col-xs-12"  name="sTel" value="${order.sTel}" readonly
                                    type="text">
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                                 class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" value="${order.sAddress}" disabled
+                            <input class="form-control col-md-7 col-xs-12" name="sAddress" value="${order.sAddress}" readonly
                                    type="text">
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                                 class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" value="${order.gName}" disabled
+                            <input class="form-control col-md-7 col-xs-12" name="gName"value="${order.gName}" readonly
                                    type="text">
                         </div>
                     </div>
@@ -76,16 +76,16 @@
                                 class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" value="${order.gTel}" disabled
+                            <input class="form-control col-md-7 col-xs-12" name="gTel"value="${order.gTel}" readonly
                                    type="text">
                         </div>
                     </div>
 
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="select">收件人地址<span
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" name="gAddress" for="select">收件人地址<span
                                 class="required"></span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" value="${order.gAddress}" disabled
+                            <input class="form-control col-md-7 col-xs-12" value="${order.gAddress}" readonly
                                    type="text">
 
                         </div>
@@ -96,7 +96,7 @@
                                 class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" value="${order.product}" disabled
+                            <input class="form-control col-md-7 col-xs-12" name="productType" value="${order.product}" readonly
                                    type="text">
                         </div>
                     </div>
@@ -105,7 +105,7 @@
                                 class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" value="" disabled
+                            <input class="form-control col-md-7 col-xs-12" value="" readonly
                                    type="text">
                         </div>
                     </div>
@@ -114,11 +114,11 @@
                                 class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" value="" disabled
+                            <input class="form-control col-md-7 col-xs-12" value="" readonly
                                    type="text">
                         </div>
                     </div>
-                    <form  action="${pageContext.request.contextPath}/order/saveworkorder">
+
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">实际重量(kg)<span
                                 class="required">*</span>
@@ -153,7 +153,8 @@
                             <button type="button" class="btn btn-primary" id="back">返回</button>
                         </div>
                     </div>
-                    </form>
+
+
                 </form>
                 <div class="clearfix"></div>
                 <br/><br/>

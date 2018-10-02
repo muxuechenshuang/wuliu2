@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.forest.wu.dao.WorkorderMapper">
   <resultMap id="BaseResultMap" type="com.forest.wu.pojo.Workorder">
-    <id column="id" jdbcType="VARCHAR" property="id" />
+    <id column="id" jdbcType="INTEGER" property="id" />
     <result column="orderNum" jdbcType="VARCHAR" property="orderNum" />
     <result column="workNum" jdbcType="VARCHAR" property="workNum" />
-    <result column="packageId" jdbcType="VARCHAR" property="packageId" />
-    <result column="productNum" jdbcType="VARCHAR" property="productNum" />
+    <result column="packageId" jdbcType="BIGINT" property="packageId" />
+    <result column="productNum" jdbcType="BIGINT" property="productNum" />
     <result column="sName" jdbcType="VARCHAR" property="sName" />
     <result column="sTel" jdbcType="VARCHAR" property="sTel" />
     <result column="sCity" jdbcType="VARCHAR" property="sCity" />
@@ -18,8 +18,8 @@
     <result column="gAddress" jdbcType="VARCHAR" property="gAddress" />
     <result column="gPoint" jdbcType="VARCHAR" property="gPoint" />
     <result column="productType" jdbcType="VARCHAR" property="productType" />
-    <result column="realWeight" jdbcType="INTEGER" property="realWeight" />
-    <result column="workStatus" jdbcType="VARCHAR" property="workStatus" />
+    <result column="realWeight" jdbcType="DOUBLE" property="realWeight" />
+    <result column="workStatus" jdbcType="INTEGER" property="workStatus" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
     <result column="expenses" jdbcType="DOUBLE" property="expenses" />
     <result column="gCourier" jdbcType="INTEGER" property="gCourier" />
@@ -44,15 +44,15 @@
     secOutStorage, finishedTime, productLocation, result, invalidatedState, storageStatus,
     entrust
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from workorder
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from workorder
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.forest.wu.pojo.Workorder">
     insert into workorder (id, orderNum, workNum,
@@ -67,12 +67,12 @@
       secOutStorage, finishedTime, productLocation,
       result, invalidatedState, storageStatus,
       entrust)
-    values (#{id,jdbcType=VARCHAR}, #{orderNum,jdbcType=VARCHAR}, #{workNum,jdbcType=VARCHAR},
-      #{packageId,jdbcType=VARCHAR}, #{productNum,jdbcType=VARCHAR}, #{sName,jdbcType=VARCHAR},
+    values (#{id,jdbcType=INTEGER}, #{orderNum,jdbcType=VARCHAR}, #{workNum,jdbcType=VARCHAR},
+      #{packageId,jdbcType=BIGINT}, #{productNum,jdbcType=BIGINT}, #{sName,jdbcType=VARCHAR},
       #{sTel,jdbcType=VARCHAR}, #{sCity,jdbcType=VARCHAR}, #{sAddress,jdbcType=VARCHAR},
       #{sPoint,jdbcType=VARCHAR}, #{gName,jdbcType=VARCHAR}, #{gTel,jdbcType=VARCHAR},
       #{gCity,jdbcType=VARCHAR}, #{gAddress,jdbcType=VARCHAR}, #{gPoint,jdbcType=VARCHAR},
-      #{productType,jdbcType=VARCHAR}, #{realWeight,jdbcType=INTEGER}, #{workStatus,jdbcType=VARCHAR},
+      #{productType,jdbcType=VARCHAR}, #{realWeight,jdbcType=DOUBLE}, #{workStatus,jdbcType=INTEGER},
       #{comment,jdbcType=VARCHAR}, #{expenses,jdbcType=DOUBLE}, #{gCourier,jdbcType=INTEGER},
       #{sCourier,jdbcType=INTEGER}, #{preVolume,jdbcType=DOUBLE}, #{riseTime,jdbcType=TIMESTAMP},
       #{firInStorage,jdbcType=TIMESTAMP}, #{firOutStorage,jdbcType=TIMESTAMP}, #{secInStorage,jdbcType=TIMESTAMP},
@@ -188,7 +188,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=VARCHAR},
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="orderNum != null">
         #{orderNum,jdbcType=VARCHAR},
@@ -197,10 +197,10 @@
         #{workNum,jdbcType=VARCHAR},
       </if>
       <if test="packageId != null">
-        #{packageId,jdbcType=VARCHAR},
+        #{packageId,jdbcType=BIGINT},
       </if>
       <if test="productNum != null">
-        #{productNum,jdbcType=VARCHAR},
+        #{productNum,jdbcType=BIGINT},
       </if>
       <if test="sName != null">
         #{sName,jdbcType=VARCHAR},
@@ -236,10 +236,10 @@
         #{productType,jdbcType=VARCHAR},
       </if>
       <if test="realWeight != null">
-        #{realWeight,jdbcType=INTEGER},
+        #{realWeight,jdbcType=DOUBLE},
       </if>
       <if test="workStatus != null">
-        #{workStatus,jdbcType=VARCHAR},
+        #{workStatus,jdbcType=INTEGER},
       </if>
       <if test="comment != null">
         #{comment,jdbcType=VARCHAR},
@@ -301,10 +301,10 @@
         workNum = #{workNum,jdbcType=VARCHAR},
       </if>
       <if test="packageId != null">
-        packageId = #{packageId,jdbcType=VARCHAR},
+        packageId = #{packageId,jdbcType=BIGINT},
       </if>
       <if test="productNum != null">
-        productNum = #{productNum,jdbcType=VARCHAR},
+        productNum = #{productNum,jdbcType=BIGINT},
       </if>
       <if test="sName != null">
         sName = #{sName,jdbcType=VARCHAR},
@@ -340,10 +340,10 @@
         productType = #{productType,jdbcType=VARCHAR},
       </if>
       <if test="realWeight != null">
-        realWeight = #{realWeight,jdbcType=INTEGER},
+        realWeight = #{realWeight,jdbcType=DOUBLE},
       </if>
       <if test="workStatus != null">
-        workStatus = #{workStatus,jdbcType=VARCHAR},
+        workStatus = #{workStatus,jdbcType=INTEGER},
       </if>
       <if test="comment != null">
         comment = #{comment,jdbcType=VARCHAR},
@@ -394,14 +394,14 @@
         entrust = #{entrust,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.forest.wu.pojo.Workorder">
     update workorder
     set orderNum = #{orderNum,jdbcType=VARCHAR},
       workNum = #{workNum,jdbcType=VARCHAR},
-      packageId = #{packageId,jdbcType=VARCHAR},
-      productNum = #{productNum,jdbcType=VARCHAR},
+      packageId = #{packageId,jdbcType=BIGINT},
+      productNum = #{productNum,jdbcType=BIGINT},
       sName = #{sName,jdbcType=VARCHAR},
       sTel = #{sTel,jdbcType=VARCHAR},
       sCity = #{sCity,jdbcType=VARCHAR},
@@ -413,8 +413,8 @@
       gAddress = #{gAddress,jdbcType=VARCHAR},
       gPoint = #{gPoint,jdbcType=VARCHAR},
       productType = #{productType,jdbcType=VARCHAR},
-      realWeight = #{realWeight,jdbcType=INTEGER},
-      workStatus = #{workStatus,jdbcType=VARCHAR},
+      realWeight = #{realWeight,jdbcType=DOUBLE},
+      workStatus = #{workStatus,jdbcType=INTEGER},
       comment = #{comment,jdbcType=VARCHAR},
       expenses = #{expenses,jdbcType=DOUBLE},
       gCourier = #{gCourier,jdbcType=INTEGER},
@@ -431,7 +431,7 @@
       invalidatedState = #{invalidatedState,jdbcType=VARCHAR},
       storageStatus = #{storageStatus,jdbcType=VARCHAR},
       entrust = #{entrust,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 
   <!--总公司工单查询-->
