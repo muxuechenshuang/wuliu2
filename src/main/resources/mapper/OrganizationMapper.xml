@@ -13,7 +13,7 @@
     id, name, parentId, type, phone, site
   </sql>
 
-    <!--按条件查询分公司-->
+    <!--按条件查询分公司，下面是网点，改个名就行-->
     <select id="selectByCondition" resultType="com.forest.wu.pojo.Organization">
         select
         <include refid="Base_Column_List"/>
@@ -34,6 +34,27 @@
         </trim>
     </select>
 
+
+    <!--按条件查询网点-->
+    <!--<select id="selectByCondition" resultType="com.forest.wu.pojo.Organization">-->
+        <!--select-->
+        <!--<include refid="Base_Column_List"/>-->
+        <!--from organization-->
+        <!--<trim prefix="where" prefixOverrides="and | or">-->
+            <!--<if test="id!=null">-->
+                <!--and id=#{id}-->
+            <!--</if>-->
+            <!--<if test="name!=null and name!=''">-->
+                <!--and name like CONCAT ('%',#{name},'%')-->
+            <!--</if>-->
+            <!--<if test="phone!=null and phone!=''">-->
+                <!--and phone=#{phone}-->
+                <!--&lt;!&ndash;</if>&ndash;&gt;-->
+                <!--&lt;!&ndash;and type=3&ndash;&gt;-->
+            <!--</if>-->
+            <!--and type=3-->
+        <!--</trim>-->
+    <!--</select>-->
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from organization
