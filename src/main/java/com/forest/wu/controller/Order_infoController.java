@@ -109,27 +109,12 @@ public class Order_infoController {
     * @Param：
     * @return：
     **/
-    @RequestMapping("/saveworkorder")
-    public void addWorkorder(@RequestParam(value = "id")int id,
-                            /* @RequestParam(value = "workNum")String work,*/
-                             @RequestParam(value = "realWeight")double  weight,
-                             @RequestParam(value = "expenses")double  expenses,
-                             @RequestParam(value = "comment")String comment){
+    @RequestMapping(value = "/saveworkorder",method = RequestMethod.GET)
+    public String addWorkorder(Workorder workorder){
         //根据Id找到相应订单的信息
-       Order_info order = orderService.selectOneOrder(id);
-       Workorder workorder = new Workorder();
-       workorder.setOrderNum(order.getId().toString());
-     /*  workorder.setWorkNum(work);*/
-       workorder.setsName(order.getsName());
-       workorder.setsTel(order.getsTel());
-       workorder.setgAddress(order.getsAddress());
-       workorder.setgName(order.getgName());
-       workorder.setgTel(order.getgTel());
-       workorder.setProductType(order.getProduct());
-       workorder.setRealWeight(weight);
-       workorder.setExpenses(expenses);
        //插入工单信息
        orderService.addWorkorderByCourier(workorder);
+       return "redirect:/order/allorder";
     }
 
 }
