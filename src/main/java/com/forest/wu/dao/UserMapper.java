@@ -71,8 +71,9 @@ public interface UserMapper {
     * @Param参数：快递员对象
     * @return返回值：int
     **/
-
     int updateUser(User user);
+
+
 
     /*
     * @author:李普强
@@ -82,7 +83,27 @@ public interface UserMapper {
     * @return返回值：订单对象集合
     **/
     List<Order_info> selectOrder(@Param(value = "id") Integer id,
-                                 @Param(value = "sName") String sName,
+                                 @Param(value = "gName") String gName,
                                  @Param(value = "sTel") String sTel,
                                  @Param(value = "status") Integer status);
+
+    /*
+    * @author:李普强
+    * @Description描述：通过订单id查询一个订单对象，用于页面的单个订单展示
+    * @Date: 9:56 2018/10/2
+    * @Param参数：订单id
+    * @return返回值：订单对象order
+    **/
+    Order_info selectOrder_Info(@Param(value = "id")String id);
+
+    /*
+    * @author:李普强
+    * @Description描述：保存修改后的订单对象
+    * @Date: 11:09 2018/10/2
+    * @Param参数：订单对象order_info
+    * @return返回值：int
+    **/
+    int updateOrder_info(Order_info order_info);
+
+
 }

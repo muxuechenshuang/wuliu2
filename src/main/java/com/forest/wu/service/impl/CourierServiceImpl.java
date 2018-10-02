@@ -46,8 +46,18 @@ public class CourierServiceImpl implements CourierService {
     }
 
     @Override
-    public List<Order_info> selectOrder(Integer id, String sName, String sTel, Integer status) {
-        return userMapper.selectOrder(id, sName, sTel, status);
+    public List<Order_info> selectOrder(Integer id, String gName, String sTel, Integer status) {
+        return userMapper.selectOrder(id,gName, sTel, status);
+    }
+
+    @Override
+    public Order_info selectOrder_Info(String id) {
+        return userMapper.selectOrder_Info(id);
+    }
+
+    @Override
+    public int updateOrder_info(Order_info order_info) {
+        return userMapper.updateOrder_info(order_info);
     }
 
 

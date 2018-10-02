@@ -114,10 +114,10 @@
                             </a>
                                 <ul class="nav child_menu">
                                     <li>
-                                        <a href="${pageContext.request.contextPath}/WEB-INF/jsp/lpq/yuangong2.jsp">员工管理</a>
+                                        <a href="${pageContext.request.contextPath}/wuliu/yuan">员工管理</a>
                                     </li>
 
-                                    <li><a href="${pageContext.request.contextPath}/lpq/chaxun_lpq.jsp">查看用户订单</a>
+                                    <li><a href="${pageContext.request.contextPath}/wuliu/dingdan">查看用户订单</a>
                                     </li>
                                     <!-- 	<li><a href="shenghe_lpq.jsp">审核订单</a>
                                         </li> -->

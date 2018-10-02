@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
-<%@include file="../common/header.jsp"%>
+<%@include file="../../../common/header.jsp"%>
 <div class="clearfix"></div>
 <div class="row">
 	<div class="col-md-12">
@@ -18,7 +18,7 @@
 			    <ul>
 					<li>
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">公司编号：</label>
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">网点编号：</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
 							</div>
@@ -36,13 +36,20 @@
 					</li>
 						<li>
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">分公司名称：</label>
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">网点名称：</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
 							</div>
 						</div>
 					</li>
-
+						<li>
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">负责人：</label>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
+							</div>
+						</div>
+					</li>
 				
 					<li><button type="submit" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询 </button>
 					 </li>
@@ -68,11 +75,11 @@
 									<th class="sorting_asc" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="First name: activate to sort column descending"
-										aria-sort="ascending">公司编号</th>
+										aria-sort="ascending">网点编号</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
-										分公司名称</th>
+										网点名称</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
@@ -85,6 +92,10 @@
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
 										地址</th>
+									<th class="sorting" tabindex="0"
+										aria-controls="datatable-responsive" rowspan="1" colspan="1"
+										aria-label="Last name: activate to sort column ascending">
+										负责人</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
@@ -107,9 +118,10 @@
 								 <td>666666666@163.com</td>
 								 <td>8888888</td>
 								 <td>北京</td>
+								 <td>YYF</td>
 								 <td>beijingfeiniao</td>
 								 <td>123456</td>
-								 <td><a href="../WEB-INF/jsp/zz/fengongsixiangqing_zz.jsp" class="btn btn-primary">查看/修改</a></td>
+								 <td><a href="wangdianxiangqing_zz.jsp" class="btn btn-primary">查看/修改</a></td>
 								</tr>
 								
 							</tbody>
@@ -155,7 +167,8 @@
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</div>
 </div>
-<%@include file="../common/footer.jsp"%>
+<%@include file="../../../common/footer.jsp"%>

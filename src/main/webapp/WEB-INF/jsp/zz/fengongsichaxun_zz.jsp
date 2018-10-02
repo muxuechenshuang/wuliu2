@@ -13,14 +13,14 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
-				<form method="post" action="list">
+				<form method="post" action="${pageContext.request.contextPath}/center/list">
 					<input type="hidden" name="pageIndex" value="1" />
 			    <ul>
 					<li>
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">网点编号：</label>
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">公司编号：</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
+								<input name="id" type="number" class="form-control col-md-7 col-xs-12" value="${id }">
 							</div>
 						</div>
 					</li>
@@ -30,26 +30,19 @@
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">电话：</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
+								<input name="phone" type="text" class="form-control col-md-7 col-xs-12" value="${phone }">
 							</div>
 						</div>
 					</li>
 						<li>
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">网点名称：</label>
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">分公司名称：</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
+								<input name="name" type="text" class="form-control col-md-7 col-xs-12" value="${name }">
 							</div>
 						</div>
 					</li>
-						<li>
-						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">负责人：</label>
-							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" value="${querySoftwareName }">
-							</div>
-						</div>
-					</li>
+
 				
 					<li><button type="submit" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询 </button>
 					 </li>
@@ -75,15 +68,19 @@
 									<th class="sorting_asc" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="First name: activate to sort column descending"
-										aria-sort="ascending">网点编号</th>
+										aria-sort="ascending">分公司编号</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
-										网点名称</th>
+										分公司名称</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
-										邮箱</th>
+									父级组织ID</th>
+									<th class="sorting" tabindex="0"
+										aria-controls="datatable-responsive" rowspan="1" colspan="1"
+										aria-label="Last name: activate to sort column ascending">
+										类型</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
@@ -95,15 +92,7 @@
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
-										负责人</th>
-									<th class="sorting" tabindex="0"
-										aria-controls="datatable-responsive" rowspan="1" colspan="1"
-										aria-label="Last name: activate to sort column ascending">
-										用户名</th>
-									<th class="sorting" tabindex="0"
-										aria-controls="datatable-responsive" rowspan="1" colspan="1"
-										aria-label="Last name: activate to sort column ascending">
-										密码</th>
+										所在城市</th>
 										<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										style="width: 124px;"
@@ -112,62 +101,72 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-								 <td>1</td>
-								 <td>北京飞鸟</td>
-								 <td>666666666@163.com</td>
-								 <td>8888888</td>
-								 <td>北京</td>
-								 <td>YYF</td>
-								 <td>beijingfeiniao</td>
-								 <td>123456</td>
-								 <td><a href="wangdianxiangqing_zz.jsp" class="btn btn-primary">查看/修改</a></td>
+							<c:forEach var="organization" items="${list }" varStatus="status">
+								<tr role="row" class="odd">
+									<td tabindex="0" class="sorting_1">${organization.id}</td>
+									<td>${organization.name }</td>
+									<td>${organization.parentId }</td>
+									<td>${organization.type }</td>
+									<td>${organization.phone }</td>
+									<td>${organization.site }</td>
+									<td>${organization.city }</td>
+									<td><a href="${pageContext.request.contextPath}/zz/fengongsixiangqing_zz.jsp" class="btn btn-primary">查看/修改</a></td>
 								</tr>
+							</c:forEach>
+								<%--<tr>--%>
+								 <%--<td>1</td>--%>
+								 <%--<td>北京飞鸟</td>--%>
+								 <%--<td>666666666@163.com</td>--%>
+								 <%--<td>8888888</td>--%>
+								 <%--<td>北京</td>--%>
+								 <%--<td>beijingfeiniao</td>--%>
+								 <%--<td>123456</td>--%>
+								 <%--<td><a href="fengongsixiangqing_zz.jsp" class="btn btn-primary">查看/修改</a></td>--%>
+								<%--</tr>--%>
 								
 							</tbody>
 						</table>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-sm-5">
-						<div class="dataTables_info" id="datatable-responsive_info"
-							role="status" aria-live="polite">共${pages.totalCount }条记录
-							${pages.currentPageNo }/${pages.totalPageCount }页</div>
-					</div>
-					<div class="col-sm-7">
-						<div class="dataTables_paginate paging_simple_numbers"
-							id="datatable-responsive_paginate">
-							<ul class="pagination">
-								<c:if test="${pages.currentPageNo > 1}">
-									<li class="paginate_button previous"><a
-										href="javascript:page_nav(document.forms[0],1);"
-										aria-controls="datatable-responsive" data-dt-idx="0"
-										tabindex="0">首页</a>
-									</li>
-									<li class="paginate_button "><a
-										href="javascript:page_nav(document.forms[0],${pages.currentPageNo-1});"
-										aria-controls="datatable-responsive" data-dt-idx="1"
-										tabindex="0">上一页</a>
-									</li>
-								</c:if>
-								<c:if test="${pages.currentPageNo < pages.totalPageCount }">
-									<li class="paginate_button "><a
-										href="javascript:page_nav(document.forms[0],${pages.currentPageNo+1 });"
-										aria-controls="datatable-responsive" data-dt-idx="1"
-										tabindex="0">下一页</a>
-									</li>
-									<li class="paginate_button next"><a
-										href="javascript:page_nav(document.forms[0],${pages.totalPageCount });"
-										aria-controls="datatable-responsive" data-dt-idx="7"
-										tabindex="0">最后一页</a>
-									</li>
-								</c:if>
-							</ul>
-						</div>
-					</div>
-				</div>
+				<%--<div class="row">--%>
+					<%--<div class="col-sm-5">--%>
+						<%--<div class="dataTables_info" id="datatable-responsive_info"--%>
+							<%--role="status" aria-live="polite">共${pages.totalCount }条记录--%>
+							<%--${pages.currentPageNo }/${pages.totalPageCount }页</div>--%>
+					<%--</div>--%>
+					<%--<div class="col-sm-7">--%>
+						<%--<div class="dataTables_paginate paging_simple_numbers"--%>
+							<%--id="datatable-responsive_paginate">--%>
+							<%--<ul class="pagination">--%>
+								<%--<c:if test="${pages.currentPageNo > 1}">--%>
+									<%--<li class="paginate_button previous"><a--%>
+										<%--href="javascript:page_nav(document.forms[0],1);"--%>
+										<%--aria-controls="datatable-responsive" data-dt-idx="0"--%>
+										<%--tabindex="0">首页</a>--%>
+									<%--</li>--%>
+									<%--<li class="paginate_button "><a--%>
+										<%--href="javascript:page_nav(document.forms[0],${pages.currentPageNo-1});"--%>
+										<%--aria-controls="datatable-responsive" data-dt-idx="1"--%>
+										<%--tabindex="0">上一页</a>--%>
+									<%--</li>--%>
+								<%--</c:if>--%>
+								<%--<c:if test="${pages.currentPageNo < pages.totalPageCount }">--%>
+									<%--<li class="paginate_button "><a--%>
+										<%--href="javascript:page_nav(document.forms[0],${pages.currentPageNo+1 });"--%>
+										<%--aria-controls="datatable-responsive" data-dt-idx="1"--%>
+										<%--tabindex="0">下一页</a>--%>
+									<%--</li>--%>
+									<%--<li class="paginate_button next"><a--%>
+										<%--href="javascript:page_nav(document.forms[0],${pages.totalPageCount });"--%>
+										<%--aria-controls="datatable-responsive" data-dt-idx="7"--%>
+										<%--tabindex="0">最后一页</a>--%>
+									<%--</li>--%>
+								<%--</c:if>--%>
+							<%--</ul>--%>
+						<%--</div>--%>
+					<%--</div>--%>
+				<%--</div>--%>
 			</div>
-
 		</div>
 	</div>
 </div>
