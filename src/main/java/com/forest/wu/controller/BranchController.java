@@ -2,14 +2,14 @@ package com.forest.wu.controller;
 
 import com.forest.wu.dao.Order_infoMapper;
 import com.forest.wu.pojo.Order_info;
+import com.forest.wu.pojo.Organization;
 import com.forest.wu.pojo.User;
 import com.forest.wu.service.CourierService;
 import com.forest.wu.utils.Constants;
 import com.forest.wu.utils.Page;
 import com.github.pagehelper.PageHelper;
-import org.apache.ibatis.annotations.Param;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -127,22 +127,21 @@ public class BranchController {
 
 
     //按条件查询订单信息，并分页显示
-    @RequestMapping(value = "/ding",method = RequestMethod.POST)
+    @RequestMapping(value = "/ding")
     public String selectOrder(Model model,
                               Order_info order_info,
                               @RequestParam(value = "pageIndex" ,required = false)String pageIndex){
 
         Integer id =null;
-        String  sName=null;
+        String  gName=null;
         String  sTel=null;
         Integer status=null;
-
 
         if(!StringUtils.isEmpty(order_info.getId())){
             id=Integer.valueOf(order_info.getId());
         }
         if(!StringUtils.isEmpty(order_info.getgName())){
-            sName=order_info.getgName();
+            gName=order_info.getgName();
         }
         if(!StringUtils.isEmpty(order_info.getsTel())){
             sTel=order_info.getsTel();
@@ -156,22 +155,40 @@ public class BranchController {
             pageNum=Integer.valueOf(pageIndex);
         }
 
-      /*  if(pageNum<1){
-            pageNum=1;
-        }else if(pageNum>p){
 
-        }*/
-        PageHelper.startPage(pageNum,Constants.PAGE_SIZE);//PageSupport.PAGE_SIZE=5
+      //PageHelper用户分页的
+        PageHelper.startPage(pageNum, Constants.PAGE_SIZE);//Constants.PAGE_SIZE=5
+        List<Order_info> listOrder= courierService.selectOrder(id, gName, sTel,status);
+        PageInfo<Order_info> pages = new PageInfo<Order_info>(listOrder);
 
-        List<Order_info> listOrder= courierService.selectOrder(id, sName, sTel,status);
-        System.out.print("8888888888888"+listOrder);
+
         model.addAttribute("listOrder",listOrder);
+        model.addAttribute("pages",pages);
         model.addAttribute("id",id);
-        model.addAttribute("sName",sName);
+        model.addAttribute("gName",gName);
         model.addAttribute("sTel",sTel);
-        model.addAttribute("status",status);
-
-
         return "lpq/chaxun_lpq";
+    }
+
+
+    //点击订单详情，跳转到订单详情页面
+    @RequestMapping(value = "/xiangqing")
+    public String getXing(Model model , @RequestParam(value = "id")String id){
+      Order_info order_info= courierService.selectOrder_Info(id);
+      model.addAttribute("order_info",order_info);
+        return "lpq/xiangqing3";
+    }
+
+    //点击订单详情页后的修改保存操作
+    @RequestMapping(value = "/baoding")
+    public String updateOrder_info(Order_info order_info){
+        order_info.setRiseTime(new Date());
+        order_info.setFinishTime(new Date());
+        int result=courierService.updateOrder_info(order_info);
+        System.out.print("222222222222222222222"+result);
+        if(result>0){
+            return "redirect:/wuliu/ding";
+        }
+        return "lpq/xiangqing3";
     }
 }
