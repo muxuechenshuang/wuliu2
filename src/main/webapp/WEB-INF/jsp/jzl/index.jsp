@@ -115,7 +115,7 @@
                     <br/><span style="color: white;"></span>
 					<input type="password" required="required" placeholder="密码" name="password">
                     <br/><span style="color: white;"></span>
-					<input type="password" required="required" placeholder="确认密码">
+					<input type="password" required="required" placeholder="确认密码" name="password1">
                     <br/><span style="color: white;"></span>
 					<input type="text" required="required" placeholder="手机号" name="phone">
                     <br/><span style="color: white;"></span>

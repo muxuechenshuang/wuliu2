@@ -29,23 +29,22 @@ public class LoginController {
     public String index(){
         return "jzl/index";
     }
+
     //登录页面
     @RequestMapping(value = "/register",method= RequestMethod.POST)
     public String userAll(@RequestParam String user,@RequestParam String password, HttpSession session, HttpServletRequest request) {
-
         List<User> ss = userService.selectULogin();
-
+        //循环查询
         int i =0;
         do{
              if (ss.get(i).getUsername().equals(user) || ss.get(i).getEmail().equals(user) || ss.get(i).getPhone().equals(user)) {
-                if (ss.get(i).getPassword().equals(password)) {
+                 if (ss.get(i).getPassword().equals(password)) {
                 //获取全部的登录信息
                 session.setAttribute("user", ss.get(i));
                 return "xlh/main_xlh";
-              }
+                }
          }
-
-             i++;
+         i++;
         }while (i<ss.size());
 
         return "jzl/index";
@@ -62,8 +61,8 @@ public class LoginController {
     //注册页面
     @RequestMapping(value = "/login",method= RequestMethod.POST)
     public String userLogin(User user){
-        User login = userService.addLogin(user);
-        login.setType(1);
-        return "/indexBootstrap/index";
+        User log = userService.addLogin(user);
+
+        return "jzl/index";
     }
 }
