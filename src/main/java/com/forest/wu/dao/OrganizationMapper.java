@@ -79,4 +79,13 @@ public interface OrganizationMapper {
      * 查询设有分公司的城市列表
      */
     List<String> cityList();
+
+    /**
+    * author: 张展
+    * 条件查询分公司列表
+    * Date: 9:33 2018/10/2
+    * Param：[organization]
+    * Return：java.util.List<com.forest.wu.pojo.Organization>
+    **/
+    List<Organization> selectSonCompany(Organization organization);
 }

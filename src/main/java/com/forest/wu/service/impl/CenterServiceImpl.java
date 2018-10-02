@@ -31,7 +31,7 @@ public class CenterServiceImpl implements CenterService {
 
     @Override
     public List<Workorder> selectWorkOrder(Workorder workorder) throws Exception {
-        return null;
+        return workorderMapper.selectWorkerOrder(workorder);
     }
 
     @Override
@@ -82,7 +82,7 @@ public class CenterServiceImpl implements CenterService {
 
     @Override
     public List<Organization> selectSonCompany(Organization organization) throws Exception {
-        List<Organization> list = organizationMapper.selectByCondition(organization);
+        List<Organization> list = organizationMapper.selectSonCompany(organization);
         return list;
     }
 

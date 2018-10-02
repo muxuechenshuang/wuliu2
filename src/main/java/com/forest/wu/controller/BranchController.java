@@ -4,8 +4,8 @@ import com.forest.wu.dao.Order_infoMapper;
 import com.forest.wu.pojo.Order_info;
 import com.forest.wu.pojo.User;
 import com.forest.wu.service.CourierService;
+import com.forest.wu.utils.Constants;
 import com.forest.wu.utils.Page;
-import com.forest.wu.utils.PageSupport;
 import com.github.pagehelper.PageHelper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -161,7 +161,7 @@ public class BranchController {
         }else if(pageNum>p){
 
         }*/
-        PageHelper.startPage(pageNum, PageSupport.PAGE_SIZE);//PageSupport.PAGE_SIZE=5
+        PageHelper.startPage(pageNum,Constants.PAGE_SIZE);//PageSupport.PAGE_SIZE=5
 
         List<Order_info> listOrder= courierService.selectOrder(id, sName, sTel,status);
         System.out.print("8888888888888"+listOrder);

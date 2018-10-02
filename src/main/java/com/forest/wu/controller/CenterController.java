@@ -1,9 +1,13 @@
 package com.forest.wu.controller;
 
+import com.forest.wu.pojo.Order_info;
 import com.forest.wu.pojo.Organization;
 import com.forest.wu.pojo.User;
+import com.forest.wu.pojo.Workorder;
 import com.forest.wu.service.CenterService;
 import com.forest.wu.utils.Constants;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,7 +53,7 @@ public class CenterController {
         List<Organization> list = null;
         Integer id = 0;
         String id1 = null;
-        String phone =null;
+        String phone = null;
         String name = null;
 
         try {
@@ -60,9 +64,7 @@ public class CenterController {
         id = organization.getId();
         phone = organization.getPhone();
         name = organization.getName();
-        /*if (!id.equals(0)) {
-            id1 = String.valueOf(id);
-        }*/
+        System.out.println(list.toString());
         model.addAttribute("id", id1);
         model.addAttribute("phone", phone);
         model.addAttribute("name", name);
@@ -166,5 +168,79 @@ public class CenterController {
             e.printStackTrace();
         }
         return "center/addsonperson";
+    }
+
+
+    /**
+     * author: 张展
+     * 跳转工单查询页面
+     * Date: 10:59 2018/10/2
+     * Param：[]
+     * Return：java.lang.String
+     **/
+    @RequestMapping(value = "/toselectworkorder", method = RequestMethod.GET)
+    public String toselectWorkOrder() {
+        return "zz/gondan2_zz";
+    }
+
+    /**
+     * author: 张展
+     * 总公司工单查询（条件）
+     * Date: 10:00 2018/10/2
+     * Param：[pageIndex, queryOrderNum, querysName, querysTel, order, model]
+     * Return：java.lang.String
+     **/
+    @RequestMapping("/selectworkorder")
+    public String selectworkOrder(@RequestParam(required = true, defaultValue = "1") Integer pageIndex,
+                                  Workorder workorder, Model model) {
+//        String workNum = null;
+
+        PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
+        try {
+            List<Workorder> workorderList = centerService.selectWorkOrder(workorder);
+            PageInfo<Workorder> p = new PageInfo<Workorder>(workorderList);
+            model.addAttribute("pageIndex", p);
+            model.addAttribute("workorderList", workorderList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //回显
+        model.addAttribute("workNum",workorder.getWorkNum());
+        model.addAttribute("orderNum",workorder.getWorkNum());
+        model.addAttribute("productNum",workorder.getWorkNum());
+        model.addAttribute("workNum",workorder.getWorkNum());
+        model.addAttribute("sName",workorder.getWorkNum());
+        model.addAttribute("sTel",workorder.getWorkNum());
+        model.addAttribute("sPoint",workorder.getWorkNum());
+        model.addAttribute("sCity",workorder.getWorkNum());
+        model.addAttribute("gName",workorder.getWorkNum());
+        model.addAttribute("gTel",workorder.getWorkNum());
+        model.addAttribute("gCity",workorder.getWorkNum());
+        model.addAttribute("workStatus",workorder.getWorkNum());
+        //上门收快递员工编号
+        model.addAttribute("gCourier",workorder.getWorkNum());
+        //送
+        model.addAttribute("sCourier",workorder.getWorkNum());
+        model.addAttribute("result",workorder.getWorkNum());
+
+
+        return "zz/gondan2_zz";
+    }
+
+    /**
+     * author: 张展
+     * 总部查询所有订单
+     * Date: 10:03 2018/10/2
+     * Param：[pageIndex, model]
+     * Return：java.lang.String
+     **/
+    @RequestMapping("/allorder_c")
+    public String allOrder_c(@RequestParam(required = true, defaultValue = "1") Integer pageIndex, Model model) {
+        PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
+//        List<Order_info> orderList=orderService.selectAllOrder();
+//        PageInfo<Order_info> p=new PageInfo<Order_info>(orderList);
+//        model.addAttribute("pageIndex",p);
+//        model.addAttribute("order",orderList);
+        return "zz/xiangqing_zz";
     }
 }

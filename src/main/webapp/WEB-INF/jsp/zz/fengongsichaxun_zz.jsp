@@ -109,9 +109,8 @@
 									<td>${organization.type }</td>
 									<td>${organization.phone }</td>
 									<td>${organization.site }</td>
-								<%--<td><span id="appInfoStatus${appInfo.id}">${appInfo.statusName }</span></td>--%>
 									<td>${organization.city }</td>
-									<td><a href="fengongsixiangqing_zz.jsp" class="btn btn-primary">查看/修改</a></td>
+									<td><a href="${pageContext.request.contextPath}/zz/fengongsixiangqing_zz.jsp" class="btn btn-primary">查看/修改</a></td>
 								</tr>
 							</c:forEach>
 								<%--<tr>--%>

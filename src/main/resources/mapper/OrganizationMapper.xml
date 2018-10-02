@@ -8,12 +8,13 @@
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="site" jdbcType="VARCHAR" property="site" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, parentId, type, phone, site
+    id, name, parentId, type, phone, site,city
   </sql>
 
-    <!--按条件查询分公司，下面是网点，改个名就行-->
+    <!--按条件查询网点-->
     <select id="selectByCondition" resultType="com.forest.wu.pojo.Organization">
         select
         <include refid="Base_Column_List"/>
@@ -47,26 +48,24 @@
   </select>
 
 
-    <!--按条件查询网点-->
-    <!--<select id="selectByCondition" resultType="com.forest.wu.pojo.Organization">-->
-        <!--select-->
-        <!--<include refid="Base_Column_List"/>-->
-        <!--from organization-->
-        <!--<trim prefix="where" prefixOverrides="and | or">-->
-            <!--<if test="id!=null">-->
-                <!--and id=#{id}-->
-            <!--</if>-->
-            <!--<if test="name!=null and name!=''">-->
-                <!--and name like CONCAT ('%',#{name},'%')-->
-            <!--</if>-->
-            <!--<if test="phone!=null and phone!=''">-->
-                <!--and phone=#{phone}-->
-                <!--&lt;!&ndash;</if>&ndash;&gt;-->
-                <!--&lt;!&ndash;and type=3&ndash;&gt;-->
-            <!--</if>-->
-            <!--and type=3-->
-        <!--</trim>-->
-    <!--</select>-->
+    <!--按条件查询分公司-->
+    <select id="selectSonCompany" resultType="com.forest.wu.pojo.Organization">
+        select
+        <include refid="Base_Column_List"/>
+        from organization
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id!=null">
+                and id=#{id}
+            </if>
+            <if test="name!=null and name!=''">
+                and name like CONCAT ('%',#{name},'%')
+            </if>
+            <if test="phone!=null and phone!=''">
+                and phone=#{phone}
+            </if>
+            and type=2
+        </trim>
+    </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from organization
@@ -76,9 +75,9 @@
 
   <insert id="insert" parameterType="com.forest.wu.pojo.Organization">
     insert into organization (id, name, parentId, 
-      type, phone, site)
+      type, phone, site,city)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
-      #{type,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{site,jdbcType=VARCHAR})
+      #{type,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{site,jdbcType=VARCHAR},#{city,jdbcType=VARCHAR})
   </insert>
 
 

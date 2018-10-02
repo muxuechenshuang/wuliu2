@@ -19,6 +19,8 @@ public class Organization {
 
     private String site;//地址
 
+    private String city;//城市
+
     public String getCity() {
         return city;
     }
@@ -27,7 +29,7 @@ public class Organization {
         this.city = city;
     }
 
-    private String city;//城市
+
 
 
     public Integer getId() {
