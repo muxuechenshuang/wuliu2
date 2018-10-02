@@ -1,11 +1,12 @@
 package com.forest.wu.pojo;
+
 /**
-* @author: 李家和
-* @Description 添加注释
-* @Date: 10:56 2018/9/29
-* @Param：
-* @return：
-**/
+ * @author: 李家和
+ * @Description 添加注释
+ * @Date: 10:56 2018/9/29
+ * @Param：
+ * @return：
+ **/
 public class Organization {
     private Integer id;//组织id
 
@@ -19,6 +20,25 @@ public class Organization {
 
     private String site;//地址
 
+    private String introduction;//简介
+
+    private String parentName;//所属上级名称
+
+    public String getParentName() {
+        return parentName;
+    }
+
+    public void setParentName(String parentName) {
+        this.parentName = parentName;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
 
     public Integer getId() {
         return id;
