@@ -81,9 +81,10 @@ public class Order_infoServiceImpl implements Order_infoService {
     }
 
     @Override
-    public int updateOrderByCourier(Order_info order) {
-        return orderMapper.updateByPrimaryKeySelective(order);
+    public int updateOrderStatusByCourier(Order_info order) {
+        return orderMapper.updateOrderStatusByCourier(order);
     }
+
 
 
 }

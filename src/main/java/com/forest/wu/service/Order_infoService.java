@@ -64,6 +64,6 @@ public interface Order_infoService {
     * @return：int
     **/
     
-    int updateOrderByCourier(Order_info order);
+    int updateOrderStatusByCourier(Order_info order);
 
 }

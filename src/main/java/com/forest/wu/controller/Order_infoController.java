@@ -117,7 +117,7 @@ public class Order_infoController {
        //修改订单中的状态   1为预订  2 已接单  将1 修改为2
         Order_info order = new Order_info();
         order.setOrderNumber(workorder.getOrderNum());
-        orderService.updateOrderByCourier(order);
+        orderService.updateOrderStatusByCourier(order);
        return "redirect:/order/allorder";
     }
 

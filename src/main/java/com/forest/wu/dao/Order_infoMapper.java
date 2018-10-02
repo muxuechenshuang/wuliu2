@@ -53,6 +53,16 @@ public interface Order_infoMapper {
     Order_info selectOneOrderByCourier(int id);
 
 
+    /**
+    * @author: 肖林辉 
+    * @Description  修改订单状态
+    * @Date: 20:54 2018/10/2/002
+    * @Param：[order]
+    * @return：int
+    **/
+    
+    int updateOrderStatusByCourier(Order_info order);
+
 
 
 }
