@@ -1,5 +1,7 @@
-<!DOCTYPE html>
-<html>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Home</title>
 <!-- For-Mobile-Apps -->
@@ -9,9 +11,9 @@
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //For-Mobile-Apps -->
 
-	<!-- Bootstrap-Core-CSS --> <link href="css/bootstrap.min.css" rel="stylesheet">
-	<!-- Custom-Theme-Styling --> <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />   
-	<!-- Owl-Carousel-Styling --> <link rel="stylesheet" href="css/owl.carousel.css" type="text/css" media="all">
+	<!-- Bootstrap-Core-CSS --> <link href="../../../indexBootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Custom-Theme-Styling --> <link href="../../../indexBootstrap/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<!-- Owl-Carousel-Styling --> <link rel="stylesheet" href="../../../indexBootstrap/css/owl.carousel.css" type="text/css" media="all">
 	  
 	<!-- Web-Fonts -->
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
@@ -19,13 +21,13 @@
 		<link href='https://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700,800,900' rel='stylesheet' type='text/css'>
 	<!-- //Web-Fonts -->
 	
-	<link rel="stylesheet" href="css/index.css" type="text/css" /> <!-- Style-CSS --> 
-	<link rel="stylesheet" href="css/index_ login.css"> <!-- Font-Awesome-Icons-CSS -->
+	<link rel="stylesheet" href="../../../indexBootstrap/css/index.css" type="text/css" /> <!-- Style-CSS -->
+	<link rel="stylesheet" href="../../../indexBootstrap/css/index_%20login.css"> <!-- Font-Awesome-Icons-CSS -->
 <!-- //css files -->
 <!-- online-fonts -->
-	<link rel="stylesheet" href="css/tiao.css" type="text/css" />
-	<script src="js/modernizr.custom.js"></script>	
-	<script src="js/tangcuang.js"></script>	
+	<link rel="stylesheet" href="../../../indexBootstrap/css/tiao.css" type="text/css" />
+	<script src="../../../indexBootstrap/js/modernizr.custom.js"></script>
+	<script src="../../../indexBootstrap/js/tangcuang.js"></script>
 </head>
 <body>
 
@@ -99,20 +101,22 @@
 						<h4>不坠青云志</h4>
 					</div>
 			<div class="sub-main-w31" id="denglu">	
-				<form action="#" method="post">
-					<input type="text" required="required" placeholder="用户名、电话或邮箱">
-					<input type="password" required="required" placeholder="密码">
+				<form action="register" method="post">
+					<input type="text" required="required" placeholder="用户名、电话或邮箱" name="user" id="user"><br/><span style="color: white;"></span>
+					<input type="password" required="required" placeholder="密码" name="password" id="password"><br/><span style="color: white;"></span>
+                    <span style="color: white;">${error }</span>
 					<input type="submit" value="登录">
 				</form>
 			</div>
 					
 			<div class="sub-main-w31" id="zhuche">	
-				<form action="#" method="post">
-					<input type="text" required="required" placeholder="用户名">
-					<input type="password" required="required" placeholder="密码">
-					<input type="password" required="required" placeholder="确认密码">	
-					<input type="text" required="required" placeholder="手机号">
-					<input type="text" required="required" placeholder="邮箱">	
+				<form action="login" method="post">
+					<input type="text" required="required" placeholder="用户名" name="username"><br/><span style="color: white;"></span>
+					<input type="password" required="required" placeholder="密码"><br/><span style="color: white;"></span>
+					<input type="password" required="required" placeholder="确认密码"><br/><span style="color: white;"></span>
+					<input type="text" required="required" placeholder="手机号"><br/><span style="color: white;"></span>
+                    <input type="text" required="required" placeholder="输入手机验证码" id="yzm"><input type="button" value="获取验证码">
+					<input type="text" required="required" placeholder="邮箱"><br/><span style="color: white;"></span>
 					<input type="submit" value="注册">
 				</form>
 			</div>
@@ -126,44 +130,44 @@
             <ul class="rslides" id="slider">
 
                 <li>
-                    <img src="images/1.jpg" alt="Tradeaux">
+                    <img src="../../../indexBootstrap/images/1.jpg" alt="Tradeaux">
                         <div class="caption">
                             <h3>Welcome to <span>TRADEAUX</span></h3>
                             <p>Leading the Logistics Industry since 1874</p>
                         </div>
                 </li>
                 <li>
-                    <img src="images/2.jpg" alt="Tradeaux">
+                    <img src="../../../indexBootstrap/images/2.jpg" alt="Tradeaux">
                         <div class="caption">
                             <h3>Export & Import Services Ocean</h3>
                         </div>
                 </li>
                 <li>
-                    <img src="images/3.jpg" alt="Tradeaux">
+                    <img src="../../../indexBootstrap/images/3.jpg" alt="Tradeaux">
                         <div class="caption">
                             <h3>Air Freight Handling</h3>
                         </div>
                 </li>
                 <li>
-                    <img src="images/4.jpg" alt="Tradeaux">
+                    <img src="../../../indexBootstrap/images/4.jpg" alt="Tradeaux">
                         <div class="caption">
                             <h3>Cargo Planes</h3>
                         </div>
                 </li>
                 <li>
-                    <img src="images/5.jpg" alt="Tradeaux">
+                    <img src="../../../indexBootstrap/images/5.jpg" alt="Tradeaux">
                         <div class="caption">
                             <h3>Railways</h3>
                         </div>
                 </li>
                 <li>
-                    <img src="images/6.jpg" alt="Tradeaux">
+                    <img src="../../../indexBootstrap/images/6.jpg" alt="Tradeaux">
                         <div class="caption">
                             <h3>From Canada</h3>
                         </div>
                 </li>
                 <li>
-                    <img src="images/7.jpg" alt="Tradeaux">
+                    <img src="../../../indexBootstrap/images/7.jpg" alt="Tradeaux">
                         <div class="caption">
                             <h3>To Australia</h3>
                         </div>
@@ -187,7 +191,7 @@
                 <div class="area1">
                     <div class="col-md-4 col-sm-4 air slideanim">
                         <div class="area-image">
-                            <img src="images/area1.jpg" alt="Tradeaux">
+                            <img src="../../../indexBootstrap/images/area1.jpg" alt="Tradeaux">
                         </div>
                         <div class="area-info">
                             <h4>GLOBAL AIR FREIGHT</h4>
@@ -197,7 +201,7 @@
 
                     <div class="col-md-4 col-sm-4 sea slideanim">
                         <div class="area-image">
-                            <img src="images/area2.jpg" alt="Tradeaux">
+                            <img src="../../../indexBootstrap/images/area2.jpg" alt="Tradeaux">
                         </div>
                         <div class="area-info">
                             <h4>OFFSHORE HANDLING</h4>
@@ -207,7 +211,7 @@
 
                     <div class="col-md-4 col-sm-4 land slideanim">                        
                         <div class="area-image">
-                            <img src="images/area3.jpg" alt="Tradeaux">
+                            <img src="../../../indexBootstrap/images/area3.jpg" alt="Tradeaux">
                         </div>
                         <div class="area-info">
                             <h4>GROUND SHIPPING</h4>
@@ -229,7 +233,7 @@
                 <div class="offer-grid">
                     <div class="col-md-6 col-sm-6 offer1 slideanim">
                         <div class="offer-icon">
-                            <img src="images/o1.png" alt="Tradeaux">
+                            <img src="../../../indexBootstrap/images/o1.png" alt="Tradeaux">
                         </div>
                         <div class="offer-info">
                             <h4>Contract Shipping</h4>
@@ -239,7 +243,7 @@
                     </div>
                     <div class="col-md-6 col-sm-6 offer1 slideanim">
                         <div class="offer-icon">
-                            <img src="images/o2.png" alt="Tradeaux">
+                            <img src="../../../indexBootstrap/images/o2.png" alt="Tradeaux">
                         </div>
                         <div class="offer-info">
                             <h4>International Freight</h4>
@@ -249,7 +253,7 @@
                     </div>
                     <div class="col-md-6 col-sm-6 offer1 slideanim">
                         <div class="offer-icon">
-                            <img src="images/o3.png" alt="Tradeaux">
+                            <img src="../../../indexBootstrap/images/o3.png" alt="Tradeaux">
                         </div>
                         <div class="offer-info">
                             <h4>Storage & Warehouse</h4>
@@ -259,7 +263,7 @@
                     </div>
                     <div class="col-md-6 col-sm-6 offer1 slideanim">
                         <div class="offer-icon">
-                            <img src="images/o4.png" alt="Tradeaux">
+                            <img src="../../../indexBootstrap/images/o4.png" alt="Tradeaux">
                         </div>
                         <div class="offer-info">
                             <h4>Consultancy Services</h4>
@@ -283,21 +287,21 @@
                 	<div class="col-md-4 cover-top-grid slideanim">
                     	<div class="column-wrap clearfix">
                         	<div class="column">
-                            	<a class="caption caption-3" href="#" data-title="Packed Goods" data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."><img src="images/c1.jpg" alt="Tradeaux"></a>
+                            	<a class="caption caption-3" href="#" data-title="Packed Goods" data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."><img src="../../../indexBootstrap/images/c1.jpg" alt="Tradeaux"></a>
                         	</div>
                     	</div>
                 	</div>
 	                <div class="col-md-4 cover-top-grid slideanim">
 	                    <div class="column-wrap clearfix">
 	                        <div class="column">
-	                            <a class="caption caption-3" href="#" data-title="Chemicals" data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."><img src="images/c2.jpg" alt="Tradeaux"></a>
+	                            <a class="caption caption-3" href="#" data-title="Chemicals" data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."><img src="../../../indexBootstrap/images/c2.jpg" alt="Tradeaux"></a>
 	                        </div>
 	                    </div>
 	                </div>
 	                <div class="col-md-4 cover-top-grid slideanim">
 	                    <div class="column-wrap clearfix">
 	                        <div class="column">
-	                            <a class="caption caption-3" href="#" data-title="Cars & Automobiles" data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."><img src="images/c3.jpg" alt="Tradeaux"></a>
+	                            <a class="caption caption-3" href="#" data-title="Cars & Automobiles" data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."><img src="../../../indexBootstrap/images/c3.jpg" alt="Tradeaux"></a>
 	                        </div>
 	                    </div>
 	                </div>
@@ -305,21 +309,21 @@
 	                <div class="col-md-4 cover-bottom-grid slideanim">
 	                    <div class="column-wrap clearfix">
 	                        <div class="column">
-	                            <a class="caption caption-3" href="#" data-title="Oil & Gas" data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."><img src="images/c4.jpg" alt="Tradeaux"></a>
+	                            <a class="caption caption-3" href="#" data-title="Oil & Gas" data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."><img src="../../../indexBootstrap/images/c4.jpg" alt="Tradeaux"></a>
 	                        </div>
 	                    </div>
 	                </div>
 	                <div class="col-md-4 cover-bottom-grid slideanim">
 	                    <div class="column-wrap clearfix">
 	                        <div class="column">
-	                            <a class="caption caption-3" href="#" data-title="Retail Goods" data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."><img src="images/c5.jpg" alt="Tradeaux"></a>
+	                            <a class="caption caption-3" href="#" data-title="Retail Goods" data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."><img src="../../../indexBootstrap/images/c5.jpg" alt="Tradeaux"></a>
 	                        </div>
 	                    </div>
 	                </div>
 	                <div class="col-md-4 cover-bottom-grid slideanim">
 	                    <div class="column-wrap clearfix">
 	                        <div class="column">
-	                            <a class="caption caption-3" href="#" data-title="Food & Beverages" data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."><img src="images/c6.jpg" alt="Tradeaux"></a>
+	                            <a class="caption caption-3" href="#" data-title="Food & Beverages" data-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."><img src="../../../indexBootstrap/images/c6.jpg" alt="Tradeaux"></a>
 	                        </div>
 	                    </div>
 	                </div>
@@ -340,7 +344,7 @@
                     <h3>News</h3>
                     <div class="news-top">
                         <div class="news-icon">
-                            <img src="images/n1.png" alt="Tradeaux">
+                            <img src="../../../indexBootstrap/images/n1.png" alt="Tradeaux">
                         </div>
                         <div class="news-info">
                             <h4>Logistics - Company of the Year 2015</h4>
@@ -349,7 +353,7 @@
                     </div>
                     <div class="news-bottom">
                         <div class="news-icon">
-                            <img src="images/n2.png" alt="Tradeaux">
+                            <img src="../../../indexBootstrap/images/n2.png" alt="Tradeaux">
                         </div>
                         <div class="news-info">
                             <h4>2015 Revenue Report Released</h4>
@@ -401,7 +405,7 @@
 				<!-- Location-Starts-Here -->
                 <div class="col-md-4 details-grid locations slideanim">
                     <h3>Locations</h3>
-                    <img src="images/location.jpg" alt="Tradeaux">
+                    <img src="../../../indexBootstrap/images/location.jpg" alt="Tradeaux">
                 </div>
                 <!-- //Location-Ends-Here -->
 
@@ -418,25 +422,25 @@
                 <!-- Screen-Gallery-Carousel -->
                 <div id="owl-demo" class="owl-carousel text-center">
                     <div class="item">
-                        <img class="lazyOwl" src="images/area1.jpg" alt="name">
+                        <img class="lazyOwl" src="../../../indexBootstrap/images/area1.jpg" alt="name">
                     </div>
                     <div class="item">
-                        <img class="lazyOwl" src="images/g1.jpg" alt="name">
+                        <img class="lazyOwl" src="../../../indexBootstrap/images/g1.jpg" alt="name">
                     </div>
                     <div class="item">
-                        <img class="lazyOwl" src="images/g2.jpg" alt="name">
+                        <img class="lazyOwl" src="../../../indexBootstrap/images/g2.jpg" alt="name">
                     </div>
                     <div class="item">
-                        <img class="lazyOwl" src="images/g3.jpg" alt="name">
+                        <img class="lazyOwl" src="../../../indexBootstrap/images/g3.jpg" alt="name">
                     </div>
                     <div class="item">
-                        <img class="lazyOwl" src="images/g4.jpg" alt="name">
+                        <img class="lazyOwl" src="../../../indexBootstrap/images/g4.jpg" alt="name">
                     </div>
                     <div class="item">
-                        <img class="lazyOwl" src="images/g5.jpg" alt="name">
+                        <img class="lazyOwl" src="../../../indexBootstrap/images/g5.jpg" alt="name">
                     </div>
                     <div class="item">
-                        <img class="lazyOwl" src="images/g6.jpg" alt="name">
+                        <img class="lazyOwl" src="../../../indexBootstrap/images/g6.jpg" alt="name">
                     </div>
                 </div>
                 <!-- //Screen-Gallery-Carousel -->
@@ -545,8 +549,8 @@
     </div>
     <!-- //Footer-Ends-Here -->
 
-    <!-- Supportive-JavaScript --><script type="text/javascript" src="js/jquery.min.js"></script>
-    <!-- Necessary-JS-File-For-Bootstrap --><script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- Supportive-JavaScript --><script type="text/javascript" src="../../../indexBootstrap/js/jquery.min.js"></script>
+    <!-- Necessary-JS-File-For-Bootstrap --><script type="text/javascript" src="../../../indexBootstrap/js/bootstrap.min.js"></script>
 
     <!-- SmoothScroll-JavaScript -->
     <script>
@@ -601,7 +605,7 @@
     <!-- //Slideanim-JavaScript -->
 
     <!-- Owl-Carousel-JavaScript -->
-	<script src="js/owl.carousel.js"></script>
+	<script src="../../../indexBootstrap/js/owl.carousel.js"></script>
 	<script>
 		$(document).ready(function() {
 			$("#owl-demo").owlCarousel ({
@@ -615,7 +619,7 @@
     <!-- //Owl-Carousel-JavaScript -->
 
     <!-- Banner-Slider-JavaScript -->
-	<script src="js/responsiveslides.min.js"></script>
+	<script src="../../../indexBootstrap/js/responsiveslides.min.js"></script>
 	<script>
 		$(function () {
 			$("#slider").responsiveSlides({
@@ -647,8 +651,8 @@
     <!-- //Slide-To-Top JavaScript -->
 	   
 	<!-- Smooth-Scrolling-JavaScript -->
-	<script type="text/javascript" src="js/move-top.js"></script>
-	<script type="text/javascript" src="js/easing.js"></script>
+	<script type="text/javascript" src="../../../indexBootstrap/js/move-top.js"></script>
+	<script type="text/javascript" src="../../../indexBootstrap/js/easing.js"></script>
 	<script type="text/javascript">
 			jQuery(document).ready(function($) {
 				$(".scroll").click(function(event){		
@@ -660,7 +664,7 @@
 	<!-- //Smooth-Scrolling-JavaScript -->
 	
 	<!-- FlexSlider-JavaScript -->
-    <script defer src="js/jquery.flexslider.js"></script>
+    <script defer src="../../../indexBootstrap/js/jquery.flexslider.js"></script>
     <script type="text/javascript">
         $(function(){
             SyntaxHighlighter.all();

@@ -5,14 +5,13 @@ import com.forest.wu.pojo.User;
 import javafx.scene.chart.ValueAxis;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import sun.awt.SunHints;
 
 import java.util.List;
 
 
 @Repository
 public interface UserMapper {
-   /* int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(User record);
 
@@ -22,7 +21,13 @@ public interface UserMapper {
 
     int updateByPrimaryKeySelective(User record);
 
-    int updateByPrimaryKey(User record);*/
+    int updateByPrimaryKey(User record);
+    /*
+    * @author: 蒋梓伦
+    * @Date: 9:41 2018/9/29
+    * 查询用户登录信息
+    **/
+    List<User> selectULogin();
 
     /*
     * @author:李普强
