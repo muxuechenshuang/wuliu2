@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -27,6 +29,13 @@ public class FilialeController {
     @Autowired
     private WangDianService wdService;
 
+    /**
+    * @author: 李家和
+    * @Description 查询网点
+    * @Date: 17:18 2018/9/30
+    * @Param：[model, id, name, phone, pageIndex]
+    * @return：java.lang.String
+    **/
     @RequestMapping("/wd/query")
     public String getWdInfoList(Model model, @RequestParam(value = "queryWdId",required = false) String id,
                                 @RequestParam(value = "queryWdName",required = false)String name,
@@ -42,7 +51,7 @@ public class FilialeController {
             wdId=Integer.parseInt(id);
         }
         if(!StringUtils.isEmpty(name)){
-            wdName = "%"+name+"%";
+            wdName = name;
         }
         if(!StringUtils.isEmpty(phone)){
             wdPhone = phone;
@@ -50,7 +59,7 @@ public class FilialeController {
         if(!StringUtils.isEmpty(pageIndex)){
             pageNum = Integer.parseInt(pageIndex);
         }
-        try {
+
             //分页
             PageHelper.startPage(pageNum, Constants.PAGE_SIZE);
             wdList = wdService.getWdListByCondition(wdId,wdName,wdPhone);
@@ -60,14 +69,24 @@ public class FilialeController {
             model.addAttribute("queryWdId",wdId);
             model.addAttribute("queryWdName",wdName);
             model.addAttribute("queryWdPhone",wdPhone);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "ljh/wangdianchaxun";
+
+        return "ljh/wdquery";
     }
 
-    public String wdInfo(){
-
-        return "";
+    /**
+    * @author: 李家和
+    * @Description 查看网点详情
+    * @Date: 17:19 2018/9/30
+    * @Param：[id, model]
+    * @return：java.lang.String
+    **/
+    @RequestMapping(value="/wd/view/{id}",method = RequestMethod.GET)
+    public String wdInfo(@PathVariable String id,Model model){
+        Organization organization = null;
+        if(!StringUtils.isEmpty(id)){
+            organization = wdService.getWdById(Integer.parseInt(id));
+        }
+        model.addAttribute(organization);
+        return "ljh/wdinfo";
     }
 }

@@ -109,7 +109,8 @@
                                         <td>${wd.name}</td>
                                         <td>${wd.phone}</td>
                                         <td>${wd.site}</td>
-                                        <td><a href="wangdianxiangqing_zz.jsp" class="btn btn-primary">查看/修改</a></td>
+                                        <td><button id="view" value="${wd.id}" class="btn btn-primary" type="button">查看</button>
+                                            <button id="modify" class="btn btn-warning" type="button">修改</button></td>
                                     </tr>
                                 </c:forEach>
 
@@ -161,4 +162,6 @@
             </div>
         </div>
     </div>
-<%@include file="../common/footer.jsp" %>
+    <%@include file="../common/footer.jsp" %>
+    <script src="${pageContext.request.contextPath }/statics/localjs/rollpage.js"></script>
+    <script src="${pageContext.request.contextPath}/statics/localjs/wdinfolist.js"></script>

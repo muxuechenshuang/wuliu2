@@ -6,7 +6,7 @@
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
       <div class="x_title">
-        <h2>网点<i class="fa fa-user"></i><small>${devUserSession.devName}</small></h2>
+        <h2>网点</h2>
              <div class="clearfix"></div>
       </div>
       <div class="x_title">
@@ -17,7 +17,7 @@
         <form class="form-horizontal form-label-left" >
           <input type="hidden" name="id" value="${organization.id}">
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">网点编号 <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" >网点编号 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input class="form-control col-md-7 col-xs-12" value="${organization.id}"
@@ -25,7 +25,7 @@
             </div>
           </div>
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">网点名称 <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" >网点名称 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="text" class="form-control col-md-7 col-xs-12" 
@@ -35,7 +35,7 @@
           
          
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">电话 <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" >电话 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input class="form-control col-md-7 col-xs-12" readonly="readonly"
@@ -43,7 +43,7 @@
             </div>
           </div>
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">地址 <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" >地址 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="text" value="${organization.site}" readonly="readonly"
@@ -61,8 +61,8 @@
     
      <div class="form-group">
         <div class="col-md-6 col-md-offset-3">
-           <button type="button" class="btn btn-primary" id="back">确认</button>
-          <button type="button" class="btn btn-primary" id="back">返回</button>
+           <button type="button" class="btn btn-primary" >确认</button>
+          <button type="button" class="btn btn-primary" >返回</button>
         </div>
       </div>
     <div class="clearfix"></div>
