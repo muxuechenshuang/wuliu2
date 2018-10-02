@@ -27,38 +27,30 @@ public class LoginController {
 
     @RequestMapping(value="/index")
     public String index(){
-
         return "/jzl/index";
     }
     //登录页面
     @RequestMapping(value = "/register",method= RequestMethod.POST)
     public String userAll(@RequestParam String user,@RequestParam String password, HttpSession session, HttpServletRequest request) {
-
         List<User> ss = userService.selectULogin();
         //循环查找
         int i=0;
         do {
             if (ss.get(i).getUsername().equals(user) || ss.get(i).getEmail().equals(user) || ss.get(i).getPhone().equals(user)) {
                 if (ss.get(i).getPassword().equals(password)) {
-
                     String login = ss.get(i).getUsername();
-
                     session.setAttribute("Login", login);
-
                     String loginName = ss.get(i).getName();
-
                     session.setAttribute("LoginUser",loginName);
-
                     String loginV = ss.get(i).getValueName();
-
                     session.setAttribute("LoginV",loginV);
-
                     return "xlh/main_xlh";
                 }
             }
             i++;
         } while (i < ss.size());
         return "jzl/index";
-
     }
+
+
 }

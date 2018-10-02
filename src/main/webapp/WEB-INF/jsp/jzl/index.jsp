@@ -111,7 +111,7 @@
 					
 			<div class="sub-main-w31" id="zhuche">	
 				<form action="login" method="post">
-					<input type="text" required="required" placeholder="用户名"><br/><span style="color: white;"></span>
+					<input type="text" required="required" placeholder="用户名" name="username"><br/><span style="color: white;"></span>
 					<input type="password" required="required" placeholder="密码"><br/><span style="color: white;"></span>
 					<input type="password" required="required" placeholder="确认密码"><br/><span style="color: white;"></span>
 					<input type="text" required="required" placeholder="手机号"><br/><span style="color: white;"></span>

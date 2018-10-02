@@ -1,5 +1,7 @@
 package com.forest.wu.pojo;
 
+import java.util.Date;
+
 public class User {
     private Integer id;
 
@@ -26,7 +28,7 @@ public class User {
     * @author: 蒋梓伦
     * @Description
     * @Date: 14:57 2018/9/30
-    * @Param：添加多表查询属性Name
+    * @Param：添加多表查询属性Name  valueName
     * @return：
     **/
     private String name;
