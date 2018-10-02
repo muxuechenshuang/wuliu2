@@ -20,7 +20,7 @@
                                 class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" name="orderNum" value="${order.id}" readonly
+                            <input class="form-control col-md-7 col-xs-12" name="orderNum" value="${order.orderNumber}" readonly
                                    type="text">
                         </div>
                     </div>

@@ -54,6 +54,16 @@ public interface Order_infoService {
     **/
     
     int addWorkorderByCourier(Workorder workorder);
+
     
+    /**
+    * @author: 肖林辉 
+    * @Description   修改订单的订单状态信息
+    * @Date: 19:15 2018/10/2/002
+    * @Param：[order]
+    * @return：int
+    **/
+    
+    int updateOrderByCourier(Order_info order);
 
 }
