@@ -25,5 +25,10 @@ public class UserServiceImpl implements UserService {
         return mapper.selectULogin();
     }
 
+    @Override
+    public User selectUserAll(String user, String password) {
+        return mapper.selectUser(user,password);
+    }
+
 
 }

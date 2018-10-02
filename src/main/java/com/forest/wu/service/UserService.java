@@ -15,4 +15,6 @@ public interface UserService {
 
     List<User> selectULogin();
 
+    User selectUserAll(String user ,String password);
+
 }
