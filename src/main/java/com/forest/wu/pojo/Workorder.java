@@ -3,14 +3,14 @@ package com.forest.wu.pojo;
 import java.util.Date;
 
 public class Workorder {
-    private Integer id;
+    private String id;
 
     private String orderNum;
 
     private String workNum;
-    //合包号
+
     private String packageId;
-    //物件编号
+
     private String productNum;
 
     private String sName;
@@ -36,16 +36,16 @@ public class Workorder {
     private String productType;
 
     private String realWeight;
-    //
+
     private String workStatus;
 
     private String comment;
 
     private Double expenses;
 
-    private String gCourier;
+    private Integer gCourier;
 
-    private String sCourier;
+    private Integer sCourier;
 
     private Double preVolume;
 
@@ -71,12 +71,12 @@ public class Workorder {
 
     private String entrust;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
     }
 
     public String getOrderNum() {
@@ -231,20 +231,20 @@ public class Workorder {
         this.expenses = expenses;
     }
 
-    public String getgCourier() {
+    public Integer getgCourier() {
         return gCourier;
     }
 
-    public void setgCourier(String gCourier) {
-        this.gCourier = gCourier == null ? null : gCourier.trim();
+    public void setgCourier(Integer gCourier) {
+        this.gCourier = gCourier;
     }
 
-    public String getsCourier() {
+    public Integer getsCourier() {
         return sCourier;
     }
 
-    public void setsCourier(String sCourier) {
-        this.sCourier = sCourier == null ? null : sCourier.trim();
+    public void setsCourier(Integer sCourier) {
+        this.sCourier = sCourier;
     }
 
     public Double getPreVolume() {
