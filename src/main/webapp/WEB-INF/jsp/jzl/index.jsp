@@ -111,12 +111,19 @@
 					
 			<div class="sub-main-w31" id="zhuche">	
 				<form action="login" method="post">
-					<input type="text" required="required" placeholder="用户名" name="username"><br/><span style="color: white;"></span>
-					<input type="password" required="required" placeholder="密码"><br/><span style="color: white;"></span>
-					<input type="password" required="required" placeholder="确认密码"><br/><span style="color: white;"></span>
-					<input type="text" required="required" placeholder="手机号"><br/><span style="color: white;"></span>
-                    <input type="text" required="required" placeholder="输入手机验证码" id="yzm"><input type="button" value="获取验证码">
-					<input type="text" required="required" placeholder="邮箱"><br/><span style="color: white;"></span>
+					<input type="text" required="required" placeholder="用户名" name="username">
+                    <br/><span style="color: white;"></span>
+					<input type="password" required="required" placeholder="密码" name="password">
+                    <br/><span style="color: white;"></span>
+					<input type="password" required="required" placeholder="确认密码">
+                    <br/><span style="color: white;"></span>
+					<input type="text" required="required" placeholder="手机号" name="phone">
+                    <br/><span style="color: white;"></span>
+                    <input type="text" required="required" placeholder="输入手机验证码" id="yzm">
+                    <input type="button" value="获取验证码">
+                    <input type="hidden" value=""/>
+					<input type="text" required="required" placeholder="邮箱" name="email">
+                    <br/><span style="color: white;"></span>
 					<input type="submit" value="注册">
 				</form>
 			</div>

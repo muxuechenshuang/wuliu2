@@ -2,7 +2,6 @@ package com.forest.wu.dao;
 
 import com.forest.wu.pojo.Order_info;
 import com.forest.wu.pojo.User;
-import javafx.scene.chart.ValueAxis;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -28,6 +27,12 @@ public interface UserMapper {
     * 查询用户登录信息
     **/
     List<User> selectULogin();
+    /*
+    * @author: 蒋梓伦
+    * @Date: 10:33 2018/10/2
+    * 注册，往数据库中添加数据
+    **/
+    User addLogin(User user);
 
     /*
     * @author:李普强

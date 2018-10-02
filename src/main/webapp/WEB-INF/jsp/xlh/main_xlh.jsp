@@ -4,7 +4,7 @@
 <div class="page-title">
 	<div class="title_left">
 		<h3>
-			欢迎你:${Login}<strong> | 角色：${LoginV}</strong>
+			欢迎你:${user.username}:${user.password}<strong> | 角色：${user.type}</strong>
 		</h3>
 	</div>
 </div>

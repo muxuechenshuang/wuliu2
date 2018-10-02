@@ -19,10 +19,15 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper mapper;
-
+    //登录接口实现
     @Override
     public List<User> selectULogin() {
         return mapper.selectULogin();
+    }
+    //注册接口实现
+    @Override
+    public User addLogin(User user) {
+        return mapper.addLogin(user);
     }
 
 

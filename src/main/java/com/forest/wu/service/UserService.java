@@ -12,7 +12,10 @@ import java.util.List;
  **/
 
 public interface UserService {
-
+    //登录
     List<User> selectULogin();
+    //注册
+    User addLogin(User user);
+
 
 }
