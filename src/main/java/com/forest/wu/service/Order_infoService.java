@@ -1,6 +1,7 @@
 package com.forest.wu.service;
 
 import com.forest.wu.pojo.Order_info;
+import com.forest.wu.pojo.Workorder;
 
 import java.util.List;
 
@@ -44,5 +45,15 @@ public interface Order_infoService {
     Order_info selectOneOrder(int id);
 
 
+    /**
+    * @author: 肖林辉 
+    * @Description   快递员插入工单信息
+    * @Date: 16:00 2018/10/2/002
+    * @Param：[workorder]
+    * @return：int
+    **/
+    
+    int addWorkorderByCourier(Workorder workorder);
+    
 
 }

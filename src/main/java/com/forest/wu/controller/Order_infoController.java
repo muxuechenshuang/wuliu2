@@ -73,7 +73,6 @@ public class Order_infoController {
         model.addAttribute("queryNumber",queryOrderNum);
         model.addAttribute("querysName",querysName);
         model.addAttribute("querysTel",querysTel);
-
         return "xlh/dindan_xlh";
     }
 
@@ -105,26 +104,32 @@ public class Order_infoController {
     
     /**
     * @author: 肖林辉 
-    * @Description 
+    * @Description   快递员生成初步的工单
     * @Date: 14:36 2018/10/2/002
     * @Param：
     * @return：
     **/
     @RequestMapping("/saveworkorder")
     public void addWorkorder(@RequestParam(value = "id")int id,
-                             @RequestParam(value = "workNumber")String workNumber,
-                             @RequestParam(value = "realWeight")int  weight,
-                             @RequestParam(value = "expenses")int  expenses,
+                            /* @RequestParam(value = "workNum")String work,*/
+                             @RequestParam(value = "realWeight")double  weight,
+                             @RequestParam(value = "expenses")double  expenses,
                              @RequestParam(value = "comment")String comment){
-
+        //根据Id找到相应订单的信息
        Order_info order = orderService.selectOneOrder(id);
        Workorder workorder = new Workorder();
        workorder.setOrderNum(order.getId().toString());
-       workorder.setWorkNum(workNumber);
+     /*  workorder.setWorkNum(work);*/
        workorder.setsName(order.getsName());
        workorder.setsTel(order.getsTel());
-
-
+       workorder.setgAddress(order.getsAddress());
+       workorder.setgName(order.getgName());
+       workorder.setgTel(order.getgTel());
+       workorder.setProductType(order.getProduct());
+       workorder.setRealWeight(weight);
+       workorder.setExpenses(expenses);
+       //插入工单信息
+       orderService.addWorkorderByCourier(workorder);
     }
 
 }

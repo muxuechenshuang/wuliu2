@@ -3,15 +3,15 @@ package com.forest.wu.pojo;
 import java.util.Date;
 
 public class Workorder {
-    private String id;
+    private Integer id;
 
     private String orderNum;
 
     private String workNum;
 
-    private String packageId;
+    private Long packageId;
 
-    private String productNum;
+    private Long productNum;
 
     private String sName;
 
@@ -35,9 +35,9 @@ public class Workorder {
 
     private String productType;
 
-    private Integer realWeight;
+    private Double realWeight;
 
-    private String workStatus;
+    private Integer workStatus;
 
     private String comment;
 
@@ -71,12 +71,12 @@ public class Workorder {
 
     private String entrust;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getOrderNum() {
@@ -95,20 +95,20 @@ public class Workorder {
         this.workNum = workNum == null ? null : workNum.trim();
     }
 
-    public String getPackageId() {
+    public Long getPackageId() {
         return packageId;
     }
 
-    public void setPackageId(String packageId) {
-        this.packageId = packageId == null ? null : packageId.trim();
+    public void setPackageId(Long packageId) {
+        this.packageId = packageId;
     }
 
-    public String getProductNum() {
+    public Long getProductNum() {
         return productNum;
     }
 
-    public void setProductNum(String productNum) {
-        this.productNum = productNum == null ? null : productNum.trim();
+    public void setProductNum(Long productNum) {
+        this.productNum = productNum;
     }
 
     public String getsName() {
@@ -199,20 +199,20 @@ public class Workorder {
         this.productType = productType == null ? null : productType.trim();
     }
 
-    public Integer getRealWeight() {
+    public Double getRealWeight() {
         return realWeight;
     }
 
-    public void setRealWeight(Integer realWeight) {
+    public void setRealWeight(Double realWeight) {
         this.realWeight = realWeight;
     }
 
-    public String getWorkStatus() {
+    public Integer getWorkStatus() {
         return workStatus;
     }
 
-    public void setWorkStatus(String workStatus) {
-        this.workStatus = workStatus == null ? null : workStatus.trim();
+    public void setWorkStatus(Integer workStatus) {
+        this.workStatus = workStatus;
     }
 
     public String getComment() {

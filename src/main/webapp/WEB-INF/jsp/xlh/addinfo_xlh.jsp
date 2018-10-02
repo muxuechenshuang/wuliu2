@@ -12,7 +12,7 @@
             </div>
 
             <div class="x_content1">
-                <form class="form-horizontal form-label-left"
+                <form class="form-horizontal form-label-left" action="${pageContext.request.contextPath}/order/saveworkorder?work"
                      >
                     <input type="hidden" name="id" value="${order.id}">
                     <div class="item form-group">
@@ -29,7 +29,7 @@
                                 class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" name="workNumber" value="${workNumber}" disabled
+                            <input class="form-control col-md-7 col-xs-12" name="workNum" value="${workNumber}" disabled
                                    type="text">
                         </div>
                     </div>
@@ -118,7 +118,7 @@
                                    type="text">
                         </div>
                     </div>
-                    <form  action="${pageContext.request.contextPath}/order/saveworkorder">
+
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">实际重量(kg)<span
                                 class="required">*</span>
@@ -153,7 +153,8 @@
                             <button type="button" class="btn btn-primary" id="back">返回</button>
                         </div>
                     </div>
-                    </form>
+
+
                 </form>
                 <div class="clearfix"></div>
                 <br/><br/>
