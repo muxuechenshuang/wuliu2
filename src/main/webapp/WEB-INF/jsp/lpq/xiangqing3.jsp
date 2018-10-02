@@ -21,15 +21,15 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input class="form-control col-md-7 col-xs-12" name="id" value="${order_info.id}"
-              type="text" readonly="readonly">
+              type="text" >
             </div>
           </div>
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">寄件人电话 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="number" class="form-control col-md-7 col-xs-12" name="sTel"
-              value="${order_info.sTel}" >
+              <input type="number" class="form-control col-md-7 col-xs-12" name="gTel"
+              value="${order_info.gTel}" >
             </div>
           </div>
           
@@ -37,8 +37,8 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">寄件人地址 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input class="form-control col-md-7 col-xs-12" name="sAddress"
-              	value="${order_info.sAddress}" type="text" >
+              <input class="form-control col-md-7 col-xs-12" name="gAddress"
+              	value="${order_info.gAddress}" type="text" >
             </div>
           </div>
           <div class="item form-group">
@@ -62,7 +62,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">收件人电话 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" value="${order_info.gTel}" name="gTel"
+              <input type="text" value="${order_info.sTel}" name="sTel"
                class="form-control col-md-7 col-xs-12" >
             </div>
           </div>
@@ -70,18 +70,33 @@
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="select">收件人地址 <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" class="form-control col-md-7 col-xs-12" name="gAddress"
-              	value="${order_info.gAddress}" >
+              <input type="text" class="form-control col-md-7 col-xs-12" name="sAddress"
+              	value="${order_info.sAddress}" >
             
             </div>
           </div>
-         
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">所属地区 <span class="required">*</span>
-            </label>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="select">重量 <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-            	<input type="text" class="form-control col-md-7 col-xs-12" name="gAddress"
-              	value="${order_info.gAddress}" >
+              <input type="text" class="form-control col-md-7 col-xs-12" name="preWeight"
+                     value="${order_info.preWeight}" >
+
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="select">订单号 <span class="required">*</span></label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" class="form-control col-md-7 col-xs-12" name="orderNumber"
+                     value="${order_info.orderNumber}" >
+
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="select">备注 <span class="required">*</span></label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" class="form-control col-md-7 col-xs-12" name="comment"
+                     value="${order_info.comment}" >
+
             </div>
           </div>
 

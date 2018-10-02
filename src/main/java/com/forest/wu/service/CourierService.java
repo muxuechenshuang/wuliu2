@@ -2,7 +2,6 @@ package com.forest.wu.service;
 
 import com.forest.wu.pojo.Order_info;
 import com.forest.wu.pojo.User;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

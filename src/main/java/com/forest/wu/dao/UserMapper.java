@@ -105,12 +105,5 @@ public interface UserMapper {
     **/
     int updateOrder_info(Order_info order_info);
 
-    /*
-    * @author:李普强
-    * @Description描述：根据用户的输入查询出一个用户对象，判断用户是否为真实用户
-    * @Date: 11:48 2018/10/2
-    * @Param参数：user是一个变量名，用户可以用户名或者邮箱.或者电话登录和password
-    * @return返回值：User 对象
-    **/
-    User selectUser(@Param(value = "user") String user ,@Param(value = "password") String password);
+
 }

@@ -176,17 +176,19 @@ public class BranchController {
     public String getXing(Model model , @RequestParam(value = "id")String id){
       Order_info order_info= courierService.selectOrder_Info(id);
       model.addAttribute("order_info",order_info);
-        return "xiangqing3";
+        return "lpq/xiangqing3";
     }
 
     //点击订单详情页后的修改保存操作
     @RequestMapping(value = "/baoding")
     public String updateOrder_info(Order_info order_info){
         order_info.setRiseTime(new Date());
+        order_info.setFinishTime(new Date());
         int result=courierService.updateOrder_info(order_info);
+        System.out.print("222222222222222222222"+result);
         if(result>0){
             return "redirect:/wuliu/ding";
         }
-        return "xiangqing3";
+        return "lpq/xiangqing3";
     }
 }

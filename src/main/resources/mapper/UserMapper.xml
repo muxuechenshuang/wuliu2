@@ -15,46 +15,21 @@
   <sql id="Base_Column_List">
     id, username, password, email, phone, sex, logo, parentid, type
   </sql>
-    <select id="selectUser" resultType="com.forest.wu.pojo.User">
 
-        select * from user where 1=1
-        <if test="username!=null">
-            and username=#{username}
-        </if>
-        <if test="email!=null">
-            and email=#{email}
-        </if>
-        <if test="phone!=null">
-            and phone=#{phone}
-        </if>
-        and password=#{password}
-    </select>
 
     <!--更新一个订单对象信息-->
-    <update id="updateOrder_info">
-        update  order_info
-    <set>
-        <if test="sTel != null">
-            sTel = #{sTel,jdbcType=VARCHAR},
-        </if>
-        <if test="sAddress != null">
-            sAddress = #{sAddress,jdbcType=VARCHAR},
-        </if>
-        <if test="product != null">
-            product = #{product,jdbcType=VARCHAR},
-        </if>
-        <if test="sName != null">
-            sName = #{sName,jdbcType=VARCHAR},
-        </if>
-        <if test="gTel != null">
-            gTel = #{gTel,jdbcType=VARCHAR},
-        </if>
-        <if test="gAddress != null">
-            gAddress = #{gAddress,jdbcType=VARCHAR},
-        </if>
-
-    </set>
-    where id = #{id,jdbcType=INTEGER}
+    <update id="updateOrder_info" >
+        update  order_info set
+            sTel = #{sTel},
+            sAddress = #{sAddress},
+            product = #{product},
+            sName = #{sName},
+            gTel = #{gTel},
+            gAddress = #{gAddress},
+            preWeight=#{preWeight},
+            orderNumber = #{orderNumber},
+            comment=#{comment}
+    where id = #{id}
     </update>
 
 
