@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.forest.wu.dao.OrganizationMapper">
-    <resultMap id="BaseResultMap" type="com.forest.wu.pojo.Organization">
-        <id column="id" jdbcType="INTEGER" property="id"/>
-        <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="parentId" jdbcType="INTEGER" property="parentId"/>
-        <result column="type" jdbcType="INTEGER" property="type"/>
-        <result column="phone" jdbcType="VARCHAR" property="phone"/>
-        <result column="site" jdbcType="VARCHAR" property="site"/>
-    </resultMap>
-    <sql id="Base_Column_List">
+  <resultMap id="BaseResultMap" type="com.forest.wu.pojo.Organization">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="parentId" jdbcType="INTEGER" property="parentId" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="site" jdbcType="VARCHAR" property="site" />
+  </resultMap>
+  <sql id="Base_Column_List">
     id, name, parentId, type, phone, site
   </sql>
 
@@ -22,17 +22,29 @@
             <if test="id!=null">
                 and id=#{id}
             </if>
-            <if test="name!=null and name!=''">
+            <if test="name!=null">
                 and name like CONCAT ('%',#{name},'%')
             </if>
-            <if test="phone!=null and phone!=''">
-                and phone=#{phone}
+            <if test="phone!=null">
+                and phone like CONCAT ('%',#{phone},'%')
                 <!--</if>-->
                 <!--and type=3-->
             </if>
             and type=2
         </trim>
     </select>
+
+  <select id="selectWdById" resultType="com.forest.wu.pojo.Organization">
+    select
+    <include refid="Base_Column_List" />
+    from organization
+    where id=#{id} and type =3
+  </select>
+
+  <!--获得网点总数量-->
+  <select id="selectWdCount" resultType="int">
+    select count(1) from organization where type =3
+  </select>
 
 
     <!--按条件查询网点-->
@@ -62,83 +74,83 @@
   </delete>
 
 
-    <insert id="insert" parameterType="com.forest.wu.pojo.Organization">
+  <insert id="insert" parameterType="com.forest.wu.pojo.Organization">
     insert into organization (id, name, parentId, 
-      type, phone, site,city)
+      type, phone, site)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
-      #{type,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{site,jdbcType=VARCHAR},#{city,jdbcType=VARCHAR})
+      #{type,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{site,jdbcType=VARCHAR})
   </insert>
 
 
-    <insert id="insertSelective" parameterType="com.forest.wu.pojo.Organization">
-        insert into organization
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
-            <if test="name != null">
-                name,
-            </if>
-            <if test="parentId != null">
-                parentId,
-            </if>
-            <if test="type != null">
-                type,
-            </if>
-            <if test="phone != null">
-                phone,
-            </if>
-            <if test="site != null">
-                site,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=INTEGER},
-            </if>
-            <if test="name != null">
-                #{name,jdbcType=VARCHAR},
-            </if>
-            <if test="parentId != null">
-                #{parentId,jdbcType=INTEGER},
-            </if>
-            <if test="type != null">
-                #{type,jdbcType=INTEGER},
-            </if>
-            <if test="phone != null">
-                #{phone,jdbcType=VARCHAR},
-            </if>
-            <if test="site != null">
-                #{site,jdbcType=VARCHAR},
-            </if>
-        </trim>
-    </insert>
+  <insert id="insertSelective" parameterType="com.forest.wu.pojo.Organization">
+    insert into organization
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="parentId != null">
+        parentId,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="site != null">
+        site,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="site != null">
+        #{site,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
 
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.forest.wu.pojo.Organization">
-        update organization
-        <set>
-            <if test="name != null">
-                name = #{name,jdbcType=VARCHAR},
-            </if>
-            <if test="parentId != null">
-                parentId = #{parentId,jdbcType=INTEGER},
-            </if>
-            <if test="type != null">
-                type = #{type,jdbcType=INTEGER},
-            </if>
-            <if test="phone != null">
-                phone = #{phone,jdbcType=VARCHAR},
-            </if>
-            <if test="site != null">
-                site = #{site,jdbcType=VARCHAR},
-            </if>
-        </set>
-        where id = #{id,jdbcType=INTEGER}
-    </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.forest.wu.pojo.Organization">
+    update organization
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        parentId = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="site != null">
+        site = #{site,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 
 
-    <update id="updateByPrimaryKey" parameterType="com.forest.wu.pojo.Organization">
+  <update id="updateByPrimaryKey" parameterType="com.forest.wu.pojo.Organization">
     update organization
     set name = #{name,jdbcType=VARCHAR},
       parentId = #{parentId,jdbcType=INTEGER},
@@ -147,4 +159,10 @@
       site = #{site,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="cityList" resultType="String">
+    select city
+    from organization
+    where type = 2
+  </select>
 </mapper>

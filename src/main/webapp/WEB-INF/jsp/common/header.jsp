@@ -109,10 +109,10 @@
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="${pageContext.request.contextPath}/WEB-INF/jsp/lpq/yuangong2.jsp">员工管理</a>
+										<li><a href="${pageContext.request.contextPath}/wuliu/yuan">员工管理</a>
 										</li>
 
-										<li><a href="${pageContext.request.contextPath}/lpq/chaxun_lpq.jsp">查看用户订单</a>
+										<li><a href="${pageContext.request.contextPath}/wuliu/dingdan">查看用户订单</a>
 										</li>
 									<!-- 	<li><a href="shenghe_lpq.jsp">审核订单</a>
 										</li> -->
@@ -129,7 +129,7 @@
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="${pageContext.request.contextPath}/ljh/wangdianchaxun_zz.jsp">网点管理</a></li>
+										<li><a href="${pageContext.request.contextPath}/filiale/wd/query">网点管理</a></li>
 										<li><a href="${pageContext.request.contextPath}/ljh/kuaidiyuan_ry.jsp">快递员管理</a></li>
 										<li><a href="${pageContext.request.contextPath}/ljh/addkuaidiyuan.jsp">新增快递员</a></li>
 										<li><a href="${pageContext.request.contextPath}/ljh/gongdan_ry.jsp">工单查询</a>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="../common/header.jsp"%>
+<%@include file="../../../common/header.jsp"%>
 <div class="clearfix"></div>
 <div class="row">
   <div class="col-md-12 col-sm-12 col-xs-12">
@@ -17,7 +17,7 @@
         <form class="form-horizontal form-label-left" >
           <input type="hidden" name="id" value="${appInfo.id}">
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">分公司编号 <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">网点编号 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input class="form-control col-md-7 col-xs-12" value="飞鸟" 
@@ -25,7 +25,7 @@
             </div>
           </div>
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">分公司名称 <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">网点名称 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="text" class="form-control col-md-7 col-xs-12" 
@@ -57,7 +57,14 @@
               class="form-control col-md-7 col-xs-12" readonly="readonly">
             </div>
           </div>
-          
+          <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">负责人 <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" value="${appInfo.softwareSize}"
+              class="form-control col-md-7 col-xs-12" readonly="readonly">
+            </div>
+          </div>          
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">用户名 <span class="required">*</span>
             </label>
@@ -95,5 +102,5 @@
     <br/><br/>
   </div>
 </div>
-<%@include file="../common/footer.jsp"%>
+<%@include file="../../../common/footer.jsp"%>
 <script src="${pageContext.request.contextPath }/statics/localjs/appinfoview.js"></script>

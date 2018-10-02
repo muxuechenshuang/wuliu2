@@ -1,6 +1,7 @@
 package com.forest.wu.dao;
 
 import com.forest.wu.pojo.Organization;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -49,4 +50,33 @@ public interface OrganizationMapper {
     int updateByPrimaryKeySelective(Organization record);
 
     int updateByPrimaryKey(Organization record);
+
+    /**
+    * @author: 李家和
+    * @Description 查询网点总数量
+    * @Date: 16:43 2018/9/30
+    * @Param：[]
+    * @return：int
+    **/
+    int selectWdCount();
+
+    /**
+    * @author: 李家和
+    * @Description 通过id查询单个网点
+    * @Date: 20:47 2018/9/30
+    * @Param：[id]
+    * @return：com.forest.wu.pojo.Organization
+    **/
+    Organization selectWdById( Integer id);
+
+    /**
+     *
+     * @author: 任一
+     * @Description
+     * @Date: 16:11 2018/9/29
+     * @Param：
+     * @return：List<String>
+     * 查询设有分公司的城市列表
+     */
+    List<String> cityList();
 }

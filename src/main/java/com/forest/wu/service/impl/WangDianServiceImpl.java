@@ -1,7 +1,8 @@
-package com.forest.wu.service;
+package com.forest.wu.service.impl;
 
 import com.forest.wu.dao.OrganizationMapper;
 import com.forest.wu.pojo.Organization;
+import com.forest.wu.service.WangDianService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -20,8 +21,8 @@ public class WangDianServiceImpl implements WangDianService {
     private OrganizationMapper orgMapper;
 
     @Override
-    public List<Organization> getWdListByCondition(Integer id, String name, String phone) throws Exception {
-        Organization org = null;
+    public List<Organization> getWdListByCondition(Integer id, String name, String phone)   {
+        Organization org = new Organization();
         if (!StringUtils.isEmpty(id)) {
             org.setId(id);
         }
@@ -35,7 +36,7 @@ public class WangDianServiceImpl implements WangDianService {
     }
 
     @Override
-    public boolean modifyWd(Organization wd) throws Exception {
+    public boolean modifyWd(Organization wd)   {
         boolean flag = false;
         if (orgMapper.updateByPrimaryKeySelective(wd) > 0) {
             flag = true;
@@ -44,7 +45,7 @@ public class WangDianServiceImpl implements WangDianService {
     }
 
     @Override
-    public boolean delWdById(Integer id) throws Exception {
+    public boolean delWdById(Integer id)   {
         boolean flag = false;
         if (orgMapper.deleteByPrimaryKey(id) > 0) {
             flag = true;
@@ -53,11 +54,21 @@ public class WangDianServiceImpl implements WangDianService {
     }
 
     @Override
-    public boolean addWd(Organization wd) throws Exception {
+    public boolean addWd(Organization wd)   {
         boolean flag = false;
         if (orgMapper.insertSelective(wd) > 0) {
             flag = true;
         }
         return flag;
+    }
+
+    @Override
+    public int getWdCount()   {
+        return orgMapper.selectWdCount();
+    }
+
+    @Override
+    public Organization getWdById(Integer id) {
+        return orgMapper.selectWdById(id);
     }
 }

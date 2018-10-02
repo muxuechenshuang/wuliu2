@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <!-- 	工单查询（总部） -->
-<%@include file="../common/header.jsp"%>
+<%@include file="../../../common/header.jsp"%>
 <div class="clearfix"></div>
 <div class="row">
 	<div class="col-md-12">
@@ -313,7 +313,7 @@
 		</div>
 	</div>
 </div>
-<%@include file="../common/footer.jsp"%>
+<%@include file="../../../common/footer.jsp"%>
 <script
 	src="${pageContext.request.contextPath }/statics/localjs/rollpage.js"></script>
 <script

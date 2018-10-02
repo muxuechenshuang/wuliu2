@@ -13,11 +13,15 @@ import java.util.List;
  **/
 public interface WangDianService {
 
-    public List<Organization> getWdListByCondition(Integer id, String name, String phone) throws Exception;
+    public List<Organization> getWdListByCondition(Integer id, String name, String phone) ;
 
-    public boolean modifyWd(Organization wd) throws Exception;
+    public boolean modifyWd(Organization wd) ;
 
-    public boolean delWdById(Integer id) throws Exception;
+    public boolean delWdById(Integer id)  ;
 
-    public boolean addWd(Organization wd) throws Exception;
+    public boolean addWd(Organization wd)  ;
+
+    public int getWdCount() ;
+
+    public Organization getWdById(Integer id);
 }
