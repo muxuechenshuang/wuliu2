@@ -3,6 +3,7 @@ package com.forest.wu.pojo;
 import java.util.Date;
 
 public class Dictionary {
+
     private Integer id;
 
     private String typeCode;

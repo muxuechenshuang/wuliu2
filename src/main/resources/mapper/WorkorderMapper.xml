@@ -5,8 +5,8 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="orderNum" jdbcType="VARCHAR" property="orderNum" />
     <result column="workNum" jdbcType="VARCHAR" property="workNum" />
-    <result column="packageId" jdbcType="VARCHAR" property="packageId" />
-    <result column="productNum" jdbcType="VARCHAR" property="productNum" />
+    <result column="packageId" jdbcType="BIGINT" property="packageId" />
+    <result column="productNum" jdbcType="BIGINT" property="productNum" />
     <result column="sName" jdbcType="VARCHAR" property="sName" />
     <result column="sTel" jdbcType="VARCHAR" property="sTel" />
     <result column="sCity" jdbcType="VARCHAR" property="sCity" />
@@ -18,12 +18,12 @@
     <result column="gAddress" jdbcType="VARCHAR" property="gAddress" />
     <result column="gPoint" jdbcType="VARCHAR" property="gPoint" />
     <result column="productType" jdbcType="VARCHAR" property="productType" />
-    <result column="realWeight" jdbcType="VARCHAR" property="realWeight" />
-    <result column="workStatus" jdbcType="VARCHAR" property="workStatus" />
+    <result column="realWeight" jdbcType="DOUBLE" property="realWeight" />
+    <result column="workStatus" jdbcType="INTEGER" property="workStatus" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
     <result column="expenses" jdbcType="DOUBLE" property="expenses" />
-    <result column="gCourier" jdbcType="VARCHAR" property="gCourier" />
-    <result column="sCourier" jdbcType="VARCHAR" property="sCourier" />
+    <result column="gCourier" jdbcType="INTEGER" property="gCourier" />
+    <result column="sCourier" jdbcType="INTEGER" property="sCourier" />
     <result column="preVolume" jdbcType="DOUBLE" property="preVolume" />
     <result column="riseTime" jdbcType="TIMESTAMP" property="riseTime" />
     <result column="firInStorage" jdbcType="TIMESTAMP" property="firInStorage" />
@@ -38,14 +38,14 @@
     <result column="entrust" jdbcType="VARCHAR" property="entrust" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, orderNum, workNum, packageId, productNum, sName, sTel, sCity, sAddress, sPoint, 
-    gName, gTel, gCity, gAddress, gPoint, productType, realWeight, workStatus, comment, 
-    expenses, gCourier, sCourier, preVolume, riseTime, firInStorage, firOutStorage, secInStorage, 
-    secOutStorage, finishedTime, productLocation, result, invalidatedState, storageStatus, 
+    id, orderNum, workNum, packageId, productNum, sName, sTel, sCity, sAddress, sPoint,
+    gName, gTel, gCity, gAddress, gPoint, productType, realWeight, workStatus, comment,
+    expenses, gCourier, sCourier, preVolume, riseTime, firInStorage, firOutStorage, secInStorage,
+    secOutStorage, finishedTime, productLocation, result, invalidatedState, storageStatus,
     entrust
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from workorder
     where id = #{id,jdbcType=INTEGER}
@@ -55,29 +55,29 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.forest.wu.pojo.Workorder">
-    insert into workorder (id, orderNum, workNum, 
-      packageId, productNum, sName, 
-      sTel, sCity, sAddress, 
-      sPoint, gName, gTel, 
-      gCity, gAddress, gPoint, 
-      productType, realWeight, workStatus, 
-      comment, expenses, gCourier, 
-      sCourier, preVolume, riseTime, 
-      firInStorage, firOutStorage, secInStorage, 
-      secOutStorage, finishedTime, productLocation, 
-      result, invalidatedState, storageStatus, 
+    insert into workorder (id, orderNum, workNum,
+      packageId, productNum, sName,
+      sTel, sCity, sAddress,
+      sPoint, gName, gTel,
+      gCity, gAddress, gPoint,
+      productType, realWeight, workStatus,
+      comment, expenses, gCourier,
+      sCourier, preVolume, riseTime,
+      firInStorage, firOutStorage, secInStorage,
+      secOutStorage, finishedTime, productLocation,
+      result, invalidatedState, storageStatus,
       entrust)
-    values (#{id,jdbcType=INTEGER}, #{orderNum,jdbcType=VARCHAR}, #{workNum,jdbcType=VARCHAR}, 
-      #{packageId,jdbcType=VARCHAR}, #{productNum,jdbcType=VARCHAR}, #{sName,jdbcType=VARCHAR}, 
-      #{sTel,jdbcType=VARCHAR}, #{sCity,jdbcType=VARCHAR}, #{sAddress,jdbcType=VARCHAR}, 
-      #{sPoint,jdbcType=VARCHAR}, #{gName,jdbcType=VARCHAR}, #{gTel,jdbcType=VARCHAR}, 
-      #{gCity,jdbcType=VARCHAR}, #{gAddress,jdbcType=VARCHAR}, #{gPoint,jdbcType=VARCHAR}, 
-      #{productType,jdbcType=VARCHAR}, #{realWeight,jdbcType=VARCHAR}, #{workStatus,jdbcType=VARCHAR}, 
-      #{comment,jdbcType=VARCHAR}, #{expenses,jdbcType=DOUBLE}, #{gCourier,jdbcType=VARCHAR}, 
-      #{sCourier,jdbcType=VARCHAR}, #{preVolume,jdbcType=DOUBLE}, #{riseTime,jdbcType=TIMESTAMP}, 
-      #{firInStorage,jdbcType=TIMESTAMP}, #{firOutStorage,jdbcType=TIMESTAMP}, #{secInStorage,jdbcType=TIMESTAMP}, 
-      #{secOutStorage,jdbcType=TIMESTAMP}, #{finishedTime,jdbcType=TIMESTAMP}, #{productLocation,jdbcType=VARCHAR}, 
-      #{result,jdbcType=VARCHAR}, #{invalidatedState,jdbcType=VARCHAR}, #{storageStatus,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{orderNum,jdbcType=VARCHAR}, #{workNum,jdbcType=VARCHAR},
+      #{packageId,jdbcType=BIGINT}, #{productNum,jdbcType=BIGINT}, #{sName,jdbcType=VARCHAR},
+      #{sTel,jdbcType=VARCHAR}, #{sCity,jdbcType=VARCHAR}, #{sAddress,jdbcType=VARCHAR},
+      #{sPoint,jdbcType=VARCHAR}, #{gName,jdbcType=VARCHAR}, #{gTel,jdbcType=VARCHAR},
+      #{gCity,jdbcType=VARCHAR}, #{gAddress,jdbcType=VARCHAR}, #{gPoint,jdbcType=VARCHAR},
+      #{productType,jdbcType=VARCHAR}, #{realWeight,jdbcType=DOUBLE}, #{workStatus,jdbcType=INTEGER},
+      #{comment,jdbcType=VARCHAR}, #{expenses,jdbcType=DOUBLE}, #{gCourier,jdbcType=INTEGER},
+      #{sCourier,jdbcType=INTEGER}, #{preVolume,jdbcType=DOUBLE}, #{riseTime,jdbcType=TIMESTAMP},
+      #{firInStorage,jdbcType=TIMESTAMP}, #{firOutStorage,jdbcType=TIMESTAMP}, #{secInStorage,jdbcType=TIMESTAMP},
+      #{secOutStorage,jdbcType=TIMESTAMP}, #{finishedTime,jdbcType=TIMESTAMP}, #{productLocation,jdbcType=VARCHAR},
+      #{result,jdbcType=VARCHAR}, #{invalidatedState,jdbcType=VARCHAR}, #{storageStatus,jdbcType=VARCHAR},
       #{entrust,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.forest.wu.pojo.Workorder">
@@ -197,10 +197,10 @@
         #{workNum,jdbcType=VARCHAR},
       </if>
       <if test="packageId != null">
-        #{packageId,jdbcType=VARCHAR},
+        #{packageId,jdbcType=BIGINT},
       </if>
       <if test="productNum != null">
-        #{productNum,jdbcType=VARCHAR},
+        #{productNum,jdbcType=BIGINT},
       </if>
       <if test="sName != null">
         #{sName,jdbcType=VARCHAR},
@@ -236,10 +236,10 @@
         #{productType,jdbcType=VARCHAR},
       </if>
       <if test="realWeight != null">
-        #{realWeight,jdbcType=VARCHAR},
+        #{realWeight,jdbcType=DOUBLE},
       </if>
       <if test="workStatus != null">
-        #{workStatus,jdbcType=VARCHAR},
+        #{workStatus,jdbcType=INTEGER},
       </if>
       <if test="comment != null">
         #{comment,jdbcType=VARCHAR},
@@ -248,10 +248,10 @@
         #{expenses,jdbcType=DOUBLE},
       </if>
       <if test="gCourier != null">
-        #{gCourier,jdbcType=VARCHAR},
+        #{gCourier,jdbcType=INTEGER},
       </if>
       <if test="sCourier != null">
-        #{sCourier,jdbcType=VARCHAR},
+        #{sCourier,jdbcType=INTEGER},
       </if>
       <if test="preVolume != null">
         #{preVolume,jdbcType=DOUBLE},
@@ -301,10 +301,10 @@
         workNum = #{workNum,jdbcType=VARCHAR},
       </if>
       <if test="packageId != null">
-        packageId = #{packageId,jdbcType=VARCHAR},
+        packageId = #{packageId,jdbcType=BIGINT},
       </if>
       <if test="productNum != null">
-        productNum = #{productNum,jdbcType=VARCHAR},
+        productNum = #{productNum,jdbcType=BIGINT},
       </if>
       <if test="sName != null">
         sName = #{sName,jdbcType=VARCHAR},
@@ -340,10 +340,10 @@
         productType = #{productType,jdbcType=VARCHAR},
       </if>
       <if test="realWeight != null">
-        realWeight = #{realWeight,jdbcType=VARCHAR},
+        realWeight = #{realWeight,jdbcType=DOUBLE},
       </if>
       <if test="workStatus != null">
-        workStatus = #{workStatus,jdbcType=VARCHAR},
+        workStatus = #{workStatus,jdbcType=INTEGER},
       </if>
       <if test="comment != null">
         comment = #{comment,jdbcType=VARCHAR},
@@ -352,10 +352,10 @@
         expenses = #{expenses,jdbcType=DOUBLE},
       </if>
       <if test="gCourier != null">
-        gCourier = #{gCourier,jdbcType=VARCHAR},
+        gCourier = #{gCourier,jdbcType=INTEGER},
       </if>
       <if test="sCourier != null">
-        sCourier = #{sCourier,jdbcType=VARCHAR},
+        sCourier = #{sCourier,jdbcType=INTEGER},
       </if>
       <if test="preVolume != null">
         preVolume = #{preVolume,jdbcType=DOUBLE},
@@ -400,8 +400,8 @@
     update workorder
     set orderNum = #{orderNum,jdbcType=VARCHAR},
       workNum = #{workNum,jdbcType=VARCHAR},
-      packageId = #{packageId,jdbcType=VARCHAR},
-      productNum = #{productNum,jdbcType=VARCHAR},
+      packageId = #{packageId,jdbcType=BIGINT},
+      productNum = #{productNum,jdbcType=BIGINT},
       sName = #{sName,jdbcType=VARCHAR},
       sTel = #{sTel,jdbcType=VARCHAR},
       sCity = #{sCity,jdbcType=VARCHAR},
@@ -413,12 +413,12 @@
       gAddress = #{gAddress,jdbcType=VARCHAR},
       gPoint = #{gPoint,jdbcType=VARCHAR},
       productType = #{productType,jdbcType=VARCHAR},
-      realWeight = #{realWeight,jdbcType=VARCHAR},
-      workStatus = #{workStatus,jdbcType=VARCHAR},
+      realWeight = #{realWeight,jdbcType=DOUBLE},
+      workStatus = #{workStatus,jdbcType=INTEGER},
       comment = #{comment,jdbcType=VARCHAR},
       expenses = #{expenses,jdbcType=DOUBLE},
-      gCourier = #{gCourier,jdbcType=VARCHAR},
-      sCourier = #{sCourier,jdbcType=VARCHAR},
+      gCourier = #{gCourier,jdbcType=INTEGER},
+      sCourier = #{sCourier,jdbcType=INTEGER},
       preVolume = #{preVolume,jdbcType=DOUBLE},
       riseTime = #{riseTime,jdbcType=TIMESTAMP},
       firInStorage = #{firInStorage,jdbcType=TIMESTAMP},

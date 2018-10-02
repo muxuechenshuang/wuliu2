@@ -95,7 +95,7 @@
                                     class="fa fa-chevron-down"></span>
                             </a>
                                 <ul class="nav child_menu">
-                                    <li><a href="${pageContext.request.contextPath}/xlh/dindan_xlh.jsp">订单查询</a>
+                                    <li><a href="${pageContext.request.contextPath}/order/allorder">订单查询</a>
                                     </li>
                                     <li><a href="${pageContext.request.contextPath}/xlh/gondan_xlh.jsp">查询工单</a>
                                     </li>
@@ -114,10 +114,10 @@
                             </a>
                                 <ul class="nav child_menu">
                                     <li>
-                                        <a href="${pageContext.request.contextPath}/WEB-INF/jsp/lpq/yuangong2.jsp">员工管理</a>
+                                        <a href="${pageContext.request.contextPath}/wuliu/yuan">员工管理</a>
                                     </li>
 
-                                    <li><a href="${pageContext.request.contextPath}/lpq/chaxun_lpq.jsp">查看用户订单</a>
+                                    <li><a href="${pageContext.request.contextPath}/wuliu/dingdan">查看用户订单</a>
                                     </li>
                                     <!-- 	<li><a href="shenghe_lpq.jsp">审核订单</a>
                                         </li> -->

@@ -8,10 +8,10 @@ public class Workorder {
     private String orderNum;
 
     private String workNum;
-    //合包号
-    private String packageId;
-    //物件编号
-    private String productNum;
+
+    private Long packageId;
+
+    private Long productNum;
 
     private String sName;
 
@@ -35,17 +35,17 @@ public class Workorder {
 
     private String productType;
 
-    private String realWeight;
-    //
-    private String workStatus;
+    private Double realWeight;
+
+    private Integer workStatus;
 
     private String comment;
 
     private Double expenses;
 
-    private String gCourier;
+    private Integer gCourier;
 
-    private String sCourier;
+    private Integer sCourier;
 
     private Double preVolume;
 
@@ -95,20 +95,20 @@ public class Workorder {
         this.workNum = workNum == null ? null : workNum.trim();
     }
 
-    public String getPackageId() {
+    public Long getPackageId() {
         return packageId;
     }
 
-    public void setPackageId(String packageId) {
-        this.packageId = packageId == null ? null : packageId.trim();
+    public void setPackageId(Long packageId) {
+        this.packageId = packageId;
     }
 
-    public String getProductNum() {
+    public Long getProductNum() {
         return productNum;
     }
 
-    public void setProductNum(String productNum) {
-        this.productNum = productNum == null ? null : productNum.trim();
+    public void setProductNum(Long productNum) {
+        this.productNum = productNum;
     }
 
     public String getsName() {
@@ -199,20 +199,20 @@ public class Workorder {
         this.productType = productType == null ? null : productType.trim();
     }
 
-    public String getRealWeight() {
+    public Double getRealWeight() {
         return realWeight;
     }
 
-    public void setRealWeight(String realWeight) {
-        this.realWeight = realWeight == null ? null : realWeight.trim();
+    public void setRealWeight(Double realWeight) {
+        this.realWeight = realWeight;
     }
 
-    public String getWorkStatus() {
+    public Integer getWorkStatus() {
         return workStatus;
     }
 
-    public void setWorkStatus(String workStatus) {
-        this.workStatus = workStatus == null ? null : workStatus.trim();
+    public void setWorkStatus(Integer workStatus) {
+        this.workStatus = workStatus;
     }
 
     public String getComment() {
@@ -231,20 +231,20 @@ public class Workorder {
         this.expenses = expenses;
     }
 
-    public String getgCourier() {
+    public Integer getgCourier() {
         return gCourier;
     }
 
-    public void setgCourier(String gCourier) {
-        this.gCourier = gCourier == null ? null : gCourier.trim();
+    public void setgCourier(Integer gCourier) {
+        this.gCourier = gCourier;
     }
 
-    public String getsCourier() {
+    public Integer getsCourier() {
         return sCourier;
     }
 
-    public void setsCourier(String sCourier) {
-        this.sCourier = sCourier == null ? null : sCourier.trim();
+    public void setsCourier(Integer sCourier) {
+        this.sCourier = sCourier;
     }
 
     public Double getPreVolume() {

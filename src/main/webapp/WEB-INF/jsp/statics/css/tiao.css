@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+
+#meibu{
+	display:none;
+	margin:60px auto;
+	 z-index:99;
+	 position:absolute; 
+	 left: 80px;
+	
+	
+}
+#zhuche{
+	display:none;
+}
+
+
+

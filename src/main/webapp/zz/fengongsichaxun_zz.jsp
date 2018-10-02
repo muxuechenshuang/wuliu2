@@ -109,7 +109,7 @@
 								 <td>北京</td>
 								 <td>beijingfeiniao</td>
 								 <td>123456</td>
-								 <td><a href="fengongsixiangqing_zz.jsp" class="btn btn-primary">查看/修改</a></td>
+								 <td><a href="../WEB-INF/jsp/zz/fengongsixiangqing_zz.jsp" class="btn btn-primary">查看/修改</a></td>
 								</tr>
 								
 							</tbody>
