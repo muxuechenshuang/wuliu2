@@ -75,10 +75,43 @@ public interface OrganizationMapper {
      * @Description
      * @Date: 16:11 2018/9/29
      * @Param：
-     * @return：List<String>
-     * 查询设有分公司的城市列表
+     * @return：List<Organization>
+     * 查询分公司列表
      */
-    List<String> cityList();
+    List<Organization> filialeList();
+
+    /**
+     *
+     * @author: 任一
+     * @Description
+     * @Date: 11:33 2018/10/2
+     * @Param：Integer parentId
+     * @return：List<Organization>
+     * 通过父id查询
+     */
+    List<Organization> selectByParentId(Integer parentId);
+
+    /**
+     *
+     * @author: 任一
+     * @Description
+     * @Date: 14:04 2018/10/2
+     * @Param：Integer type,Integer parentId
+     * @return：int
+     * 查询数量  可根据类型或父id查询
+     */
+    int getCount(Integer type,Integer parentId);
+
+    /**
+     *
+     * @author: 任一
+     * @Description
+     * @Date: 15:15 2018/10/2
+     * @Param：Integer parentId, Integer from, Integer pageSize
+     * @return：List<Organization>
+     * 根据父ID查询（带分页）
+     */
+    List<Organization> getBranchList(Integer parentId, Integer from, Integer pageSize);
 
     /**
     * author: 张展
