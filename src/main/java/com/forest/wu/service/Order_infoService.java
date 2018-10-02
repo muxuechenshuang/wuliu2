@@ -33,5 +33,16 @@ public interface Order_infoService {
     List<Order_info>  selectSomeOrder(Order_info order);
 
 
+    /**
+    * @author: 肖林辉 
+    * @Description  根据订单号查询出对应的订单
+    * @Date: 9:51 2018/10/2/002
+    * @Param：[order]
+    * @return：com.forest.wu.pojo.Order_info
+    **/
+
+    Order_info selectOneOrder(int id);
+
+
 
 }

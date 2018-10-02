@@ -2,17 +2,20 @@ package com.forest.wu.controller;
 
 import com.forest.wu.pojo.Order_info;
 import com.forest.wu.service.Order_infoService;
-import com.forest.wu.utils.PageSupport;
+import com.forest.wu.utils.Constants;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @Author 肖林辉
@@ -34,7 +37,7 @@ public class Order_infoController {
     **/
     @RequestMapping("/allorder")
     public String allOrder(@RequestParam(required = true,defaultValue = "1")Integer pageIndex,Model model){
-        PageHelper.startPage(pageIndex, PageSupport.PAGE_SIZE);
+        PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
         List<Order_info> orderList=orderService.selectAllOrder();
         PageInfo<Order_info> p=new PageInfo<Order_info>(orderList);
         model.addAttribute("pageIndex",p);
@@ -58,7 +61,7 @@ public class Order_infoController {
                             @RequestParam(value = "sTel",required = false)String querysTel,
                             Order_info order, Model model){
 
-        PageHelper.startPage(pageIndex, PageSupport.PAGE_SIZE);
+        PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
         List<Order_info> orderList=orderService.selectSomeOrder(order);
         PageInfo<Order_info> p=new PageInfo<Order_info>(orderList);
         model.addAttribute("pageIndex",p);
@@ -80,11 +83,21 @@ public class Order_infoController {
     * @return：
     **/
 
-    /*@RequestMapping("/toorderxianqing")
-    public String toOrderXianqing(@RequestParam(value = "orderid",required = false) String orderid,Model model){
+    @RequestMapping(value = "/toaddgongdan",method = RequestMethod.GET)
+    public String toOrderXianqing(@RequestParam(value="id",required = false)int id,Model model){
+        //发送订单的信息
+        Order_info orderInfo=orderService.selectOneOrder(id);
+        model.addAttribute("order",orderInfo);
 
-        return "xlh/orderxianqian_xlh";
+        //发送工单号
+        String workNum=UUID.randomUUID().toString();
+        model.addAttribute("workNumber",workNum);
+
+        //发送网点名称
+
+        //快递员编号
+
+        return "xlh/addinfo_xlh";
     }
-*/
 
 }

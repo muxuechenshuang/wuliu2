@@ -111,17 +111,26 @@
                                         style="width: 100px;"
                                         aria-label="Last name: activate to sort column ascending">
                                         收件人地址</th>
-
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                        style="width: 66px;"
+                                        style="width: 50px;"
                                         aria-label="Last name: activate to sort column ascending">
-                                        体积</th>
+                                        物品</th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                        style="width: 66px;"
+                                        style="width: 70px;"
                                         aria-label="Last name: activate to sort column ascending">
-                                        重量</th>
+                                        预估体积</th>
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        style="width: 70px;"
+                                        aria-label="Last name: activate to sort column ascending">
+                                        预估重量</th>
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        style="width: 100px;"
+                                        aria-label="Last name: activate to sort column ascending">
+                                        收件员编号</th>
 
                                     <th class="sorting_asc" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
@@ -140,10 +149,12 @@
                                         <td>${orderL.gName }</td>
                                         <td>${orderL.gTel}</td>
                                         <td>${orderL.gAddress }</td>
+                                        <td>${orderL.product }</td>
 
 
                                         <td>${orderL.preVolume }</td>
                                         <td>${orderL.preWeight}</td>
+                                        <td>${orderL.courierNumber}</td>
 
                                         <td>
 
@@ -156,7 +167,7 @@
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
 
-                                                    <li><a href="${pageContext.request.contextPath}/order/toorderxianqing" class="addVersion"  data-toggle="tooltip" data-placement="top" title="" data-original-title="查看">查看</a>
+                                                    <li><a href="${pageContext.request.contextPath}/order/toaddgongdan?id=${orderL.id}" class="addVersion"  data-toggle="tooltip" data-placement="top" title="" data-original-title="生成工单">生成工单</a>
                                                     </li>
                                                     <li><a class="modifyVersion"
                                                            appinfoid="${appInfo.id }" versionid="${appInfo.versionId }" status="${appInfo.status }"
