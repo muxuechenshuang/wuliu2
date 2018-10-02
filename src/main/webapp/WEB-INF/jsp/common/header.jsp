@@ -105,8 +105,6 @@
 									</ul></li>
 
 								<!--李普强  -->
-								<c:if test="${Login.type=3}">
-
 
 								<li><a><i class="fa fa-home"></i> 网点(李普强) <span
 										class="fa fa-chevron-down"></span>
@@ -126,7 +124,6 @@
 										<li><a href="${pageContext.request.contextPath}/lpq/mix-line-bar.jsp">网点报表</a>
 										</li>
 									</ul></li>
-								</c:if>
 
 
 								<!--李家和  -->
