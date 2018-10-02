@@ -15,6 +15,41 @@
   <sql id="Base_Column_List">
     id, username, password, email, phone, sex, logo, parentid, type
   </sql>
+    <!--更新一个订单对象信息-->
+    <update id="updateOrder_info">
+        update  order_info
+    <set>
+        <if test="sTel != null">
+            sTel = #{sTel,jdbcType=VARCHAR},
+        </if>
+        <if test="sAddress != null">
+            sAddress = #{sAddress,jdbcType=VARCHAR},
+        </if>
+        <if test="product != null">
+            product = #{product,jdbcType=VARCHAR},
+        </if>
+        <if test="sName != null">
+            sName = #{sName,jdbcType=VARCHAR},
+        </if>
+        <if test="gTel != null">
+            gTel = #{gTel,jdbcType=VARCHAR},
+        </if>
+        <if test="gAddress != null">
+            gAddress = #{gAddress,jdbcType=VARCHAR},
+        </if>
+
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+    </update>
+
+
+
+    <!--通过id查询一个订单对象-->
+    <select id="selectOrder_Info" resultType="com.forest.wu.pojo.Order_info">
+
+        select * from order_info where id =#{id}
+
+    </select>
     <!--查询订单-->
     <select id="selectOrder" resultType="com.forest.wu.pojo.Order_info">
         select * from order_info  where 1=1
@@ -22,10 +57,7 @@
             and id =#{id}
 
         </if>
-        <if test="sName!=null">
-            and sName like concat('%',#{sName},'%')
 
-        </if>
         <if test="sTel!=null">
             and sTel =#{sTel}
 
@@ -34,7 +66,11 @@
             and status=#{status}
 
         </if>
-         order  by riseTime
+        <if test="gName!=null">
+            and gName like concat('%',#{gName},'%')
+
+        </if>
+
     </select>
 
 

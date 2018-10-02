@@ -60,5 +60,25 @@ public interface CourierService {
     * @return返回值：order_info订单对象集合
     **/
 
-    List<Order_info> selectOrder(Integer id, String sName,String sTel,Integer status);
+    List<Order_info> selectOrder(Integer id, String gName,String sTel,Integer status);
+
+
+    /*
+    * @author:李普强
+    * @Description描述：通过订单id查询出一个订单对象
+    * @Date: 9:53 2018/10/2
+    * @Param参数：id
+    * @return返回值：订单对象order
+    **/
+    Order_info selectOrder_Info(String id);
+
+
+    /*
+    * @author:李普强
+    * @Description描述：保存修改后的订单信息
+    * @Date: 11:08 2018/10/2
+    * @Param参数：订单对象order_info
+    * @return返回值：int
+    **/
+    int updateOrder_info(Order_info order_info);
 }
