@@ -35,7 +35,7 @@ public class Workorder {
 
     private String productType;
 
-    private String realWeight;
+    private Integer realWeight;
 
     private String workStatus;
 
@@ -199,12 +199,12 @@ public class Workorder {
         this.productType = productType == null ? null : productType.trim();
     }
 
-    public String getRealWeight() {
+    public Integer getRealWeight() {
         return realWeight;
     }
 
-    public void setRealWeight(String realWeight) {
-        this.realWeight = realWeight == null ? null : realWeight.trim();
+    public void setRealWeight(Integer realWeight) {
+        this.realWeight = realWeight;
     }
 
     public String getWorkStatus() {

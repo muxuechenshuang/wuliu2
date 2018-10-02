@@ -1,10 +1,12 @@
 package com.forest.wu.controller;
 
 import com.forest.wu.pojo.Order_info;
+import com.forest.wu.pojo.Workorder;
 import com.forest.wu.service.Order_infoService;
 import com.forest.wu.utils.Constants;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.sun.corba.se.spi.orbutil.threadpool.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
@@ -99,5 +101,31 @@ public class Order_infoController {
 
         return "xlh/addinfo_xlh";
     }
+    
+    
+    /**
+    * @author: 肖林辉 
+    * @Description 
+    * @Date: 14:36 2018/10/2/002
+    * @Param：
+    * @return：
+    **/
+    @RequestMapping("/saveworkorder")
+    public void addWorkorder(@RequestParam(value = "id")int id,
+                             @RequestParam(value = "workNumber")String workNumber,
+                             @RequestParam(value = "realWeight")int  weight,
+                             @RequestParam(value = "expenses")int  expenses,
+                             @RequestParam(value = "comment")String comment){
+
+       Order_info order = orderService.selectOneOrder(id);
+       Workorder workorder = new Workorder();
+       workorder.setOrderNum(order.getId().toString());
+       workorder.setWorkNum(workNumber);
+       workorder.setsName(order.getsName());
+       workorder.setsTel(order.getsTel());
+
+
+    }
+
 
 }

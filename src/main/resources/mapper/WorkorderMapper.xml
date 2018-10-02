@@ -18,7 +18,7 @@
     <result column="gAddress" jdbcType="VARCHAR" property="gAddress" />
     <result column="gPoint" jdbcType="VARCHAR" property="gPoint" />
     <result column="productType" jdbcType="VARCHAR" property="productType" />
-    <result column="realWeight" jdbcType="VARCHAR" property="realWeight" />
+    <result column="realWeight" jdbcType="INTEGER" property="realWeight" />
     <result column="workStatus" jdbcType="VARCHAR" property="workStatus" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
     <result column="expenses" jdbcType="DOUBLE" property="expenses" />
@@ -72,7 +72,7 @@
       #{sTel,jdbcType=VARCHAR}, #{sCity,jdbcType=VARCHAR}, #{sAddress,jdbcType=VARCHAR},
       #{sPoint,jdbcType=VARCHAR}, #{gName,jdbcType=VARCHAR}, #{gTel,jdbcType=VARCHAR},
       #{gCity,jdbcType=VARCHAR}, #{gAddress,jdbcType=VARCHAR}, #{gPoint,jdbcType=VARCHAR},
-      #{productType,jdbcType=VARCHAR}, #{realWeight,jdbcType=VARCHAR}, #{workStatus,jdbcType=VARCHAR},
+      #{productType,jdbcType=VARCHAR}, #{realWeight,jdbcType=INTEGER}, #{workStatus,jdbcType=VARCHAR},
       #{comment,jdbcType=VARCHAR}, #{expenses,jdbcType=DOUBLE}, #{gCourier,jdbcType=INTEGER},
       #{sCourier,jdbcType=INTEGER}, #{preVolume,jdbcType=DOUBLE}, #{riseTime,jdbcType=TIMESTAMP},
       #{firInStorage,jdbcType=TIMESTAMP}, #{firOutStorage,jdbcType=TIMESTAMP}, #{secInStorage,jdbcType=TIMESTAMP},
@@ -236,7 +236,7 @@
         #{productType,jdbcType=VARCHAR},
       </if>
       <if test="realWeight != null">
-        #{realWeight,jdbcType=VARCHAR},
+        #{realWeight,jdbcType=INTEGER},
       </if>
       <if test="workStatus != null">
         #{workStatus,jdbcType=VARCHAR},
@@ -340,7 +340,7 @@
         productType = #{productType,jdbcType=VARCHAR},
       </if>
       <if test="realWeight != null">
-        realWeight = #{realWeight,jdbcType=VARCHAR},
+        realWeight = #{realWeight,jdbcType=INTEGER},
       </if>
       <if test="workStatus != null">
         workStatus = #{workStatus,jdbcType=VARCHAR},
@@ -413,7 +413,7 @@
       gAddress = #{gAddress,jdbcType=VARCHAR},
       gPoint = #{gPoint,jdbcType=VARCHAR},
       productType = #{productType,jdbcType=VARCHAR},
-      realWeight = #{realWeight,jdbcType=VARCHAR},
+      realWeight = #{realWeight,jdbcType=INTEGER},
       workStatus = #{workStatus,jdbcType=VARCHAR},
       comment = #{comment,jdbcType=VARCHAR},
       expenses = #{expenses,jdbcType=DOUBLE},
