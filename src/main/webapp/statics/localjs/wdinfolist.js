@@ -1,4 +1,4 @@
-$("#view").on("click",function () {
+$(".viewWd").on("click",function () {
     var obj = $(this);
-    window.location.href="view/"+obj.val();
+    window.location.href="view/"+obj.attr("wdid");
 });

@@ -28,6 +28,19 @@
   </sql>
 
     <!--肖林辉
+       根据Order_infor中orderid 查询对应订单的信息
+       返回订单集合
+     -->
+    <select id="selectOneOrderByCourier"  parameterType="int" resultType="com.forest.wu.pojo.Order_info">
+        select
+        <include refid="Base_Column_List" />
+        from order_info
+        where id = #{id}
+
+    </select>
+
+
+    <!--肖林辉
     查询所有订单
     返回订单集合
   -->
@@ -35,6 +48,12 @@
         select
         <include refid="Base_Column_List" />
         from order_info
+        <where>
+            1=1
+            <if test="courierNumber != null">
+                and courierNumber = #{courierNumber}
+            </if>
+        </where>
 
     </select>
 

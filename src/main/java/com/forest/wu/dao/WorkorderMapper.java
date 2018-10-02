@@ -7,13 +7,13 @@ import java.util.List;
 
 @Repository
 public interface WorkorderMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Workorder record);
 
     int insertSelective(Workorder record);
 
-    Workorder selectByPrimaryKey(Integer id);
+    Workorder selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(Workorder record);
 

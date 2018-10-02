@@ -66,7 +66,7 @@
                      class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                     <div class="row">
                         <div class="col-sm-12">
-                            <a href="${pageContext.request.contextPath}/dev/flatform/app/appinfoadd"
+                            <a href="${pageContext.request.contextPath}/filiale/wdinfoadd"
                                class="btn btn-success btn-sm">新增网点</a>
                             <table id="datatable-responsive"
                                    class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
@@ -109,8 +109,30 @@
                                         <td>${wd.name}</td>
                                         <td>${wd.phone}</td>
                                         <td>${wd.site}</td>
-                                        <td><button id="view" value="${wd.id}" class="btn btn-primary" type="button">查看</button>
-                                            <button id="modify" class="btn btn-warning" type="button">修改</button></td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-danger">点击操作</button>
+                                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a class="modifyWd"
+                                                           wdid="${wd.id }"
+                                                           data-toggle="tooltip"
+                                                           data-placement="top" title=""
+                                                           data-original-title="修改网点信息">修改</a>
+                                                    </li>
+                                                    <li><a class="viewWd" wdid=${wd.id}
+                                                            data-toggle="tooltip" data-placement="top" title=""
+                                                           data-original-title="查看网点信息">查看</a>
+                                                    </li>
+                                                    <li><a class="deleteWd" wd=${wd.id}
+                                                            data-toggle="tooltip" data-placement="top" title=""
+                                                           data-original-title="删除网点信息">删除</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </c:forEach>
 

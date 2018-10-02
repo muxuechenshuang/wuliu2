@@ -6,16 +6,14 @@
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
       <div class="x_title">
-        <h2>网点</h2>
+        <h2>查看网点信息<i class="fa fa-user"></i><small>${devUserSession.devName}</small></h2>
              <div class="clearfix"></div>
       </div>
       <div class="x_title">
-            <h2>网点信息</h2>
+            <h2>网点基础信息</h2>
           <div class="clearfix"></div>
       </div>
       <div class="x_content1">
-        <form class="form-horizontal form-label-left" >
-          <input type="hidden" name="id" value="${organization.id}">
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" >网点编号 <span class="required">*</span>
             </label>
@@ -50,7 +48,6 @@
               class="form-control col-md-7 col-xs-12" >
             </div>
           </div>
-        </form>
         </div>
         
         <div class="x_content" style="display: block;">
@@ -61,8 +58,7 @@
     
      <div class="form-group">
         <div class="col-md-6 col-md-offset-3">
-           <button type="button" class="btn btn-primary" >确认</button>
-          <button type="button" class="btn btn-primary" >返回</button>
+          <button type="button" class="btn btn-primary" id="back">返回</button>
         </div>
       </div>
     <div class="clearfix"></div>
@@ -70,3 +66,4 @@
   </div>
 </div>
 <%@include file="../common/footer.jsp"%>
+  <script src="${pageContext.request.contextPath}/statics/localjs/wdinfoview.js"></script>
