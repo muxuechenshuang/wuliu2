@@ -198,7 +198,7 @@ public class CenterController {
         PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
         try {
             if (workorder.getPackageId()!=null){
-                workorder.setPackageId(Integer.parseInt(workorder.getPackageId()));
+//                workorder.setPackageId(Integer.parseInt(wor));
             }
             List<Workorder> workorderList = centerService.selectWorkOrder(workorder);
             PageInfo<Workorder> p = new PageInfo<Workorder>(workorderList);
