@@ -22,14 +22,21 @@
       <if test="id!=null">
         and id=#{id}
       </if>
-      <if test="name!=null and name!=''">
-        and name like  #{name}
+      <if test="name!=null">
+        and name like CONCAT ('%',#{name},'%')
       </if>
-      <if test="phone!=null and phone!=''">
-        and phone=#{phone}
+      <if test="phone!=null">
+        and phone like CONCAT ('%',#{phone},'%')
       </if>
       and type=3
     </trim>
+  </select>
+
+  <select id="selectWdById" resultType="com.forest.wu.pojo.Organization">
+    select
+    <include refid="Base_Column_List" />
+    from organization
+    where id=#{id} and type =3
   </select>
 
   <!--获得网点总数量-->

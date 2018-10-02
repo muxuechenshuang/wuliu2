@@ -1,5 +1,6 @@
 package com.forest.wu.service;
 
+import com.forest.wu.pojo.Order_info;
 import com.forest.wu.pojo.User;
 import org.springframework.stereotype.Repository;
 
@@ -33,4 +34,31 @@ public interface CourierService {
     **/
     int count(String id,String username,String phone,String email);
 
+    /*
+    * @author:李普强
+    * @Description描述：通过id查询一个快递员对象
+    * @Date: 11:05 2018/9/30
+    * @Param参数：id
+    * @return返回值：快递员对象
+    **/
+     User  getUser(String id);
+
+     /*
+     * @author:李普强
+     * @Description描述：修改一个快递员信息
+     * @Date: 11:23 2018/9/30
+     * @Param参数：快递员对象
+     * @return返回值：int
+     **/
+    int updateUser(User user);
+
+    /*
+    * @author:李普强
+    * @Description描述：模糊查询，查询相对应的订单，条件：订单号，寄件人姓名，手机号，订单状态
+    * @Date: 15:34 2018/9/30
+    * @Param参数：order_info对象，分页参数
+    * @return返回值：order_info订单对象集合
+    **/
+
+    List<Order_info> selectOrder(Integer id, String sName,String sTel,Integer status);
 }

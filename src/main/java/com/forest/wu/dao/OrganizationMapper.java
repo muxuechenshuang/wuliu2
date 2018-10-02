@@ -1,6 +1,7 @@
 package com.forest.wu.dao;
 
 import com.forest.wu.pojo.Organization;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -55,6 +56,15 @@ public interface OrganizationMapper {
     * @return：int
     **/
     int selectWdCount();
+
+    /**
+    * @author: 李家和
+    * @Description 通过id查询单个网点
+    * @Date: 20:47 2018/9/30
+    * @Param：[id]
+    * @return：com.forest.wu.pojo.Organization
+    **/
+    Organization selectWdById( Integer id);
 
     /**
      *

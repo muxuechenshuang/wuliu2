@@ -21,6 +21,34 @@ public class User {
 
     private Integer type;
 
+
+
+
+    /*
+    * @author: 蒋梓伦
+    * @Description
+    * @Date: 14:57 2018/9/30
+    * @Param：添加多表查询属性Name  valueName
+    * @return：
+    **/
+    private String name;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    private String valueName;
+    public String getValueName() {
+        return valueName;
+    }
+
+    public void setValueName(String valueName) {
+        this.valueName = valueName;
+    }
+
+
     private Date time;//时间
 
     private String picpath;//

@@ -18,3 +18,5 @@ function zhu(){
 function sc(){
     $("#meibu").css("display","none");
   }
+
+

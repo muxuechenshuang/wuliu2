@@ -1,16 +1,17 @@
 package com.forest.wu.dao;
 
+import com.forest.wu.pojo.Order_info;
 import com.forest.wu.pojo.User;
+import javafx.scene.chart.ValueAxis;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import sun.awt.SunHints;
 
 import java.util.List;
 
 
 @Repository
 public interface UserMapper {
-   /* int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(User record);
 
@@ -20,7 +21,13 @@ public interface UserMapper {
 
     int updateByPrimaryKeySelective(User record);
 
-    int updateByPrimaryKey(User record);*/
+    int updateByPrimaryKey(User record);
+    /*
+    * @author: 蒋梓伦
+    * @Date: 9:41 2018/9/29
+    * 查询用户登录信息
+    **/
+    List<User> selectULogin();
 
     /*
     * @author:李普强
@@ -46,4 +53,36 @@ public interface UserMapper {
                      @Param(value = "username") String username,
                      @Param(value = "phone") String phone,
                      @Param(value = "email") String email);
+
+    /*
+    * @author:李普强
+    * @Description描述：通过id查询出一个快递对象
+    * @Date: 11:10 2018/9/30
+    * @Param参数：id
+    * @return返回值：快递员对象
+    **/
+    public User getUser(@Param(value = "id") String id);
+
+
+    /*
+    * @author:李普强
+    * @Description描述：修改一个快递员信息
+    * @Date: 11:25 2018/9/30
+    * @Param参数：快递员对象
+    * @return返回值：int
+    **/
+
+    int updateUser(User user);
+
+    /*
+    * @author:李普强
+    * @Description描述：模糊查询，查询订单对象集合
+    * @Date: 15:38 2018/9/30
+    * @Param参数：订单对象order_info
+    * @return返回值：订单对象集合
+    **/
+    List<Order_info> selectOrder(@Param(value = "id") Integer id,
+                                 @Param(value = "sName") String sName,
+                                 @Param(value = "sTel") String sTel,
+                                 @Param(value = "status") Integer status);
 }

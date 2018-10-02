@@ -2,6 +2,7 @@ package com.forest.wu.service.impl;
 
 
 import com.forest.wu.dao.UserMapper;
+import com.forest.wu.pojo.Order_info;
 import com.forest.wu.pojo.User;
 import com.forest.wu.service.CourierService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,4 +34,21 @@ public class CourierServiceImpl implements CourierService {
 
         return userMapper.count(id,username,phone,email);
     }
+
+    @Override
+    public User getUser(String id) {
+        return userMapper.getUser(id);
+    }
+
+    @Override
+    public int updateUser(User user) {
+        return userMapper.updateUser(user);
+    }
+
+    @Override
+    public List<Order_info> selectOrder(Integer id, String sName, String sTel, Integer status) {
+        return userMapper.selectOrder(id, sName, sTel, status);
+    }
+
+
 }

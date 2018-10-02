@@ -15,9 +15,46 @@
   <sql id="Base_Column_List">
     id, username, password, email, phone, sex, logo, parentid, type
   </sql>
+    <!--查询订单-->
+    <select id="selectOrder" resultType="com.forest.wu.pojo.Order_info">
+        select * from order_info  where 1=1
+        <if test="id!=null">
+            and id =#{id}
 
+        </if>
+        <if test="sName!=null">
+            and sName like concat('%',#{sName},'%')
+
+        </if>
+        <if test="sTel!=null">
+            and sTel =#{sTel}
+
+        </if>
+        <if test="status!=null">
+            and status=#{status}
+
+        </if>
+         order  by riseTime
+    </select>
+
+
+    <!--更新修改一个快递员信息-->
+    <update id="updateUser" >
+        update user set username=#{username},email=#{email},phone=#{phone},
+        sex=#{sex},parentid=#{parentid},type=#{type} where id=#{id}
+    </update>
+
+
+
+<!--通过id查询出一个快递员对象-->
+    <select id="getUser" resultType="com.forest.wu.pojo.User">
+        select *from  user where id=#{id}
+    </select>
+
+
+    <!--模糊查询，按id，username，phone，email。查询对应的快递员-->
   <select id="selectUser" resultType="com.forest.wu.pojo.User">
-     select * from user where 1=1
+     select * from user where type=3
       <if test="id!=''">
         and id like concat('%',#{id},'%')
       </if>
@@ -35,9 +72,10 @@
 
   </select>
 
+   <!--按id，username，phone，email，模糊查询，type类型为3，也就是快递员查询总记录数-->
 <select id="count" resultType="int" >
 
-  select count(1) from user where 1=1
+  select count(1) from user where type =3
   <if test="id!=''">
     and id like concat('%',#{id},'%')
   </if>
@@ -175,4 +213,21 @@
       type = #{type,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>-->
+  <!-- 查找用户表所需的登录信息 -->
+  <select id="selectULogin"  resultType="com.forest.wu.pojo.User">
+    select u.*,o.name,uf.*,d.valueName
+    from user u, organization o, userfunction uf,dictionary d
+    where 1=1
+
+      <if test="parentid != null">
+      and u.parentid=o.id
+      </if>
+      <if test="type != null">
+      and  u.type=uf.id
+      </if>
+      <if test="type != null">
+        and   u.type=d.valueId and d.typeCode='userRole'
+      </if>
+
+  </select>
 </mapper>
