@@ -20,6 +20,8 @@ public class Organization {
 
     private String site;//地址
 
+    private String city;//城市
+
     private String introduction;//简介
 
     private String parentName;//所属上级名称
@@ -39,6 +41,16 @@ public class Organization {
     public void setIntroduction(String introduction) {
         this.introduction = introduction;
     }
+
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
 
     public Integer getId() {
         return id;

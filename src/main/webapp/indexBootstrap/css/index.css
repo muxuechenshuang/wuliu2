@@ -18,7 +18,7 @@ a{text-decoration:none;}
 .txt-center{text-align:center;}/* text align center */
 .float-rt{float:right;}/* float right */
 .float-lt{float:left;}/* float left */
-..clear1{clear:both;}/* clear float */
+.clear1{clear:both;}/* clear float */
 .pos-relative{position:relative;}/* Position Relative */
 .pos-absolute{position:absolute;}/* Position Absolute */
 .vertical-base{	vertical-align:baseline;}/* vertical align baseline */
@@ -114,7 +114,16 @@ body {
 .sub-main-w31 input[type="text"]{
 	margin-top: 1.5em;
 }
-.sub-main-w31 input[type="submit"] {
+.sub-main-w31 input[type="button"]{
+	color: blue;
+	background: cyan;
+	border: none;
+	padding: 1.04em 10px;
+	position:absolute;
+	left: 317px;
+	top: 338.5px;
+}
+.sub-main-w31 input[type="submit"]{
     color: #fff;
     background: #00ad45;
     border: none;
@@ -523,7 +532,7 @@ i.twitter1{
 		width: 36px;
 		height: 36px;
 	}
-	.sub-main-w31 input[type="submit"] {
+	.sub-main-w31 input[type="submit"]{
 		padding: .5em 3em;
 	}
 	.footer p {
@@ -579,7 +588,7 @@ i.twitter1{
 	span.icon2 {
 		top: 28%;
 	}
-	.sub-main-w31 input[type="submit"] {
+	.sub-main-w31 input[type="submit"]{
 		padding: .4em 3em;
 	}
 	.footer {
@@ -645,4 +654,5 @@ i.twitter1{
     padding: 0em 1em;
 	}
 }
+
 /*--//responsive--*/

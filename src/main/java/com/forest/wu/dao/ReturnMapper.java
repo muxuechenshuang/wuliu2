@@ -1,7 +1,9 @@
 package com.forest.wu.dao;
 
 import com.forest.wu.pojo.Return;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ReturnMapper {
     int deleteByPrimaryKey(String id);
 
