@@ -236,11 +236,11 @@
 											style="width: 80px;"
 											aria-label="Last name: activate to sort column ascending">
 											收件人</th>
-										<th class="sorting" tabindex="0"
-											aria-controls="datatable-responsive" rowspan="1" colspan="1"
-											style="width: 200px;
-										aria-label=" Last name:
-											activate to sort columnascending">收件人地址</th>
+										<<th class="sorting" tabindex="0"
+											 aria-controls="datatable-responsive" rowspan="1" colspan="1"
+											 style="width: 80px;"
+											 aria-label="Last name: activate to sort column ascending">
+											收件人地址</th>
 										<th class="sorting" tabindex="0"
 											aria-controls="datatable-responsive" rowspan="1" colspan="1"
 											style="width: 124px;"
