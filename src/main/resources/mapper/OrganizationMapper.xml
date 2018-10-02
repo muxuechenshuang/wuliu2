@@ -35,6 +35,7 @@
         </trim>
     </select>
 
+
     <select id="selectWdById" resultType="com.forest.wu.pojo.Organization">
         select
         <include refid="Base_Column_List"/>
@@ -77,8 +78,7 @@
     insert into organization (id, name, parentId, 
       type, phone, site,city,introduction)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER},
-      #{type,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{site,jdbcType=VARCHAR},#{city,jdbcType=VARCHAR}),
-  #{introduction,jdbcType=VARCHAR})
+      #{type,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{site,jdbcType=VARCHAR},#{city,jdbcType=VARCHAR},#{introduction,jdbcType=VARCHAR})
   </insert>
 
 
@@ -102,9 +102,6 @@
             </if>
             <if test="site != null">
                 site,
-            </if>
-            <if test="city != null">
-                city,
             </if>
             <if test="introduction != null">
                 introduction,
@@ -176,7 +173,7 @@
       phone = #{phone,jdbcType=VARCHAR},
       site = #{site,jdbcType=VARCHAR},
       city = #{city,jdbcType=VARCHAR},
-            introduction = #{introduction,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
