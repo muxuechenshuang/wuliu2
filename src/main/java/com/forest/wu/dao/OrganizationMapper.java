@@ -100,7 +100,7 @@ public interface OrganizationMapper {
      * @return：int
      * 查询数量  可根据类型或父id查询
      */
-    int getCount(Integer type,Integer parentId);
+    int getCount(@Param("type") Integer type,@Param("parentId") Integer parentId);
 
     /**
      *
@@ -111,7 +111,7 @@ public interface OrganizationMapper {
      * @return：List<Organization>
      * 根据父ID查询（带分页）
      */
-    List<Organization> getBranchList(Integer parentId, Integer from, Integer pageSize);
+    List<Organization> getBranchList(@Param("parentId")Integer parentId,@Param("from") Integer from,@Param("pageSize") Integer pageSize);
 
     /**
     * author: 张展

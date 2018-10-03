@@ -94,10 +94,10 @@ public class ClientController {
         //页面容量
         int pageSize = Constants.PAGE_SIZE;
         //当前页码
-        Integer currentPageNo = 1;
+        Integer pageNo = 1;
         if (pageIndex != null) {
             try {
-                currentPageNo = Integer.valueOf(pageIndex);
+                pageNo = Integer.valueOf(pageIndex);
             } catch (NumberFormatException e) {
                 e.printStackTrace();
             }
@@ -110,7 +110,7 @@ public class ClientController {
         }else{
             cityList = organizationService.filialeList();
             model.addAttribute("cityList", cityList);
-            return "redirect:/ry/branchquery_ry.jsp";
+            return "ry/branchquery_ry";
         }
 
         //总数量（列表）
@@ -123,23 +123,23 @@ public class ClientController {
 
         //总页数
         Page pages = new Page();
-        pages.setPageNo(currentPageNo);//当前页
+        pages.setPageNo(pageNo);//当前页
         pages.setPageSize(pageSize);//页大小
-        pages.setPageCount(totalCount);//数据数量
+        pages.setCount(totalCount);//数据数量
         int totalPageCount = pages.getPageCount();
 
         //控制首页和尾页
-        if (currentPageNo < 1) {
-            currentPageNo = 1;
-        } else if (currentPageNo > totalPageCount) {
-            currentPageNo = totalPageCount;
+        if (pageNo < 1) {
+            pageNo = 1;
+        } else if (pageNo > totalPageCount) {
+            pageNo = totalPageCount;
         }
 
         try {
             //城市列表（下拉框显示）
             cityList = organizationService.filialeList();
             //网点列表
-            branchList = organizationService.getBranchList(cityId, currentPageNo, pageSize);
+            branchList = organizationService.getBranchList(cityId, pageNo, pageSize);
         } catch (Exception e) {
             e.printStackTrace();
         }
