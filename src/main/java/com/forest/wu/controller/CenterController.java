@@ -169,6 +169,25 @@ public class CenterController {
         }
         return "center/addsonperson";
     }
+    
+    
+    /**
+    * author: 张展
+    * 跳转工单详情页面
+    * Date: 10:09 2018/10/3
+    * Param：[]
+    * Return：java.lang.String
+    **/
+    @RequestMapping(value = "/todetail", method = RequestMethod.GET)
+    public String todetail(@RequestParam(value = "workorderid") String workorderid,Model model) {
+        try {
+            Workorder workorder = centerService.selectWorkOrdById(Integer.valueOf(workorderid));
+            model.addAttribute("workorder",workorder);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "zz/xiangqing_zz";
+    }
 
 
     /**
@@ -197,9 +216,10 @@ public class CenterController {
 
         PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
         try {
-            if (workorder.getPackageId()!=null){
-//                workorder.setPackageId(Integer.parseInt(wor));
-            }
+//            系统自动封装对象已经转型
+//            if (workorder.getPackageId()!=null){
+//                workorder.setPackageId(Integer.parseInt(workorder.getPackageId()));
+//            }
             List<Workorder> workorderList = centerService.selectWorkOrder(workorder);
             PageInfo<Workorder> p = new PageInfo<Workorder>(workorderList);
             model.addAttribute("pageIndex", p);
@@ -233,7 +253,7 @@ public class CenterController {
 
     /**
      * author: 张展
-     * 总部查询所有订单
+     * 总部查询所有工单
      * Date: 10:03 2018/10/2
      * Param：[pageIndex, model]
      * Return：java.lang.String

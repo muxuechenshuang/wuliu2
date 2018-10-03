@@ -270,11 +270,14 @@
 										<td>${workorder.orderNum }</td>
 										<td>${workorder.gCity }</td>
 										<td>${workorder.gPoint }</td>
+										<td>${workorder.gName }</td>
 										<td>${workorder.gAddress }</td>
 										<td>${workorder.gTel }</td>
 										<td>${workorder.realWeight }</td>
 										<td>${workorder.sCourier }</td>
-										<td><a href="${pageContext.request.contextPath}/zz/fengongsixiangqing_zz.jsp" class="btn btn-primary">查看/修改</a></td>
+										<%--<td><a href="${pageContext.request.contextPath}/center/todetail" class="btn btn-primary">查看/修改</a></td>--%>
+										<td><a id="lookandmodify" href="/center/todetail?workorderid=${workorder.id}" class="btn btn-primary" >查看/修改</a></td>
+
 									</tr>
 								</c:forEach>
 								</tbody>
@@ -325,4 +328,4 @@
 <script
 	src="${pageContext.request.contextPath }/statics/localjs/rollpage.js"></script>
 <script
-	src="${pageContext.request.contextPath }/statics/localjs/appinfolist.js"></script>
+	src="${pageContext.request.contextPath }/statics/js/zz/gongdan2_zz.js"></script>

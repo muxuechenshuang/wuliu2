@@ -45,7 +45,7 @@ public interface CenterService {
     **/
     public int updateWorkOrder(Workorder workorder) throws Exception;
 
-
+    public Workorder selectWorkOrdById(Integer id) throws Exception;
 
     //返货单部分
 
