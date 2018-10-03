@@ -2,6 +2,7 @@ package com.forest.wu.dao;
 
 import com.forest.wu.pojo.Order_info;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -38,7 +39,7 @@ public interface Order_infoMapper {
     * @Param：[]
     * @return：java.util.List<com.forest.wu.pojo.Order_info>
     **/
-    List<Order_info> selectSomeOrder(Order_info order);
+    List<Order_info> selectSomeOrder( Order_info order);
 
 
 

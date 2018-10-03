@@ -110,5 +110,14 @@ public interface UserMapper {
     **/
     int updateOrder_info(Order_info order_info);
 
+    /**
+    * @author: 肖林辉 
+    * @Description   登录的快递员 查找同一网点下的 其它快递员
+    * @Date: 15:23 2018/10/3/003
+    * @Param：[parentid, id]
+    * @return：java.util.List<com.forest.wu.pojo.User>
+    **/
+    
+    List<User> selectCouriers(@Param(value="parentid")int parentid,@Param(value = "id")int id);
 
 }
