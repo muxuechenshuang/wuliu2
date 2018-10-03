@@ -20,3 +20,20 @@ function sc(){
   }
 
 
+$(function(){
+    $("#user").bind("blur",function(){
+    $.ajax({
+        "url":"register",
+        "type":"POST",
+        "data":{user:"user"},
+        "dataType":"json",
+        "success":function(data){
+            if(data.user == "empty"){
+                $("#user").next().html("用户名、手机号或邮箱错误");
+            }else {
+                $("#user").next().html("");
+            }
+        }
+    });
+    })
+});

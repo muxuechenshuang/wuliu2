@@ -1,7 +1,9 @@
 package com.forest.wu.service.impl;
 
 import com.forest.wu.dao.Order_infoMapper;
+import com.forest.wu.dao.WorkorderMapper;
 import com.forest.wu.pojo.Order_info;
+import com.forest.wu.pojo.Workorder;
 import com.forest.wu.service.Order_infoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,9 @@ public class Order_infoServiceImpl implements Order_infoService {
 
     @Autowired
     private Order_infoMapper orderMapper;
+
+    @Autowired
+    private WorkorderMapper workorderMapper;
     /**
     * @author: 肖林辉
     * @Description   查询所有订单
@@ -60,6 +65,26 @@ public class Order_infoServiceImpl implements Order_infoService {
     public Order_info selectOneOrder(int id) {
         return orderMapper.selectOneOrderByCourier(id);
     }
+
+    
+    /**
+    * @author: 肖林辉 
+    * @Description   快递员生成初步的工单
+    * @Date: 16:08 2018/10/2/002
+    * @Param：[workorder]
+    * @return：int
+    **/
+    
+    @Override
+    public int addWorkorderByCourier(Workorder workorder) {
+        return workorderMapper.insert(workorder);
+    }
+
+    @Override
+    public int updateOrderStatusByCourier(Order_info order) {
+        return orderMapper.updateOrderStatusByCourier(order);
+    }
+
 
 
 }

@@ -27,8 +27,9 @@ public class LoginController {
 
     @RequestMapping(value="/index")
     public String index(){
-        return "/jzl/index";
+        return "jzl/index";
     }
+
     //登录页面
     @RequestMapping(value = "/register",method= RequestMethod.POST)
     public String userAll(@RequestParam String user,@RequestParam String password, HttpSession session, HttpServletRequest request) {
@@ -46,11 +47,26 @@ public class LoginController {
                     session.setAttribute("LoginV",loginV);
                     return "xlh/main_xlh";
                 }
-            }
-            i++;
-        } while (i < ss.size());
+         }
+         i++;
+        }while (i<ss.size());
+
+        return "jzl/index";
+    }
+    //注销
+    @RequestMapping("dev/logout")
+    public String devLogout(HttpSession session){
+//        清除
+        session.removeAttribute("user");
         return "jzl/index";
     }
 
 
+    //注册页面
+    @RequestMapping(value = "/login",method= RequestMethod.POST)
+    public String userLogin(User user){
+        User log = userService.addLogin(user);
+
+        return "jzl/index";
+    }
 }

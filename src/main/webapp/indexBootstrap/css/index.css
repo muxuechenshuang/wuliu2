@@ -138,7 +138,7 @@ body {
     -o-transition: 0.5s all;
     -moz-transition: 0.5s all;
     -ms-transition: 0.5s all;
-  
+
 }
 .sub-main-w31 input[type="submit"]:hover {
    background: #e15726;
@@ -166,16 +166,16 @@ span.check-w3 {
     color: #fff;
     font-size: 1em;
     letter-spacing: 1px;
-	
+
 }
 .sub-main-w31 a {
     color: #fff;
     float: right;
     font-size: 1em;
-	
+
 }
 a.w3-pass {
-  
+
 }
 .w3-head-continue1 h4 {
    color: #fff;
@@ -409,7 +409,7 @@ i.twitter1{
 	}
 .social-icons ul li a.fa {
     width: 79px;
-	}	
+	}
 }
 @media(max-width: 667px){
 	.wthree-pro h2 {
