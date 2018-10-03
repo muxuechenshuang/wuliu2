@@ -146,7 +146,8 @@
 
 								<c:if test="${user.type eq 5 }">
 								<!--张展  -->
-								<li><a><i class="fa fa-home"></i>总公司管理<span
+
+                                <li><a><i class="fa fa-home"></i>总公司管理<span
 										class="fa fa-chevron-down"></span>
 								</a>
 
