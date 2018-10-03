@@ -41,20 +41,16 @@
 
 
     <!--肖林辉
-    查询状态为预约状态的所有订单
+    查询登录的快递员的   状态为预约状态的所有订单
     返回订单集合
   -->
     <select id="selectAllOrder"  resultType="com.forest.wu.pojo.Order_info">
         select
-        <include refid="Base_Column_List" />
-        from order_info
+        o.id, sName, gName, sTel, gTel, gAddress, sAddress, product, preWeight, comment, orderNumber,
+    status, preVolume, riseTime, finishTime, reasonForCancle, userId, entrust, courierNumber
+        from order_info  as o
+        inner join `user` as  u  on  o.courierNumber = u.id
         where 1=1 and status=1
-        <if test="courierNumber != null">
-                and courierNumber = #{courierNumber}
-        </if>
-
-
-
     </select>
 
     <!--肖林辉

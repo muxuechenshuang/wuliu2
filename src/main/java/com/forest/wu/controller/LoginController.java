@@ -39,12 +39,8 @@ public class LoginController {
         do {
             if (ss.get(i).getUsername().equals(user) || ss.get(i).getEmail().equals(user) || ss.get(i).getPhone().equals(user)) {
                 if (ss.get(i).getPassword().equals(password)) {
-                    String login = ss.get(i).getUsername();
-                    session.setAttribute("Login", login);
-                    String loginName = ss.get(i).getName();
-                    session.setAttribute("LoginUser",loginName);
-                    String loginV = ss.get(i).getValueName();
-                    session.setAttribute("LoginV",loginV);
+
+                    session.setAttribute("user",ss.get(i));
                     return "xlh/main_xlh";
                 }
          }
