@@ -27,8 +27,9 @@ public class LoginController {
 
     @RequestMapping(value="/index")
     public String index(){
-        return "/jzl/index";
+        return "jzl/index";
     }
+
     //登录页面
     @RequestMapping(value = "/register",method= RequestMethod.POST)
     public String userAll(@RequestParam String user,@RequestParam String password, HttpSession session, HttpServletRequest request) {
@@ -38,19 +39,30 @@ public class LoginController {
         do {
             if (ss.get(i).getUsername().equals(user) || ss.get(i).getEmail().equals(user) || ss.get(i).getPhone().equals(user)) {
                 if (ss.get(i).getPassword().equals(password)) {
-                    String login = ss.get(i).getUsername();
-                    session.setAttribute("Login", login);
-                    String loginName = ss.get(i).getName();
-                    session.setAttribute("LoginUser",loginName);
-                    String loginV = ss.get(i).getValueName();
-                    session.setAttribute("LoginV",loginV);
+
+                    session.setAttribute("user",ss.get(i));
                     return "xlh/main_xlh";
                 }
-            }
-            i++;
-        } while (i < ss.size());
+         }
+         i++;
+        }while (i<ss.size());
+
+        return "jzl/index";
+    }
+    //注销
+    @RequestMapping("dev/logout")
+    public String devLogout(HttpSession session){
+//        清除
+        session.removeAttribute("user");
         return "jzl/index";
     }
 
 
+    //注册页面
+    @RequestMapping(value = "/login",method= RequestMethod.POST)
+    public String userLogin(User user){
+        User log = userService.addLogin(user);
+
+        return "jzl/index";
+    }
 }

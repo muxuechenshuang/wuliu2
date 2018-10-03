@@ -80,5 +80,11 @@ public class Order_infoServiceImpl implements Order_infoService {
         return workorderMapper.insert(workorder);
     }
 
+    @Override
+    public int updateOrderStatusByCourier(Order_info order) {
+        return orderMapper.updateOrderStatusByCourier(order);
+    }
+
+
 
 }
