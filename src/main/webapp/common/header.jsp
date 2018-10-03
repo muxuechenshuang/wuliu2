@@ -68,10 +68,11 @@
                 <div id="sidebar-menu"
                      class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
-                        <h3>${devUserSession.devName }</h3>
+                        <h3>${user.username}</h3>
                         <ul class="nav side-menu">
 
                             <li>
+                                <c:if test="${user.type eq 1}" >
                             <li><a><i class="fa fa-edit"></i> 客户(任一)<span
                                     class="fa fa-chevron-down"></span>
                             </a>
@@ -88,8 +89,8 @@
                                     </li>
                                 </ul>
                             </li>
-
-
+                            </c:if>
+                           <c:if test="${user.type eq 2}" >
                             <!--肖林辉  -->
 
                             <li><a><i class="fa fa-home"></i>快递员 肖林辉${user.type}<span
@@ -108,6 +109,7 @@
                                     </li>
                                 </ul>
                             </li>
+                            </c:if>
 
 
                             <!--李普强  -->
