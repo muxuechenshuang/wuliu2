@@ -7,20 +7,20 @@ import java.util.List;
 
 @Repository
 public interface WorkorderMapper {
-    int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(Integer id);
 
     int insert(Workorder record);
 
     int insertSelective(Workorder record);
 
-    Workorder selectByPrimaryKey(String id);
+    Workorder selectByPrimaryKey(Integer id);
 
     int updateByPrimaryKeySelective(Workorder record);
 
     int updateByPrimaryKey(Workorder record);
-    
-    
-   
+
+
+
     /**
     * author: 张展
     * （总部）工单查询
@@ -29,4 +29,6 @@ public interface WorkorderMapper {
     * Return：com.forest.wu.pojo.Workorder
     **/
     List<Workorder> selectWorkerOrder(Workorder workorder);
+
+
 }

@@ -41,19 +41,19 @@
 
 
     <!--肖林辉
-    查询所有订单
+    查询状态为预约状态的所有订单
     返回订单集合
   -->
     <select id="selectAllOrder"  resultType="com.forest.wu.pojo.Order_info">
         select
         <include refid="Base_Column_List" />
         from order_info
-        <where>
-            1=1
-            <if test="courierNumber != null">
+        where 1=1 and status=1
+        <if test="courierNumber != null">
                 and courierNumber = #{courierNumber}
-            </if>
-        </where>
+        </if>
+
+
 
     </select>
 
@@ -65,8 +65,9 @@
         select
         <include refid="Base_Column_List" />
         from order_info
-        <where>
+        where
             1=1
+           and  status = 1
             <if test="orderNumber != null">
                 and orderNumber like concat('%',#{orderNumber},'%')
             </if>
@@ -78,15 +79,18 @@
             </if>
 
 
-
-
-
-
-        </where>
         order by riseTime desc
     </select>
 
+    <update id="updateOrderStatusByCourier" parameterType="com.forest.wu.pojo.Order_info">
+        update order_info
+        <set>
 
+                status= 2,
+
+        </set>
+        where orderNumber = #{orderNumber}
+    </update>
 
 
 
