@@ -73,11 +73,11 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
 
-
+    <!--添加分公司（网点也能用）,id自增-->
     <insert id="insert" parameterType="com.forest.wu.pojo.Organization">
-    insert into organization (id, name, parentId, 
+    insert into organization ( name, parentId,
       type, phone, site,city,introduction)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER},
+    values (#{name,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER},
       #{type,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{site,jdbcType=VARCHAR},#{city,jdbcType=VARCHAR},#{introduction,jdbcType=VARCHAR})
   </insert>
 

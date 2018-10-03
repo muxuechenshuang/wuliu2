@@ -7,7 +7,7 @@
 		<div class="x_panel">
 			<div class="x_title">
 				<h2>
-					员工管理 <i class="fa fa-user"></i><small>${devUserSession.devName}
+					分公司管理 <i class="fa fa-user"></i><small>${devUserSession.devName}
 						- 您可以通过搜索或者其他的筛选项对员工的信息进行修改、删除等管理操作。^_^</small>
 				</h2>
 				<div class="clearfix"></div>
@@ -60,7 +60,7 @@
 				class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 				<div class="row">
 					<div class="col-sm-12">
-					<a href="${pageContext.request.contextPath}/dev/flatform/app/appinfoadd" class="btn btn-success btn-sm">员工列表</a>
+					<%--<a href="${pageContext.request.contextPath}/dev/flatform/app/appinfoadd" class="btn btn-success btn-sm">员工列表</a>--%>
 						<table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
 							cellspacing="0" width="100%" role="grid" aria-describedby="datatable-responsive_info" style="width: 100%;">
 							<thead>
@@ -110,7 +110,7 @@
 									<td>${organization.phone }</td>
 									<td>${organization.site }</td>
 									<td>${organization.city }</td>
-									<td><a href="${pageContext.request.contextPath}/zz/fengongsixiangqing_zz.jsp" class="btn btn-primary">查看/修改</a></td>
+									<td><a href="/center/soncompanydetail" class="btn btn-primary">查看/修改</a></td>
 								</tr>
 							</c:forEach>
 								<%--<tr>--%>

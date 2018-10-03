@@ -153,15 +153,15 @@
 
 									<ul class="nav child_menu">
 
-										<li><a href="${pageContext.request.contextPath}/zz/gondan2_zz.jsp">查询工单（总部）</a>
-										</li>
-										<li><a href="${pageContext.request.contextPath}/zz/fanhuodanlist_zz.jsp">返货单查询</a>
-										</li>
-										<li><a href="${pageContext.request.contextPath}/zz/fanhuodanxiangqing_zz.jsp">审核返货单</a>
-										</li>
-										<li><a href="${pageContext.request.contextPath}/WEB-INF/jsp/zz/fengongsitianjia_zz.jsp">新增分公司</a></li>
-										<li><a href="${pageContext.request.contextPath}/zz/fengongsichaxun_zz.jsp">分公司管理</a></li>
-										<li><a href="${pageContext.request.contextPath}/zz/wangdianchaxun_zz.jsp">网点管理</a></li>
+										<li><a href="/center/toselectworkorder">查询工单（总部）</a></li>
+										<li><a href="/center/toselectworkorder">工单详情</a></li>
+										<li><a href="/center/returnlist">返货单查询</a></li>
+										<li><a href="/center/returndetail">审核返货单</a></li>
+										<li><a href="/center/addsoncompany">新增分公司</a></li>
+										<li><a href="/center/soncompanylist">分公司管理</a></li>
+										<li><a href="/center/soncompanydetail">分公司详情（修改）</a></li>
+										<li><a href="/center/addsonperson">新增分公司管理</a></li>
+										<li><a href="/center/baobiao1">报表</a></li>
 							</ul></li>
 						</ul></div>
 

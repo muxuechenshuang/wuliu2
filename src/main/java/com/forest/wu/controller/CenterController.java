@@ -43,12 +43,18 @@ public class CenterController {
      * Param：[]
      * Return：java.lang.String
      **/
-    @RequestMapping(value = "/soncompanylist", method = RequestMethod.GET)
+    @RequestMapping(value = "/tosoncompanylist", method = RequestMethod.GET)
     public String selectlist() {
         return "zz/fengongsichaxun_zz";
     }
-
-    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    /**
+    * author: 张展
+    * 分公司查询
+    * Date: 15:21 2018/10/3
+    * Param：[organization, model, session]
+    * Return：java.lang.String
+    **/
+    @RequestMapping(value = "/soncompanylist", method = RequestMethod.POST)
     public String select(Organization organization, Model model, HttpSession session) {
         List<Organization> list = null;
         Integer id = 0;
@@ -61,6 +67,7 @@ public class CenterController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //回显
         id = organization.getId();
         phone = organization.getPhone();
         name = organization.getName();
@@ -73,13 +80,30 @@ public class CenterController {
     }
 
 
-    /**
-     * author: 张展
-     * 进入分公司添加页面
-     * Date: 15:06 2018/9/30
-     * Param：[]
-     * Return：java.lang.String
-     **/
+
+//    分公司详情
+    @RequestMapping(value = "/soncompanydetail", method = RequestMethod.GET)
+    public String soncompanydetail() {
+        return "zz/fengongsixiangqing_zz";
+    }
+
+//    报表
+    @RequestMapping(value = "/baobiao1", method = RequestMethod.GET)
+    public String baobiao1() { return "zz/baobiao1_zz.jsp"; }
+
+//    返货单审核（详情）
+    @RequestMapping(value = "/returndetail", method = RequestMethod.GET)
+    public String returndetail() {
+        return "zz/fanhuodanchaxun_zz";
+    }
+
+//    返货单查询
+    @RequestMapping(value = "/returnlist", method = RequestMethod.GET)
+    public String returnlist() {
+        return "zz/fanhuodanlist";
+    }
+
+//    分公司添加
     @RequestMapping(value = "/addsoncompany", method = RequestMethod.GET)
     public String addSonCompany() {
         return "zz/fengongsitianjia_zz";
@@ -105,7 +129,7 @@ public class CenterController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        //信息保存失败重新返回新增页面
         return "center/addsoncompany";
     }
 
@@ -258,13 +282,13 @@ public class CenterController {
      * Param：[pageIndex, model]
      * Return：java.lang.String
      **/
-    @RequestMapping("/allorder_c")
-    public String allOrder_c(@RequestParam(required = true, defaultValue = "1") Integer pageIndex, Model model) {
-        PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
+//    @RequestMapping("/allorder_c")
+//    public String allOrder_c(@RequestParam(required = true, defaultValue = "1") Integer pageIndex, Model model) {
+//        PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
 //        List<Order_info> orderList=orderService.selectAllOrder();
 //        PageInfo<Order_info> p=new PageInfo<Order_info>(orderList);
 //        model.addAttribute("pageIndex",p);
 //        model.addAttribute("order",orderList);
-        return "zz/xiangqing_zz";
-    }
+//        return "zz/xiangqing_zz";
+//    }
 }

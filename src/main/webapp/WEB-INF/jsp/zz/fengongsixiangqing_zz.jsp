@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="../../../common/header.jsp"%>
+<%@include file="../common/header.jsp"%>
 <div class="clearfix"></div>
 <div class="row">
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
       <div class="x_title">
-        <h2>员工<i class="fa fa-user"></i><small>${devUserSession.devName}</small></h2>
+        <h2>总公司管理员<i class="fa fa-user"></i><small>${devName}</small></h2>
              <div class="clearfix"></div>
       </div>
       <div class="x_title">
-            <h2>员工信息</h2>
+            <h2>分公司信息查询和修改</h2>
           <div class="clearfix"></div>
       </div>
       <div class="x_content1">
@@ -87,7 +87,7 @@
     
      <div class="form-group">
         <div class="col-md-6 col-md-offset-3">
-           <button type="button" class="btn btn-primary" id="back">确认</button>
+           <button type="button" class="btn btn-primary" id="get">确认</button>
           <button type="button" class="btn btn-primary" id="back">返回</button>
         </div>
       </div>
@@ -95,5 +95,5 @@
     <br/><br/>
   </div>
 </div>
-<%@include file="../../../common/footer.jsp"%>
+<%@include file="../common/footer.jsp"%>
 <script src="${pageContext.request.contextPath }/statics/localjs/appinfoview.js"></script>

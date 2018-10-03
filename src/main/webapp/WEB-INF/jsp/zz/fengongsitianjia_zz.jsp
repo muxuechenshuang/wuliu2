@@ -66,6 +66,17 @@
                                    placeholder="分公司所在城市" type="text" maxlength="50">
                         </div>
                     </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="city">分公司简介 <span
+                                class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input id="introduction" class="form-control col-md-7 col-xs-12"
+                                   data-validate-length-range="20" data-validate-words="1" name="introduction"
+                                   required="required"
+                                   placeholder="分公司简介" type="text" maxlength="50">
+                        </div>
+                    </div>
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
