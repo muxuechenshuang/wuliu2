@@ -177,9 +177,44 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-    <select id="cityList" resultType="String">
-    select city
+
+  <!--任一-->
+  <select id="filialeList" resultType="com.forest.wu.pojo.Organization">
+    select *
     from organization
     where type = 2
+  </select>
+
+  <!--任一-->
+  <select id="selectByParentId" resultType="com.forest.wu.pojo.Organization">
+    select *
+    from organization
+    where parantId = #{parentId,jdbcType=INTEGER}
+  </select>
+
+  <!--任一-->
+  <select id="getCount" resultType="int">
+    select count(*) as count
+    from organization
+    <trim prefix="where" prefixOverrides="and | or">
+      <if test="type != null">
+        and type = #{type,jdbcType=INTEGER}
+      </if>
+      <if test="parentId != null">
+        and parentId = #{parentId,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </select>
+
+  <!--任一-->
+  <select id="getBranchList" resultType="com.forest.wu.pojo.Organization">
+    select *
+    from organization
+    <trim prefix="where" prefixOverrides="and | or">
+      <if test="parentId != null">
+        and parentId = #{parentId,jdbcType=INTEGER}
+      </if>
+    </trim>
+    limit #{from},#{pageSize}
   </select>
 </mapper>

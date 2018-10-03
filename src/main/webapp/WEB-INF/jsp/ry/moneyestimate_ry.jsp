@@ -19,8 +19,8 @@
 									<select id="cityA" name="cityA"
 										class="form-control">
 											<option value="0">--请选择始发地--</option>
-											<c:forEach var="city" items="${cityList}">
-												<option value="${city}">${city}</option>
+											<c:forEach var="cityList" items="${cityList}">
+												<option value="${cityList.city}">${cityList.city}</option>
 											</c:forEach>
 									</select>
 								</div>
@@ -32,9 +32,9 @@
 									<select id="cityB" name="cityB"
 										class="form-control">
 											<option value="0">--请选择目的地--</option>
-											<c:forEach var="city" items="${cityList}">
-												<option value="${city}">${city}</option>
-											</c:forEach>
+										<c:forEach var="cityList" items="${cityList}">
+											<option value="${cityList.city}">${cityList.city}</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
@@ -48,7 +48,7 @@
               	placeholder="请输入重量（公斤/kg）" type="text"
 				onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
 				onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}">
-              	<br/><br/><button id="calculate" type="button" class="btn btn-success">查询</button>
+              	<br/><br/><button id="calculate" type="button" class="btn btn-success">查&nbsp;&nbsp;&nbsp;&nbsp;询</button>
               	<h3>注：<span style="font-size: 14px;">此报价仅供参考！</span></h3>
             </div>
 		  </div>
@@ -71,10 +71,10 @@
 					
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							for="time">预估配送时间 <span class="required">*</span>
+							for="timeT">预估配送时间 <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input class="form-control col-md-7 col-xs-12" id="time"
+							<input class="form-control col-md-7 col-xs-12" id="timeT"
 								value="" type="text" readonly="readonly">
 						</div>
 					</div>
