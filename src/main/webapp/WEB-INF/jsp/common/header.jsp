@@ -88,8 +88,8 @@
 
 
 								<!--肖林辉  -->
-
-								<li><a><i class="fa fa-home"></i>快递员  肖林辉<span
+								<c:if test="${user.type eq 2}">
+								<li><a><i class="fa fa-home"></i>快递员  肖林辉${user.id}<span
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
@@ -104,8 +104,7 @@
 										<li><a href="${pageContext.request.contextPath}/xlh/echarts_xlh.jsp">图形报表</a>
 										</li>
 									</ul></li>
-
-
+								</c:if>
 								<!--李普强  -->
 
 
@@ -128,7 +127,7 @@
 										<li><a href="${pageContext.request.contextPath}/lpq/mix-line-bar.jsp">网点报表</a>
 										</li>
 									</ul></li>
-								</c:if>
+
 
 
 								<!--李家和  -->

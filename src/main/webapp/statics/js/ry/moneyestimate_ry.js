@@ -26,7 +26,7 @@ $("#calculate").click(function () {
             var weight = data.weight+"公斤";
             var money = data.money+"元";
             $("#weight").val(weight);
-            $("#time").val(data.time);
+            $("#timeT").val(data.timeT);
             $("#money").val(money);
         }
     })
