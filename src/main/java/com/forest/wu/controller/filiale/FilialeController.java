@@ -5,6 +5,8 @@ import com.forest.wu.service.WangDianService;
 import com.forest.wu.utils.Constants;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,7 @@ import java.util.List;
 public class FilialeController {
     @Autowired
     private WangDianService wdService;
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
     * @author: 李家和
