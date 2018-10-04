@@ -39,7 +39,11 @@ public class Order_info {
 
     private String entrust;
 
-    private String courierNumber;
+    private Integer courierNumber;
+
+
+
+
 
     public Integer getId() {
         return id;
@@ -185,11 +189,11 @@ public class Order_info {
         this.entrust = entrust == null ? null : entrust.trim();
     }
 
-    public String getCourierNumber() {
+    public Integer getCourierNumber() {
         return courierNumber;
     }
 
-    public void setCourierNumber(String courierNumber) {
-        this.courierNumber = courierNumber == null ? null : courierNumber.trim();
+    public void setCourierNumber(Integer courierNumber) {
+        this.courierNumber = courierNumber;
     }
 }
