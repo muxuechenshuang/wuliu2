@@ -100,13 +100,18 @@ public class CenterServiceImpl implements CenterService {
     }
 
     @Override
+    public Organization selectById(Integer id) throws Exception {
+        return organizationMapper.selectById(id);
+    }
+
+    @Override
     public int updateSonCompany(Organization organization) throws Exception {
-        return 0;
+        return organizationMapper.update(organization);
     }
 
     @Override
     public int delectSonCompany(Integer id) throws Exception {
-        return 0;
+        return organizationMapper.deleteByPrimaryKey(id);
     }
 
     @Override

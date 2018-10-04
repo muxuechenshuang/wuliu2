@@ -13,7 +13,7 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
-				<form method="post" action="${pageContext.request.contextPath}/center/list">
+				<form method="post" action="/center/soncompanylist">
 					<input type="hidden" name="pageIndex" value="1" />
 			    <ul>
 					<li>
@@ -98,6 +98,11 @@
 										style="width: 124px;"
 										aria-label="Last name: activate to sort column ascending">
 										查看/修改</th>
+									<th class="sorting" tabindex="0"
+										aria-controls="datatable-responsive" rowspan="1" colspan="1"
+										style="width: 124px;"
+										aria-label="Last name: activate to sort column ascending">
+										删除</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -110,20 +115,12 @@
 									<td>${organization.phone }</td>
 									<td>${organization.site }</td>
 									<td>${organization.city }</td>
-									<td><a href="/center/soncompanydetail" class="btn btn-primary">查看/修改</a></td>
+									<td><a id="lookandmodify" href="/center/tosondetail?organizationid=${organization.id}" class="btn btn-primary" >查看/修改</a></td>
+									<td><a id="delect" href="/center/delect?organizationid=${organization.id}" class="btn btn-primary" >删除</a></td>
+
+								<%--<td><a href="/center/tosondetail?id=${organization.id}" class="btn btn-primary">查看/修改</a></td>--%>
 								</tr>
 							</c:forEach>
-								<%--<tr>--%>
-								 <%--<td>1</td>--%>
-								 <%--<td>北京飞鸟</td>--%>
-								 <%--<td>666666666@163.com</td>--%>
-								 <%--<td>8888888</td>--%>
-								 <%--<td>北京</td>--%>
-								 <%--<td>beijingfeiniao</td>--%>
-								 <%--<td>123456</td>--%>
-								 <%--<td><a href="fengongsixiangqing_zz.jsp" class="btn btn-primary">查看/修改</a></td>--%>
-								<%--</tr>--%>
-								
 							</tbody>
 						</table>
 					</div>

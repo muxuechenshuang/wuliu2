@@ -49,7 +49,7 @@
   </select>
 
 
-    <!--按条件查询分公司-->
+    <!--按条件查询分公司列表-->
     <select id="selectSonCompany" resultType="com.forest.wu.pojo.Organization">
         select
         <include refid="Base_Column_List"/>
@@ -64,10 +64,11 @@
             <if test="phone!=null and phone!=''">
                 and phone=#{phone}
             </if>
-            and type=2
+            and type=2 Order BY id DESC
         </trim>
     </select>
 
+    <!--删除分公司网点-->
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from organization
     where id = #{id,jdbcType=INTEGER}
@@ -217,4 +218,42 @@
     </trim>
     limit #{from},#{pageSize}
   </select>
+
+    <!--根据ID查询组织（分公司）-->
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from organization
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <!--通过对象更新数据库organization表（分公司网点都行）-->
+    <update id="update" parameterType="com.forest.wu.pojo.Organization">
+        update organization
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                parentId = #{parentId,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="site != null">
+                site = #{site,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="introduction != null">
+                introduction = #{introduction,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
 </mapper>
