@@ -71,6 +71,7 @@
 							<ul class="nav side-menu">
 
 								<li>
+                                    <c:if test="${user.type eq 1}">
 								<li><a><i class="fa fa-edit"></i> 客户(任一)<span
 										class="fa fa-chevron-down"></span>
 								</a>
@@ -84,7 +85,7 @@
 										<li><a href="${pageContext.request.contextPath}/lixing/send_ry.jsp">寄件服务</a>
 										</li>
 									</ul></li>
-
+                                </c:if>
 
 
 								<!--肖林辉  -->
@@ -108,7 +109,7 @@
 								<!--李普强  -->
 
 
-
+                                <c:if test="${user.type eq 3}">
 								<li><a><i class="fa fa-home"></i> 网点(李普强) <span
 										class="fa fa-chevron-down"></span>
 								</a>
@@ -127,10 +128,10 @@
 										<li><a href="${pageContext.request.contextPath}/lpq/mix-line-bar.jsp">网点报表</a>
 										</li>
 									</ul></li>
-
-
+                                </c:if>
 
 								<!--李家和  -->
+								<c:if test="${user.type eq 4}">
 								<li><a><i class="fa fa-home"></i>分公司管理<span
 										class="fa fa-chevron-down"></span>
 								</a>
@@ -145,8 +146,10 @@
 									</ul>
 
 								</li>
+								</c:if>
 
 
+                                <c:if test="${user.type eq 5}">
 								<!--张展  -->
 								<li><a><i class="fa fa-home"></i>总公司管理<span
 										class="fa fa-chevron-down"></span>
@@ -164,6 +167,7 @@
 										<li><a href="${pageContext.request.contextPath}/zz/fengongsichaxun_zz.jsp">分公司管理</a></li>
 										<li><a href="${pageContext.request.contextPath}/zz/wangdianchaxun_zz.jsp">网点管理</a></li>
 							</ul></li>
+                                </c:if>
 						</ul></div>
 
 
