@@ -95,7 +95,7 @@
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="/order/allorder">订单查询</a>
+										<li><a href="/order/someorder/${user.id}">订单查询${user.id}</a>
 										</li>
 										<li><a href="/xlh/gondan_xlh.jsp">查询工单</a>
 										</li>

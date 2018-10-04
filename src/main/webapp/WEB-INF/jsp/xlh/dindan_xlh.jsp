@@ -7,7 +7,7 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                    订单查询id${user.parentid} type${user.type}
+                    订单查询
                 </small>
                 </h2>
                 <div class="clearfix"></div>
@@ -16,8 +16,8 @@
 
                 <form method="post" action="${pageContext.request.contextPath}/order/someorder">
                     <input type="hidden" name="pageIndex" value="1" />
-                    <%--<input type="hidden" name="userid" value="${user.id}">
-                    <input type="hidden" name="usertype" value="${user.type}">--%>
+                    <input type="hidden" name="courierNumber" value="${user.id}">
+
                     <ul>
                         <li>
                             <div class="form-group">

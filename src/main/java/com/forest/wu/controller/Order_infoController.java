@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -61,14 +62,17 @@ public class Order_infoController {
     * @return：java.lang.String
     **/
     
-    @RequestMapping("/someorder")
+    @RequestMapping("/someorder/{id}")
     public String someOrder(@RequestParam(required = true,defaultValue = "1")Integer pageIndex,
                             @RequestParam(value = "orderNumber",required = false)String queryOrderNum,
                             @RequestParam(value = "sName",required = false)String querysName,
                             @RequestParam(value = "sTel",required = false)String querysTel,
+                            @RequestParam(value = "courierNumber",required = false)Integer courierNum,
+                            @PathVariable(value = "id",required = false)Integer id,
                             Order_info order, Model model){
 
         PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
+        order.setCourierNumber(id);
         List<Order_info> orderList=orderService.selectSomeOrder(order);
         PageInfo<Order_info> p=new PageInfo<Order_info>(orderList);
         model.addAttribute("pageIndex",p);

@@ -43,8 +43,6 @@ public class Order_info {
 
 
 
-
-
     public Integer getId() {
         return id;
     }

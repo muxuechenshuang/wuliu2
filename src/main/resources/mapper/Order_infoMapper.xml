@@ -49,6 +49,9 @@
         <include refid="Base_Column_List" />
         from order_info  as o
         where 1=1 and status=1
+        <if test="courierNumber != null">
+            and  courierNumber =  #{courierNumber}
+        </if>
     </select>
 
     <!--肖林辉
@@ -60,7 +63,7 @@
         <include refid="Base_Column_List" />
         from order_info as o
         where
-        1=1  and  status = 1
+        1=1  and  status = 1 and courierNumber =  #{courierNumber}
         <if test="orderNumber != null">
             and orderNumber like concat('%',#{orderNumber},'%')
         </if>
@@ -70,6 +73,7 @@
         <if test="sTel != null ">
             and sTel like concat('%',#{sTel},'%')
         </if>
+
 
 
         order by riseTime desc
