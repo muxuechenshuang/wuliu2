@@ -189,7 +189,7 @@
   <select id="selectByParentId" resultType="com.forest.wu.pojo.Organization">
     select *
     from organization
-    where parantId = #{parentId,jdbcType=INTEGER}
+    where parentId = #{parentId}
   </select>
 
   <!--任一-->
@@ -217,4 +217,5 @@
     </trim>
     limit #{from},#{pageSize}
   </select>
+
 </mapper>

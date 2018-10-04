@@ -138,4 +138,11 @@
       modifyDate = #{modifyDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--任一-->
+  <select id="selectGoodsStatus" resultType="com.forest.wu.pojo.Dictionary">
+    select *
+    from dictionary
+    where typeCode = 'goodsStatus';
+  </select>
 </mapper>

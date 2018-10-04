@@ -43,4 +43,5 @@ public class OrganizationServiceImpl implements OrganizationService {
     public List<Organization> getBranchList(Integer parentId, Integer currentPageNo, Integer pageSize) {
         return organizationMapper.getBranchList(parentId, (currentPageNo - 1) * pageSize, pageSize);
     }
+
 }

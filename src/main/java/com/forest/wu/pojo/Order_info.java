@@ -13,9 +13,15 @@ public class Order_info {
 
     private String gTel;
 
+    private int cityId;
+
+    private int branchId;
+
     private String gAddress;
 
     private String sAddress;
+
+    private int typeId;
 
     private String product;
 
@@ -191,5 +197,29 @@ public class Order_info {
 
     public void setCourierNumber(String courierNumber) {
         this.courierNumber = courierNumber == null ? null : courierNumber.trim();
+    }
+
+    public int getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
+    }
+
+    public int getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(int branchId) {
+        this.branchId = branchId;
+    }
+
+    public int getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(int typeId) {
+        this.typeId = typeId;
     }
 }

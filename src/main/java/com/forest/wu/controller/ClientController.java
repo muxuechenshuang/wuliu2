@@ -1,6 +1,8 @@
 package com.forest.wu.controller;
 
+import com.forest.wu.pojo.Dictionary;
 import com.forest.wu.pojo.Organization;
+import com.forest.wu.service.DictionaryService;
 import com.forest.wu.service.OrganizationService;
 import com.forest.wu.utils.CalculateMoneyEstimate;
 import com.forest.wu.utils.Constants;
@@ -29,6 +31,8 @@ import java.util.List;
 public class ClientController {
     @Resource
     private OrganizationService organizationService;
+    @Resource
+    private DictionaryService dictionaryService;
 
     //运算计费时效
 
@@ -84,7 +88,7 @@ public class ClientController {
      * @return：branchquery_ry 进入页面的数据获取
      */
 
-    @RequestMapping(value = "/branchquery",method = RequestMethod.GET)
+    @RequestMapping(value = "/branchquery", method = RequestMethod.GET)
     public String branchquery(Model model,
                               @RequestParam(value = "city", required = false) String _cityId,
                               @RequestParam(value = "pageIndex", required = false) String pageIndex) {
@@ -107,7 +111,7 @@ public class ClientController {
         Integer cityId = null;
         if (null != _cityId && !_cityId.equals("")) {
             cityId = Integer.parseInt(_cityId);
-        }else{
+        } else {
             cityList = organizationService.filialeList();
             model.addAttribute("cityList", cityList);
             return "ry/branchquery_ry";
@@ -144,10 +148,16 @@ public class ClientController {
             e.printStackTrace();
         }
 
+        if(branchList.size()==0){
+            model.addAttribute("nullErro","该城市网点正在紧张建设中");
+            model.addAttribute("cityList", cityList);
+            return "ry/branchquery_ry";
+        }
+
         model.addAttribute("cityList", cityList);
-        model.addAttribute("branchList",branchList);
+        model.addAttribute("branchList", branchList);
         model.addAttribute("cityId", cityId);
-        model.addAttribute("pages",pages);
+        model.addAttribute("pages", pages);
         return "ry/branchquery_ry";
     }
 
@@ -156,6 +166,35 @@ public class ClientController {
 
 
     //寄件服务
+
+
+    @RequestMapping(value = "/intosend", method = RequestMethod.GET)
+    public String intosend(Model model,
+                           @RequestParam(value = "cityId", required = false) String _cityId,
+                           @RequestParam(value = "branchId", required = false) String _branchId) {
+        List<Organization> cityList = organizationService.filialeList();
+        List<Dictionary> typeList = dictionaryService.selectGoodsStatus();
+        model.addAttribute("typeList", typeList);
+        model.addAttribute("cityList", cityList);
+
+        if (null != _cityId && !"".equals(_cityId) && null != _branchId && !"".equals(_branchId)) {
+            Integer cityId = Integer.parseInt(_cityId);
+            Integer branchId = Integer.valueOf(_branchId);
+            List<Organization> branchList = organizationService.selectByParentId(cityId);
+            model.addAttribute("branchList", branchList);
+            model.addAttribute("cityId", cityId);
+            model.addAttribute("branchId", branchId);
+        }
+
+        return "ry/send_ry";
+    }
+
+    @RequestMapping(value = "queryBranchList.json", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Organization> queryBranchList(@RequestParam Integer parentId) {
+        List<Organization> branchList = organizationService.selectByParentId(parentId);
+        return branchList;
+    }
 
 
     //站内信息
