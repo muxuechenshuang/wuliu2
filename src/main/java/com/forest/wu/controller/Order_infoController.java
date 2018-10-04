@@ -1,6 +1,8 @@
 package com.forest.wu.controller;
 
+import com.forest.wu.dao.UserMapper;
 import com.forest.wu.pojo.Order_info;
+import com.forest.wu.pojo.User;
 import com.forest.wu.pojo.Workorder;
 import com.forest.wu.service.Order_infoService;
 import com.forest.wu.utils.Constants;
@@ -29,6 +31,9 @@ import java.util.UUID;
 public class Order_infoController {
     @Autowired
     private Order_infoService  orderService;
+
+    @Autowired
+    private UserMapper userMapper;
 
     /**
     * @author: 肖林辉
@@ -120,5 +125,27 @@ public class Order_infoController {
         orderService.updateOrderStatusByCourier(order);
        return "redirect:/order/allorder";
     }
+    
+    /**
+    * @author: 肖林辉 
+    * @Description  跳转到订单详情页面
+    * @Date: 15:31 2018/10/3/003
+    * @Param：[id, model]
+    * @return：java.lang.String
+    **/
+    
+    @RequestMapping(value="/toorderdesc")
+    public String toOrderDesc(@RequestParam(value="id",required = false)String id,
+                              @RequestParam(value="parentid",required = false)String parentid,
+                              @RequestParam(value = "usertype",required = false)String usertype, Model model){
+        Order_info orderInfo=orderService.selectOneOrder(Integer.parseInt(id));
+        model.addAttribute("order",orderInfo);
+
+        List<User>  couriersList = userMapper.selectCouriers(Integer.parseInt(parentid),Integer.parseInt(usertype));
+        model.addAttribute("couriers",couriersList);
+        return  "xlh/orderxianqian_xlh";
+    }
+
+
 
 }

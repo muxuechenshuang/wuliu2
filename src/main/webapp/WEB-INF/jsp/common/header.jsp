@@ -12,7 +12,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>飞鸟物流</title>
+<title>飞鸟物流1${user.type}</title>
 
 
 	<!-- Bootstrap -->
@@ -73,7 +73,9 @@
 							<h3>${devUserSession.devName }</h3>
 							<ul class="nav side-menu">
 
+
 								<li>
+									<c:if test="${user.type eq 1 }">
 								<li><a><i class="fa fa-edit"></i> 客户(任一)<span
 										class="fa fa-chevron-down"></span>
 								</a>
@@ -87,30 +89,26 @@
 										<li><a href="${pageContext.request.contextPath}/lixing/send_ry.jsp">寄件服务</a>
 										</li>
 									</ul></li>
-
+									</c:if>
 
 
 								<!--肖林辉  -->
-								<c:if test="${user.type eq 2}">
+								<c:if test="${user.type eq 2 }">
 								<li><a><i class="fa fa-home"></i>快递员  肖林辉${user.id}<span
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="${pageContext.request.contextPath}/order/allorder">订单查询</a>
+										<li><a href="/order/allorder">订单查询</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath}/xlh/gondan_xlh.jsp">查询工单</a>
+										<li><a href="/xlh/gondan_xlh.jsp">查询工单</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath}/xlh/xianqian_xlh.jsp">工单详情</a>
-										</li>
-										<li><a href="${pageContext.request.contextPath}/xlh/addinfo_xlh.jsp">生成工单</a>
-										</li>
-										<li><a href="${pageContext.request.contextPath}/xlh/echarts_xlh.jsp">图形报表</a>
+										<li><a href="/xlh/echarts_xlh.jsp">图形报表</a>
 										</li>
 									</ul></li>
 								</c:if>
 								<!--李普强  -->
 
-
+								<c:if test="${user.type eq 3 }">
 								<li><a><i class="fa fa-home"></i> 网点(李普强) <span
 										class="fa fa-chevron-down"></span>
 								</a>
@@ -129,8 +127,9 @@
 										<li><a href="${pageContext.request.contextPath}/lpq/mix-line-bar.jsp">网点报表</a>
 										</li>
 									</ul></li>
+								</c:if>
 
-
+								<c:if test="${user.type eq 4 }">
 								<!--李家和  -->
 								<li><a><i class="fa fa-home"></i>分公司管理<span
 										class="fa fa-chevron-down"></span>
@@ -146,10 +145,12 @@
 									</ul>
 
 								</li>
+								</c:if>
 
-
+								<c:if test="${user.type eq 5 }">
 								<!--张展  -->
-								<li><a><i class="fa fa-home"></i>总公司管理<span
+
+                                <li><a><i class="fa fa-home"></i>总公司管理<span
 										class="fa fa-chevron-down"></span>
 								</a>
 
@@ -165,6 +166,7 @@
 										<li><a href="${pageContext.request.contextPath}/zz/fengongsichaxun_zz.jsp">分公司管理</a></li>
 										<li><a href="${pageContext.request.contextPath}/zz/wangdianchaxun_zz.jsp">网点管理</a></li>
 							</ul></li>
+								</c:if>
 						</ul></div>
 
 

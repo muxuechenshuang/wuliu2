@@ -169,6 +169,25 @@ public class CenterController {
         }
         return "center/addsonperson";
     }
+    
+    
+    /**
+    * author: 张展
+    * 跳转工单详情页面
+    * Date: 10:09 2018/10/3
+    * Param：[]
+    * Return：java.lang.String
+    **/
+    @RequestMapping(value = "/todetail", method = RequestMethod.GET)
+    public String todetail(@RequestParam(value = "workorderid") String workorderid,Model model) {
+        try {
+            Workorder workorder = centerService.selectWorkOrdById(Integer.valueOf(workorderid));
+            model.addAttribute("workorder",workorder);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "zz/xiangqing_zz";
+    }
 
 
     /**
@@ -197,6 +216,10 @@ public class CenterController {
 
         PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
         try {
+//            系统自动封装对象已经转型
+//            if (workorder.getPackageId()!=null){
+//                workorder.setPackageId(Integer.parseInt(workorder.getPackageId()));
+//            }
             List<Workorder> workorderList = centerService.selectWorkOrder(workorder);
             PageInfo<Workorder> p = new PageInfo<Workorder>(workorderList);
             model.addAttribute("pageIndex", p);
@@ -206,22 +229,23 @@ public class CenterController {
         }
         //回显
         model.addAttribute("workNum",workorder.getWorkNum());
-        model.addAttribute("orderNum",workorder.getWorkNum());
-        model.addAttribute("productNum",workorder.getWorkNum());
-        model.addAttribute("workNum",workorder.getWorkNum());
-        model.addAttribute("sName",workorder.getWorkNum());
-        model.addAttribute("sTel",workorder.getWorkNum());
-        model.addAttribute("sPoint",workorder.getWorkNum());
-        model.addAttribute("sCity",workorder.getWorkNum());
-        model.addAttribute("gName",workorder.getWorkNum());
-        model.addAttribute("gTel",workorder.getWorkNum());
-        model.addAttribute("gCity",workorder.getWorkNum());
-        model.addAttribute("workStatus",workorder.getWorkNum());
+        model.addAttribute("orderNum",workorder.getOrderNum());
+        model.addAttribute("productNum",workorder.getProductNum());
+        model.addAttribute("packageId",workorder.getPackageId());
+        model.addAttribute("sName",workorder.getsName());
+        model.addAttribute("sTel",workorder.getsTel());
+        model.addAttribute("sPoint",workorder.getsPoint());
+        model.addAttribute("sCity",workorder.getsCity());
+        model.addAttribute("gName",workorder.getgName());
+        model.addAttribute("gTel",workorder.getgTel());
+        model.addAttribute("gCity",workorder.getgCity());
+        model.addAttribute("gPoint",workorder.getgPoint());
+        model.addAttribute("workStatus",workorder.getWorkStatus());
         //上门收快递员工编号
-        model.addAttribute("gCourier",workorder.getWorkNum());
+        model.addAttribute("gCourier",workorder.getgCourier());
         //送
-        model.addAttribute("sCourier",workorder.getWorkNum());
-        model.addAttribute("result",workorder.getWorkNum());
+        model.addAttribute("sCourier",workorder.getsCourier());
+        model.addAttribute("result",workorder.getResult());
 
 
         return "zz/gondan2_zz";
@@ -229,7 +253,7 @@ public class CenterController {
 
     /**
      * author: 张展
-     * 总部查询所有订单
+     * 总部查询所有工单
      * Date: 10:03 2018/10/2
      * Param：[pageIndex, model]
      * Return：java.lang.String

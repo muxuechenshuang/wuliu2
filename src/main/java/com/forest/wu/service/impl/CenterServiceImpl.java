@@ -9,6 +9,7 @@ import com.forest.wu.service.CenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ import java.util.List;
 @Service
 public class CenterServiceImpl implements CenterService {
 
-    @Autowired
+    @Resource
     private WorkorderMapper workorderMapper;
     @Autowired
     private ReturnMapper returnMapper;
@@ -31,7 +32,7 @@ public class CenterServiceImpl implements CenterService {
 
     @Override
     public List<Workorder> selectWorkOrder(Workorder workorder) throws Exception {
-        return workorderMapper.selectWorkerOrder(workorder);
+        return workorderMapper.selectWorkOrder(workorder);
     }
 
     @Override
@@ -42,6 +43,12 @@ public class CenterServiceImpl implements CenterService {
     @Override
     public int updateWorkOrder(Workorder workorder) throws Exception {
         return 0;
+    }
+
+    @Override
+    public Workorder selectWorkOrdById(Integer id) throws Exception {
+
+        return workorderMapper.selectWorkOrderById(id);
     }
 
     @Override

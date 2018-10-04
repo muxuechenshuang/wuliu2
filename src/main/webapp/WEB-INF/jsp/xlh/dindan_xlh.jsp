@@ -7,14 +7,17 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                    订单查询
+                    订单查询id${user.parentid} type${user.type}
                 </small>
                 </h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
+
                 <form method="post" action="${pageContext.request.contextPath}/order/someorder">
                     <input type="hidden" name="pageIndex" value="1" />
+                    <%--<input type="hidden" name="userid" value="${user.id}">
+                    <input type="hidden" name="usertype" value="${user.type}">--%>
                     <ul>
                         <li>
                             <div class="form-group">
@@ -141,7 +144,7 @@
                                 <tbody>
                                 <c:forEach var="orderL" items="${order}" varStatus="status">
                                     <tr role="row" class="odd">
-                                        <td tabindex="0" class="s                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     orting_1">${orderL.orderNumber}</td>
+                                        <td tabindex="0" class="s  orting_1">${orderL.orderNumber}</td>
                                         <td>${orderL.sName }</td>
                                         <td>${orderL.sTel}</td>
                                         <td>${orderL.sAddress }</td>
@@ -166,14 +169,10 @@
                                                     <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
-
+                                                    <li><a href="${pageContext.request.contextPath}/order/toorderdesc?id=${orderL.id}&parentid=${user.parentid}&usertype=${user.type}" class="addVersion"  data-toggle="tooltip" data-placement="top" title="" data-original-title="查看订单">查看订单</a>
                                                     <li><a href="${pageContext.request.contextPath}/order/toaddgongdan?id=${orderL.id}" class="addVersion"  data-toggle="tooltip" data-placement="top" title="" data-original-title="生成工单">生成工单</a>
                                                     </li>
-                                                    <li><a class="modifyVersion"
-                                                           appinfoid="${appInfo.id }" versionid="${appInfo.versionId }" status="${appInfo.status }"
-                                                           statusname="${appInfo.statusName }"
-                                                           data-toggle="tooltip" data-placement="top" title="" data-original-title="委托">委托</a>
-                                                    </li>
+
                                                 </ul>
                                             </div>
                                         </td>

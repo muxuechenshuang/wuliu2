@@ -28,7 +28,14 @@ public interface WorkorderMapper {
     * Param：[workorder]
     * Return：com.forest.wu.pojo.Workorder
     **/
-    List<Workorder> selectWorkerOrder(Workorder workorder);
-
-
+    List<Workorder> selectWorkOrder(Workorder workorder);
+    
+    /**
+    * author: 张展
+    * 根据工单ID查询工单
+    * Date: 11:18 2018/10/3
+    * Param：[id]
+    * Return：com.forest.wu.pojo.Workorder
+    **/
+    public Workorder selectWorkOrderById(Integer id) throws Exception;
 }
