@@ -1,6 +1,7 @@
 package com.forest.wu.controller;
 
 import com.forest.wu.dao.UserMapper;
+import com.forest.wu.dao.WorkorderMapper;
 import com.forest.wu.pojo.Order_info;
 import com.forest.wu.pojo.User;
 import com.forest.wu.pojo.Workorder;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,6 +38,9 @@ public class Order_infoController {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private WorkorderMapper workorderMapper;
+
     /**
     * @author: 肖林辉
     * @Description  查询所有
@@ -43,7 +48,7 @@ public class Order_infoController {
     * @Param：[]
     * @return：List<Order_info>
     **/
-    @RequestMapping("/allorder")
+   /* @RequestMapping("/allorder")
     public String allOrder(@RequestParam(required = true,defaultValue = "1")Integer pageIndex,Model model){
         PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
         List<Order_info> orderList=orderService.selectAllOrder();
@@ -51,7 +56,7 @@ public class Order_infoController {
         model.addAttribute("pageIndex",p);
         model.addAttribute("order",orderList);
         return "xlh/dindan_xlh";
-    }
+    }*/
     
     
     /**
@@ -62,17 +67,16 @@ public class Order_infoController {
     * @return：java.lang.String
     **/
     
-    @RequestMapping("/someorder/{id}")
+    @RequestMapping("/someorder")
     public String someOrder(@RequestParam(required = true,defaultValue = "1")Integer pageIndex,
                             @RequestParam(value = "orderNumber",required = false)String queryOrderNum,
                             @RequestParam(value = "sName",required = false)String querysName,
                             @RequestParam(value = "sTel",required = false)String querysTel,
-                            @RequestParam(value = "courierNumber",required = false)Integer courierNum,
-                            @PathVariable(value = "id",required = false)Integer id,
+                            @RequestParam(value = "courierNum",required = false)Integer courierNum,
                             Order_info order, Model model){
 
         PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
-        order.setCourierNumber(id);
+        order.setCourierNumber(courierNum);
         List<Order_info> orderList=orderService.selectSomeOrder(order);
         PageInfo<Order_info> p=new PageInfo<Order_info>(orderList);
         model.addAttribute("pageIndex",p);
@@ -150,6 +154,27 @@ public class Order_infoController {
         return  "xlh/orderxianqian_xlh";
     }
 
+    /**
+    * @author: 肖林辉
+    * @Description   跳转到工单页面
+    * @Date: 9:34 2018/10/4/004
+    * @Param：[]
+    * @return：java.lang.String
+    **/
+    @RequestMapping("/toworkorder")
+    public String  toWorkorder(@RequestParam(required = true,defaultValue = "1")Integer pageIndex,
+                               @RequestParam(value = "courierNum",required = false)String sCourier,
+                               Workorder workorder, Model model){
 
+            workorder.setsCourier(Integer.parseInt(sCourier));
+
+
+        PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
+        List<Workorder> workorderList =workorderMapper.selectWorkOrderByCourier(workorder);
+        PageInfo<Workorder> p=new PageInfo<Workorder>(workorderList );
+        model.addAttribute("pageIndex",p);
+        model.addAttribute("workorderList",workorderList );
+        return "xlh/querygongdan2_xlh";
+    }
 
 }

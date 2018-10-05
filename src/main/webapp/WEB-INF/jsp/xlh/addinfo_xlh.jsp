@@ -163,8 +163,8 @@
         <%@include file="../common/footer.jsp" %>
         <script src="${pageContext.request.contextPath }/statics/localjs/appinfoview.js"></script>
         <script type="text/javascript">
-            /*返回按纽*/
-            $("#back").click(function () {
-                window.location.href = "allorder";
-            })
-        </script>
+        /*返回按纽*/
+        $("#back").click(function () {
+            window.location.href = "someorder/?courierNum=${user.id}";
+        })
+    </script>

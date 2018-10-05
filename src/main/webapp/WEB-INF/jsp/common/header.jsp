@@ -11,7 +11,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>飞鸟物流1${user.type}</title>
+<title>飞鸟物流${user.id}</title>
 
 
 	<!-- Bootstrap -->
@@ -91,18 +91,20 @@
 
 								<!--肖林辉  -->
 								<c:if test="${user.type eq 2 }">
-								<li><a><i class="fa fa-home"></i>快递员  肖林辉${user.id}<span
+
+								<li><a><i class="fa fa-home"></i>快递员  肖林辉<span
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="/order/someorder/${user.id}">订单查询${user.id}</a>
+										<li><a href="/order/someorder?courierNum=${user.id}">订单查询</a>
 										</li>
-										<li><a href="/xlh/gondan_xlh.jsp">查询工单</a>
+										<li><a href="/order/toworkorder?courierNum=${user.id}">查询工单</a>
 										</li>
 										<li><a href="/xlh/echarts_xlh.jsp">图形报表</a>
 										</li>
 									</ul></li>
 								</c:if>
+
 								<!--李普强  -->
 
 								<c:if test="${user.type eq 3 }">
