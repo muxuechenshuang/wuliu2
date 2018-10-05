@@ -1,7 +1,9 @@
 package com.forest.wu.service;
 
 import com.forest.wu.pojo.Order_info;
+import com.forest.wu.pojo.User;
 import com.forest.wu.pojo.Workorder;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -65,5 +67,16 @@ public interface Order_infoService {
     **/
     
     int updateOrderStatusByCourier(Order_info order);
+
+
+    /**
+    * @author: 肖林辉 
+    * @Description   查找登录的快递  同一网点下的其它快递员
+    * @Date: 15:26 2018/10/3/003
+    * @Param：[parentid, id]
+    * @return：java.util.List<com.forest.wu.pojo.User>
+    **/
+    
+    List<User> selectCouriersByParentId(int parentid,int id);
 
 }
