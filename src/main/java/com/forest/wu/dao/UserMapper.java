@@ -13,7 +13,11 @@ public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 
     int insert(User record);
-
+    /*
+     * @author: 蒋梓伦
+     * @Date: 10:33 2018/10/2
+     * 注册，往数据库中添加数据
+     **/
     int insertSelective(User record);
 
     User selectByPrimaryKey(Integer id);
@@ -27,13 +31,15 @@ public interface UserMapper {
     * 查询用户登录信息
     **/
     List<User> selectULogin();
+
     /*
     * @author: 蒋梓伦
-    * @Date: 10:33 2018/10/2
-    * 注册，往数据库中添加数据
+    * @Description 根据用户输入信息查询数据库是否存在
+    * @Date: 13:44 2018/10/3
+    * @Param：[用户名, 邮箱, 手机号]
+    * @return：对象集合
     **/
-    User addLogin(User user);
-
+    List<User> findUser();
     /*
     * @author:李普强
     * @Description描述：用户输入的条件查询出对应的快递员信息，并分页

@@ -15,8 +15,8 @@ public interface UserService {
     //登录
     List<User> selectULogin();
     //注册
-    User addLogin(User user);
-
-
+    int addLogin(User user);
+    //检查用户名、手机号和邮箱是否重复
+    List<User> findUser();
 
 }
