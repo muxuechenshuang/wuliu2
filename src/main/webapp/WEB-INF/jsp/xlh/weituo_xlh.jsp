@@ -31,9 +31,9 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12"
                    for="select">委托人<span class="required">*</span></label>
             <div class="col-md-2 col-sm-2 col-xs-3">
-                <select class="form-control col-md-3 col-xs-3" >
+                <select class="form-control col-md-3 col-xs-3" name="courierId">
                     <c:forEach var="couriers" items="${couriersList}">
-                      <option>${couriers.username}</option>
+                      <option  value="${couriers.id}">${couriers.username}</option>
                     </c:forEach>
 
 

@@ -2,31 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.forest.wu.dao.Order_infoMapper">
     <resultMap id="BaseResultMap" type="com.forest.wu.pojo.Order_info">
-        <id column="id" jdbcType="INTEGER" property="id" />
-        <result column="sName" jdbcType="VARCHAR" property="sName" />
-        <result column="gName" jdbcType="VARCHAR" property="gName" />
-        <result column="sTel" jdbcType="VARCHAR" property="sTel" />
-        <result column="gTel" jdbcType="VARCHAR" property="gTel" />
-        <result column="cityId" jdbcType="INTEGER" property="cityId" />
-        <result column="branchId" jdbcType="INTEGER" property="branchId" />
-        <result column="sAddress" jdbcType="VARCHAR" property="sAddress" />
-        <result column="gAddress" jdbcType="VARCHAR" property="gAddress" />
-        <result column="doorTime" jdbcType="TIMESTAMP" property="doorTime" />
-        <result column="typeId" jdbcType="INTEGER" property="typeId" />
-        <result column="product" jdbcType="VARCHAR" property="product" />
-        <result column="preWeight" jdbcType="DOUBLE" property="preWeight" />
-        <result column="comment" jdbcType="VARCHAR" property="comment" />
-        <result column="orderNumber" jdbcType="VARCHAR" property="orderNumber" />
-        <result column="status" jdbcType="INTEGER" property="status" />
-        <result column="preVolume" jdbcType="VARCHAR" property="preVolume" />
-        <result column="riseTime" jdbcType="TIMESTAMP" property="riseTime" />
-        <result column="finishTime" jdbcType="TIMESTAMP" property="finishTime" />
-        <result column="reasonForCancle" jdbcType="VARCHAR" property="reasonForCancle" />
-        <result column="userId" jdbcType="BIGINT" property="userId" />
-        <result column="entrust" jdbcType="INTEGER" property="entrust" />
-        <result column="courierNumber" jdbcType="INTEGER" property="courierNumber" />
-        <result column="entrustNumber" jdbcType="INTEGER" property="entrustNumber" />
-    </resultMap>
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="sName" jdbcType="VARCHAR" property="sName"/>
+        <result column="gName" jdbcType="VARCHAR" property="gName"/>
+        <result column="sTel" jdbcType="VARCHAR" property="sTel"/>
+        <result column="gTel" jdbcType="VARCHAR" property="gTel"/>
+        <result column="cityId" jdbcType="INTEGER" property="cityId"/>
+        <result column="branchId" jdbcType="INTEGER" property="branchId"/>
+        <result column="sAddress" jdbcType="VARCHAR" property="sAddress"/>
+        <result column="gAddress" jdbcType="VARCHAR" property="gAddress"/>
+        <result column="doorTime" jdbcType="TIMESTAMP" property="doorTime"/>
+        <result column="typeId" jdbcType="INTEGER" property="typeId"/>
+        <result column="product" jdbcType="VARCHAR" property="product"/>
+        <result column="preWeight" jdbcType="DOUBLE" property="preWeight"/>
+        <result column="comment" jdbcType="VARCHAR" property="comment"/>
+        <result column="orderNumber" jdbcType="VARCHAR" property="orderNumber"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="preVolume" jdbcType="VARCHAR" property="preVolume"/>
+        <result column="riseTime" jdbcType="TIMESTAMP" property="riseTime"/>
+        <result column="finishTime" jdbcType="TIMESTAMP" property="finishTime"/>
+        <result column="reasonForCancle" jdbcType="VARCHAR" property="reasonForCancle"/>
+        <result column="userId" jdbcType="BIGINT" property="userId"/>
+        <result column="entrust" jdbcType="INTEGER" property="entrust"/>
+        <result column="courierNumber" jdbcType="INTEGER" property="courierNumber"/>
+        <result column="entrustNumber" jdbcType="INTEGER" property="entrustNumber"/>
+        <association property="organization" javaType="com.forest.wu.pojo.Organization">
+            <id column="id" property="id" />
+            <result column="name" property="pointName"/>
+        </association>
+   </resultMap>
     <sql id="Base_Column_List">
     id, sName, gName, sTel, gTel, cityId, branchId, sAddress, gAddress, doorTime, typeId,
     product, preWeight, comment, orderNumber, status, preVolume, riseTime, finishTime,
@@ -37,10 +41,11 @@
        根据Order_infor中orderid 查询对应订单的信息
        返回订单集合
      -->
-    <select id="selectOneOrderByCourier"  parameterType="int" resultType="com.forest.wu.pojo.Order_info">
+    <select id="selectOneOrderByCourier" parameterType="int" resultType="com.forest.wu.pojo.Order_info">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from order_info
+
         where id = #{id}
 
     </select>
@@ -50,13 +55,13 @@
     查询登录的快递员的   状态为预约状态的所有订单
     返回订单集合
   -->
-    <select id="selectAllOrder"  resultType="com.forest.wu.pojo.Order_info">
+    <select id="selectAllOrder" resultType="com.forest.wu.pojo.Order_info">
         select
-        <include refid="Base_Column_List" />
-        from order_info  as o
+        <include refid="Base_Column_List"/>
+        from order_info as o
         where 1=1 and status=1
         <if test="courierNumber != null">
-            and  courierNumber =  #{courierNumber}
+            and courierNumber = #{courierNumber}
         </if>
     </select>
 
@@ -64,14 +69,15 @@
      模糊查询,根据条件查询
      返回订单集合
    -->
-    <select id="selectSomeOrder"  parameterType="com.forest.wu.pojo.Order_info" resultType="com.forest.wu.pojo.Order_info">
+    <select id="selectSomeOrder" parameterType="com.forest.wu.pojo.Order_info"
+            resultType="com.forest.wu.pojo.Order_info">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from order_info as o
         where
-        1=1  and  status = 1
+        1=1 and status = 1
         <if test="courierNumber != null">
-            and courierNumber =  #{courierNumber}
+            and courierNumber = #{courierNumber}
         </if>
         <if test="orderNumber != null">
             and orderNumber like concat('%',#{orderNumber},'%')
@@ -84,10 +90,10 @@
         </if>
 
 
-
         order by riseTime desc
     </select>
 
+    <!--更新订单的状态-->
     <update id="updateOrderStatusByCourier" parameterType="com.forest.wu.pojo.Order_info">
         update order_info
         <set>
@@ -98,18 +104,23 @@
         where orderNumber = #{orderNumber}
     </update>
 
+    <!--肖林辉-->
+    <!--委托操作  更新订单的三个字段    entrust  courierNumber  entrustNumber-->
+    <update id="updateOrderToWeituoStatus" parameterType="com.forest.wu.pojo.Order_info">
+        update order_info
+        <set>
 
-
-
-
-
-
-
+            entrust = #{entrust,jdbcType=INTEGER},
+            courierNumber = #{courierNumber,jdbcType=INTEGER},
+            entrustNumber = #{entrustNumber,jdbcType=INTEGER}
+        </set>
+        where `id`= #{id}
+    </update>
 
 
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from order_info
         where id = #{id,jdbcType=INTEGER}
     </select>

@@ -51,6 +51,17 @@ public class Order_info {
 
     private Integer entrustNumber;
 
+    //肖林辉  存放网点名称字段
+    private String  pointName;
+
+    public String getPointName() {
+        return pointName;
+    }
+
+    public void setPointName(String pointName) {
+        this.pointName = pointName;
+    }
+
     public Integer getId() {
         return id;
     }

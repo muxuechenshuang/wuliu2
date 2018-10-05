@@ -64,6 +64,14 @@ public interface Order_infoMapper {
 
     int updateOrderStatusByCourier(Order_info order);
 
+    /**
+    * @author: 肖林辉
+    * @Description  更新订单的委托状态   entrust   entrustNumber  courierNumber
+    * @Date: 14:19 2018/10/5/005
+    * @Param：[order]
+    * @return：int
+    **/
 
+    int updateOrderToWeituoStatus(Order_info order);
 
 }

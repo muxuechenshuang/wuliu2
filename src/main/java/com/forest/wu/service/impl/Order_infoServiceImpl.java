@@ -127,5 +127,18 @@ public class Order_infoServiceImpl implements Order_infoService {
         return workorderMapper.selectWorkOrderByCourier(workorder);
     }
 
+    /**
+    * @author: 肖林辉
+    * @Description   更新订单委托 状态
+    * @Date: 14:46 2018/10/5/005
+    * @Param：[order]
+    * @return：int
+    **/
+    
+    @Override
+    public int updateOrderWeituoStatus(Order_info order) {
+        return orderMapper.updateOrderToWeituoStatus(order);
+    }
+
 
 }

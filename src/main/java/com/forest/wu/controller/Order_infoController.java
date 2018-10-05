@@ -124,15 +124,18 @@ public class Order_infoController {
     * @return：
     **/
     @RequestMapping(value = "/saveworkorder",method = RequestMethod.GET)
-    public String addWorkorder(Workorder workorder){
+    public String addWorkorder(Workorder workorder,HttpSession session){
         //根据Id找到相应订单的信息
        //插入工单信息
+        workorder.setProductLocation("2");
        orderService.addWorkorderByCourier(workorder);
        //修改订单中的状态   1为预订  2 已接单  将1 修改为2
         Order_info order = new Order_info();
         order.setOrderNumber(workorder.getOrderNum());
         orderService.updateOrderStatusByCourier(order);
-       return "redirect:/order/allorder";
+        User user=(User)session.getAttribute("user");
+       int  id=user.getId();
+       return "redirect:/order/someorder?courierNum="+id;
     }
     
     /**
@@ -213,7 +216,14 @@ public class Order_infoController {
 
         return "xlh/gondanxiangqing_xlh";
     }
-
+    /**
+    * @author: 肖林辉 
+    * @Description   进入委托页面
+    * @Date: 14:30 2018/10/5/005
+    * @Param：[orderid, session, model]
+    * @return：java.lang.String
+    **/
+    
     @RequestMapping(value="toweituo")
     public String toWeiTuo(@RequestParam(value="id")Integer orderid,HttpSession session,Model model){
         User user=(User)session.getAttribute("user");
@@ -221,5 +231,27 @@ public class Order_infoController {
         model.addAttribute("couriersList",couriersList);
         model.addAttribute("orderId",orderid);
         return "xlh/weituo_xlh";
+    }
+
+    /**
+    * @author: 肖林辉 
+    * @Description   委托状态修改
+    * @Date: 14:31 2018/10/5/005
+    * @Param：[]
+    * @return：java.lang.String
+    **/
+    @RequestMapping("updateweituo")
+    public String updateOrderWeituoStatus(HttpSession session,
+                                          @RequestParam(value="courierId")Integer courierId,
+                                          @RequestParam(value="orderId")Integer orderId) {
+        User user = (User) session.getAttribute("user");
+        Order_info order = new Order_info();
+        order.setId(orderId);
+        order.setEntrust(1);
+        order.setEntrustNumber(user.getId());
+        order.setCourierNumber(courierId);
+        orderService.updateOrderWeituoStatus(order);
+        int id=user.getId();
+        return "redirect:/order/someorder?courierNum="+id;
     }
 }
