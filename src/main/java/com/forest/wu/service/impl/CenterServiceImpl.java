@@ -9,6 +9,7 @@ import com.forest.wu.service.CenterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ import java.util.List;
 @Service
 public class CenterServiceImpl implements CenterService {
 
-    @Autowired
+    @Resource
     private WorkorderMapper workorderMapper;
     @Autowired
     private ReturnMapper returnMapper;
@@ -31,7 +32,7 @@ public class CenterServiceImpl implements CenterService {
 
     @Override
     public List<Workorder> selectWorkOrder(Workorder workorder) throws Exception {
-        return workorderMapper.selectWorkerOrder(workorder);
+        return workorderMapper.selectWorkOrder(workorder);
     }
 
     @Override
@@ -42,6 +43,12 @@ public class CenterServiceImpl implements CenterService {
     @Override
     public int updateWorkOrder(Workorder workorder) throws Exception {
         return 0;
+    }
+
+    @Override
+    public Workorder selectWorkOrdById(Integer id) throws Exception {
+
+        return workorderMapper.selectWorkOrderById(id);
     }
 
     @Override
@@ -73,11 +80,17 @@ public class CenterServiceImpl implements CenterService {
     public int updateOrder(Order_info order_info) throws Exception {
         return 0;
     }
-
+    
+    /**
+    * author: 张展
+    * 添加分公司
+    * Date: 15:42 2018/10/3
+    * Param：[organization]
+    * Return：int
+    **/
     @Override
     public int addSonCompany(Organization organization) throws Exception {
-        int i =organizationMapper.insert(organization);
-        return i;
+        return organizationMapper.insert(organization);
     }
 
     @Override
@@ -87,13 +100,18 @@ public class CenterServiceImpl implements CenterService {
     }
 
     @Override
+    public Organization selectById(Integer id) throws Exception {
+        return organizationMapper.selectById(id);
+    }
+
+    @Override
     public int updateSonCompany(Organization organization) throws Exception {
-        return 0;
+        return organizationMapper.update(organization);
     }
 
     @Override
     public int delectSonCompany(Integer id) throws Exception {
-        return 0;
+        return organizationMapper.deleteByPrimaryKey(id);
     }
 
     @Override

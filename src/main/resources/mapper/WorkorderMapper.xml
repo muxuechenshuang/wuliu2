@@ -433,4 +433,126 @@
       entrust = #{entrust,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--总公司工单查询-->
+  <select id="selectWorkOrder" resultType="com.forest.wu.pojo.Workorder">
+    select
+    <include refid="Base_Column_List"/>
+    from workorder
+    <trim prefix="where" prefixOverrides="and | or">
+      <if test="workNum!=null and workNum!=''">
+       and workNum like CONCAT ('%',#{workNum},'%')
+      </if>
+      <if test="orderNum!=null and orderNum!=''">
+        and orderNum like CONCAT ('%',#{orderNum},'%')
+      </if>
+      <if test="productNum!=null">
+        and productNum=#{productNum}
+      </if>
+      <if test="packageId!=null">
+        and packageId=#{packageId}
+      </if>
+      <if test="sName!=null">
+        and sName=#{sName}
+      </if>
+      <if test="sTel!=null and sTel!=''">
+        and sTel=#{sTel}
+      </if>
+      <if test="sPoint!=null and sPoint!=''">
+        and sPoint=#{sPoint}
+      </if>
+      <if test="sCity!=null and sCity!=''">
+        and sCity=#{sCity}
+      </if>
+      <if test="gName!=null and gName!=''">
+        and gName=#{gName}
+      </if>
+      <if test="gTel!=null and  gTel!=''">
+        and gTel=#{gTel}
+      </if>
+      <if test="gCity!=null and gCity!=''">
+        and  gCity=#{gCity}
+      </if>
+      <if test="gPoint!=null and gPoint!=''">
+        and  gPoint=#{gPoint}
+      </if>
+      <if test="workStatus!=null">
+        and workStatus=#{workStatus}
+      </if>
+      <if test="gCourier!=null">
+        and gCourier=#{gCourier}
+      </if>
+      <if test="sCourier!=null">
+        and sCourier=#{sCourier}
+      </if>
+      <if test="result!=null and result!=''">
+        and result=#{result}
+      </if>
+    </trim>
+  </select>
+
+    <select id="selectWorkOrderById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from workorder
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+
+  <!--肖林辉-->
+  <!--快递员工单查询-->
+  <select id="selectWorkOrderByCourier" parameterType="com.forest.wu.pojo.Workorder" resultType="com.forest.wu.pojo.Workorder">
+    select
+    <include refid="Base_Column_List"/>
+    from workorder
+    where 1=1
+      <if test="sCourier!=null">
+      and sCourier=#{sCourier}
+      </if>
+      <if test="workNum!=null">
+        and workNum like CONCAT ('%',#{workNum},'%')
+      </if>
+      <if test="orderNum!=null">
+        and orderNum like CONCAT ('%',#{orderNum},'%')
+      </if>
+     <if test="productNum!=null">
+       and productNum=#{productNum}
+     </if>
+     <if test="packageId!=null">
+       and packageId=#{packageId}
+     </if>
+     <if test="sName!=null">
+       and sName=#{sName}
+     </if>
+     <if test="sTel!=null and sTel!=''">
+       and sTel=#{sTel}
+     </if>
+     <if test="sPoint!=null and sPoint!=''">
+       and sPoint=#{sPoint}
+     </if>
+     <if test="sCity!=null and sCity!=''">
+       and sCity=#{sCity}
+     </if>
+     <if test="gName!=null and gName!=''">
+       and gName=#{gName}
+     </if>
+     <if test="gTel!=null and  gTel!=''">
+       and gTel=#{gTel}
+     </if>
+     <if test="gCity!=null and gCity!=''">
+       and  gCity=#{gCity}
+     </if>
+     <if test="gPoint!=null and gPoint!=''">
+       and  gPoint=#{gPoint}
+     </if>
+
+     <if test="gCourier!=null">
+       and gCourier=#{gCourier}
+     </if>
+
+     <if test="result!=null and result!=''">
+       and result=#{result}
+     </if>
+
+  </select>
 </mapper>

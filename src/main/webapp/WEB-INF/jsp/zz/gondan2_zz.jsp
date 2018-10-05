@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <!-- 	工单查询（总部） -->
-<%@include file="../../../common/header.jsp"%>
+<%@include file="../common/header.jsp"%>
 <div class="clearfix"></div>
 <div class="row">
 	<div class="col-md-12">
@@ -15,16 +15,16 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
-				<form method="post" action="list">
+				<form method="post" action="/center/selectworkorder">
 					<input type="hidden" name="pageIndex" value="1" />
 					<ul>
 						<li>
 							<div class="form-group">
 								<label class="control-label col-md-4 col-sm-4 col-xs-12">工单号</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input name="querySoftwareName" type="text"
+									<input name="workNum" type="text"
 										class="form-control col-md-7 col-xs-12"
-										value="${querySoftwareName }">
+										value="${workNum }">
 								</div>
 							</div>
 						</li>
@@ -32,9 +32,9 @@
 							<div class="form-group">
 								<label class="control-label col-md-4 col-sm-4 col-xs-12">订单号</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input name="querySoftwareName" type="text"
+									<input name="orderNum" type="text"
 										class="form-control col-md-7 col-xs-12"
-										value="${querySoftwareName }">
+										value="${orderNum }">
 								</div>
 							</div>
 						</li>
@@ -42,9 +42,9 @@
 							<div class="form-group">
 								<label class="control-label col-md-4 col-sm-4 col-xs-12">物件编号</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input name="querySoftwareName" type="text"
+									<input name="productNum" type="text"
 										class="form-control col-md-7 col-xs-12"
-										value="${querySoftwareName }">
+										value="${productNum }">
 								</div>
 							</div>
 						</li>
@@ -52,9 +52,9 @@
 							<div class="form-group">
 								<label class="control-label col-md-4 col-sm-4 col-xs-12">合包号</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input name="querySoftwareName" type="text"
+									<input name="packageId" type="text"
 										class="form-control col-md-7 col-xs-12"
-										value="${querySoftwareName }">
+										value="${packageId }">
 								</div>
 							</div>
 						</li>
@@ -62,9 +62,9 @@
 							<div class="form-group">
 								<label class="control-label col-md-4 col-sm-4 col-xs-12">寄件人姓名</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input name="querySoftwareName" type="text"
+									<input name="sName" type="text"
 										class="form-control col-md-7 col-xs-12"
-										value="${querySoftwareName }">
+										value="${sName }">
 								</div>
 							</div>
 						</li>
@@ -73,17 +73,17 @@
 							<div class="form-group">
 								<label class="control-label col-md-4 col-sm-4 col-xs-12">寄件人电话</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input name="querySoftwareName" type="text"
+									<input name="sTel" type="text"
 										class="form-control col-md-7 col-xs-12"
-										value="${querySoftwareName }">
+										value="${sTel }">
 								</div>
 							</div>
 						</li>
 						<li>
 							<div class="form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">寄件人网点</label>
+								<label class="control-label col-md-4 col-sm-4 col-xs-12">寄件人城市</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<select id="queryCategoryLevel1" name="queryCategoryLevel1"
+									<select id="sCity" name="sCity"
 										class="form-control">
 										<option value="">--请选择--</option>
 									</select>
@@ -92,9 +92,9 @@
 						</li>
 						<li>
 							<div class="form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">寄件人城市</label>
+								<label class="control-label col-md-4 col-sm-4 col-xs-12">寄件人网点</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<select id="queryCategoryLevel1" name="queryCategoryLevel1"
+									<select id="sPoint" name="sPoint"
 										class="form-control">
 										<option value="">--请选择--</option>
 									</select>
@@ -105,9 +105,9 @@
 							<div class="form-group">
 								<label class="control-label col-md-4 col-sm-4 col-xs-12">收件人姓名</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input name="querySoftwareName" type="text"
+									<input name="gName" type="text"
 										class="form-control col-md-7 col-xs-12"
-										value="${querySoftwareName }">
+										value="${gName }">
 								</div>
 							</div>
 						</li>
@@ -115,17 +115,17 @@
 							<div class="form-group">
 								<label class="control-label col-md-4 col-sm-4 col-xs-12">收件人电话</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input name="querySoftwareName" type="text"
+									<input name="gTel" type="text"
 										class="form-control col-md-7 col-xs-12"
-										value="${querySoftwareName }">
+										value="${gTel }">
 								</div>
 							</div>
 						</li>
 						<li>
 							<div class="form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">收件人网点</label>
+								<label class="control-label col-md-4 col-sm-4 col-xs-12">收件人城市</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<select id="queryCategoryLevel1" name="queryCategoryLevel1"
+									<select id="gCity" name="gCity"
 										class="form-control">
 										<option value="">--请选择--</option>
 									</select>
@@ -134,9 +134,9 @@
 						</li>
 						<li>
 							<div class="form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">收件人城市</label>
+								<label class="control-label col-md-4 col-sm-4 col-xs-12">收件人网点</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<select id="queryCategoryLevel1" name="queryCategoryLevel1"
+									<select id="gPoint" name="gPoint"
 										class="form-control">
 										<option value="">--请选择--</option>
 									</select>
@@ -148,7 +148,7 @@
 								<label class="control-label col-md-4 col-sm-4 col-xs-12">工单状态</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<!-- 							queryStatus要与controller中参数保持一致,queryStatus为APP状态参数 -->
-									<select name="queryStatus" class="form-control">
+									<select name="workStatus" class="form-control">
 										<option value="">--请选择--</option>
 									</select>
 								</div>
@@ -158,9 +158,9 @@
 							<div class="form-group">
 								<label class="control-label col-md-4 col-sm-4 col-xs-12">收快递员工号</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input name="querySoftwareName" type="text"
+									<input name="gCourier" type="text"
 										class="form-control col-md-7 col-xs-12"
-										value="${querySoftwareName }">
+										value="${gCourier }">
 								</div>
 							</div>
 						</li>
@@ -168,9 +168,9 @@
 							<div class="form-group">
 								<label class="control-label col-md-4 col-sm-4 col-xs-12">送快递员工号</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input name="querySoftwareName" type="text"
+									<input name="sCourier" type="text"
 										class="form-control col-md-7 col-xs-12"
-										value="${querySoftwareName }">
+										value="${sCourier }">
 								</div>
 							</div>
 						</li>
@@ -178,7 +178,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-4 col-sm-4 col-xs-12">审核结果</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<select name="queryFlatformId" class="form-control">
+									<select name="result" class="form-control">
 										<option value="">--请选择--</option>
 									</select>
 								</div>
@@ -210,7 +210,17 @@
 											aria-controls="datatable-responsive" rowspan="1" colspan="1"
 											style="width: 124px;"
 											aria-label="First name: activate to sort column descending"
-											aria-sort="ascending">工作单号</th>
+											aria-sort="ascending">工单编号</th>
+										<th class="sorting_asc" tabindex="0"
+											aria-controls="datatable-responsive" rowspan="1" colspan="1"
+											style="width: 124px;"
+											aria-label="First name: activate to sort column descending"
+											aria-sort="ascending">工单号</th>
+										<th class="sorting_asc" tabindex="0"
+											aria-controls="datatable-responsive" rowspan="1" colspan="1"
+											style="width: 124px;"
+											aria-label="First name: activate to sort column descending"
+											aria-sort="ascending">订单号</th>
 										<th class="sorting" tabindex="0"
 											aria-controls="datatable-responsive" rowspan="1" colspan="1"
 											style="width: 80px;"
@@ -226,21 +236,17 @@
 											style="width: 80px;"
 											aria-label="Last name: activate to sort column ascending">
 											收件人</th>
-										<th class="sorting" tabindex="0"
-											aria-controls="datatable-responsive" rowspan="1" colspan="1"
-											style="width: 200px;
-										aria-label=" Last name:
-											activate to sort columnascending">收件人地址</th>
+										<<th class="sorting" tabindex="0"
+											 aria-controls="datatable-responsive" rowspan="1" colspan="1"
+											 style="width: 80px;"
+											 aria-label="Last name: activate to sort column ascending">
+											收件人地址</th>
 										<th class="sorting" tabindex="0"
 											aria-controls="datatable-responsive" rowspan="1" colspan="1"
 											style="width: 124px;"
 											aria-label="Last name: activate to sort column ascending">
 											收件人电话</th>
-										<th class="sorting" tabindex="0"
-											aria-controls="datatable-responsive" rowspan="1" colspan="1"
-											style="width: 66px;"
-											aria-label="Last name: activate to sort column ascending">
-											尺寸</th>
+
 										<th class="sorting" tabindex="0"
 											aria-controls="datatable-responsive" rowspan="1" colspan="1"
 											style="width: 66px;"
@@ -257,18 +263,22 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-								 <td>李普强</td>
-								 <td>13588888888</td>
-								 <td>市场部</td>
-								 <td>湖南</td>
-								 <td>岳阳</td>
-								 <td>相思树</td>
-								 <td>8991233883893</td>
-								 <td>男</td>
-								 <td>帅哥</td>
-								 <td><a href="xiangqing_zz.jsp" class="btn btn-primary">查看修改</a></td>
-								</tr>
+								<c:forEach var="workorder" items="${workorderList }" varStatus="status">
+									<tr role="row" class="odd">
+										<td tabindex="0" class="sorting_1">${workorder.id}</td>
+										<td>${workorder.workNum }</td>
+										<td>${workorder.orderNum }</td>
+										<td>${workorder.gCity }</td>
+										<td>${workorder.gPoint }</td>
+										<td>${workorder.gName }</td>
+										<td>${workorder.gAddress }</td>
+										<td>${workorder.gTel }</td>
+										<td>${workorder.realWeight }</td>
+										<td>${workorder.sCourier }</td>
+										<%--<td><a href="${pageContext.request.contextPath}/center/todetail" class="btn btn-primary">查看/修改</a></td>--%>
+										<td><a id="lookandmodify" href="/center/todetail?workorderid=${workorder.id}" class="btn btn-primary" >查看/修改</a></td>
+									</tr>
+								</c:forEach>
 								</tbody>
 							</table>
 						</div>
@@ -313,8 +323,8 @@
 		</div>
 	</div>
 </div>
-<%@include file="../../../common/footer.jsp"%>
+<%@include file="../common/footer.jsp"%>
 <script
 	src="${pageContext.request.contextPath }/statics/localjs/rollpage.js"></script>
 <script
-	src="${pageContext.request.contextPath }/statics/localjs/appinfolist.js"></script>
+	src="${pageContext.request.contextPath }/statics/js/zz/gongdan2_zz.js"></script>

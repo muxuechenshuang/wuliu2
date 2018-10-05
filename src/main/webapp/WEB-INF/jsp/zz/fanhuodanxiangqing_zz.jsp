@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
-<%@include file="../../../common/header.jsp"%>
+<%@include file="../common/header.jsp"%>
 <div class="clearfix"></div>
 <div class="row">
   <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
       <div class="x_title">
-        <h2>查看并审核返货单 <i class="fa fa-user"></i>${userSession.userName}</small></h2>
+        <h2>查看并审核返货单 <i class="fa fa-user">/h2>
              <div class="clearfix"></div>
-      </div>
       <div class="x_title">
             <h2>返货单基础信息</h2>
           <div class="clearfix"></div>
@@ -17,109 +16,141 @@
         <form class="form-horizontal form-label-left" action="checksave" method="post">
           <input type="hidden" name="id" value="${appInfo.id}">
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">返货单号 <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id">返货单号 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input class="form-control col-md-7 col-xs-12" value="${appInfo.softwareName}" 
-              type="text" readonly="readonly">
+              <input class="form-control col-md-7 col-xs-12" value="${appInfo.id}"
+              type="text" readonly="readonly" id="id" name="id">
             </div>
           </div>
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">申请员工工号<span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gid">相关工单单号 <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input class="form-control col-md-7 col-xs-12" value="${appInfo.gid}"
+                     type="text" readonly="readonly" id="gid" name="gid">
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="yid">申请员工工号<span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="text" class="form-control col-md-7 col-xs-12" 
-              value="${appInfo.APKName}" readonly="readonly">
+              value="${appInfo.yid}" readonly="readonly" id="yid" name="yid">
             </div>
           </div>
           
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">返货原因<span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="result">返货原因<span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input class="form-control col-md-7 col-xs-12" 
-              	value="${appInfo.supportROM}" type="text" readonly="readonly">
+              	value="${appInfo.result}" type="text" readonly="readonly" id="result" name="result">
             </div>
           </div>
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">创建时间 <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="result">创建时间<span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input class="form-control col-md-7 col-xs-12" readonly="readonly"
-              	value="${appInfo.interfaceLanguage}" type="text">
+              <input class="form-control col-md-7 col-xs-12"
+                     value="${appInfo.ctreaTime}" type="text" readonly="readonly" id="ctreaTime" name="ctreaTime">
             </div>
           </div>
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">收件人姓名<span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gName">收件人姓名<span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" value="${appInfo.softwareSize}"
-              class="form-control col-md-7 col-xs-12" readonly="readonly">
-            </div>
-          </div>
-          
-          <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">收件人电话 <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" value="${appInfo.downloads}"
-               class="form-control col-md-7 col-xs-12" readonly="readonly">
-            </div>
-          </div>
-          
-          <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="select">收件人地址<span class="required">*</span></label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" class="form-control col-md-7 col-xs-12" 
-              	value="${appInfo.flatformName}" readonly="readonly">
-            
+              <input type="text" value="${appInfo.gName}"
+              class="form-control col-md-7 col-xs-12" readonly="readonly" id="gName" name="gName">
             </div>
           </div>
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="select">寄件人姓名<span class="required">*</span></label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" class="form-control col-md-7 col-xs-12" 
-              	value="${appInfo.categoryLevel1Name} --> ${appInfo.categoryLevel2Name} --> ${appInfo.categoryLevel3Name}" readonly="readonly">
-            </div>
-            </div>
-            <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="select">寄件人电话<span class="required">*</span></label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" class="form-control col-md-7 col-xs-12" 
-              	value="${appInfo.flatformName}" readonly="readonly">
-            
-            </div>
-          </div>
-           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">寄件人地址 <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gPhone">收件人电话 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" value="${appInfo.downloads}"
-               class="form-control col-md-7 col-xs-12" readonly="readonly">
-            </div>
-          </div>
-           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="number">审核状态 <span class="required">*</span>
-            </label>
-            <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="text" value="${appInfo.downloads}"
-               class="form-control col-md-7 col-xs-12" readonly="readonly">
+              <input type="text" value="${appInfo.gPhone}"
+                     class="form-control col-md-7 col-xs-12" readonly="readonly" id="gPhone" name="gPhone">
             </div>
           </div>
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">审核时间 <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gCity">收件人城市 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-            	<input type="text" class="form-control col-md-7 col-xs-12" 
-              	value="${appInfo.statusName}" readonly="readonly">
+              <input type="text" value="${appInfo.gCity}"
+               class="form-control col-md-7 col-xs-12" readonly="readonly" id="gCity" name="gCity">
             </div>
           </div>
           <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">备注 <span class="required">*</span>
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gPoint">收件人网点 <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <textarea class="form-control col-md-7 col-xs-12" > 
-              ${appInfo.appInfo}</textarea>
+              <input type="text" value="${appInfo.gPoint}"
+                     class="form-control col-md-7 col-xs-12" readonly="readonly" id="gPoint" name="gPoint">
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="gAddress">收件人地址 <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" value="${appInfo.gAddress}"
+                     class="form-control col-md-7 col-xs-12" readonly="readonly" id="gAddress" name="gAddress">
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sName">寄件人姓名 <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" value="${appInfo.sName}"
+                     class="form-control col-md-7 col-xs-12" readonly="readonly" id="sName" name="sName">
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sPhone">收件人电话 <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" value="${appInfo.gAddress}"
+                     class="form-control col-md-7 col-xs-12" readonly="readonly" id="sPhone" name="sPhone">
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sCity">收件人城市 <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" value="${appInfo.sCity}"
+                     class="form-control col-md-7 col-xs-12" readonly="readonly" id="sCity" name="sCity">
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sPoint">收件人网点 <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" value="${appInfo.sPoint}"
+                     class="form-control col-md-7 col-xs-12" readonly="readonly" id="sPoint" name="sPoint">
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sPoint">收件人地址 <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" value="${appInfo.sAddress}"
+                     class="form-control col-md-7 col-xs-12" readonly="readonly" id="sAddress" name="sAddress">
+            </div>
+          </div>
+          <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sPoint">审核时间 <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <input type="text" value="${appInfo.auditTime}"
+                     class="form-control col-md-7 col-xs-12" readonly="readonly" id="auditTime" name="auditTime">
+            </div>
+          </div>
+
+          <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="comment">备注 <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <textarea class="form-control col-md-7 col-xs-12" id="comment" name="comment">
+              ${appInfo.comment}</textarea>
             </div>
           </div>
 <!--            <div class="item form-group"> -->
@@ -139,7 +170,7 @@
         	<div class="form-group">
         		<div class="col-md-6 col-md-offset-3">
         		<button id="status" type="submit" name="status" value="2" class="btn btn-success">审核通过</button>
-        		<button id="status" type="submit" name="status" value="3" class="btn btn-success">审核不通过</button>
+        		<button id="status1" type="submit" name="status" value="3" class="btn btn-success">审核不通过</button>
           		<button type="button" class="btn btn-primary" id="back">返回</button>
         		</div>
      		</div>
@@ -185,7 +216,7 @@
 <!--             </label> -->
 <!--             <div class="col-md-6 col-sm-6 col-xs-12"> -->
 <!--               <textarea class="form-control col-md-7 col-xs-12"> -->
-              ${appVersion.versionInfo }</textarea>
+              <%--${appVersion.versionInfo }</textarea>--%>
 <!--             </div> -->
 <!--           </div> -->
 <!--            <div class="item form-group"> -->
@@ -212,5 +243,5 @@
     <br/><br/>
   </div>
 </div>
-<%@include file="../../../common/footer.jsp"%>
+<%@include file="../common/footer.jsp"%>
 <script src="${pageContext.request.contextPath }/statics/localjs/appcheck.js"></script>

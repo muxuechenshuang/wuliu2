@@ -20,7 +20,7 @@
                                 class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" name="orderNum" value="${order.id}" readonly
+                            <input class="form-control col-md-7 col-xs-12" name="orderNum" value="${order.orderNumber}" readonly
                                    type="text">
                         </div>
                     </div>
@@ -163,8 +163,8 @@
         <%@include file="../common/footer.jsp" %>
         <script src="${pageContext.request.contextPath }/statics/localjs/appinfoview.js"></script>
         <script type="text/javascript">
-            /*返回按纽*/
-            $("#back").click(function () {
-                window.location.href = "allorder";
-            })
-        </script>
+        /*返回按纽*/
+        $("#back").click(function () {
+            window.location.href = "someorder/?courierNum=${user.id}";
+        })
+    </script>

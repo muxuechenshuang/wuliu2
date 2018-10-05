@@ -2,6 +2,7 @@ package com.forest.wu.dao;
 
 import com.forest.wu.pojo.Order_info;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -38,7 +39,7 @@ public interface Order_infoMapper {
     * @Param：[]
     * @return：java.util.List<com.forest.wu.pojo.Order_info>
     **/
-    List<Order_info> selectSomeOrder(Order_info order);
+    List<Order_info> selectSomeOrder( Order_info order);
 
 
 
@@ -51,5 +52,19 @@ public interface Order_infoMapper {
     **/
     
     Order_info selectOneOrderByCourier(int id);
+
+
+    /**
+    * @author: 肖林辉 
+    * @Description  修改订单状态
+    * @Date: 20:54 2018/10/2/002
+    * @Param：[order]
+    * @return：int
+    **/
+    
+    int updateOrderStatusByCourier(Order_info order);
+
+
+
 }
 

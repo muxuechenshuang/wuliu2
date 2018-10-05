@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +35,7 @@ public class LoginController {
 
     //登录页面
     @RequestMapping(value = "/register",method= RequestMethod.POST)
-    public String userAll(@RequestParam String user,@RequestParam String password, HttpSession session, HttpServletRequest request) {
+    public String userAll(@RequestParam String user,@RequestParam String password, HttpSession session) {
         List<User> ss = userService.selectULogin();
         //循环查询
         int i =0;
@@ -93,7 +91,8 @@ public class LoginController {
     @RequestMapping(value = "/userLogin",method= RequestMethod.POST)
     public String userLogin(User user){
             User login = new User();
-            login.setPassword(MD5.MD5(user.getPassword()));
+            //赋值
+            login.setPassword(MD5.MD5(user.getPassword()));//MD5加密
             login.setUsername(user.getUsername());
             login.setEmail(user.getEmail());
             login.setPhone(user.getPhone());
@@ -106,11 +105,7 @@ public class LoginController {
     @ResponseBody
     public Object code(@RequestParam String phone){
         IndustrySMS.setTo(phone);
-        IndustrySMS.execute();
-        String result=IndustrySMS.getResult();
+        IndustrySMS.execute();//运行接口
+        String result=IndustrySMS.getResult();//获取验证码
         return result;
     }
-
-}
-
-

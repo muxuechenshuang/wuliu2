@@ -1,5 +1,7 @@
 package com.forest.wu.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Order_info {
@@ -13,9 +15,18 @@ public class Order_info {
 
     private String gTel;
 
+    private int cityId;
+
+    private int branchId;
+
     private String gAddress;
 
     private String sAddress;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    private Date doorTime;
+
+    private int typeId;
 
     private String product;
 
@@ -29,8 +40,10 @@ public class Order_info {
 
     private String preVolume;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date riseTime;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date finishTime;
 
     private String reasonForCancle;
@@ -39,7 +52,9 @@ public class Order_info {
 
     private String entrust;
 
-    private String courierNumber;
+    private Integer courierNumber;
+
+
 
     public Integer getId() {
         return id;
@@ -185,11 +200,43 @@ public class Order_info {
         this.entrust = entrust == null ? null : entrust.trim();
     }
 
-    public String getCourierNumber() {
+    public Integer getCourierNumber() {
         return courierNumber;
     }
 
-    public void setCourierNumber(String courierNumber) {
-        this.courierNumber = courierNumber == null ? null : courierNumber.trim();
+    public void setCourierNumber(Integer courierNumber) {
+        this.courierNumber = courierNumber;
+    }
+
+    public int getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
+    }
+
+    public int getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(int branchId) {
+        this.branchId = branchId;
+    }
+
+    public int getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(int typeId) {
+        this.typeId = typeId;
+    }
+
+    public Date getDoorTime() {
+        return doorTime;
+    }
+
+    public void setDoorTime(Date doorTime) {
+        this.doorTime = doorTime;
     }
 }

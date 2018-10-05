@@ -1,7 +1,9 @@
 package com.forest.wu.service;
 
 import com.forest.wu.pojo.Order_info;
+import com.forest.wu.pojo.User;
 import com.forest.wu.pojo.Workorder;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -54,6 +56,49 @@ public interface Order_infoService {
     **/
     
     int addWorkorderByCourier(Workorder workorder);
+
     
+    /**
+    * @author: 肖林辉 
+    * @Description   修改订单的订单状态信息
+    * @Date: 19:15 2018/10/2/002
+    * @Param：[order]
+    * @return：int
+    **/
+    
+    int updateOrderStatusByCourier(Order_info order);
+
+
+    /**
+    * @author: 肖林辉 
+    * @Description   查找登录的快递  同一网点下的其它快递员
+    * @Date: 15:26 2018/10/3/003
+    * @Param：[parentid, id]
+    * @return：java.util.List<com.forest.wu.pojo.User>
+    **/
+    
+    List<User> selectCouriersByParentId(int parentid,int id);
+
+
+    /**
+     *
+     * @author: 任一
+     * @Description 添加订单
+     * @Date: 8:46 2018/10/5
+     * @Param：Order_info
+     * @return：boolean
+     */
+    boolean insertSelective (Order_info order_info);
+
+
+    /**
+    * @author: 肖林辉
+    * @Description    快递员查询工单  条件 工单状态为1   寄快递员号要等于登录的快递员编号
+    * @Date: 10:33 2018/10/4/004
+    * @Param：[workorder]
+    * @return：java.util.List<com.forest.wu.pojo.Workorder>
+    **/
+
+    List<Workorder> selectWorkOrderByCourier(Workorder workorder);
 
 }

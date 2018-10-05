@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +12,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>飞鸟物流</title>
+<title>飞鸟物流${user.id}</title>
 
 
 	<!-- Bootstrap -->
@@ -33,6 +34,8 @@
 	<!-- add localcss 2016-8-18 -->
 	<link href='${pageContext.request.contextPath }/statics/localcss/appinfoadd.css' rel='stylesheet'>
 	<link href='${pageContext.request.contextPath }/statics/localcss/appinfolist.css' rel='stylesheet'>
+
+	<link href="${pageContext.request.contextPath}/statics/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 </head>
 <body class="nav-md footer_fixed">
 	<div class="container body">
@@ -70,45 +73,44 @@
 							<h3>${devUserSession.devName }</h3>
 							<ul class="nav side-menu">
 
+
 								<li>
+									<c:if test="${user.type eq 1 }">
 								<li><a><i class="fa fa-edit"></i> 客户(任一)<span
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="${pageContext.request.contextPath}/lixing/query_ry.jsp">查件</a>
+										<li><a href="/calculate/query">查件</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath}/lixing/branchquery_ry.jsp">服务网点查询</a>
+										<li><a href="/calculate/branchquery">服务网点查询</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath}/lixing/moneyestimate_ry.jsp">运费时效查询</a>
+										<li><a href="/calculate/moneyestimate">运费时效查询</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath}/lixing/send_ry.jsp">寄件服务</a>
+										<li><a href="/calculate/intosend">寄件服务</a>
 										</li>
 									</ul></li>
-
+									</c:if>
 
 
 								<!--肖林辉  -->
+								<c:if test="${user.type eq 2 }">
 
 								<li><a><i class="fa fa-home"></i>快递员  肖林辉<span
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="${pageContext.request.contextPath}/order/allorder">订单查询</a>
+										<li><a href="/order/someorder?courierNum=${user.id}">订单查询</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath}/xlh/gondan_xlh.jsp">查询工单</a>
+										<li><a href="/order/toworkorder?courierNum=${user.id}">查询工单</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath}/xlh/xianqian_xlh.jsp">工单详情</a>
-										</li>
-										<li><a href="${pageContext.request.contextPath}/xlh/addinfo_xlh.jsp">生成工单</a>
-										</li>
-										<li><a href="${pageContext.request.contextPath}/xlh/echarts_xlh.jsp">图形报表</a>
+										<li><a href="/xlh/echarts_xlh.jsp">图形报表</a>
 										</li>
 									</ul></li>
+								</c:if>
 
 								<!--李普强  -->
 
-
-
+								<c:if test="${user.type eq 3 }">
 								<li><a><i class="fa fa-home"></i> 网点(李普强) <span
 										class="fa fa-chevron-down"></span>
 								</a>
@@ -127,43 +129,43 @@
 										<li><a href="${pageContext.request.contextPath}/lpq/mix-line-bar.jsp">网点报表</a>
 										</li>
 									</ul></li>
+								</c:if>
 
-
-
+								<c:if test="${user.type eq 4 }">
 								<!--李家和  -->
 								<li><a><i class="fa fa-home"></i>分公司管理<span
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="${pageContext.request.contextPath}/filiale/wd/query">网点管理</a></li>
-										<li><a href="${pageContext.request.contextPath}/ljh/kuaidiyuan_ry.jsp">快递员管理</a></li>
-										<li><a href="${pageContext.request.contextPath}/ljh/addkuaidiyuan.jsp">新增快递员</a></li>
+										<li><a href="${pageContext.request.contextPath}/filiale/wdquery">网点管理</a></li>
 										<li><a href="${pageContext.request.contextPath}/ljh/gongdan_ry.jsp">工单查询</a>
-										<li><a href="${pageContext.request.contextPath}/ljh/addwangdian.jsp">添加网点</a></li>
 										<li><a href="${pageContext.request.contextPath}/ljh/chuku.jsp">出库</a></li>
 										<li><a href="${pageContext.request.contextPath}/ljh/ruku.jsp">入库</a></li>
 									</ul>
 
 								</li>
+								</c:if>
 
-
+								<c:if test="${user.type eq 5 }">
 								<!--张展  -->
-								<li><a><i class="fa fa-home"></i>总公司管理<span
+
+                                <li><a><i class="fa fa-home"></i>总公司管理<span
 										class="fa fa-chevron-down"></span>
 								</a>
 
 									<ul class="nav child_menu">
 
-										<li><a href="${pageContext.request.contextPath}/zz/gondan2_zz.jsp">查询工单（总部）</a>
-										</li>
-										<li><a href="${pageContext.request.contextPath}/zz/fanhuodanlist_zz.jsp">返货单查询</a>
-										</li>
-										<li><a href="${pageContext.request.contextPath}/zz/fanhuodanxiangqing_zz.jsp">审核返货单</a>
-										</li>
-										<li><a href="${pageContext.request.contextPath}/WEB-INF/jsp/zz/fengongsitianjia_zz.jsp">新增分公司</a></li>
-										<li><a href="${pageContext.request.contextPath}/zz/fengongsichaxun_zz.jsp">分公司管理</a></li>
-										<li><a href="${pageContext.request.contextPath}/zz/wangdianchaxun_zz.jsp">网点管理</a></li>
+										<li><a href="/center/toselectworkorder">查询工单（总部）</a></li>
+										<li><a href="/center/todetail">工单详情</a></li>
+										<li><a href="/center/returnlist">返货单查询</a></li>
+										<li><a href="/center/returndetail">审核返货单</a></li>
+										<li><a href="/center/addsoncompany">新增分公司</a></li>
+										<li><a href="/center/tosoncompanylist">分公司管理</a></li>
+										<li><a href="/center/soncompanydetail">分公司详情（修改）</a></li>
+										<li><a href="/center/addsonperson">新增分公司管理</a></li>
+										<li><a href="/center/baobiao1">报表</a></li>
 							</ul></li>
+								</c:if>
 						</ul></div>
 
 
