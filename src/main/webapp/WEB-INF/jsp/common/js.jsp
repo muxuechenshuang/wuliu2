@@ -17,7 +17,9 @@
     
      <script src="${pageContext.request.contextPath }/statics/js/jquery.dataTables.min.js"></script> 
      
-     <script src="${pageContext.request.contextPath }/statics/js/icheck.min.js"></script> 
+     <script src="${pageContext.request.contextPath }/statics/js/icheck.min.js"></script>
+
+   <script src="${pageContext.request.contextPath}/statics/js/bootstrap-datetimepicker.min.js"></script>
     
       <!-- Bootstrap -->
 	<%-- <script src="${pageContext.request.contextPath }/statics/js/jquery.dataTables.min.js"></script>

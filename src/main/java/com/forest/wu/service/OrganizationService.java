@@ -55,4 +55,5 @@ public interface OrganizationService {
      * 根据父ID查询（带分页）
      */
     public List<Organization> getBranchList(Integer parentId, Integer currentPageNo, Integer pageSize);
+
 }

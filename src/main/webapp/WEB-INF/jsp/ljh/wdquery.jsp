@@ -16,7 +16,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <form method="post" action="/filiale/wd/query">
+                <form method="post" action="/filiale/wdquery">
                     <input type="hidden" name="pageIndex" value="1"/>
                     <ul>
                         <li>
@@ -116,7 +116,7 @@
                                                     <span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
-                                                    <li><a class="modifyWd"
+                                                    <li><a href="${pageContext.request.contextPath}/filiale/modifyWd?id=${wd.id}&parentId=${wd.parentId}"
                                                            wdid="${wd.id }"
                                                            data-toggle="tooltip"
                                                            data-placement="top" title=""
@@ -126,7 +126,7 @@
                                                             data-toggle="tooltip" data-placement="top" title=""
                                                            data-original-title="查看网点信息">查看</a>
                                                     </li>
-                                                    <li><a class="deleteWd" wd=${wd.id}
+                                                    <li><a class="deleteWd" wdid=${wd.id} wdname=${wd.name}
                                                             data-toggle="tooltip" data-placement="top" title=""
                                                            data-original-title="删除网点信息">删除</a>
                                                     </li>

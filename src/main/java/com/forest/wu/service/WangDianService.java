@@ -1,6 +1,7 @@
 package com.forest.wu.service;
 
 import com.forest.wu.pojo.Organization;
+import com.sun.org.apache.xpath.internal.operations.Or;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  **/
 public interface WangDianService {
 
-    public List<Organization> getWdListByCondition(Integer id, String name, String phone) ;
+    public List<Organization> getWdListByCondition(Integer id, String name, String phone,Integer parentId) ;
 
     public boolean modifyWd(Organization wd) ;
 
@@ -23,5 +24,11 @@ public interface WangDianService {
 
     public int getWdCount() ;
 
-    public Organization getWdById(Integer id);
+    public Organization getWd(Organization wd);
+
+    public Organization getSonCompanyById(Integer id);
+
+    public int getOrderCountByWdId(Integer id);
+
+    public int  getUserCountByWdId(Integer id);
 }

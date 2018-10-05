@@ -32,6 +32,10 @@
 
         <div class="clearfix"></div>
 
+		<c:if test="${nullErro!=null}">
+			<h1>${nullErro}</h1>
+		</c:if>
+
         <c:if test="${branchList!=null}">
         <div class="x_title">
             <h2>网点列表</h2>
@@ -66,7 +70,10 @@
 						<td>${branch.name}</td>
 						<td>${branch.site}</td>
 						<td>${branch.phone}</td>
-						<td><a class="">我要寄件</a></td>
+						<%--<td><a class="goSend"
+							cityId = ${cityId},
+							branchId = ${branch.id}>我要寄件</a></td>--%>
+						<td><a href="/calculate/intosend?cityId=${cityId}&branchId=${branch.id}">我要寄件</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

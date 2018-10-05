@@ -17,11 +17,13 @@ import java.util.List;
  **/
 @Service
 public class WangDianServiceImpl implements WangDianService {
+
+
     @Autowired
     private OrganizationMapper orgMapper;
 
     @Override
-    public List<Organization> getWdListByCondition(Integer id, String name, String phone)   {
+    public List<Organization> getWdListByCondition(Integer id, String name, String phone,Integer parentId)   {
         Organization org = new Organization();
         if (!StringUtils.isEmpty(id)) {
             org.setId(id);
@@ -31,6 +33,9 @@ public class WangDianServiceImpl implements WangDianService {
         }
         if (!StringUtils.isEmpty(phone)) {
             org.setPhone(phone);
+        }
+        if (!StringUtils.isEmpty(parentId)) {
+            org.setParentId(parentId);
         }
         return orgMapper.selectByCondition(org);
     }
@@ -54,6 +59,16 @@ public class WangDianServiceImpl implements WangDianService {
     }
 
     @Override
+    public int getOrderCountByWdId(Integer id) {
+        return orgMapper.selectOrderCountByWdId(id);
+    }
+
+    @Override
+    public int getUserCountByWdId(Integer id) {
+        return orgMapper.selectUserCountByWdId(id);
+    }
+
+    @Override
     public boolean addWd(Organization wd)   {
         boolean flag = false;
         if (orgMapper.insertSelective(wd) > 0) {
@@ -68,7 +83,12 @@ public class WangDianServiceImpl implements WangDianService {
     }
 
     @Override
-    public Organization getWdById(Integer id) {
-        return orgMapper.selectWdById(id);
+    public Organization getWd(Organization organization) {
+        return orgMapper.selectWd(organization);
+    }
+
+    @Override
+    public Organization getSonCompanyById(Integer id) {
+        return orgMapper.selectOrgnizationById(id);
     }
 }

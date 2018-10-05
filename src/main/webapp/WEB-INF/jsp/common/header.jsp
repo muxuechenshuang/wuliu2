@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,6 +34,8 @@
 	<!-- add localcss 2016-8-18 -->
 	<link href='${pageContext.request.contextPath }/statics/localcss/appinfoadd.css' rel='stylesheet'>
 	<link href='${pageContext.request.contextPath }/statics/localcss/appinfolist.css' rel='stylesheet'>
+
+	<link href="${pageContext.request.contextPath}/statics/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 </head>
 <body class="nav-md footer_fixed">
 	<div class="container body">
@@ -77,13 +80,13 @@
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="${pageContext.request.contextPath}/lixing/query_ry.jsp">查件</a>
+										<li><a href="/calculate/query">查件</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath}/lixing/branchquery_ry.jsp">服务网点查询</a>
+										<li><a href="/calculate/branchquery">服务网点查询</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath}/lixing/moneyestimate_ry.jsp">运费时效查询</a>
+										<li><a href="/calculate/moneyestimate">运费时效查询</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath}/lixing/send_ry.jsp">寄件服务</a>
+										<li><a href="/calculate/intosend">寄件服务</a>
 										</li>
 									</ul></li>
 									</c:if>
@@ -134,11 +137,8 @@
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="${pageContext.request.contextPath}/filiale/wd/query">网点管理</a></li>
-										<li><a href="${pageContext.request.contextPath}/ljh/kuaidiyuan_ry.jsp">快递员管理</a></li>
-										<li><a href="${pageContext.request.contextPath}/ljh/addkuaidiyuan.jsp">新增快递员</a></li>
+										<li><a href="${pageContext.request.contextPath}/filiale/wdquery">网点管理</a></li>
 										<li><a href="${pageContext.request.contextPath}/ljh/gongdan_ry.jsp">工单查询</a>
-										<li><a href="${pageContext.request.contextPath}/ljh/addwangdian.jsp">添加网点</a></li>
 										<li><a href="${pageContext.request.contextPath}/ljh/chuku.jsp">出库</a></li>
 										<li><a href="${pageContext.request.contextPath}/ljh/ruku.jsp">入库</a></li>
 									</ul>
@@ -181,7 +181,7 @@
 						</a> <a data-toggle="tooltip" data-placement="top" title="Lock"> <span
 							class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
 						</a> <a data-toggle="tooltip" data-placement="top" title="Logout"
-							href="${pageContext.request.contextPath }/dev/logout"> <span
+							href="${pageContext.request.contextPath }/wuliu/index"> <span
 							class="glyphicon glyphicon-off" aria-hidden="true"></span> </a>
 					</div>
 					<!-- /menu footer buttons -->
@@ -206,7 +206,7 @@
 									class=" fa fa-angle-down"></span> </a>
 								<ul class="dropdown-menu dropdown-usermenu pull-right">
 									<li><a
-										href="${pageContext.request.contextPath }/dev/logout"><i
+										href="${pageContext.request.contextPath }/wuliu/index"><i
 											class="fa fa-sign-out pull-right"></i> Log Out</a>
 									</li>
 								</ul></li>
