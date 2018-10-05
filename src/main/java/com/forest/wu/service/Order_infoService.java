@@ -3,6 +3,7 @@ package com.forest.wu.service;
 import com.forest.wu.pojo.Order_info;
 import com.forest.wu.pojo.User;
 import com.forest.wu.pojo.Workorder;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -82,11 +83,22 @@ public interface Order_infoService {
     /**
      *
      * @author: 任一
-     * @Description
+     * @Description 添加订单
      * @Date: 8:46 2018/10/5
      * @Param：Order_info
      * @return：boolean
      */
     boolean insertSelective (Order_info order_info);
+
+
+    /**
+    * @author: 肖林辉
+    * @Description    快递员查询工单  条件 工单状态为1   寄快递员号要等于登录的快递员编号
+    * @Date: 10:33 2018/10/4/004
+    * @Param：[workorder]
+    * @return：java.util.List<com.forest.wu.pojo.Workorder>
+    **/
+
+    List<Workorder> selectWorkOrderByCourier(Workorder workorder);
 
 }

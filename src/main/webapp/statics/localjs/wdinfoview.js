@@ -1,5 +1,5 @@
 $("#back").on("click",function(){
-	window.location.href = "../query";
+	window.location.href = "../wdquery";
 });
 	
 	

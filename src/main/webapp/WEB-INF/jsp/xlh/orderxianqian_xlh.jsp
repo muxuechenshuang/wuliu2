@@ -108,7 +108,7 @@
                       class="required"></span>
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <input class="form-control col-md-7 col-xs-12" value="" readonly
+                <input class="form-control col-md-7 col-xs-12" value="${order.courierNumber}" readonly
                        type="text">
               </div>
             </div>
@@ -136,7 +136,7 @@
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <input class="form-control col-md-7 col-xs-12" value="<fmt:formatDate value="${order.riseTime}" pattern="yyyy-MM-dd HH:mm:ss"/>" readonly
-                       type="text">
+                                           type="text">
               </div>
             </div>
             <div class="item form-group">
@@ -184,6 +184,6 @@
   <script type="text/javascript">
       /*返回按纽*/
       $("#back").click(function () {
-          window.location.href = "allorder";
+          window.location.href = "someorder/?courierNum=${user.id}";
       })
   </script>

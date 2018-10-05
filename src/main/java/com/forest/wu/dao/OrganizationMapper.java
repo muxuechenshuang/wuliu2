@@ -1,6 +1,7 @@
 package com.forest.wu.dao;
 
 import com.forest.wu.pojo.Organization;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -40,12 +41,21 @@ public interface OrganizationMapper {
 
     /**
     * @author: 李家和
-    * @Description 根据条件查询网点，分公司
+    * @Description 根据条件查询网点
     * @Date: 14:05 2018/9/29
     * @Param：[id, name, phone]
     * @return：com.forest.wu.pojo.Organization
     **/
     List<Organization> selectByCondition(Organization record);
+
+    /**
+    * @author: 李家和
+    * @Description 通过id获取Organization
+    * @Date: 13:59 2018/10/4
+    * @Param：[id]
+    * @return：com.forest.wu.pojo.Organization
+    **/
+    Organization selectOrgnizationById(Integer id);
 
     int updateByPrimaryKeySelective(Organization record);
 
@@ -62,12 +72,30 @@ public interface OrganizationMapper {
 
     /**
     * @author: 李家和
-    * @Description 通过id查询单个网点
+    * @Description 通过条件查询单个网点
     * @Date: 20:47 2018/9/30
     * @Param：[id]
     * @return：com.forest.wu.pojo.Organization
     **/
-    Organization selectWdById( Integer id);
+    Organization selectWd( Organization wd);
+
+    /**
+    * @author: 李家和
+    * @Description 根据网点id查询该网点的订单数（作为删除网点的条件之一）
+    * @Date: 11:14 2018/10/5
+    * @Param：[id]
+    * @return：int
+    **/
+    int selectOrderCountByWdId(Integer id);
+
+    /**
+    * @author: 李家和
+    * @Description 根据网点id查询该网点的快递员数量（作为删除网点的条件之一）
+    * @Date: 11:23 2018/10/5
+    * @Param：[id]
+    * @return：int
+    **/
+    int selectUserCountByWdId(Integer id);
 
     /**
      *
@@ -121,4 +149,21 @@ public interface OrganizationMapper {
     * Return：java.util.List<com.forest.wu.pojo.Organization>
     **/
     List<Organization> selectSonCompany(Organization organization);
+    /**
+    * author: 张展
+    * 通过ID查询分公司（网点也行）
+    * Date: 11:47 2018/10/4
+    * Param：[id]
+    * Return：com.forest.wu.pojo.Organization
+    **/
+    Organization selectById(Integer id);
+    
+    /**
+    * author: 张展
+    * 通过对象更新数据库organization表（分公司网点都行）
+    * Date: 11:48 2018/10/4
+    * Param：[organization]
+    * Return：java.lang.Integer
+    **/
+    Integer update(Organization organization);
 }

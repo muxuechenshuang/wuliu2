@@ -31,14 +31,20 @@
             <if test="phone!=null">
                 and phone like CONCAT ('%',#{phone},'%')
             </if>
-            and type=3
+            and type=3 and parentId=#{parentId}
         </trim>
     </select>
 
-
-    <select id="selectWdById" resultType="com.forest.wu.pojo.Organization">
+    <select id="selectOrgnizationById" resultType="com.forest.wu.pojo.Organization">
         select
         <include refid="Base_Column_List"/>
+        from organization where id=#{id}
+    </select>
+
+    <!--查询单个网点-->
+    <select id="selectWd" resultType="com.forest.wu.pojo.Organization">
+        select
+        <include refid="Base_Column_List"/>,(select name from organization where id=#{parentId}) as parentName
         from organization
         where id=#{id} and type =3
     </select>
@@ -46,10 +52,20 @@
     <!--获得网点总数量-->
     <select id="selectWdCount" resultType="int">
     select count(1) from organization where type =3
-  </select>
+    </select>
+
+    <!--根据网点id查询该网点的订单数（作为删除网点的条件之一）-->
+    <select id="selectOrderCountByWdId" resultType="int">
+        SELECT count(1) FROM order_info WHERE branchId=#{id}
+    </select>
+
+    <!--根据网点id查询该网点的快递员数量（作为删除网点的条件之一）-->
+    <select id="selectUserCountByWdId" resultType="int">
+        SELECT count(1) FROM `user` WHERE parentid=#{id}
+    </select>
 
 
-    <!--按条件查询分公司-->
+    <!--按条件查询分公司列表-->
     <select id="selectSonCompany" resultType="com.forest.wu.pojo.Organization">
         select
         <include refid="Base_Column_List"/>
@@ -64,20 +80,21 @@
             <if test="phone!=null and phone!=''">
                 and phone=#{phone}
             </if>
-            and type=2
+            and type=2 Order BY id DESC
         </trim>
     </select>
 
+    <!--删除分公司网点-->
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from organization
     where id = #{id,jdbcType=INTEGER}
   </delete>
 
-
+    <!--添加分公司（网点也能用）,id自增-->
     <insert id="insert" parameterType="com.forest.wu.pojo.Organization">
-    insert into organization (id, name, parentId, 
+    insert into organization ( name, parentId,
       type, phone, site,city,introduction)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER},
+    values (#{name,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER},
       #{type,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{site,jdbcType=VARCHAR},#{city,jdbcType=VARCHAR},#{introduction,jdbcType=VARCHAR})
   </insert>
 
@@ -217,5 +234,43 @@
     </trim>
     limit #{from},#{pageSize}
   </select>
+
+
+    <!--根据ID查询组织（分公司）-->
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from organization
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <!--通过对象更新数据库organization表（分公司网点都行）-->
+    <update id="update" parameterType="com.forest.wu.pojo.Organization">
+        update organization
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="parentId != null">
+                parentId = #{parentId,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="site != null">
+                site = #{site,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="introduction != null">
+                introduction = #{introduction,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 
 </mapper>
