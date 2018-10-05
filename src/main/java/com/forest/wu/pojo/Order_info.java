@@ -1,5 +1,7 @@
 package com.forest.wu.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Order_info {
@@ -21,6 +23,9 @@ public class Order_info {
 
     private String sAddress;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    private Date doorTime;
+
     private int typeId;
 
     private String product;
@@ -35,8 +40,10 @@ public class Order_info {
 
     private String preVolume;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date riseTime;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date finishTime;
 
     private String reasonForCancle;
@@ -225,5 +232,13 @@ public class Order_info {
 
     public void setTypeId(int typeId) {
         this.typeId = typeId;
+    }
+
+    public Date getDoorTime() {
+        return doorTime;
+    }
+
+    public void setDoorTime(Date doorTime) {
+        this.doorTime = doorTime;
     }
 }

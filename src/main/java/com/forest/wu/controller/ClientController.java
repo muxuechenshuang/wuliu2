@@ -1,8 +1,10 @@
 package com.forest.wu.controller;
 
 import com.forest.wu.pojo.Dictionary;
+import com.forest.wu.pojo.Order_info;
 import com.forest.wu.pojo.Organization;
 import com.forest.wu.service.DictionaryService;
+import com.forest.wu.service.Order_infoService;
 import com.forest.wu.service.OrganizationService;
 import com.forest.wu.utils.CalculateMoneyEstimate;
 import com.forest.wu.utils.Constants;
@@ -16,6 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,6 +39,8 @@ public class ClientController {
     private OrganizationService organizationService;
     @Resource
     private DictionaryService dictionaryService;
+    @Resource
+    private Order_infoService order_infoService;
 
     //运算计费时效
 
@@ -165,9 +173,24 @@ public class ClientController {
     //查件
 
 
+    @RequestMapping(value = "/query")
+    public String queryInfoList(Model model, HttpSession session){
+        return "ry/query_ry";
+    }
+
+
     //寄件服务
 
 
+    /**
+     *
+     * @author: 任一
+     * @Description 
+     * @Date: 16:26 2018/10/4
+     * @Param：Model,String(_cityId),String(_branchId)
+     * @return：ry/send_ry
+     * 进入寄件页面
+     */
     @RequestMapping(value = "/intosend", method = RequestMethod.GET)
     public String intosend(Model model,
                            @RequestParam(value = "cityId", required = false) String _cityId,
@@ -189,12 +212,58 @@ public class ClientController {
         return "ry/send_ry";
     }
 
+    /**
+     *
+     * @author: 任一
+     * @Description 保存订单信息
+     * @Date: 10:02 2018/10/5
+     * @Param：Order_info(order_info),Model(model)
+     * @return：
+     */
+    @RequestMapping(value = "/savesend",method = RequestMethod.POST)
+    public String savesend (Order_info order_info,Model model){
+        //订单号
+        int num = (int)(Math.random()*9000)+1000;
+        Date date = new Date();
+        DateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+        String orderNumber = order_info.getUserId()+ format.format(date)+ num;
+        order_info.setOrderNumber(orderNumber);
+
+        //订单状态
+        order_info.setStatus(1);
+
+        //创建时间
+        order_info.setRiseTime(new Date());
+
+        //执行添加
+        try{
+            if(order_infoService.insertSelective(order_info)){
+                return "redirect:/wuliu/index";
+            }else{
+                model.addAttribute("sendErro","对不起，订单生成失败，请重试或联系管理员");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return "redirect:calculate/intosend";
+    }
+
+    /**
+     *
+     * @author: 任一
+     * @Description
+     * @Date: 16:28 2018/10/4
+     * @Param：
+     * @return：List<Organization>
+     * ajax返回网点列表
+     */
     @RequestMapping(value = "queryBranchList.json", method = RequestMethod.GET)
     @ResponseBody
     public List<Organization> queryBranchList(@RequestParam Integer parentId) {
         List<Organization> branchList = organizationService.selectByParentId(parentId);
         return branchList;
     }
+
 
 
     //站内信息

@@ -7,8 +7,12 @@
         <result column="gName" jdbcType="VARCHAR" property="gName" />
         <result column="sTel" jdbcType="VARCHAR" property="sTel" />
         <result column="gTel" jdbcType="VARCHAR" property="gTel" />
+        <result column="cityId" jdbcType="INTEGER" property="cityId"/>
+        <result column="branchId" jdbcType="INTEGER" property="branchId"/>
         <result column="gAddress" jdbcType="VARCHAR" property="gAddress" />
         <result column="sAddress" jdbcType="VARCHAR" property="sAddress" />
+        <result column="doorTime" jdbcType="TIMESTAMP" property="doorTime"/>
+        <result column="typeId" jdbcType="INTEGER" property="typeId"/>
         <result column="product" jdbcType="VARCHAR" property="product" />
         <result column="preWeight" jdbcType="DOUBLE" property="preWeight" />
         <result column="comment" jdbcType="VARCHAR" property="comment" />
@@ -23,7 +27,7 @@
         <result column="courierNumber" jdbcType="INTEGER" property="courierNumber" />
     </resultMap>
     <sql id="Base_Column_List">
-    id, sName, gName, sTel, gTel, gAddress, sAddress, product, preWeight, comment, orderNumber,
+    id, sName, gName, sTel, gTel, cityId, branchId, gAddress, sAddress, doorTime, typeId, product, preWeight, comment, orderNumber,
     status, preVolume, riseTime, finishTime, reasonForCancle, userId, entrust, courierNumber
   </sql>
 
@@ -138,11 +142,23 @@
             <if test="gTel != null">
                 gTel,
             </if>
+            <if test="cityId != null">
+                cityId,
+            </if>
+            <if test="branchId != null">
+                branchId,
+            </if>
             <if test="gAddress != null">
                 gAddress,
             </if>
             <if test="sAddress != null">
                 sAddress,
+            </if>
+            <if test="doorTime != null">
+                doorTime,
+            </if>
+            <if test="typeId != null">
+                typeId,
             </if>
             <if test="product != null">
                 product,
@@ -197,11 +213,23 @@
             <if test="gTel != null">
                 #{gTel,jdbcType=VARCHAR},
             </if>
+            <if test="cityId != null">
+                #{cityId,jdbcType=INTEGER},
+            </if>
+            <if test="branchId != null">
+                #{branchId,jdbcType=INTEGER},
+            </if>
             <if test="gAddress != null">
                 #{gAddress,jdbcType=VARCHAR},
             </if>
             <if test="sAddress != null">
                 #{sAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="doorTime != null">
+                #{doorTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="typeId != null">
+                #{typeId,jdbcType=INTEGER},
             </if>
             <if test="product != null">
                 #{product,jdbcType=VARCHAR},

@@ -3,7 +3,6 @@ package com.forest.wu.service;
 import com.forest.wu.pojo.Order_info;
 import com.forest.wu.pojo.User;
 import com.forest.wu.pojo.Workorder;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -78,5 +77,16 @@ public interface Order_infoService {
     **/
     
     List<User> selectCouriersByParentId(int parentid,int id);
+
+
+    /**
+     *
+     * @author: 任一
+     * @Description
+     * @Date: 8:46 2018/10/5
+     * @Param：Order_info
+     * @return：boolean
+     */
+    boolean insertSelective (Order_info order_info);
 
 }

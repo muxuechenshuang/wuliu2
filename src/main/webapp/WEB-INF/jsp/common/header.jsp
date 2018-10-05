@@ -80,13 +80,13 @@
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="${pageContext.request.contextPath}/lixing/query_ry.jsp">查件</a>
+										<li><a href="/calculate/query">查件</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath}/lixing/branchquery_ry.jsp">服务网点查询</a>
+										<li><a href="/calculate/branchquery">服务网点查询</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath}/lixing/moneyestimate_ry.jsp">运费时效查询</a>
+										<li><a href="/calculate/moneyestimate">运费时效查询</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath}/lixing/send_ry.jsp">寄件服务</a>
+										<li><a href="/calculate/intosend">寄件服务</a>
 										</li>
 									</ul></li>
 									</c:if>
