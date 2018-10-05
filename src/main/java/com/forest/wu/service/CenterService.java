@@ -75,6 +75,8 @@ public interface CenterService {
 
     public List<Organization> selectSonCompany(Organization organization) throws Exception;
 
+    public Organization selectById(Integer id) throws Exception;
+
     public int updateSonCompany(Organization organization) throws Exception;
 
     public int delectSonCompany(Integer id) throws Exception;

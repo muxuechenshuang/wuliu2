@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="fm" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@include file="../common/header.jsp"%>
 <script src="${pageContext.request.contextPath }/statics/js/jquery-1.4.2.min.js"></script>
-<script>$(document).ready(function(){
-    alert(${workorder.id});})
-</script>
 <div class="clearfix"></div>
 <div class="row">
 	<div class="col-md-12 col-sm-12 col-xs-12">
@@ -245,7 +241,7 @@
 							for="riseTime">生成时间 <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" value="${workorder.riseTime} "
+							<input type="text" value="<fmt:formatDate value="${workorder.riseTime}" pattern='yyyy-MM-dd HH:mm:ss'/>"
 								class="form-control col-md-7 col-xs-12" name="riseTime" id="riseTime">
 						</div>
 					</div>
@@ -255,7 +251,7 @@
 							for="firInStorage">初次入库时间 <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" value="${workorder.firInStorage}"
+							<input type="text" value="<fmt:formatDate value="${workorder.firInStorage}" pattern='yyyy-MM-dd HH:mm:ss'/>"
 								   class="form-control col-md-7 col-xs-12" name="firInStorage" id="firInStorage">
 						</div>
 					</div>
@@ -265,7 +261,7 @@
 							for="firOutStorage">初次出库时间<span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<input type="text" class="form-control col-md-7 col-xs-12"
-								   value="${workorder.firOutStorage}"  name="firOutStorage" id="firOutStorage">
+								   value="<fmt:formatDate value="${workorder.firOutStorage}" pattern='yyyy-MM-dd HH:mm:ss'/>" name="firOutStorage" id="firOutStorage">
 						</div>
 					</div>
 
@@ -274,7 +270,7 @@
 							for="secInStorage">二次入库时间<span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input class="form-control col-md-7 col-xs-12" value="${workorder.secInStorage}"
+							<input class="form-control col-md-7 col-xs-12" value="<fmt:formatDate value="${workorder.secInStorage}" pattern='yyyy-MM-dd HH:mm:ss'/>"
 								   type="text" name="secInStorage" id="secInStorage">
 						</div>
 					</div>
@@ -284,7 +280,7 @@
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<input class="form-control col-md-7 col-xs-12"
-								   name="secOutStorage" id="secOutStorage" value="${workorder.secOutStorage}"  type="text">
+								   name="secOutStorage" id="secOutStorage" value="<fmt:formatDate value="${workorder.secOutStorage}" pattern='yyyy-MM-dd HH:mm:ss'/>" type="text">
 						</div>
 					</div>
 					<div class="item form-group">
@@ -292,7 +288,7 @@
 							for="finishedTime">完成时间 <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" value="${workorder.finishedTime}"
+							<input type="text" value="<fmt:formatDate value="${workorder.finishedTime}" pattern='yyyy-MM-dd HH:mm:ss'/>"
 								class="form-control col-md-7 col-xs-12" name="finishedTime" id="finishedTime">
 						</div>
 					</div>

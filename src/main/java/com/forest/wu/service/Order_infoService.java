@@ -79,4 +79,15 @@ public interface Order_infoService {
     
     List<User> selectCouriersByParentId(int parentid,int id);
 
+
+    /**
+    * @author: 肖林辉 
+    * @Description    快递员查询工单  条件 工单状态为1   寄快递员号要等于登录的快递员编号
+    * @Date: 10:33 2018/10/4/004
+    * @Param：[workorder]
+    * @return：java.util.List<com.forest.wu.pojo.Workorder>
+    **/
+    
+    List<Workorder> selectWorkOrderByCourier(Workorder workorder);
+
 }
