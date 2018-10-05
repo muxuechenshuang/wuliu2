@@ -41,6 +41,7 @@ public class LoginController {
                 if (ss.get(i).getPassword().equals(password)) {
 
                     session.setAttribute("user",ss.get(i));
+                    session.setMaxInactiveInterval(30*60);
                     return "xlh/main_xlh";
                 }
          }
