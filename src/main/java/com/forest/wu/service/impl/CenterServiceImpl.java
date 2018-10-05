@@ -80,11 +80,17 @@ public class CenterServiceImpl implements CenterService {
     public int updateOrder(Order_info order_info) throws Exception {
         return 0;
     }
-
+    
+    /**
+    * author: 张展
+    * 添加分公司
+    * Date: 15:42 2018/10/3
+    * Param：[organization]
+    * Return：int
+    **/
     @Override
     public int addSonCompany(Organization organization) throws Exception {
-        int i =organizationMapper.insert(organization);
-        return i;
+        return organizationMapper.insert(organization);
     }
 
     @Override
@@ -94,13 +100,18 @@ public class CenterServiceImpl implements CenterService {
     }
 
     @Override
+    public Organization selectById(Integer id) throws Exception {
+        return organizationMapper.selectById(id);
+    }
+
+    @Override
     public int updateSonCompany(Organization organization) throws Exception {
-        return 0;
+        return organizationMapper.update(organization);
     }
 
     @Override
     public int delectSonCompany(Integer id) throws Exception {
-        return 0;
+        return organizationMapper.deleteByPrimaryKey(id);
     }
 
     @Override

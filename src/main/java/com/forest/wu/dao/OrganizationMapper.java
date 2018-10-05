@@ -121,4 +121,21 @@ public interface OrganizationMapper {
     * Return：java.util.List<com.forest.wu.pojo.Organization>
     **/
     List<Organization> selectSonCompany(Organization organization);
+    /**
+    * author: 张展
+    * 通过ID查询分公司（网点也行）
+    * Date: 11:47 2018/10/4
+    * Param：[id]
+    * Return：com.forest.wu.pojo.Organization
+    **/
+    Organization selectById(Integer id);
+    
+    /**
+    * author: 张展
+    * 通过对象更新数据库organization表（分公司网点都行）
+    * Date: 11:48 2018/10/4
+    * Param：[organization]
+    * Return：java.lang.Integer
+    **/
+    Integer update(Organization organization);
 }

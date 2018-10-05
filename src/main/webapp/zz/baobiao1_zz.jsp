@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" isELIgnored="false"%>
-<%@include file="../common/header.jsp"%>
+<%@include file="../../../common/header.jsp"%>
 
        <div id="container" style="height: 500%"></div>
-<%@include file="../common/footer.jsp"%>
+<%@include file="../../../common/footer.jsp"%>
 
 
        <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>

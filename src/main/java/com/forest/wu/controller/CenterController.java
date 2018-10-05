@@ -12,10 +12,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,12 +40,19 @@ public class CenterController {
      * Param：[]
      * Return：java.lang.String
      **/
-    @RequestMapping(value = "/soncompanylist", method = RequestMethod.GET)
+    @RequestMapping(value = "/tosoncompanylist")
     public String selectlist() {
         return "zz/fengongsichaxun_zz";
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    /**
+     * author: 张展
+     * 分公司查询
+     * Date: 15:21 2018/10/3
+     * Param：[organization, model, session]
+     * Return：java.lang.String
+     **/
+    @RequestMapping(value = "/soncompanylist")
     public String select(Organization organization, Model model, HttpSession session) {
         List<Organization> list = null;
         Integer id = 0;
@@ -61,6 +65,7 @@ public class CenterController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //回显
         id = organization.getId();
         phone = organization.getPhone();
         name = organization.getName();
@@ -73,14 +78,26 @@ public class CenterController {
     }
 
 
-    /**
-     * author: 张展
-     * 进入分公司添加页面
-     * Date: 15:06 2018/9/30
-     * Param：[]
-     * Return：java.lang.String
-     **/
-    @RequestMapping(value = "/addsoncompany", method = RequestMethod.GET)
+    //    报表
+    @RequestMapping(value = "/baobiao1")
+    public String baobiao1() {
+        return "zz/baobiao1_zz";
+    }
+
+    //    返货单审核（详情）
+    @RequestMapping(value = "/returndetail")
+    public String returndetail() {
+        return "zz/fanhuodanxiangqing_zz";
+    }
+
+    //    返货单查询
+    @RequestMapping(value = "/returnlist")
+    public String returnlist() {
+        return "zz/fanhuodanlist_zz";
+    }
+
+    //    分公司添加
+    @RequestMapping(value = "/addsoncompany")
     public String addSonCompany() {
         return "zz/fengongsitianjia_zz";
     }
@@ -92,7 +109,7 @@ public class CenterController {
      * @Param：[organization, session, request, attach]
      * @Return：java.lang.String
      **/
-    @RequestMapping(value = "/addSave", method = RequestMethod.POST)
+    @RequestMapping(value = "/addSave")
     public String addSave(Organization organization) {
 
         organization.setType(2);
@@ -105,7 +122,7 @@ public class CenterController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        //信息保存失败重新返回新增页面
         return "center/addsoncompany";
     }
 
@@ -116,12 +133,12 @@ public class CenterController {
      * @Param：[organization]
      * @Return：java.lang.String
      **/
-    @RequestMapping(value = "/addsonperson", method = RequestMethod.GET)
+    @RequestMapping(value = "/addsonperson")
     public String addSonCompanyPerson(@ModelAttribute("organization") Organization organization) {
-        return "/zz/fengongcaozuositianjia_zz";
+        return "/zz/fengongsiguanlitianjia_zz";
     }
 
-    @RequestMapping(value = "/addSave1", method = RequestMethod.POST)
+    @RequestMapping(value = "/addSave1")
     public String addSave1(User user, HttpSession session, HttpServletRequest request,
                            @RequestParam(value = "logoPicPath", required = false) MultipartFile attach) {
         String logoPicPath = null;
@@ -169,20 +186,20 @@ public class CenterController {
         }
         return "center/addsonperson";
     }
-    
-    
+
+
     /**
-    * author: 张展
-    * 跳转工单详情页面
-    * Date: 10:09 2018/10/3
-    * Param：[]
-    * Return：java.lang.String
-    **/
-    @RequestMapping(value = "/todetail", method = RequestMethod.GET)
-    public String todetail(@RequestParam(value = "workorderid") String workorderid,Model model) {
+     * author: 张展
+     * 跳转工单详情页面
+     * Date: 10:09 2018/10/3
+     * Param：[]
+     * Return：java.lang.String
+     **/
+    @RequestMapping(value = "/todetail")
+    public String todetail(@RequestParam(value = "workorderid") String workorderid, Model model) {
         try {
             Workorder workorder = centerService.selectWorkOrdById(Integer.valueOf(workorderid));
-            model.addAttribute("workorder",workorder);
+            model.addAttribute("workorder", workorder);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -197,7 +214,7 @@ public class CenterController {
      * Param：[]
      * Return：java.lang.String
      **/
-    @RequestMapping(value = "/toselectworkorder", method = RequestMethod.GET)
+    @RequestMapping(value = "/toselectworkorder")
     public String toselectWorkOrder() {
         return "zz/gondan2_zz";
     }
@@ -228,28 +245,88 @@ public class CenterController {
             e.printStackTrace();
         }
         //回显
-        model.addAttribute("workNum",workorder.getWorkNum());
-        model.addAttribute("orderNum",workorder.getOrderNum());
-        model.addAttribute("productNum",workorder.getProductNum());
-        model.addAttribute("packageId",workorder.getPackageId());
-        model.addAttribute("sName",workorder.getsName());
-        model.addAttribute("sTel",workorder.getsTel());
-        model.addAttribute("sPoint",workorder.getsPoint());
-        model.addAttribute("sCity",workorder.getsCity());
-        model.addAttribute("gName",workorder.getgName());
-        model.addAttribute("gTel",workorder.getgTel());
-        model.addAttribute("gCity",workorder.getgCity());
-        model.addAttribute("gPoint",workorder.getgPoint());
-        model.addAttribute("workStatus",workorder.getWorkStatus());
+        model.addAttribute("workNum", workorder.getWorkNum());
+        model.addAttribute("orderNum", workorder.getOrderNum());
+        model.addAttribute("productNum", workorder.getProductNum());
+        model.addAttribute("packageId", workorder.getPackageId());
+        model.addAttribute("sName", workorder.getsName());
+        model.addAttribute("sTel", workorder.getsTel());
+        model.addAttribute("sPoint", workorder.getsPoint());
+        model.addAttribute("sCity", workorder.getsCity());
+        model.addAttribute("gName", workorder.getgName());
+        model.addAttribute("gTel", workorder.getgTel());
+        model.addAttribute("gCity", workorder.getgCity());
+        model.addAttribute("gPoint", workorder.getgPoint());
+        model.addAttribute("workStatus", workorder.getWorkStatus());
         //上门收快递员工编号
-        model.addAttribute("gCourier",workorder.getgCourier());
+        model.addAttribute("gCourier", workorder.getgCourier());
         //送
-        model.addAttribute("sCourier",workorder.getsCourier());
-        model.addAttribute("result",workorder.getResult());
+        model.addAttribute("sCourier", workorder.getsCourier());
+        model.addAttribute("result", workorder.getResult());
 
 
         return "zz/gondan2_zz";
     }
+
+    /**
+     * author: 张展
+     * 跳转分公司详情页面，带一个对象
+     * Date: 10:09 2018/10/3
+     * Param：[]
+     * Return：java.lang.String
+     **/
+    @RequestMapping(value = "/tosondetail")
+    public String tosondetail(@RequestParam(value = "organizationid") String organizationid, Model model) {
+        try {
+            Organization organization = centerService.selectById(Integer.valueOf(organizationid));
+            model.addAttribute("organization", organization);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "zz/fengongsixiangqing_zz";
+    }
+
+    /**
+     * author: 张展
+     * 分公司信息修改的保存
+     * Date: 11:42 2018/10/4
+     * Param：[organization]
+     * Return：java.lang.Integer
+     **/
+    @RequestMapping(value = "/addSave2")
+    public String addSave2(Organization organization) {
+        try {
+            if (centerService.updateSonCompany(organization) > 0) {
+                //成功以后要显示新的信息要重定向分公司列表(会刷新一次)
+                return "redirect:/center/soncompanylist";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //信息保存失败重新返回新增页面
+        return "center/tosondetail?organizationid=${organization.id}";
+    }
+    /**
+    * author: 张展
+    * 根据ID删除分公司
+    * Date: 15:43 2018/10/4
+    * Param：[]
+    * Return：java.lang.String
+    **/
+    @ResponseBody
+    @RequestMapping(value = "/delect.json")
+    public Integer delect(@RequestParam(value = "organizationid") String organizationid){
+        try {
+//            if (centerService.delectSonCompany(Integer.valueOf(organizationid))>0);
+//            return "redirect:/center/soncompanylist";
+                return centerService.delectSonCompany(Integer.valueOf(organizationid));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        return "/center/soncompanylist";
+        return 0;
+    }
+
 
     /**
      * author: 张展
@@ -258,13 +335,13 @@ public class CenterController {
      * Param：[pageIndex, model]
      * Return：java.lang.String
      **/
-    @RequestMapping("/allorder_c")
-    public String allOrder_c(@RequestParam(required = true, defaultValue = "1") Integer pageIndex, Model model) {
-        PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
+//    @RequestMapping("/allorder_c")
+//    public String allOrder_c(@RequestParam(required = true, defaultValue = "1") Integer pageIndex, Model model) {
+//        PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
 //        List<Order_info> orderList=orderService.selectAllOrder();
 //        PageInfo<Order_info> p=new PageInfo<Order_info>(orderList);
 //        model.addAttribute("pageIndex",p);
 //        model.addAttribute("order",orderList);
-        return "zz/xiangqing_zz";
-    }
+//        return "zz/xiangqing_zz";
+//    }
 }
