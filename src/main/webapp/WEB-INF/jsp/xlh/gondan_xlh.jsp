@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
 <%@include file="../common/header.jsp"%>
 <div class="clearfix"></div>
 <div class="row">
@@ -6,51 +7,73 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                    订单查询
-                </small>
+                    工单查询
+                    </small>
                 </h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
 
                 <form method="post" action="${pageContext.request.contextPath}/order/toworkorder?courierNum=${user.id}">
-                    <%--<input type="hidden" name="pageIndex" value="1" />
-                    <input type="hidden" name="courierNumber" value="${user.id}">--%>
+                      <input type="hidden" name="pageIndex" value="1" />
+
+
                     <ul>
+                        <li>
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">工单号</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input name="workNum" type="text"
+                                           class="form-control col-md-7 col-xs-12"
+                                           value="${queryworkNum }">
+                                </div>
+                            </div>
+                        </li>
                         <li>
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12">订单号</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="orderNumber" type="text"
+                                    <input name="orderNum" type="text"
                                            class="form-control col-md-7 col-xs-12"
-                                           value="${queryNumber}">
+                                           value="${queryorderNum }">
                                 </div>
                             </div>
                         </li>
+
+
 
 
 
                         <li>
                             <div class="form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12">寄件人姓名</label>
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">收件人姓名</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="sName" type="text"
+                                    <input name="gName" type="text"
                                            class="form-control col-md-7 col-xs-12"
-                                           value="${querysName}">
+                                           value="${querygName }">
                                 </div>
                             </div>
                         </li>
                         <li>
                             <div class="form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12">寄件人电话</label>
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">收件人电话</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="sTel" type="text"
+                                    <input name="gTel" type="text"
                                            class="form-control col-md-7 col-xs-12"
-                                           value="${querysTel}">
+                                           value="${querygTel }">
                                 </div>
                             </div>
                         </li>
-
+                        <li>
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">收件人详细地址</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input name="gAddress" type="text"
+                                           class="form-control col-md-7 col-xs-12"
+                                           value="${querygAddress }">
+                                </div>
+                            </div>
+                        </li>
 
 
                         <li><button type="submit" class="btn btn-primary">查
@@ -75,11 +98,7 @@
                                    style="width: 100%;">
                                 <thead>
                                 <tr role="row">
-                                    <th class="sorting_asc" tabindex="0"
-                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                        style="width: 124px;"
-                                        aria-label="First name: activate to sort column descending"
-                                        aria-sort="ascending">工单编号</th>
+
                                     <th class="sorting_asc" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         style="width: 124px;"
@@ -115,7 +134,11 @@
                                         style="width: 124px;"
                                         aria-label="Last name: activate to sort column ascending">
                                         收件人电话</th>
-
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        style="width: 66px;"
+                                        aria-label="Last name: activate to sort column ascending">
+                                        物品类型</th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         style="width: 66px;"
@@ -134,7 +157,6 @@
                                 <tbody>
                                 <c:forEach var="workorder" items="${workorderList }" varStatus="status">
                                     <tr role="row" class="odd">
-                                        <td tabindex="0" class="sorting_1">${workorder.id}</td>
                                         <td>${workorder.workNum }</td>
                                         <td>${workorder.orderNum }</td>
                                         <td>${workorder.gCity }</td>
@@ -142,13 +164,30 @@
                                         <td>${workorder.gName }</td>
                                         <td>${workorder.gAddress }</td>
                                         <td>${workorder.gTel }</td>
+                                        <td>${workorder.productType }</td>
+
                                         <td>${workorder.realWeight }</td>
                                         <td>${workorder.sCourier }</td>
-                                            <%--<td><a href="${pageContext.request.contextPath}/center/todetail" class="btn btn-primary">查看/修改</a></td>--%>
-                                        <td><a id="lookandmodify" href="/center/todetail?workorderid=${workorder.id}" class="btn btn-primary" >查看/修改</a></td>
 
+                                        <td>
+
+
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-danger">点击操作</button>
+                                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                                    <span class="caret"></span>
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="${pageContext.request.contextPath}/order/toworkorderdesc?id=${workorder.id}" class="addVersion"  data-toggle="tooltip" data-placement="top" title="" data-original-title="查看订单">查看工单</a>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </c:forEach>
+
                                 </tbody>
                             </table>
                         </div>
@@ -175,11 +214,11 @@
                                     </c:if>
                                     <c:if test="${pageIndex.pageNum < pageIndex.pages }">
                                         <li class="paginate_button "><a
-                                                href="javascript:page_nav(document.forms[0],${pageIndex.pageNum+1 });"
+                                                href="javascript:page_nav(document.forms[0],${pageIndex.pageNum+1});"
                                                 aria-controls="datatable-responsive" data-dt-idx="1"
                                                 tabindex="0">下一页</a></li>
                                         <li class="paginate_button next"><a
-                                                href="javascript:page_nav(document.forms[0],${pageIndex.total });"
+                                                href="javascript:page_nav(document.forms[0],${pageIndex.pages });"
                                                 aria-controls="datatable-responsive" data-dt-idx="7"
                                                 tabindex="0">最后一页</a></li>
                                     </c:if>

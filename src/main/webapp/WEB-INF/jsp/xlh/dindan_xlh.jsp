@@ -15,8 +15,8 @@
             <div class="x_content">
 
                 <form method="post" action="${pageContext.request.contextPath}/order/someorder?courierNum=${user.id}">
-                  <%--  <input type="hidden" name="pageIndex" value="1" />
-                    <input type="hidden" name="courierNum" value="${user.id}">--%>
+                   <input type="hidden" name="pageIndex" value="1" />
+
 
                     <ul>
                         <li>
@@ -171,6 +171,7 @@
                                                 <ul class="dropdown-menu" role="menu">
                                                     <li><a href="${pageContext.request.contextPath}/order/toorderdesc?id=${orderL.id}&parentid=${user.parentid}&usertype=${user.type}" class="addVersion"  data-toggle="tooltip" data-placement="top" title="" data-original-title="查看订单">查看订单</a>
                                                     <li><a href="${pageContext.request.contextPath}/order/toaddgongdan?id=${orderL.id}" class="addVersion"  data-toggle="tooltip" data-placement="top" title="" data-original-title="生成工单">生成工单</a>
+                                                    <li><a href="${pageContext.request.contextPath}/order/toweituo?id=${orderL.id}" class="addVersion"  data-toggle="tooltip" data-placement="top" title="" data-original-title="委托">委托</a>
                                                     </li>
 
                                                 </ul>
@@ -209,7 +210,7 @@
                                                 aria-controls="datatable-responsive" data-dt-idx="1"
                                                 tabindex="0">下一页</a></li>
                                         <li class="paginate_button next"><a
-                                                href="javascript:page_nav(document.forms[0],${pageIndex.total });"
+                                                href="javascript:page_nav(document.forms[0],${pageIndex.pages });"
                                                 aria-controls="datatable-responsive" data-dt-idx="7"
                                                 tabindex="0">最后一页</a></li>
                                     </c:if>

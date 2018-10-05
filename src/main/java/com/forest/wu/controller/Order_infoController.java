@@ -1,5 +1,6 @@
 package com.forest.wu.controller;
 
+import com.forest.wu.dao.Order_infoMapper;
 import com.forest.wu.dao.UserMapper;
 import com.forest.wu.dao.WorkorderMapper;
 import com.forest.wu.pojo.Order_info;
@@ -162,11 +163,17 @@ public class Order_infoController {
     * @return：java.lang.String
     **/
     @RequestMapping("/toworkorder")
-    public String  toWorkorder(@RequestParam(required = true,defaultValue = "1")Integer pageIndex,
-                               @RequestParam(value = "courierNum",required = false)String sCourier,
+    public String  toWorkorder(@RequestParam(value="pageIndex",required = true,defaultValue = "1")Integer pageIndex,
+                               @RequestParam(value = "courierNum",required = false)Integer sCourier,
+
+                               @RequestParam(value = "workNum",required = false)String queryworkNum,
+                               @RequestParam(value = "orderNum",required = false)String queryorderNum,
+                               @RequestParam(value = "gName",required = false)String querygName,
+                               @RequestParam(value = "gTel",required = false)String querygTel,
+                               @RequestParam(value = "gAddress",required = false)String querygAddress,
                                Workorder workorder, Model model){
 
-            workorder.setsCourier(Integer.parseInt(sCourier));
+        workorder.setsCourier(sCourier);
 
 
         PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
@@ -174,7 +181,45 @@ public class Order_infoController {
         PageInfo<Workorder> p=new PageInfo<Workorder>(workorderList );
         model.addAttribute("pageIndex",p);
         model.addAttribute("workorderList",workorderList );
-        return "xlh/querygongdan2_xlh";
+
+        model.addAttribute("queryworkNum",queryworkNum);
+        model.addAttribute("queryorderNum",queryorderNum);
+        model.addAttribute("querygName",querygName);
+        model.addAttribute("querygTel",querygTel);
+        model.addAttribute("querygAddress",querygAddress);
+        return "xlh/gondan_xlh";
     }
 
+
+    /**
+    * @author: 肖林辉 
+    * @Description  进入到工单详情页面
+    * @Date: 10:13 2018/10/5/005
+    * @Param：[]
+    * @return：java.lang.String
+    **/
+
+    @RequestMapping("/toworkorderdesc")
+    public String toWorkorderDesc(HttpSession session,Model model,
+                                  @RequestParam(value = "id")Integer id){
+        /*User user=(User)session.getAttribute("user");*/
+        try {
+            Workorder workorder=workorderMapper.selectWorkOrderById(id);
+            model.addAttribute(workorder);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "xlh/gondanxiangqing_xlh";
+    }
+
+    @RequestMapping(value="toweituo")
+    public String toWeiTuo(@RequestParam(value="id")Integer orderid,HttpSession session,Model model){
+        User user=(User)session.getAttribute("user");
+        List<User> couriersList=userMapper.selectCouriers(user.getParentid(),user.getId());
+        model.addAttribute("couriersList",couriersList);
+        model.addAttribute("orderId",orderid);
+        return "xlh/weituo_xlh";
+    }
 }
