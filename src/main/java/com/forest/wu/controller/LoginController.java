@@ -28,18 +28,18 @@ public class LoginController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value="/index")
-    public String index(){
+    @RequestMapping(value = "/index")
+    public String index() {
         return "jzl/index";
     }
 
     //登录页面
-    @RequestMapping(value = "/register",method= RequestMethod.POST)
-    public String userAll(@RequestParam String user,@RequestParam String password, HttpSession session) {
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String userAll(@RequestParam String user, @RequestParam String password, HttpSession session) {
         List<User> ss = userService.selectULogin();
         //循环查询
-        int i =0;
-        do{
+        int i = 0;
+        do {
             if (ss.get(i).getUsername().equals(user) || ss.get(i).getEmail().equals(user) || ss.get(i).getPhone().equals(user)) {
                 if (ss.get(i).getPassword().equals(password)) {
                     //获取全部的登录信息
@@ -48,27 +48,28 @@ public class LoginController {
                 }
             }
             i++;
-        }while (i<ss.size());
+        } while (i < ss.size());
         return "jzl/index";
     }
 
     //注销
     @RequestMapping("wuliu/index")
-    public String devLogout(HttpSession session){
+    public String devLogout(HttpSession session) {
         //        清除
         session.removeAttribute("user");
         return "jzl/index";
     }
+
     //注册验证
-    @RequestMapping(value = "/login",method= RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public Object login(@RequestParam String username,@RequestParam String email,@RequestParam  String phone) {
+    public Object login(@RequestParam String username, @RequestParam String email, @RequestParam String phone) {
         HashMap<String, String> resultMap = new HashMap<String, String>();
         List<User> name = userService.findUser();
         for (int i = 0; i < name.size(); i++) {
             //判断用户名是否已经存在
             if (name.get(i).getUsername().equals(username)) {
-                resultMap.put("username","nameVerification");
+                resultMap.put("username", "nameVerification");
                 return resultMap;
 
             }
@@ -88,24 +89,26 @@ public class LoginController {
     }
 
     //注册页面
-    @RequestMapping(value = "/userLogin",method= RequestMethod.POST)
-    public String userLogin(User user){
-            User login = new User();
-            //赋值
-            login.setPassword(MD5.MD5(user.getPassword()));//MD5加密
-            login.setUsername(user.getUsername());
-            login.setEmail(user.getEmail());
-            login.setPhone(user.getPhone());
-            login.setType(1);
-            userService.addLogin(login);
-       return "jzl/index";
+    @RequestMapping(value = "/userLogin", method = RequestMethod.POST)
+    public String userLogin(User user) {
+        User login = new User();
+        //赋值
+        login.setPassword(MD5.MD5(user.getPassword()));//MD5加密
+        login.setUsername(user.getUsername());
+        login.setEmail(user.getEmail());
+        login.setPhone(user.getPhone());
+        login.setType(1);
+        userService.addLogin(login);
+        return "jzl/index";
     }
+
     //短信验证
-    @RequestMapping(value = "/Verification" ,method = RequestMethod.POST)
+    @RequestMapping(value = "/Verification", method = RequestMethod.POST)
     @ResponseBody
-    public Object code(@RequestParam String phone){
+    public Object code(@RequestParam String phone) {
         IndustrySMS.setTo(phone);
         IndustrySMS.execute();//运行接口
-        String result=IndustrySMS.getResult();//获取验证码
+        String result = IndustrySMS.getResult();//获取验证码
         return result;
     }
+}
