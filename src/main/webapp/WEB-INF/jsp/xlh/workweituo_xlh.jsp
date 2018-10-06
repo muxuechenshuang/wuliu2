@@ -15,8 +15,8 @@
 
       <div class="x_content1">
         <form class="form-horizontal form-label-left"
-              method="post" action="${pageContext.request.contextPath}/order/updateweituo?courierNum=${user.id}">
-          <input type="hidden" name="orderId" value="${workId}">
+              method="post" action="${pageContext.request.contextPath}/order/updateworkweituo?courierNum=${user.id}">
+          <input type="hidden" name="workId" value="${workId}">
 
 
             <div class="item form-group">

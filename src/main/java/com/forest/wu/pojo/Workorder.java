@@ -75,6 +75,7 @@ public class Workorder {
 
     private Integer entrustNumber;
 
+
     public Integer getId() {
         return id;
     }

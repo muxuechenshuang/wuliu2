@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -128,10 +129,13 @@ public class Order_infoController {
         //根据Id找到相应订单的信息
        //插入工单信息
         workorder.setProductLocation(2);
+        Date date=new Date();
+        workorder.setRiseTime(date);
        orderService.addWorkorderByCourier(workorder);
        //修改订单中的状态   1为预订  2 已接单  将1 修改为2
         Order_info order = new Order_info();
         order.setOrderNumber(workorder.getOrderNum());
+
         orderService.updateOrderStatusByCourier(order);
         User user=(User)session.getAttribute("user");
        int  id=user.getId();
@@ -253,7 +257,7 @@ public class Order_infoController {
 
     /**
     * @author: 肖林辉 
-    * @Description   委托状态修改
+    * @Description   订单委托状态修改
     * @Date: 14:31 2018/10/5/005
     * @Param：[]
     * @return：java.lang.String
@@ -272,4 +276,34 @@ public class Order_infoController {
         int id=user.getId();
         return "redirect:/order/someorder?courierNum="+id;
     }
+
+    /**
+    * @author: 肖林辉 
+    * @Description   工单委托状态修改
+    * @Date: 10:02 2018/10/6/006
+    * @Param：[session, courierId, orderId]
+    * @return：java.lang.String
+    **/
+    
+    @RequestMapping("updateworkweituo")
+    public String updateWorkWeituoStatus(HttpSession session,
+                                          @RequestParam(value="courierId")Integer courierId,
+                                          @RequestParam(value="workId")Integer workId) {
+        User user = (User) session.getAttribute("user");
+
+
+        Workorder workorder=new Workorder();
+        workorder.setId(workId);
+        workorder.setEntrust(1);
+        workorder.setEntrustNumber(user.getId());
+        workorder.setsCourier(courierId);
+        workorderMapper.updateByPrimaryKeySelective(workorder);
+
+
+        int id=user.getId();
+        return "redirect:/order/toworkorder?courierNum="+id;
+    }
+
+
+
 }
