@@ -13,7 +13,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content1">
-                    <form class="form-horizontal form-label-left" action="/center/addSave4" method="post">
+                    <form class="form-horizontal form-label-left" action="/center/addSave5" method="post">
                         <input type="hidden" name="id" value="${returnorder.id}">
                         <div class="item form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id">返货单号 <span
@@ -213,10 +213,11 @@
                         <!-- </div> -->
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
-                                <a id="status2" name="status2" class="btn btn-success"
-                                   href="/center/shenhe?id=${returnorder.id}&comment=${returnorder.comment}&status=2">
-                                    审核通过
-                                </a>
+                                <%--<a id="status2" name="status2" class="btn btn-success"--%>
+                                   <%--href="/center/shenhe?id=${returnorder.id}&comment=${returnorder.comment}&status=2">--%>
+                                    <%--审核通过--%>
+                                <%--</a>--%>
+                                    <button type="submit" value="审核通过1">审核通过1</button>
                                 <%--<input type="submit" id="status4" name="status4" class="btn btn-success" value="审核通过" onclick="pass"/>--%>
                                 <a id="status3" name="status3" class="btn btn-success"
                                    href="/center/shenhe?id=${returnorder.id}&comment=${returnorder.comment}&status=3">

@@ -92,8 +92,14 @@ public class CenterController {
     * Param：
     * Return：
     **/
-    public String addSave4(@RequestParam(value = "flase")Return returnorder, Model model){
-
+    public String addSave4(Return returnorder, Model model){
+        returnorder.setStatus(2);
+        returnorder.setAuditTime(new Date());
+        try {
+            centerService.updateReturn(returnorder);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return "redirect:/center/returnlist";
     }
 
@@ -315,7 +321,7 @@ public class CenterController {
         model.addAttribute("gCourier", workorder.getgCourier());
         //送
         model.addAttribute("sCourier", workorder.getsCourier());
-        model.addAttribute("result", workorder.getResult());
+        model.addAttribute("auditStatus", workorder.getResult());
 
 
         return "zz/gondan2_zz";
