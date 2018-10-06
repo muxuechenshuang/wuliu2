@@ -174,7 +174,13 @@ public class ClientController {
 
 
     @RequestMapping(value = "/query")
-    public String queryInfoList(Model model, HttpSession session){
+    public String queryInfoList(Model model, HttpSession session,
+                                @RequestParam(value = "queryOrderNumber",required = false)String orderNumber,
+                                @RequestParam(value = "queryGName",required = false)String gName,
+                                @RequestParam(value = "queryGTel",required = false)String gTel,
+                                @RequestParam(value = "queryOrderStatus",required = false)String statusId,
+                                @RequestParam(value = "pageIndex", required = false) String pageIndex){
+
         return "ry/query_ry";
     }
 
