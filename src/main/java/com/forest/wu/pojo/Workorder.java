@@ -63,7 +63,7 @@ public class Workorder {
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date finishedTime;
 
-    private String productLocation;
+    private Integer productLocation;
 
     private String result;
 
@@ -71,7 +71,9 @@ public class Workorder {
 
     private String storageStatus;
 
-    private String entrust;
+    private Integer entrust;
+
+    private Integer entrustNumber;
 
     public Integer getId() {
         return id;
@@ -305,12 +307,12 @@ public class Workorder {
         this.finishedTime = finishedTime;
     }
 
-    public String getProductLocation() {
+    public Integer getProductLocation() {
         return productLocation;
     }
 
-    public void setProductLocation(String productLocation) {
-        this.productLocation = productLocation == null ? null : productLocation.trim();
+    public void setProductLocation(Integer productLocation) {
+        this.productLocation = productLocation;
     }
 
     public String getResult() {
@@ -337,11 +339,19 @@ public class Workorder {
         this.storageStatus = storageStatus == null ? null : storageStatus.trim();
     }
 
-    public String getEntrust() {
+    public Integer getEntrust() {
         return entrust;
     }
 
-    public void setEntrust(String entrust) {
-        this.entrust = entrust == null ? null : entrust.trim();
+    public void setEntrust(Integer entrust) {
+        this.entrust = entrust;
+    }
+
+    public Integer getEntrustNumber() {
+        return entrustNumber;
+    }
+
+    public void setEntrustNumber(Integer entrustNumber) {
+        this.entrustNumber = entrustNumber;
     }
 }

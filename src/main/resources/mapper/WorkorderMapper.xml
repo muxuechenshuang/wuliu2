@@ -31,18 +31,19 @@
     <result column="secInStorage" jdbcType="TIMESTAMP" property="secInStorage" />
     <result column="secOutStorage" jdbcType="TIMESTAMP" property="secOutStorage" />
     <result column="finishedTime" jdbcType="TIMESTAMP" property="finishedTime" />
-    <result column="productLocation" jdbcType="VARCHAR" property="productLocation" />
+    <result column="productLocation" jdbcType="INTEGER" property="productLocation" />
     <result column="result" jdbcType="VARCHAR" property="result" />
     <result column="invalidatedState" jdbcType="VARCHAR" property="invalidatedState" />
     <result column="storageStatus" jdbcType="VARCHAR" property="storageStatus" />
-    <result column="entrust" jdbcType="VARCHAR" property="entrust" />
+    <result column="entrust" jdbcType="INTEGER" property="entrust" />
+    <result column="entrustNumber" jdbcType="INTEGER" property="entrustNumber" />
   </resultMap>
   <sql id="Base_Column_List">
     id, orderNum, workNum, packageId, productNum, sName, sTel, sCity, sAddress, sPoint,
     gName, gTel, gCity, gAddress, gPoint, productType, realWeight, workStatus, comment,
     expenses, gCourier, sCourier, preVolume, riseTime, firInStorage, firOutStorage, secInStorage,
     secOutStorage, finishedTime, productLocation, result, invalidatedState, storageStatus,
-    entrust
+    entrust, entrustNumber
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
@@ -66,7 +67,7 @@
       firInStorage, firOutStorage, secInStorage,
       secOutStorage, finishedTime, productLocation,
       result, invalidatedState, storageStatus,
-      entrust)
+      entrust, entrustNumber)
     values (#{id,jdbcType=INTEGER}, #{orderNum,jdbcType=VARCHAR}, #{workNum,jdbcType=VARCHAR},
       #{packageId,jdbcType=BIGINT}, #{productNum,jdbcType=BIGINT}, #{sName,jdbcType=VARCHAR},
       #{sTel,jdbcType=VARCHAR}, #{sCity,jdbcType=VARCHAR}, #{sAddress,jdbcType=VARCHAR},
@@ -76,9 +77,9 @@
       #{comment,jdbcType=VARCHAR}, #{expenses,jdbcType=DOUBLE}, #{gCourier,jdbcType=INTEGER},
       #{sCourier,jdbcType=INTEGER}, #{preVolume,jdbcType=DOUBLE}, #{riseTime,jdbcType=TIMESTAMP},
       #{firInStorage,jdbcType=TIMESTAMP}, #{firOutStorage,jdbcType=TIMESTAMP}, #{secInStorage,jdbcType=TIMESTAMP},
-      #{secOutStorage,jdbcType=TIMESTAMP}, #{finishedTime,jdbcType=TIMESTAMP}, #{productLocation,jdbcType=VARCHAR},
+      #{secOutStorage,jdbcType=TIMESTAMP}, #{finishedTime,jdbcType=TIMESTAMP}, #{productLocation,jdbcType=INTEGER},
       #{result,jdbcType=VARCHAR}, #{invalidatedState,jdbcType=VARCHAR}, #{storageStatus,jdbcType=VARCHAR},
-      #{entrust,jdbcType=VARCHAR})
+      #{entrust,jdbcType=INTEGER}, #{entrustNumber,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.forest.wu.pojo.Workorder">
     insert into workorder
@@ -185,6 +186,9 @@
       <if test="entrust != null">
         entrust,
       </if>
+      <if test="entrustNumber != null">
+        entrustNumber,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -275,7 +279,7 @@
         #{finishedTime,jdbcType=TIMESTAMP},
       </if>
       <if test="productLocation != null">
-        #{productLocation,jdbcType=VARCHAR},
+        #{productLocation,jdbcType=INTEGER},
       </if>
       <if test="result != null">
         #{result,jdbcType=VARCHAR},
@@ -287,7 +291,10 @@
         #{storageStatus,jdbcType=VARCHAR},
       </if>
       <if test="entrust != null">
-        #{entrust,jdbcType=VARCHAR},
+        #{entrust,jdbcType=INTEGER},
+      </if>
+      <if test="entrustNumber != null">
+        #{entrustNumber,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -379,7 +386,7 @@
         finishedTime = #{finishedTime,jdbcType=TIMESTAMP},
       </if>
       <if test="productLocation != null">
-        productLocation = #{productLocation,jdbcType=VARCHAR},
+        productLocation = #{productLocation,jdbcType=INTEGER},
       </if>
       <if test="result != null">
         result = #{result,jdbcType=VARCHAR},
@@ -391,7 +398,10 @@
         storageStatus = #{storageStatus,jdbcType=VARCHAR},
       </if>
       <if test="entrust != null">
-        entrust = #{entrust,jdbcType=VARCHAR},
+        entrust = #{entrust,jdbcType=INTEGER},
+      </if>
+      <if test="entrustNumber != null">
+        entrustNumber = #{entrustNumber,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -426,11 +436,12 @@
       secInStorage = #{secInStorage,jdbcType=TIMESTAMP},
       secOutStorage = #{secOutStorage,jdbcType=TIMESTAMP},
       finishedTime = #{finishedTime,jdbcType=TIMESTAMP},
-      productLocation = #{productLocation,jdbcType=VARCHAR},
+      productLocation = #{productLocation,jdbcType=INTEGER},
       result = #{result,jdbcType=VARCHAR},
       invalidatedState = #{invalidatedState,jdbcType=VARCHAR},
       storageStatus = #{storageStatus,jdbcType=VARCHAR},
-      entrust = #{entrust,jdbcType=VARCHAR}
+      entrust = #{entrust,jdbcType=INTEGER},
+      entrustNumber = #{entrustNumber,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
@@ -441,7 +452,7 @@
     from workorder
     <trim prefix="where" prefixOverrides="and | or">
       <if test="workNum!=null and workNum!=''">
-       and workNum like CONCAT ('%',#{workNum},'%')
+        and workNum like CONCAT ('%',#{workNum},'%')
       </if>
       <if test="orderNum!=null and orderNum!=''">
         and orderNum like CONCAT ('%',#{orderNum},'%')
@@ -491,12 +502,12 @@
     </trim>
   </select>
 
-    <select id="selectWorkOrderById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
-        from workorder
-        where id = #{id,jdbcType=INTEGER}
-    </select>
+  <select id="selectWorkOrderById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from workorder
+    where id = #{id,jdbcType=INTEGER}
+  </select>
 
 
   <!--肖林辉-->
@@ -509,20 +520,20 @@
     <if test="sCourier !=null ">
       and sCourier = #{sCourier}
     </if>
-      <if test="workNum!=null ">
-        and workNum like CONCAT ('%',#{workNum},'%')
-      </if>
-      <if test="orderNum!=null  ">
-        and orderNum like CONCAT ('%',#{orderNum},'%')
-      </if>
-      <if test="gName!=null  ">
+    <if test="workNum!=null ">
+      and workNum like CONCAT ('%',#{workNum},'%')
+    </if>
+    <if test="orderNum!=null  ">
+      and orderNum like CONCAT ('%',#{orderNum},'%')
+    </if>
+    <if test="gName!=null  ">
       and gName like CONCAT ('%',#{gName},'%')
-      </if>
-      <if test="gTel!=null  ">
+    </if>
+    <if test="gTel!=null  ">
       and gTel like CONCAT ('%',#{gTel},'%')
-      </if>
-      <if test="gAddress!=null  ">
+    </if>
+    <if test="gAddress!=null  ">
       and gAddress like CONCAT ('%',#{gAddress},'%')
-      </if>
+    </if>
   </select>
 </mapper>

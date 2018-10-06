@@ -127,7 +127,7 @@ public class Order_infoController {
     public String addWorkorder(Workorder workorder,HttpSession session){
         //根据Id找到相应订单的信息
        //插入工单信息
-        workorder.setProductLocation("2");
+        workorder.setProductLocation(2);
        orderService.addWorkorderByCourier(workorder);
        //修改订单中的状态   1为预订  2 已接单  将1 修改为2
         Order_info order = new Order_info();
@@ -231,6 +231,24 @@ public class Order_infoController {
         model.addAttribute("couriersList",couriersList);
         model.addAttribute("orderId",orderid);
         return "xlh/weituo_xlh";
+    }
+
+
+    /**
+    * @author: 肖林辉 
+    * @Description   进入工单委托页面
+    * @Date: 9:38 2018/10/6/006
+    * @Param：[orderid, session, model]
+    * @return：java.lang.String
+    **/
+    
+    @RequestMapping(value="toworkweituo")
+    public String toworkWeiTuo(@RequestParam(value="id")Integer workid,HttpSession session,Model model){
+        User user=(User)session.getAttribute("user");
+        List<User> couriersList=userMapper.selectCouriers(user.getParentid(),user.getId());
+        model.addAttribute("couriersList",couriersList);
+        model.addAttribute("workId",workid);
+        return "xlh/workweituo_xlh";
     }
 
     /**

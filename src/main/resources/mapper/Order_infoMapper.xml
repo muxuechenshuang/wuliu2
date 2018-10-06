@@ -42,12 +42,9 @@
        返回订单集合
      -->
     <select id="selectOneOrderByCourier" parameterType="int" resultType="com.forest.wu.pojo.Order_info">
-        select
-        <include refid="Base_Column_List"/>
-        from order_info
-
-        where id = #{id}
-
+        select ord.*,og.name
+        from order_info  ord,Organization og
+        where ord.id = #{id} and  ord.branchId = og.id
     </select>
 
 
