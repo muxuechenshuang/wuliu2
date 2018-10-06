@@ -66,7 +66,16 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select id="wdName" name="wdName"
                                             class="form-control">
-                                        <option value="">--请选择--</option>
+                                        <c:if test="${wdList!=null}">
+                                            <option value="">--请选择--</option>
+                                            <c:forEach items="${wdList}" var="wd">
+                                                <option
+                                                        <c:if test="${wd.name == wdName }">selected="selected"</c:if>
+                                                        value="${wd.name}">
+                                                        ${wd.name}
+                                                </option>
+                                            </c:forEach>
+                                        </c:if>
                                     </select>
                                 </div>
                             </div>
@@ -76,7 +85,16 @@
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12">工单状态</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select name="workStatus" class="form-control">
-                                        <option value="">--请选择--</option>
+                                        <c:if test="${workStatusList!=null}">
+                                            <option value="">--请选择--</option>
+                                            <c:forEach items="${workStatusList}" var="status">
+                                                <option
+                                                        <c:if test="${status.valueName == workStatus }">selected="selected"</c:if>
+                                                        value="${status.valueName}">
+                                                        ${status.valueName}
+                                                </option>
+                                            </c:forEach>
+                                        </c:if>
                                     </select>
                                 </div>
                             </div>
@@ -86,7 +104,16 @@
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12">出入库状态</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select name="storageStatus" class="form-control">
-                                        <option value="">--请选择--</option>
+                                        <c:if test="${storageStatusList!=null}">
+                                            <option value="">--请选择--</option>
+                                            <c:forEach items="${storageStatusList}" var="Status">
+                                                <option
+                                                        <c:if test="${Status.valueName == storageStatus }">selected="selected"</c:if>
+                                                        value="${Status.valueName}">
+                                                        ${Status.valueName}
+                                                </option>
+                                            </c:forEach>
+                                        </c:if>
                                     </select>
                                 </div>
                             </div>
