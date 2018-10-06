@@ -124,8 +124,8 @@
   </if>
 
 </select>
-  <!--<select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
     <include refid="Base_Column_List" />
     from user
     where id = #{id,jdbcType=INTEGER}
@@ -135,12 +135,12 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.forest.wu.pojo.User">
-    insert into user (id, username, password, 
-      email, phone, sex, 
+    insert into user (id, username, password,
+      email, phone, sex,
       logo, parentid, type
       )
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR},
       #{logo,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}
       )
   </insert>
@@ -246,7 +246,7 @@
       parentid = #{parentid,jdbcType=INTEGER},
       type = #{type,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
-  </update>-->
+  </update>
   <!-- 查找用户表所需的登录信息 -->
   <select id="selectULogin"  resultType="com.forest.wu.pojo.User">
     select u.*,o.name,uf.*,d.valueName
@@ -264,67 +264,8 @@
       </if>
 
   </select>
-   <!--向数据库添加注册信息-->
-    <insert id="addLogin" parameterType="com.forest.wu.pojo.User">
-        insert into user
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                id,
-            </if>
-            <if test="username != null">
-                username,
-            </if>
-            <if test="password != null">
-                password,
-            </if>
-            <if test="email != null">
-                email,
-            </if>
-            <if test="phone != null">
-                phone,
-            </if>
-            <if test="sex != null">
-                sex,
-            </if>
-            <if test="logo != null">
-                logo,
-            </if>
-            <if test="parentid != null">
-                parentid,
-            </if>
-            <if test="type != null">
-                type,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="id != null">
-                #{id,jdbcType=INTEGER},
-            </if>
-            <if test="username != null">
-                #{username,jdbcType=VARCHAR},
-            </if>
-            <if test="password != null">
-                #{password,jdbcType=VARCHAR},
-            </if>
-            <if test="email != null">
-                #{email,jdbcType=VARCHAR},
-            </if>
-            <if test="phone != null">
-                #{phone,jdbcType=VARCHAR},
-            </if>
-            <if test="sex != null">
-                #{sex,jdbcType=VARCHAR},
-            </if>
-            <if test="logo != null">
-                #{logo,jdbcType=VARCHAR},
-            </if>
-            <if test="parentid != null">
-                #{parentid,jdbcType=INTEGER},
-            </if>
-            <if test="type != null">
-                #{type,jdbcType=INTEGER},
-            </if>
-        </trim>
-    </insert>
 
+    <select id="findUser" resultType="com.forest.wu.pojo.User">
+        select username,email,phone from  user
+    </select>
 </mapper>

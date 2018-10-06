@@ -79,4 +79,35 @@ public interface Order_infoService {
     
     List<User> selectCouriersByParentId(int parentid,int id);
 
+
+    /**
+     *
+     * @author: 任一
+     * @Description 添加订单
+     * @Date: 8:46 2018/10/5
+     * @Param：Order_info
+     * @return：boolean
+     */
+    boolean insertSelective (Order_info order_info);
+
+
+    /**
+    * @author: 肖林辉
+    * @Description    快递员查询工单  条件 工单状态为1   寄快递员号要等于登录的快递员编号
+    * @Date: 10:33 2018/10/4/004
+    * @Param：[workorder]
+    * @return：java.util.List<com.forest.wu.pojo.Workorder>
+    **/
+
+    List<Workorder> selectWorkOrderByCourier(Workorder workorder);
+
+    /**
+    * @author: 肖林辉 
+    * @Description   更新订单的委托状态
+    * @Date: 14:21 2018/10/5/005
+    * @Param：[order]
+    * @return：int
+    **/
+    
+    int updateOrderWeituoStatus(Order_info order);
 }

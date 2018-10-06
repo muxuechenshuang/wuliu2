@@ -114,15 +114,7 @@ body {
 .sub-main-w31 input[type="text"]{
 	margin-top: 1.5em;
 }
-.sub-main-w31 input[type="button"]{
-	color: blue;
-	background: cyan;
-	border: none;
-	padding: 1.04em 10px;
-	position:absolute;
-	left: 317px;
-	top: 338.5px;
-}
+
 .sub-main-w31 input[type="submit"]{
     color: #fff;
     background: #00ad45;

@@ -7,17 +7,17 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                    订单查询id${user.parentid} type${user.type}
+                    订单查询
                 </small>
                 </h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
 
-                <form method="post" action="${pageContext.request.contextPath}/order/someorder">
-                    <input type="hidden" name="pageIndex" value="1" />
-                    <%--<input type="hidden" name="userid" value="${user.id}">
-                    <input type="hidden" name="usertype" value="${user.type}">--%>
+                <form method="post" action="${pageContext.request.contextPath}/order/someorder?courierNum=${user.id}">
+                   <input type="hidden" name="pageIndex" value="1" />
+
+
                     <ul>
                         <li>
                             <div class="form-group">
@@ -144,7 +144,7 @@
                                 <tbody>
                                 <c:forEach var="orderL" items="${order}" varStatus="status">
                                     <tr role="row" class="odd">
-                                        <td tabindex="0" class="s  orting_1">${orderL.orderNumber}</td>
+                                        <td tabindex="0" class="sorting_1">${orderL.orderNumber}</td>
                                         <td>${orderL.sName }</td>
                                         <td>${orderL.sTel}</td>
                                         <td>${orderL.sAddress }</td>
@@ -171,6 +171,7 @@
                                                 <ul class="dropdown-menu" role="menu">
                                                     <li><a href="${pageContext.request.contextPath}/order/toorderdesc?id=${orderL.id}&parentid=${user.parentid}&usertype=${user.type}" class="addVersion"  data-toggle="tooltip" data-placement="top" title="" data-original-title="查看订单">查看订单</a>
                                                     <li><a href="${pageContext.request.contextPath}/order/toaddgongdan?id=${orderL.id}" class="addVersion"  data-toggle="tooltip" data-placement="top" title="" data-original-title="生成工单">生成工单</a>
+                                                    <li><a href="${pageContext.request.contextPath}/order/toweituo?id=${orderL.id}" class="addVersion"  data-toggle="tooltip" data-placement="top" title="" data-original-title="委托">委托</a>
                                                     </li>
 
                                                 </ul>
@@ -193,7 +194,7 @@
                             <div class="dataTables_paginate paging_simple_numbers"
                                  id="datatable-responsive_paginate">
                                 <ul class="pagination">
-                                    <c:if test="${pageIndex.pages > 1}">
+                                    <c:if test="${pageIndex.pageNum > 1}">
                                         <li class="paginate_button previous"><a
                                                 href="javascript:page_nav(document.forms[0],1);"
                                                 aria-controls="datatable-responsive" data-dt-idx="0"
@@ -203,13 +204,13 @@
                                                 aria-controls="datatable-responsive" data-dt-idx="1"
                                                 tabindex="0">上一页</a></li>
                                     </c:if>
-                                    <c:if test="${pageIndex.pageNum < pageIndex.total }">
+                                    <c:if test="${pageIndex.pageNum < pageIndex.pages }">
                                         <li class="paginate_button "><a
-                                                href="javascript:page_nav(document.forms[0],${pageIndex.pageNum+1 });"
+                                                href="javascript:page_nav(document.forms[0],${pageIndex.pageNum+1});"
                                                 aria-controls="datatable-responsive" data-dt-idx="1"
                                                 tabindex="0">下一页</a></li>
                                         <li class="paginate_button next"><a
-                                                href="javascript:page_nav(document.forms[0],${pageIndex.total });"
+                                                href="javascript:page_nav(document.forms[0],${pageIndex.pages });"
                                                 aria-controls="datatable-responsive" data-dt-idx="7"
                                                 tabindex="0">最后一页</a></li>
                                     </c:if>
@@ -226,4 +227,3 @@
 </div>
 <%@include file="../common/footer.jsp"%>
 <script src="${pageContext.request.contextPath }/statics/localjs/rollpage.js"></script>
-<script src="${pageContext.request.contextPath }/statics/localjs/appinfolist.js"></script>

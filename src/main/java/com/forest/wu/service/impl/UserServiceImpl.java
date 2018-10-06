@@ -26,11 +26,14 @@ public class UserServiceImpl implements UserService {
     }
     //注册接口实现
     @Override
-    public User addLogin(User user) {
-        return mapper.addLogin(user);
+    public int addLogin(User user) {
+        return mapper.insertSelective(user);
     }
-
-
+    //注册用查找接口
+    @Override
+    public List<User> findUser() {
+        return mapper.findUser();
+    }
 
 
 }

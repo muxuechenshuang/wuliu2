@@ -114,7 +114,7 @@
                                 class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" value="" readonly
+                            <input class="form-control col-md-7 col-xs-12" value="${user.id}" readonly
                                    type="text">
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                                 class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" name="realWeight" value=""
+                            <input class="form-control col-md-7 col-xs-12" name="realWeight" value="" required onkeyup="value=value.replace(/[^\d]/g,'') "
                                    type="text">
                         </div>
                     </div>
@@ -132,14 +132,14 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">运费(元)<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" name="expenses" value=""
+                            <input class="form-control col-md-7 col-xs-12" name="expenses" value="" required onkeyup="value=value.replace(/[^\d]/g,'') "
                                    type="text">
                         </div>
                     </div>
 
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">备注<span
-                                class="required">*</span>
+                                class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
               <textarea class="form-control col-md-7 col-xs-12" name="comment">
@@ -163,8 +163,8 @@
         <%@include file="../common/footer.jsp" %>
         <script src="${pageContext.request.contextPath }/statics/localjs/appinfoview.js"></script>
         <script type="text/javascript">
-            /*返回按纽*/
-            $("#back").click(function () {
-                window.location.href = "allorder";
-            })
-        </script>
+        /*返回按纽*/
+        $("#back").click(function () {
+            window.location.href = "someorder/?courierNum=${user.id}";
+        })
+    </script>

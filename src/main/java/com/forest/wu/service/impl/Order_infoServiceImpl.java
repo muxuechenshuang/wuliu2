@@ -7,10 +7,8 @@ import com.forest.wu.pojo.Order_info;
 import com.forest.wu.pojo.User;
 import com.forest.wu.pojo.Workorder;
 import com.forest.wu.service.Order_infoService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 import java.util.List;
 
@@ -113,5 +111,48 @@ public class Order_infoServiceImpl implements Order_infoService {
         return userMapper.selectCouriers(parentid,id);
     }
 
+    
+    /**
+    * @author: 肖林辉 
+    * @Description    快递员查询工单  条件 工单状态为1   寄快递员号要等于登录的快递员编号
+    * @Date: 10:35 2018/10/4/004
+    * @Param：[workorder]
+    * @return：java.util.List<com.forest.wu.pojo.Workorder>
+    **/
+    
+    @Override
+    public List<Workorder> selectWorkOrderByCourier(Workorder workorder) {
+        return workorderMapper.selectWorkOrderByCourier(workorder);
+    }
 
+    /**
+    * @author: 肖林辉
+    * @Description   更新订单委托 状态
+    * @Date: 14:46 2018/10/5/005
+    * @Param：[order]
+    * @return：int
+    **/
+    
+    @Override
+    public int updateOrderWeituoStatus(Order_info order) {
+        return orderMapper.updateOrderToWeituoStatus(order);
+    }
+
+
+    /**
+     *
+     * @author: 任一
+     * @Description 我要寄单（添加订单）
+     * @Date: 8:47 2018/10/5
+     * @Param：Order_info
+     * @return：boolean
+     */
+    @Override
+    public boolean insertSelective(Order_info order_info) {
+        boolean flag = false;
+        if(orderMapper.insertSelective(order_info)>0){
+            flag = true;
+        }
+        return flag;
+    }
 }
