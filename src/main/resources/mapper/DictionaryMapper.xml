@@ -101,4 +101,11 @@
         from dictionary
         where typeCode=#{typeCode}
     </select>
+
+  <!--任一-->
+  <select id="selectGoodsStatus" resultType="com.forest.wu.pojo.Dictionary">
+    select *
+    from dictionary
+    where typeCode = 'goodsStatus';
+  </select>
 </mapper>

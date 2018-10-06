@@ -20,6 +20,17 @@ public interface DictionaryMapper {
     int updateByPrimaryKey(Dictionary record);
 
     /**
+     *
+     * @author: 任一
+     * @Description
+     * @Date: 16:49 2018/10/3
+     * @Param：
+     * @return：List<Dictionary>
+     * 查询货物类型列表
+     */
+    List<Dictionary> selectGoodsStatus();
+
+    /**
     * @author: 李家和
     * @Description 获取数据字典中的数据
     * @Date: 8:42 2018/10/6

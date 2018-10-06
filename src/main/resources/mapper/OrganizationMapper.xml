@@ -206,7 +206,7 @@
   <select id="selectByParentId" resultType="com.forest.wu.pojo.Organization">
     select *
     from organization
-    where parantId = #{parentId,jdbcType=INTEGER}
+    where parentId = #{parentId}
   </select>
 
   <!--任一-->
@@ -234,6 +234,7 @@
     </trim>
     limit #{from},#{pageSize}
   </select>
+
 
     <!--根据ID查询组织（分公司）-->
     <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">

@@ -117,7 +117,7 @@ public interface OrganizationMapper {
      * @return：List<Organization>
      * 通过父id查询
      */
-    List<Organization> selectByParentId(Integer parentId);
+    List<Organization> selectByParentId(@Param("parentId") Integer parentId);
 
     /**
      *

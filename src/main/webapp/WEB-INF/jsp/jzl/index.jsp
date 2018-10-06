@@ -104,27 +104,27 @@
 				<form action="register" method="post">
 					<input type="text" required="required" placeholder="用户名、电话或邮箱" name="user" id="user"><br/><span style="color: white;"></span>
 					<input type="password" required="required" placeholder="密码" name="password" id="password"><br/><span style="color: white;"></span>
-                    <span style="color: white;">${error }</span>
 					<input type="submit" value="登录">
 				</form>
 			</div>
 					
 			<div class="sub-main-w31" id="zhuche">	
-				<form action="login" method="post">
-					<input type="text" required="required" placeholder="用户名" name="username">
+				<form action="userLogin" method="post">
+					<input type="text" required="required" placeholder="用户名" onblur="login()" maxlength="15" name="username" id="userName">
                     <br/><span style="color: white;"></span>
-					<input type="password" required="required" placeholder="密码" name="password">
+					<input type="password" required="required" placeholder="密码" onblur="login()" maxlength="15" name="password" id="password1">
                     <br/><span style="color: white;"></span>
-					<input type="password" required="required" placeholder="确认密码" name="password1">
+					<input type="password" required="required" placeholder="确认密码" onblur="login()" maxlength="15"  name="password1" id="password2">
                     <br/><span style="color: white;"></span>
-					<input type="text" required="required" placeholder="手机号" name="phone">
+					<input type="text" required="required" placeholder="手机号" onblur="login()" maxlength="11"  name="phone" id="phone">
                     <br/><span style="color: white;"></span>
-                    <input type="text" required="required" placeholder="输入手机验证码" id="yzm">
-                    <input type="button" value="获取验证码">
-                    <input type="hidden" value=""/>
-					<input type="text" required="required" placeholder="邮箱" name="email">
+                    <input type="hidden" value="" id="judge" />
+                    <input type="text" required="required" placeholder="输入手机验证码" onblur="Mobile()" maxlength="6" name="yzm" id="yzm"><button id="zy" onclick="code()" disabled="disabled">获取验证码</button>
                     <br/><span style="color: white;"></span>
-					<input type="submit" value="注册">
+
+					<input type="text" required="required" placeholder="邮箱" onblur="login()" maxlength="18"  name="email" id="email">
+                    <br/><span style="color: white;"></span><br/>
+					<input type="submit" value="注册" id="submit">
 				</form>
 			</div>
 </div>
@@ -688,4 +688,5 @@
     <!-- //FlexSlider-JavaScript -->
 	
 </body>
+<script src="${pageContext.request.contextPath}/indexBootstrap/js/jquery.min.js"></script>
 </html>

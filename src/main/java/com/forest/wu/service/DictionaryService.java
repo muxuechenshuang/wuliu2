@@ -13,4 +13,6 @@ import java.util.List;
  **/
 public interface DictionaryService {
     public List<Dictionary> queryDictionaryList(String typeCode);
+
+    List<Dictionary> selectGoodsStatus();
 }
