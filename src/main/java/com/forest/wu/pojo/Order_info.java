@@ -15,18 +15,22 @@ public class Order_info {
 
     private String gTel;
 
-    private int cityId;
+    private Integer cityId;
 
-    private int branchId;
+    private Integer branchId;
+
+    private String sAddress;
 
     private String gAddress;
 
-    private String sAddress;
+
+
+    private Integer typeId;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date doorTime;
 
-    private int typeId;
+
 
     private String product;
 
@@ -50,11 +54,22 @@ public class Order_info {
 
     private Long userId;
 
-    private String entrust;
+    private Integer entrust;
 
     private Integer courierNumber;
 
+    private Integer entrustNumber;
 
+    //肖林辉  存放网点名称字段
+    private String  pointName;
+
+    public String getPointName() {
+        return pointName;
+    }
+
+    public void setPointName(String pointName) {
+        this.pointName = pointName;
+    }
 
     public Integer getId() {
         return id;
@@ -96,12 +111,20 @@ public class Order_info {
         this.gTel = gTel == null ? null : gTel.trim();
     }
 
-    public String getgAddress() {
-        return gAddress;
+    public Integer getCityId() {
+        return cityId;
     }
 
-    public void setgAddress(String gAddress) {
-        this.gAddress = gAddress == null ? null : gAddress.trim();
+    public void setCityId(Integer cityId) {
+        this.cityId = cityId;
+    }
+
+    public Integer getBranchId() {
+        return branchId;
+    }
+
+    public void setBranchId(Integer branchId) {
+        this.branchId = branchId;
     }
 
     public String getsAddress() {
@@ -110,6 +133,30 @@ public class Order_info {
 
     public void setsAddress(String sAddress) {
         this.sAddress = sAddress == null ? null : sAddress.trim();
+    }
+
+    public String getgAddress() {
+        return gAddress;
+    }
+
+    public void setgAddress(String gAddress) {
+        this.gAddress = gAddress == null ? null : gAddress.trim();
+    }
+
+    public Date getDoorTime() {
+        return doorTime;
+    }
+
+    public void setDoorTime(Date doorTime) {
+        this.doorTime = doorTime;
+    }
+
+    public Integer getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
     }
 
     public String getProduct() {
@@ -192,12 +239,12 @@ public class Order_info {
         this.userId = userId;
     }
 
-    public String getEntrust() {
+    public Integer getEntrust() {
         return entrust;
     }
 
-    public void setEntrust(String entrust) {
-        this.entrust = entrust == null ? null : entrust.trim();
+    public void setEntrust(Integer entrust) {
+        this.entrust = entrust;
     }
 
     public Integer getCourierNumber() {
@@ -208,35 +255,31 @@ public class Order_info {
         this.courierNumber = courierNumber;
     }
 
-    public int getCityId() {
-        return cityId;
+    public Integer getEntrustNumber() {
+        return entrustNumber;
     }
+
+    public void setEntrustNumber(Integer entrustNumber) {
+        this.entrustNumber = entrustNumber;
+    }
+
+
 
     public void setCityId(int cityId) {
         this.cityId = cityId;
     }
 
-    public int getBranchId() {
-        return branchId;
-    }
+
 
     public void setBranchId(int branchId) {
         this.branchId = branchId;
     }
 
-    public int getTypeId() {
-        return typeId;
-    }
+
 
     public void setTypeId(int typeId) {
         this.typeId = typeId;
     }
 
-    public Date getDoorTime() {
-        return doorTime;
-    }
 
-    public void setDoorTime(Date doorTime) {
-        this.doorTime = doorTime;
-    }
 }

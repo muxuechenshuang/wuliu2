@@ -2,43 +2,50 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.forest.wu.dao.Order_infoMapper">
     <resultMap id="BaseResultMap" type="com.forest.wu.pojo.Order_info">
-        <id column="id" jdbcType="INTEGER" property="id" />
-        <result column="sName" jdbcType="VARCHAR" property="sName" />
-        <result column="gName" jdbcType="VARCHAR" property="gName" />
-        <result column="sTel" jdbcType="VARCHAR" property="sTel" />
-        <result column="gTel" jdbcType="VARCHAR" property="gTel" />
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="sName" jdbcType="VARCHAR" property="sName"/>
+        <result column="gName" jdbcType="VARCHAR" property="gName"/>
+        <result column="sTel" jdbcType="VARCHAR" property="sTel"/>
+        <result column="gTel" jdbcType="VARCHAR" property="gTel"/>
         <result column="cityId" jdbcType="INTEGER" property="cityId"/>
         <result column="branchId" jdbcType="INTEGER" property="branchId"/>
-        <result column="gAddress" jdbcType="VARCHAR" property="gAddress" />
-        <result column="sAddress" jdbcType="VARCHAR" property="sAddress" />
+        <result column="sAddress" jdbcType="VARCHAR" property="sAddress"/>
+        <result column="gAddress" jdbcType="VARCHAR" property="gAddress"/>
         <result column="doorTime" jdbcType="TIMESTAMP" property="doorTime"/>
         <result column="typeId" jdbcType="INTEGER" property="typeId"/>
-        <result column="product" jdbcType="VARCHAR" property="product" />
-        <result column="preWeight" jdbcType="DOUBLE" property="preWeight" />
-        <result column="comment" jdbcType="VARCHAR" property="comment" />
-        <result column="orderNumber" jdbcType="VARCHAR" property="orderNumber" />
-        <result column="status" jdbcType="INTEGER" property="status" />
-        <result column="preVolume" jdbcType="VARCHAR" property="preVolume" />
-        <result column="riseTime" jdbcType="TIMESTAMP" property="riseTime" />
-        <result column="finishTime" jdbcType="TIMESTAMP" property="finishTime" />
-        <result column="reasonForCancle" jdbcType="VARCHAR" property="reasonForCancle" />
-        <result column="userId" jdbcType="BIGINT" property="userId" />
-        <result column="entrust" jdbcType="VARCHAR" property="entrust" />
-        <result column="courierNumber" jdbcType="INTEGER" property="courierNumber" />
-    </resultMap>
+        <result column="product" jdbcType="VARCHAR" property="product"/>
+        <result column="preWeight" jdbcType="DOUBLE" property="preWeight"/>
+        <result column="comment" jdbcType="VARCHAR" property="comment"/>
+        <result column="orderNumber" jdbcType="VARCHAR" property="orderNumber"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="preVolume" jdbcType="VARCHAR" property="preVolume"/>
+        <result column="riseTime" jdbcType="TIMESTAMP" property="riseTime"/>
+        <result column="finishTime" jdbcType="TIMESTAMP" property="finishTime"/>
+        <result column="reasonForCancle" jdbcType="VARCHAR" property="reasonForCancle"/>
+        <result column="userId" jdbcType="BIGINT" property="userId"/>
+        <result column="entrust" jdbcType="INTEGER" property="entrust"/>
+        <result column="courierNumber" jdbcType="INTEGER" property="courierNumber"/>
+        <result column="entrustNumber" jdbcType="INTEGER" property="entrustNumber"/>
+        <association property="organization" javaType="com.forest.wu.pojo.Organization">
+            <id column="id" property="id" />
+            <result column="name" property="pointName"/>
+        </association>
+   </resultMap>
     <sql id="Base_Column_List">
-    id, sName, gName, sTel, gTel, cityId, branchId, gAddress, sAddress, doorTime, typeId, product, preWeight, comment, orderNumber,
-    status, preVolume, riseTime, finishTime, reasonForCancle, userId, entrust, courierNumber
+    id, sName, gName, sTel, gTel, cityId, branchId, sAddress, gAddress, doorTime, typeId,
+    product, preWeight, comment, orderNumber, status, preVolume, riseTime, finishTime,
+    reasonForCancle, userId, entrust, courierNumber, entrustNumber
   </sql>
 
     <!--肖林辉
        根据Order_infor中orderid 查询对应订单的信息
        返回订单集合
      -->
-    <select id="selectOneOrderByCourier"  parameterType="int" resultType="com.forest.wu.pojo.Order_info">
+    <select id="selectOneOrderByCourier" parameterType="int" resultType="com.forest.wu.pojo.Order_info">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from order_info
+
         where id = #{id}
 
     </select>
@@ -48,13 +55,13 @@
     查询登录的快递员的   状态为预约状态的所有订单
     返回订单集合
   -->
-    <select id="selectAllOrder"  resultType="com.forest.wu.pojo.Order_info">
+    <select id="selectAllOrder" resultType="com.forest.wu.pojo.Order_info">
         select
-        <include refid="Base_Column_List" />
-        from order_info  as o
+        <include refid="Base_Column_List"/>
+        from order_info as o
         where 1=1 and status=1
         <if test="courierNumber != null">
-            and  courierNumber =  #{courierNumber}
+            and courierNumber = #{courierNumber}
         </if>
     </select>
 
@@ -62,14 +69,15 @@
      模糊查询,根据条件查询
      返回订单集合
    -->
-    <select id="selectSomeOrder"  parameterType="com.forest.wu.pojo.Order_info" resultType="com.forest.wu.pojo.Order_info">
+    <select id="selectSomeOrder" parameterType="com.forest.wu.pojo.Order_info"
+            resultType="com.forest.wu.pojo.Order_info">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from order_info as o
         where
-        1=1  and  status = 1
+        1=1 and status = 1
         <if test="courierNumber != null">
-            and courierNumber =  #{courierNumber}
+            and courierNumber = #{courierNumber}
         </if>
         <if test="orderNumber != null">
             and orderNumber like concat('%',#{orderNumber},'%')
@@ -82,10 +90,10 @@
         </if>
 
 
-
         order by riseTime desc
     </select>
 
+    <!--更新订单的状态-->
     <update id="updateOrderStatusByCourier" parameterType="com.forest.wu.pojo.Order_info">
         update order_info
         <set>
@@ -96,18 +104,23 @@
         where orderNumber = #{orderNumber}
     </update>
 
+    <!--肖林辉-->
+    <!--委托操作  更新订单的三个字段    entrust  courierNumber  entrustNumber-->
+    <update id="updateOrderToWeituoStatus" parameterType="com.forest.wu.pojo.Order_info">
+        update order_info
+        <set>
 
-
-
-
-
-
-
+            entrust = #{entrust,jdbcType=INTEGER},
+            courierNumber = #{courierNumber,jdbcType=INTEGER},
+            entrustNumber = #{entrustNumber,jdbcType=INTEGER}
+        </set>
+        where `id`= #{id}
+    </update>
 
 
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from order_info
         where id = #{id,jdbcType=INTEGER}
     </select>
@@ -117,19 +130,23 @@
   </delete>
     <insert id="insert" parameterType="com.forest.wu.pojo.Order_info">
     insert into order_info (id, sName, gName,
-      sTel, gTel, gAddress,
-      sAddress, product, preWeight,
-      comment, orderNumber, status,
-      preVolume, riseTime, finishTime,
-      reasonForCancle, userId, entrust,
-      courierNumber)
+      sTel, gTel, cityId,
+      branchId, sAddress, gAddress,
+      doorTime, typeId, product,
+      preWeight, comment, orderNumber,
+      status, preVolume, riseTime,
+      finishTime, reasonForCancle, userId,
+      entrust, courierNumber, entrustNumber
+      )
     values (#{id,jdbcType=INTEGER}, #{sName,jdbcType=VARCHAR}, #{gName,jdbcType=VARCHAR},
-      #{sTel,jdbcType=VARCHAR}, #{gTel,jdbcType=VARCHAR}, #{gAddress,jdbcType=VARCHAR},
-      #{sAddress,jdbcType=VARCHAR}, #{product,jdbcType=VARCHAR}, #{preWeight,jdbcType=DOUBLE},
-      #{comment,jdbcType=VARCHAR}, #{orderNumber,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
-      #{preVolume,jdbcType=VARCHAR}, #{riseTime,jdbcType=TIMESTAMP}, #{finishTime,jdbcType=TIMESTAMP},
-      #{reasonForCancle,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{entrust,jdbcType=VARCHAR},
-      #{courierNumber,jdbcType=INTEGER})
+      #{sTel,jdbcType=VARCHAR}, #{gTel,jdbcType=VARCHAR}, #{cityId,jdbcType=INTEGER},
+      #{branchId,jdbcType=INTEGER}, #{sAddress,jdbcType=VARCHAR}, #{gAddress,jdbcType=VARCHAR},
+      #{doorTime,jdbcType=TIMESTAMP}, #{typeId,jdbcType=INTEGER}, #{product,jdbcType=VARCHAR},
+      #{preWeight,jdbcType=DOUBLE}, #{comment,jdbcType=VARCHAR}, #{orderNumber,jdbcType=VARCHAR},
+      #{status,jdbcType=INTEGER}, #{preVolume,jdbcType=VARCHAR}, #{riseTime,jdbcType=TIMESTAMP},
+      #{finishTime,jdbcType=TIMESTAMP}, #{reasonForCancle,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT},
+      #{entrust,jdbcType=INTEGER}, #{courierNumber,jdbcType=INTEGER}, #{entrustNumber,jdbcType=INTEGER}
+      )
   </insert>
     <insert id="insertSelective" parameterType="com.forest.wu.pojo.Order_info">
         insert into order_info
@@ -155,11 +172,11 @@
             <if test="branchId != null">
                 branchId,
             </if>
-            <if test="gAddress != null">
-                gAddress,
-            </if>
             <if test="sAddress != null">
                 sAddress,
+            </if>
+            <if test="gAddress != null">
+                gAddress,
             </if>
             <if test="doorTime != null">
                 doorTime,
@@ -203,6 +220,9 @@
             <if test="courierNumber != null">
                 courierNumber,
             </if>
+            <if test="entrustNumber != null">
+                entrustNumber,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -226,11 +246,11 @@
             <if test="branchId != null">
                 #{branchId,jdbcType=INTEGER},
             </if>
-            <if test="gAddress != null">
-                #{gAddress,jdbcType=VARCHAR},
-            </if>
             <if test="sAddress != null">
                 #{sAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="gAddress != null">
+                #{gAddress,jdbcType=VARCHAR},
             </if>
             <if test="doorTime != null">
                 #{doorTime,jdbcType=TIMESTAMP},
@@ -269,10 +289,13 @@
                 #{userId,jdbcType=BIGINT},
             </if>
             <if test="entrust != null">
-                #{entrust,jdbcType=VARCHAR},
+                #{entrust,jdbcType=INTEGER},
             </if>
             <if test="courierNumber != null">
                 #{courierNumber,jdbcType=INTEGER},
+            </if>
+            <if test="entrustNumber != null">
+                #{entrustNumber,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>
@@ -291,11 +314,23 @@
             <if test="gTel != null">
                 gTel = #{gTel,jdbcType=VARCHAR},
             </if>
-            <if test="gAddress != null">
-                gAddress = #{gAddress,jdbcType=VARCHAR},
+            <if test="cityId != null">
+                cityId = #{cityId,jdbcType=INTEGER},
+            </if>
+            <if test="branchId != null">
+                branchId = #{branchId,jdbcType=INTEGER},
             </if>
             <if test="sAddress != null">
                 sAddress = #{sAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="gAddress != null">
+                gAddress = #{gAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="doorTime != null">
+                doorTime = #{doorTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="typeId != null">
+                typeId = #{typeId,jdbcType=INTEGER},
             </if>
             <if test="product != null">
                 product = #{product,jdbcType=VARCHAR},
@@ -328,10 +363,13 @@
                 userId = #{userId,jdbcType=BIGINT},
             </if>
             <if test="entrust != null">
-                entrust = #{entrust,jdbcType=VARCHAR},
+                entrust = #{entrust,jdbcType=INTEGER},
             </if>
             <if test="courierNumber != null">
                 courierNumber = #{courierNumber,jdbcType=INTEGER},
+            </if>
+            <if test="entrustNumber != null">
+                entrustNumber = #{entrustNumber,jdbcType=INTEGER},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
@@ -342,8 +380,12 @@
       gName = #{gName,jdbcType=VARCHAR},
       sTel = #{sTel,jdbcType=VARCHAR},
       gTel = #{gTel,jdbcType=VARCHAR},
-      gAddress = #{gAddress,jdbcType=VARCHAR},
+      cityId = #{cityId,jdbcType=INTEGER},
+      branchId = #{branchId,jdbcType=INTEGER},
       sAddress = #{sAddress,jdbcType=VARCHAR},
+      gAddress = #{gAddress,jdbcType=VARCHAR},
+      doorTime = #{doorTime,jdbcType=TIMESTAMP},
+      typeId = #{typeId,jdbcType=INTEGER},
       product = #{product,jdbcType=VARCHAR},
       preWeight = #{preWeight,jdbcType=DOUBLE},
       comment = #{comment,jdbcType=VARCHAR},
@@ -354,8 +396,9 @@
       finishTime = #{finishTime,jdbcType=TIMESTAMP},
       reasonForCancle = #{reasonForCancle,jdbcType=VARCHAR},
       userId = #{userId,jdbcType=BIGINT},
-      entrust = #{entrust,jdbcType=VARCHAR},
-      courierNumber = #{courierNumber,jdbcType=INTEGER}
+      entrust = #{entrust,jdbcType=INTEGER},
+      courierNumber = #{courierNumber,jdbcType=INTEGER},
+      entrustNumber = #{entrustNumber,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

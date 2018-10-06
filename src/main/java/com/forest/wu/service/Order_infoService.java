@@ -101,4 +101,13 @@ public interface Order_infoService {
 
     List<Workorder> selectWorkOrderByCourier(Workorder workorder);
 
+    /**
+    * @author: 肖林辉 
+    * @Description   更新订单的委托状态
+    * @Date: 14:21 2018/10/5/005
+    * @Param：[order]
+    * @return：int
+    **/
+    
+    int updateOrderWeituoStatus(Order_info order);
 }
