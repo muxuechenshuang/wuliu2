@@ -135,7 +135,6 @@ public class Order_infoController {
        //修改订单中的状态   1为预订  2 已接单  将1 修改为2
         Order_info order = new Order_info();
         order.setOrderNumber(workorder.getOrderNum());
-
         orderService.updateOrderStatusByCourier(order);
         User user=(User)session.getAttribute("user");
        int  id=user.getId();
@@ -239,13 +238,13 @@ public class Order_infoController {
 
 
     /**
-    * @author: 肖林辉 
+    * @author: 肖林辉
     * @Description   进入工单委托页面
     * @Date: 9:38 2018/10/6/006
     * @Param：[orderid, session, model]
     * @return：java.lang.String
     **/
-    
+
     @RequestMapping(value="toworkweituo")
     public String toworkWeiTuo(@RequestParam(value="id")Integer workid,HttpSession session,Model model){
         User user=(User)session.getAttribute("user");
@@ -278,13 +277,13 @@ public class Order_infoController {
     }
 
     /**
-    * @author: 肖林辉 
+    * @author: 肖林辉
     * @Description   工单委托状态修改
     * @Date: 10:02 2018/10/6/006
     * @Param：[session, courierId, orderId]
     * @return：java.lang.String
     **/
-    
+
     @RequestMapping("updateworkweituo")
     public String updateWorkWeituoStatus(HttpSession session,
                                           @RequestParam(value="courierId")Integer courierId,

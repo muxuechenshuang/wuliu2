@@ -1,26 +1,23 @@
 package com.forest.wu.pojo;
 
-import java.util.Date;
+/**
+ * 数据字典
+ *
+ * @author 李家和
+ * @create 2018-10-05 17:21
+ **/
 
 public class Dictionary {
-
+    //id
     private Integer id;
-
+    //类型编码
     private String typeCode;
-
+    //类型名称
     private String typeName;
-
+    //类型值ID
     private Integer valueId;
-
+    //类型值名称
     private String valueName;
-
-    private Integer createdBy;
-
-    private Date creationDate;
-
-    private Integer modifyBy;
-
-    private Date modifyDate;
 
     public Integer getId() {
         return id;
@@ -35,7 +32,7 @@ public class Dictionary {
     }
 
     public void setTypeCode(String typeCode) {
-        this.typeCode = typeCode == null ? null : typeCode.trim();
+        this.typeCode = typeCode;
     }
 
     public String getTypeName() {
@@ -43,7 +40,7 @@ public class Dictionary {
     }
 
     public void setTypeName(String typeName) {
-        this.typeName = typeName == null ? null : typeName.trim();
+        this.typeName = typeName;
     }
 
     public Integer getValueId() {
@@ -59,38 +56,7 @@ public class Dictionary {
     }
 
     public void setValueName(String valueName) {
-        this.valueName = valueName == null ? null : valueName.trim();
+        this.valueName = valueName;
     }
 
-    public Integer getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(Integer createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public Integer getModifyBy() {
-        return modifyBy;
-    }
-
-    public void setModifyBy(Integer modifyBy) {
-        this.modifyBy = modifyBy;
-    }
-
-    public Date getModifyDate() {
-        return modifyDate;
-    }
-
-    public void setModifyDate(Date modifyDate) {
-        this.modifyDate = modifyDate;
-    }
 }

@@ -1,12 +1,15 @@
 package com.forest.wu.controller.filiale;
 
+import com.forest.wu.pojo.Dictionary;
 import com.forest.wu.pojo.Organization;
 import com.forest.wu.pojo.User;
-import com.forest.wu.service.WangDianService;
+import com.forest.wu.pojo.Workorder;
+import com.forest.wu.service.DictionaryService;
+import com.forest.wu.service.FilialeWorkOrderService;
+import com.forest.wu.service.WdService;
 import com.forest.wu.utils.Constants;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +33,11 @@ import java.util.List;
 @RequestMapping("/filiale")
 public class FilialeController {
     @Autowired
-    private WangDianService wdService;
+    private WdService wdService;
+    @Autowired
+    private FilialeWorkOrderService workOrderService;
+    @Autowired
+    private DictionaryService dictionaryService;
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
@@ -87,7 +94,7 @@ public class FilialeController {
      * @Param：[id, model]
      * @return：java.lang.String
      **/
-    @RequestMapping(value = "/wd/view/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
     public String wdInfo(@PathVariable String id, Model model) {
         Organization organization = new Organization();
         organization.setId(Integer.parseInt(id));
@@ -230,39 +237,83 @@ public class FilialeController {
 
 
     /**
-    * @author: 李家和
-    * @Description 删除网点(两个条件：该网点订单数为0并且快递员数量为0)
-    * @Date: 10:20 2018/10/5
-    * @Param：[id]
-    * @return：java.lang.String
-    **/
-    @RequestMapping(value = "delwd.json",method = RequestMethod.GET)
+     * @author: 李家和
+     * @Description 删除网点(两个条件 ： 该网点订单数为0并且快递员数量为0)
+     * @Date: 10:20 2018/10/5
+     * @Param：[id]
+     * @return：java.lang.String
+     **/
+    @RequestMapping(value = "delwd.json", method = RequestMethod.GET)
     @ResponseBody
-    public Object deleteWd(@Param("id") String id){
-        logger.info("delwd==================>"+id);
+    public Object deleteWd(@RequestParam("id") String id) {
+        logger.info("delwd==================>" + id);
         HashMap<String, Object> map = new HashMap<String, Object>();
-        if(StringUtils.isEmpty(id)){
-            map.put("result","null");
-        }else{
+        if (StringUtils.isEmpty(id)) {
+            map.put("result", "null");
+        } else {
             Integer wdId = Integer.parseInt(id);
             //判断是否存在订单
-            if(wdService.getOrderCountByWdId(wdId)>0){
+            if (wdService.getOrderCountByWdId(wdId) > 0) {
                 //判断是否存在快递员
-                if(wdService.getUserCountByWdId(wdId)>0){
-                    if(wdService.delWdById(wdId)){
+                if (wdService.getUserCountByWdId(wdId) > 0) {
+                    if (wdService.delWdById(wdId)) {
                         //删除成功
-                        map.put("result","success");
+                        map.put("result", "success");
                     }
-                }else{
+                } else {
                     //存在快递员，不能删
-                    map.put("result","hasuser");
+                    map.put("result", "hasuser");
                 }
-            }else{
+            } else {
                 //存在订单，不能删
-                map.put("result","hasorder");
+                map.put("result", "hasorder");
             }
         }
         return map;
     }
+
+
+    /**
+     * @author: 李家和
+     * @Description 工单查询
+     * @Date: 16:47 2018/10/5
+     * @Param：[workorder, model]
+     * @return：java.lang.String
+     **/
+    @RequestMapping("/queryworkorder")
+    public String queryWorkOrder(Workorder workorder, Model model, HttpSession session,
+                                 @RequestParam(value = "pageIndex", required = false, defaultValue = "1") String pageIndex) {
+        //分公司Id
+        Integer parentid = ((User) session.getAttribute("user")).getParentid();
+        //网点集合
+        List<Organization> wdList = null;
+        //工单集合
+        List<Workorder> workorderList = null;
+        //工单状态集合
+        List<Dictionary> workStatusList = null;
+        //出入库状态集合
+        List<Dictionary> storageStatusList = null;
+        //分页
+        PageHelper.startPage(Integer.parseInt(pageIndex), Constants.PAGE_SIZE, "id desc");
+        workorderList = workOrderService.queryWorkOrderList(workorder);
+        PageInfo<Workorder> p = new PageInfo<Workorder>(workorderList);
+        //查询网点集合
+        wdList = wdService.getWdListByCondition(null, null, null, parentid);
+        //查询数据字典中的工单状态集合与出入库状态集合
+        workStatusList = dictionaryService.queryDictionaryList("workStatus");
+        storageStatusList = dictionaryService.queryDictionaryList("storageStatus");
+        //回显
+        model.addAttribute("wdList", wdList);
+        model.addAttribute("workorderList", workorderList);
+        model.addAttribute("workStatusList", workStatusList);
+        model.addAttribute("storageStatusList", storageStatusList);
+        model.addAttribute("page", p);
+        model.addAttribute("workNum", workorder.getWorkNum());
+        model.addAttribute("orderNum", workorder.getOrderNum());
+        model.addAttribute("productNum", workorder.getProductNum());
+        model.addAttribute("packageId", workorder.getPackageId());
+        return "ljh/workorderquery";
+    }
+
 
 }

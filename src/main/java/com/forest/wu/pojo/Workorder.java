@@ -65,16 +65,44 @@ public class Workorder {
 
     private Integer productLocation;
 
-    private String result;
+    private Integer auditStatus;
 
-    private String invalidatedState;
+    private Integer invalidatedState;
 
-    private String storageStatus;
-
+    //委托状态
     private Integer entrust;
 
-    private Integer entrustNumber;
+    //出入库状态id
+    private Integer storageStatus;
 
+    //出入库状态名称
+    private String storageStatusName;
+
+    //工单状态名称
+    private String workStatusName;
+
+    //网点名称（用于分公司根据网点名称查询该网点的工单）
+    private String wdName;
+
+    //物件所在位置名称
+    private String productLocationName;
+
+    //审核结果名称
+    private String auditStatusName;
+
+    //失效状态名称
+    private String invalidatedStateName;
+
+    //委托状态名称
+    private String entrustName;
+
+    public String getWdName() {
+        return wdName;
+    }
+
+    public void setWdName(String wdName) {
+        this.wdName = wdName;
+    }
 
     public Integer getId() {
         return id;
@@ -316,28 +344,44 @@ public class Workorder {
         this.productLocation = productLocation;
     }
 
-    public String getResult() {
-        return result;
+    public Integer getResult() {
+        return auditStatus;
     }
 
-    public void setResult(String result) {
-        this.result = result == null ? null : result.trim();
+    public void setResult(Integer auditStatus) {
+        this.auditStatus = auditStatus;
     }
 
-    public String getInvalidatedState() {
+    public Integer getInvalidatedState() {
         return invalidatedState;
     }
 
-    public void setInvalidatedState(String invalidatedState) {
-        this.invalidatedState = invalidatedState == null ? null : invalidatedState.trim();
+    public void setInvalidatedState(Integer invalidatedState) {
+        this.invalidatedState = invalidatedState;
     }
 
-    public String getStorageStatus() {
+    public Integer getStorageStatus() {
         return storageStatus;
     }
 
-    public void setStorageStatus(String storageStatus) {
-        this.storageStatus = storageStatus == null ? null : storageStatus.trim();
+    public void setStorageStatus(Integer storageStatus) {
+        this.storageStatus = storageStatus;
+    }
+
+    public String getStorageStatusName() {
+        return storageStatusName;
+    }
+
+    public void setStorageStatusName(String storageStatusName) {
+        this.storageStatusName = storageStatusName;
+    }
+
+    public String getWorkStatusName() {
+        return workStatusName;
+    }
+
+    public void setWorkStatusName(String workStatusName) {
+        this.workStatusName = workStatusName;
     }
 
     public Integer getEntrust() {
@@ -348,11 +392,35 @@ public class Workorder {
         this.entrust = entrust;
     }
 
-    public Integer getEntrustNumber() {
-        return entrustNumber;
+    public String getProductLocationName() {
+        return productLocationName;
     }
 
-    public void setEntrustNumber(Integer entrustNumber) {
-        this.entrustNumber = entrustNumber;
+    public void setProductLocationName(String productLocationName) {
+        this.productLocationName = productLocationName;
+    }
+
+    public String getAuditStatusName() {
+        return auditStatusName;
+    }
+
+    public void setAuditStatusName(String auditStatusName) {
+        this.auditStatusName = auditStatusName;
+    }
+
+    public String getInvalidatedStateName() {
+        return invalidatedStateName;
+    }
+
+    public void setInvalidatedStateName(String invalidatedStateName) {
+        this.invalidatedStateName = invalidatedStateName;
+    }
+
+    public String getEntrustName() {
+        return entrustName;
+    }
+
+    public void setEntrustName(String entrustName) {
+        this.entrustName = entrustName;
     }
 }

@@ -12,7 +12,7 @@ import java.util.List;
  * @Param：
  * @return：
  **/
-public interface WangDianService {
+public interface WdService {
 
     public List<Organization> getWdListByCondition(Integer id, String name, String phone,Integer parentId) ;
 

@@ -3,32 +3,28 @@ package com.forest.wu.service.impl;
 import com.forest.wu.dao.DictionaryMapper;
 import com.forest.wu.pojo.Dictionary;
 import com.forest.wu.service.DictionaryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * ${DESCRIPTION}
- *
- * @author 任一
- * @create 2018-10-03 17:00
+ * @author: 李家和
+ * @Description 数据字典业务层实现类
+ * @Date: 8:53 2018/10/6
+ * @Param：
+ * @return：
  **/
 @Service
-public class DictonaryServiceImpl implements DictionaryService {
-
-    @Resource
+public class DictionaryServiceImpl implements DictionaryService {
+    @Autowired
     private DictionaryMapper dictionaryMapper;
 
-    /**
-     *
-     * @author: 任一
-     * @Description
-     * @Date: 17:01 2018/10/3
-     * @Param：
-     * @return：List<Dictionary>
-     * 查询货物类型列表
-     */
+    @Override
+    public List<Dictionary> queryDictionaryList(String typeCode) {
+        return dictionaryMapper.selectByTypeCode(typeCode);
+    }
+
     @Override
     public List<Dictionary> selectGoodsStatus() {
         return dictionaryMapper.selectGoodsStatus();
