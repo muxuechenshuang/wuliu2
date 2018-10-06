@@ -52,18 +52,24 @@ public class CenterServiceImpl implements CenterService {
     }
 
     @Override
-    public List<Workorder> selectReturn(Return returnorder) throws Exception {
-        return null;
+    public List<Return> selectReturn(Return returnorder) throws Exception {
+        return returnMapper.selectReturn(returnorder);
     }
 
     @Override
-    public int delectReturn(Return returnorder) throws Exception {
-        return 0;
+    public Return selectRetrunById(String id) throws Exception {
+
+        return returnMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int delectReturn(String id) throws Exception {
+        return returnMapper.deleteByPrimaryKey(id);
     }
 
     @Override
     public int updateReturn(Return returnorder) throws Exception {
-        return 0;
+        return returnMapper.updateByPrimaryKeySelective(returnorder);
     }
 
     @Override

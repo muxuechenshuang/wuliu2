@@ -1,9 +1,6 @@
 package com.forest.wu.controller;
 
-import com.forest.wu.pojo.Order_info;
-import com.forest.wu.pojo.Organization;
-import com.forest.wu.pojo.User;
-import com.forest.wu.pojo.Workorder;
+import com.forest.wu.pojo.*;
 import com.forest.wu.service.CenterService;
 import com.forest.wu.utils.Constants;
 import com.github.pagehelper.PageHelper;
@@ -32,6 +29,73 @@ import java.util.List;
 public class CenterController {
     @Autowired
     private CenterService centerService;
+
+    /**
+    * author: 张展
+    * 返货单列表
+    * Date: 10:56 2018/10/5
+    * Param：[returnorder, model]
+    * Return：java.lang.String
+    **/
+    @RequestMapping(value = "/returnlist")
+    public String returnlist(Return returnorder, Model model) {
+        try {
+            List<Return> list1 = centerService.selectReturn(returnorder);
+            model.addAttribute("list1", list1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "zz/fanhuodanlist_zz";
+    }
+
+    /**
+     * author: 张展
+     * 返货单详情
+     * Date: 10:54 2018/10/5
+     * Param：[workorderid, model]
+     * Return：java.lang.String
+     **/
+    @RequestMapping(value = "/returndetail")
+    public String returndetail(@RequestParam(value = "id") String id, Model model) {
+        try {
+            Return returnorder = centerService.selectRetrunById(id);
+            model.addAttribute("returnorder", returnorder);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "zz/fanhuodanxiangqing_zz";
+    }
+
+
+    @RequestMapping(value = "/shenhe")
+    public String shenhe(String id ,Integer status,String comment){
+        try {
+            Return returnorder = centerService.selectRetrunById(id);
+            returnorder.setStatus(status);
+            returnorder.setAuditTime(new Date());
+            returnorder.setComment(comment);
+//            model.addAttribute("returnorder",returnorder);
+            //需要更新操作
+            centerService.updateReturn(returnorder);
+
+            return "redirect:/center/returnlist";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "center/returnlist";
+    }
+
+    /**
+    * author: 张展
+    * 更新返货单信息
+    * Date: 10:46 2018/10/6
+    * Param：
+    * Return：
+    **/
+    public String addSave4(@RequestParam(value = "flase")Return returnorder, Model model){
+
+        return "redirect:/center/returnlist";
+    }
 
     /**
      * author: 张展
@@ -84,17 +148,6 @@ public class CenterController {
         return "zz/baobiao1_zz";
     }
 
-    //    返货单审核（详情）
-    @RequestMapping(value = "/returndetail")
-    public String returndetail() {
-        return "zz/fanhuodanxiangqing_zz";
-    }
-
-    //    返货单查询
-    @RequestMapping(value = "/returnlist")
-    public String returnlist() {
-        return "zz/fanhuodanlist_zz";
-    }
 
     //    分公司添加
     @RequestMapping(value = "/addsoncompany")
@@ -306,20 +359,21 @@ public class CenterController {
         //信息保存失败重新返回新增页面
         return "center/tosondetail?organizationid=${organization.id}";
     }
+
     /**
-    * author: 张展
-    * 根据ID删除分公司
-    * Date: 15:43 2018/10/4
-    * Param：[]
-    * Return：java.lang.String
-    **/
+     * author: 张展
+     * 根据ID删除分公司
+     * Date: 15:43 2018/10/4
+     * Param：[]
+     * Return：java.lang.String
+     **/
     @ResponseBody
     @RequestMapping(value = "/delect.json")
-    public Integer delect(@RequestParam(value = "organizationid") String organizationid){
+    public Integer delect(@RequestParam(value = "organizationid") String organizationid) {
         try {
 //            if (centerService.delectSonCompany(Integer.valueOf(organizationid))>0);
 //            return "redirect:/center/soncompanylist";
-                return centerService.delectSonCompany(Integer.valueOf(organizationid));
+            return centerService.delectSonCompany(Integer.valueOf(organizationid));
         } catch (Exception e) {
             e.printStackTrace();
         }

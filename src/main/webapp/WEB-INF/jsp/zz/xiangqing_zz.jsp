@@ -335,17 +335,18 @@
 								   value="${workorder.entrust}" name="entrust" id="entrust">
 						</div>
 					</div>
+					<div class="x_content" style="display: block;">
+						<br>
+
+					</div>
+					<div class="form-group">
+						<div class="col-md-6 col-md-offset-3">
+							<button type="button" class="btn btn-primary" id="back">返回</button>
+						</div>
+					</div>
 				</form>
 			</div>
-			<div class="x_content" style="display: block;">
-				<br>
 
-			</div>
-			<div class="form-group">
-				<div class="col-md-6 col-md-offset-3">
-					<button type="button" class="btn btn-primary" id="back">返回</button>
-				</div>
-			</div>
 			<div class="clearfix"></div>
 			<br />
 			<br />
