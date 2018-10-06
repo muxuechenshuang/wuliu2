@@ -262,7 +262,7 @@ public class CenterController {
         model.addAttribute("gCourier", workorder.getgCourier());
         //送
         model.addAttribute("sCourier", workorder.getsCourier());
-        model.addAttribute("result", workorder.getResult());
+        model.addAttribute("result", workorder.getAuditStatus());
 
 
         return "zz/gondan2_zz";

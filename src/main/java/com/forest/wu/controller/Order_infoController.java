@@ -295,6 +295,7 @@ public class Order_infoController {
         workorder.setId(workId);
         workorder.setEntrust(1);
         workorder.setEntrustNumber(user.getId());
+
         workorder.setsCourier(courierId);
         workorderMapper.updateByPrimaryKeySelective(workorder);
 

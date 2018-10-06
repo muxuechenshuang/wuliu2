@@ -19,21 +19,21 @@ public class Workorder {
 
     private String sTel;
 
-    private String sCity;
+    private Integer sCity;
 
     private String sAddress;
 
-    private String sPoint;
+    private Integer sPoint;
 
     private String gName;
 
     private String gTel;
 
-    private String gCity;
+    private Integer gCity;
 
     private String gAddress;
 
-    private String gPoint;
+    private Integer gPoint;
 
     private String productType;
 
@@ -69,40 +69,13 @@ public class Workorder {
 
     private Integer invalidatedState;
 
-    //委托状态
-    private Integer entrust;
-
-    //出入库状态id
     private Integer storageStatus;
 
-    //出入库状态名称
-    private String storageStatusName;
+    private Integer entrust;
 
-    //工单状态名称
-    private String workStatusName;
+    private Integer entrustNumber;
 
-    //网点名称（用于分公司根据网点名称查询该网点的工单）
-    private String wdName;
-
-    //物件所在位置名称
-    private String productLocationName;
-
-    //审核结果名称
-    private String auditStatusName;
-
-    //失效状态名称
-    private String invalidatedStateName;
-
-    //委托状态名称
-    private String entrustName;
-
-    public String getWdName() {
-        return wdName;
-    }
-
-    public void setWdName(String wdName) {
-        this.wdName = wdName;
-    }
+    private Integer isPay;
 
     public Integer getId() {
         return id;
@@ -160,12 +133,12 @@ public class Workorder {
         this.sTel = sTel == null ? null : sTel.trim();
     }
 
-    public String getsCity() {
+    public Integer getsCity() {
         return sCity;
     }
 
-    public void setsCity(String sCity) {
-        this.sCity = sCity == null ? null : sCity.trim();
+    public void setsCity(Integer sCity) {
+        this.sCity = sCity;
     }
 
     public String getsAddress() {
@@ -176,12 +149,12 @@ public class Workorder {
         this.sAddress = sAddress == null ? null : sAddress.trim();
     }
 
-    public String getsPoint() {
+    public Integer getsPoint() {
         return sPoint;
     }
 
-    public void setsPoint(String sPoint) {
-        this.sPoint = sPoint == null ? null : sPoint.trim();
+    public void setsPoint(Integer sPoint) {
+        this.sPoint = sPoint;
     }
 
     public String getgName() {
@@ -200,12 +173,12 @@ public class Workorder {
         this.gTel = gTel == null ? null : gTel.trim();
     }
 
-    public String getgCity() {
+    public Integer getgCity() {
         return gCity;
     }
 
-    public void setgCity(String gCity) {
-        this.gCity = gCity == null ? null : gCity.trim();
+    public void setgCity(Integer gCity) {
+        this.gCity = gCity;
     }
 
     public String getgAddress() {
@@ -216,12 +189,12 @@ public class Workorder {
         this.gAddress = gAddress == null ? null : gAddress.trim();
     }
 
-    public String getgPoint() {
+    public Integer getgPoint() {
         return gPoint;
     }
 
-    public void setgPoint(String gPoint) {
-        this.gPoint = gPoint == null ? null : gPoint.trim();
+    public void setgPoint(Integer gPoint) {
+        this.gPoint = gPoint;
     }
 
     public String getProductType() {
@@ -344,11 +317,11 @@ public class Workorder {
         this.productLocation = productLocation;
     }
 
-    public Integer getResult() {
+    public Integer getAuditStatus() {
         return auditStatus;
     }
 
-    public void setResult(Integer auditStatus) {
+    public void setAuditStatus(Integer auditStatus) {
         this.auditStatus = auditStatus;
     }
 
@@ -368,22 +341,6 @@ public class Workorder {
         this.storageStatus = storageStatus;
     }
 
-    public String getStorageStatusName() {
-        return storageStatusName;
-    }
-
-    public void setStorageStatusName(String storageStatusName) {
-        this.storageStatusName = storageStatusName;
-    }
-
-    public String getWorkStatusName() {
-        return workStatusName;
-    }
-
-    public void setWorkStatusName(String workStatusName) {
-        this.workStatusName = workStatusName;
-    }
-
     public Integer getEntrust() {
         return entrust;
     }
@@ -392,35 +349,19 @@ public class Workorder {
         this.entrust = entrust;
     }
 
-    public String getProductLocationName() {
-        return productLocationName;
+    public Integer getEntrustNumber() {
+        return entrustNumber;
     }
 
-    public void setProductLocationName(String productLocationName) {
-        this.productLocationName = productLocationName;
+    public void setEntrustNumber(Integer entrustNumber) {
+        this.entrustNumber = entrustNumber;
     }
 
-    public String getAuditStatusName() {
-        return auditStatusName;
+    public Integer getIsPay() {
+        return isPay;
     }
 
-    public void setAuditStatusName(String auditStatusName) {
-        this.auditStatusName = auditStatusName;
-    }
-
-    public String getInvalidatedStateName() {
-        return invalidatedStateName;
-    }
-
-    public void setInvalidatedStateName(String invalidatedStateName) {
-        this.invalidatedStateName = invalidatedStateName;
-    }
-
-    public String getEntrustName() {
-        return entrustName;
-    }
-
-    public void setEntrustName(String entrustName) {
-        this.entrustName = entrustName;
+    public void setIsPay(Integer isPay) {
+        this.isPay = isPay;
     }
 }

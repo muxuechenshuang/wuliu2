@@ -23,31 +23,31 @@ public interface WorkorderMapper {
 
 
     /**
-    * author: 张展
-    * （总部）工单查询
-    * Date: 14:27 2018/10/2
-    * Param：[workorder]
-    * Return：com.forest.wu.pojo.Workorder
-    **/
+     * author: 张展
+     * （总部）工单查询
+     * Date: 14:27 2018/10/2
+     * Param：[workorder]
+     * Return：com.forest.wu.pojo.Workorder
+     **/
     List<Workorder> selectWorkOrder(Workorder workorder);
-    
+
     /**
-    * author: 张展
-    * 根据工单ID查询工单
-    * Date: 11:18 2018/10/3
-    * Param：[id]
-    * Return：com.forest.wu.pojo.Workorder
-    **/
+     * author: 张展
+     * 根据工单ID查询工单
+     * Date: 11:18 2018/10/3
+     * Param：[id]
+     * Return：com.forest.wu.pojo.Workorder
+     **/
     public Workorder selectWorkOrderById(Integer id)  ;
 
 
     /**
-    * @author: 李家和
-    * @Description 分公司工单查询
-    * @Date: 16:03 2018/10/5
-    * @Param：[workorder]
-    * @return：java.util.List<com.forest.wu.pojo.Workorder>
-    **/
+     * @author: 李家和
+     * @Description 分公司工单查询
+     * @Date: 16:03 2018/10/5
+     * @Param：[workorder]
+     * @return：java.util.List<com.forest.wu.pojo.Workorder>
+     **/
     public List<Workorder> selectWorkOrderByCondition(Workorder workorder);
 
     public List<Dictionary> selectWorkOrderStatusList();
