@@ -46,23 +46,23 @@
     <sql id="Base_Column_List">
     id, orderNum, workNum, packageId, productNum, sName, sTel, sCity, sAddress, sPoint,
     gName, gTel, gCity, gAddress, gPoint, productType, realWeight, workStatus,
-    (SELECT valueName FROM dictionary WHERE typeCode='workStatus' and valueId=#{workStatus}) as workStatusName,
+    (SELECT valueName FROM dictionary d WHERE typeCode='workStatus' and w.workStatus = d.valueId) as workStatusName,
     comment,expenses, gCourier, sCourier, preVolume, riseTime, firInStorage, firOutStorage, secInStorage,
     secOutStorage, finishedTime, productLocation,
-    (SELECT valueName FROM dictionary WHERE typeCode='productLocation' and valueId=#{productLocation}) as productLocationName,
+    (SELECT valueName FROM dictionary d WHERE d.typeCode='productLocation' and w.productLocation = d.valueId) as productLocationName,
     auditStatus,
-    (SELECT valueName FROM dictionary WHERE typeCode='auditStatus' and valueId=#{auditStatus}) as auditStatusName,
+    (SELECT valueName FROM dictionary d WHERE d.typeCode='auditStatus' and w.auditStatus = d.valueId) as auditStatusName,
     invalidatedState,
-    (SELECT valueName FROM dictionary WHERE typeCode='invalidatedState' and valueId=#{invalidatedState}) as invalidatedStateName,
-    (SELECT valueName FROM dictionary WHERE typeCode='storageStatus' and valueId=#{storageStatus}) as storageStatusName,
+    (SELECT valueName FROM dictionary d WHERE d.typeCode='invalidatedState' and w.invalidatedState = d.valueId) as invalidatedStateName,
+    (SELECT valueName FROM dictionary d WHERE d.typeCode='storageStatus' and w.storageStatus = d.valueId) as storageStatusName,
     storageStatus,
-    (SELECT valueName FROM dictionary WHERE typeCode='entrust' and valueId=#{entrust}) as entrustName,
+    (SELECT valueName FROM dictionary d WHERE d.typeCode='entrust' and w.entrust = d.valueId) as entrustName,
     entrust
   </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from workorder
+        from workorder w
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -453,7 +453,7 @@
     <select id="selectWorkOrder" resultType="com.forest.wu.pojo.Workorder">
         select
         <include refid="Base_Column_List"/>
-        from workorder
+        from workorder w
         <trim prefix="where" prefixOverrides="and | or">
             <if test="workNum!=null and workNum!=''">
                 and workNum like CONCAT ('%',#{workNum},'%')
@@ -511,7 +511,7 @@
     <select id="selectWorkOrderByCondition" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from workorder
+        from workorder w
         <trim prefix="where" prefixOverrides="and | or">
             <if test="workNum!=null and workNum!=''">
                 and workNum like CONCAT ('%',#{workNum},'%')
@@ -532,7 +532,7 @@
                 and storageStatus=#{storageStatus}
             </if>
             <if test="wdName!=null">
-                and (sPoint=#{wdName} or gPoint=#{wdName})
+                and sPoint=(SELECT id FROM organization WHERE name=#{wdName} ) or gPoint=(SELECT id FROM organization WHERE name=#{wdName} )
             </if>
         </trim>
     </select>
@@ -551,7 +551,7 @@
             resultType="com.forest.wu.pojo.Workorder">
         select
         <include refid="Base_Column_List"/>
-        from workorder
+        from workorder w
         where 1=1
         <if test="sCourier !=null ">
             and sCourier = #{sCourier}

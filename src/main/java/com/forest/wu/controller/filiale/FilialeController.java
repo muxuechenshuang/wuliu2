@@ -281,7 +281,14 @@ public class FilialeController {
      * @return：java.lang.String
      **/
     @RequestMapping("/queryworkorder")
-    public String queryWorkOrder(Workorder workorder, Model model, HttpSession session,
+    public String queryWorkOrder(@RequestParam(value = "workNum", required = false) String workNum,
+                                 @RequestParam(value = "orderNum", required = false) String orderNum,
+                                 @RequestParam(value = "productNum", required = false) String productNum,
+                                 @RequestParam(value = "packageId", required = false) String packageId,
+                                 @RequestParam(value = "wdName", required = false) String wdName,
+                                 @RequestParam(value = "workStatus", required = false) String workStatus,
+                                 @RequestParam(value = "storageStatus", required = false) String storageStatus,
+                                 Model model, HttpSession session,
                                  @RequestParam(value = "pageIndex", required = false, defaultValue = "1") String pageIndex) {
         //分公司Id
         Integer parentid = ((User) session.getAttribute("user")).getParentid();
@@ -293,15 +300,42 @@ public class FilialeController {
         List<Dictionary> workStatusList = null;
         //出入库状态集合
         List<Dictionary> storageStatusList = null;
-        //分页
-        PageHelper.startPage(Integer.parseInt(pageIndex), Constants.PAGE_SIZE, "id desc");
-        workorderList = workOrderService.queryWorkOrderList(workorder);
-        PageInfo<Workorder> p = new PageInfo<Workorder>(workorderList);
+
+        //workorder对象赋值
+        Workorder workorder = new Workorder();
+        if (!StringUtils.isEmpty(workNum)) {
+            workorder.setWorkNum(workNum);
+        }
+        if (!StringUtils.isEmpty(orderNum)) {
+            workorder.setOrderNum(orderNum);
+        }
+        if (!StringUtils.isEmpty(productNum)) {
+            workorder.setProductNum(Long.valueOf(productNum));
+        }
+        if (!StringUtils.isEmpty(packageId)) {
+            workorder.setPackageId(Long.valueOf(packageId));
+        }
+        if (!StringUtils.isEmpty(wdName)) {
+            workorder.setWdName(wdName);
+        }
+        if (!StringUtils.isEmpty(workStatus)) {
+            workorder.setWorkStatus(Integer.parseInt(workStatus));
+        }
+        if (!StringUtils.isEmpty(storageStatus)) {
+            workorder.setStorageStatus(Integer.parseInt(storageStatus));
+        }
+
         //查询网点集合
         wdList = wdService.getWdListByCondition(null, null, null, parentid);
         //查询数据字典中的工单状态集合与出入库状态集合
         workStatusList = dictionaryService.queryDictionaryList("workStatus");
         storageStatusList = dictionaryService.queryDictionaryList("storageStatus");
+
+        //分页
+        PageHelper.startPage(Integer.parseInt(pageIndex), Constants.PAGE_SIZE, "id desc");
+        workorderList = workOrderService.queryWorkOrderList(workorder);
+        PageInfo<Workorder> p = new PageInfo<Workorder>(workorderList);
+
         //回显
         model.addAttribute("wdList", wdList);
         model.addAttribute("workorderList", workorderList);
@@ -312,7 +346,18 @@ public class FilialeController {
         model.addAttribute("orderNum", workorder.getOrderNum());
         model.addAttribute("productNum", workorder.getProductNum());
         model.addAttribute("packageId", workorder.getPackageId());
+        model.addAttribute("workStatus", workorder.getWorkStatus());
+        model.addAttribute("storageStatus", workorder.getStorageStatus());
+        model.addAttribute("wdName", workorder.getWdName());
         return "ljh/workorderquery";
+    }
+
+
+
+    public String viewWorkorder(@PathVariable(value = "id")String id){
+
+
+        return "ljh/workorderinfo";
     }
 
 
