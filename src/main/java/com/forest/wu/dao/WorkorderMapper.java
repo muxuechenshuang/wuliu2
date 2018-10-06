@@ -1,5 +1,6 @@
 package com.forest.wu.dao;
 
+import com.forest.wu.pojo.Dictionary;
 import com.forest.wu.pojo.Workorder;
 import org.springframework.stereotype.Repository;
 
@@ -37,8 +38,19 @@ public interface WorkorderMapper {
     * Param：[id]
     * Return：com.forest.wu.pojo.Workorder
     **/
-    public Workorder selectWorkOrderById(Integer id) throws Exception;
+    public Workorder selectWorkOrderById(Integer id)  ;
 
+
+    /**
+    * @author: 李家和
+    * @Description 分公司工单查询
+    * @Date: 16:03 2018/10/5
+    * @Param：[workorder]
+    * @return：java.util.List<com.forest.wu.pojo.Workorder>
+    **/
+    public List<Workorder> selectWorkOrderByCondition(Workorder workorder);
+
+    public List<Dictionary> selectWorkOrderStatusList();
 
 
     /**

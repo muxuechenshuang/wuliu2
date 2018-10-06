@@ -1,60 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.forest.wu.dao.WorkorderMapper">
-  <resultMap id="BaseResultMap" type="com.forest.wu.pojo.Workorder">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="orderNum" jdbcType="VARCHAR" property="orderNum" />
-    <result column="workNum" jdbcType="VARCHAR" property="workNum" />
-    <result column="packageId" jdbcType="BIGINT" property="packageId" />
-    <result column="productNum" jdbcType="BIGINT" property="productNum" />
-    <result column="sName" jdbcType="VARCHAR" property="sName" />
-    <result column="sTel" jdbcType="VARCHAR" property="sTel" />
-    <result column="sCity" jdbcType="VARCHAR" property="sCity" />
-    <result column="sAddress" jdbcType="VARCHAR" property="sAddress" />
-    <result column="sPoint" jdbcType="VARCHAR" property="sPoint" />
-    <result column="gName" jdbcType="VARCHAR" property="gName" />
-    <result column="gTel" jdbcType="VARCHAR" property="gTel" />
-    <result column="gCity" jdbcType="VARCHAR" property="gCity" />
-    <result column="gAddress" jdbcType="VARCHAR" property="gAddress" />
-    <result column="gPoint" jdbcType="VARCHAR" property="gPoint" />
-    <result column="productType" jdbcType="VARCHAR" property="productType" />
-    <result column="realWeight" jdbcType="DOUBLE" property="realWeight" />
-    <result column="workStatus" jdbcType="INTEGER" property="workStatus" />
-    <result column="comment" jdbcType="VARCHAR" property="comment" />
-    <result column="expenses" jdbcType="DOUBLE" property="expenses" />
-    <result column="gCourier" jdbcType="INTEGER" property="gCourier" />
-    <result column="sCourier" jdbcType="INTEGER" property="sCourier" />
-    <result column="preVolume" jdbcType="DOUBLE" property="preVolume" />
-    <result column="riseTime" jdbcType="TIMESTAMP" property="riseTime" />
-    <result column="firInStorage" jdbcType="TIMESTAMP" property="firInStorage" />
-    <result column="firOutStorage" jdbcType="TIMESTAMP" property="firOutStorage" />
-    <result column="secInStorage" jdbcType="TIMESTAMP" property="secInStorage" />
-    <result column="secOutStorage" jdbcType="TIMESTAMP" property="secOutStorage" />
-    <result column="finishedTime" jdbcType="TIMESTAMP" property="finishedTime" />
-    <result column="productLocation" jdbcType="VARCHAR" property="productLocation" />
-    <result column="result" jdbcType="VARCHAR" property="result" />
-    <result column="invalidatedState" jdbcType="VARCHAR" property="invalidatedState" />
-    <result column="storageStatus" jdbcType="VARCHAR" property="storageStatus" />
-    <result column="entrust" jdbcType="VARCHAR" property="entrust" />
-  </resultMap>
-  <sql id="Base_Column_List">
+    <resultMap id="BaseResultMap" type="com.forest.wu.pojo.Workorder">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="orderNum" jdbcType="VARCHAR" property="orderNum"/>
+        <result column="workNum" jdbcType="VARCHAR" property="workNum"/>
+        <result column="packageId" jdbcType="BIGINT" property="packageId"/>
+        <result column="productNum" jdbcType="BIGINT" property="productNum"/>
+        <result column="sName" jdbcType="VARCHAR" property="sName"/>
+        <result column="sTel" jdbcType="VARCHAR" property="sTel"/>
+        <result column="sCity" jdbcType="VARCHAR" property="sCity"/>
+        <result column="sAddress" jdbcType="VARCHAR" property="sAddress"/>
+        <result column="sPoint" jdbcType="VARCHAR" property="sPoint"/>
+        <result column="gName" jdbcType="VARCHAR" property="gName"/>
+        <result column="gTel" jdbcType="VARCHAR" property="gTel"/>
+        <result column="gCity" jdbcType="VARCHAR" property="gCity"/>
+        <result column="gAddress" jdbcType="VARCHAR" property="gAddress"/>
+        <result column="gPoint" jdbcType="VARCHAR" property="gPoint"/>
+        <result column="productType" jdbcType="VARCHAR" property="productType"/>
+        <result column="realWeight" jdbcType="DOUBLE" property="realWeight"/>
+        <result column="workStatus" jdbcType="INTEGER" property="workStatus"/>
+        <result column="comment" jdbcType="VARCHAR" property="comment"/>
+        <result column="expenses" jdbcType="DOUBLE" property="expenses"/>
+        <result column="gCourier" jdbcType="INTEGER" property="gCourier"/>
+        <result column="sCourier" jdbcType="INTEGER" property="sCourier"/>
+        <result column="preVolume" jdbcType="DOUBLE" property="preVolume"/>
+        <result column="riseTime" jdbcType="TIMESTAMP" property="riseTime"/>
+        <result column="firInStorage" jdbcType="TIMESTAMP" property="firInStorage"/>
+        <result column="firOutStorage" jdbcType="TIMESTAMP" property="firOutStorage"/>
+        <result column="secInStorage" jdbcType="TIMESTAMP" property="secInStorage"/>
+        <result column="secOutStorage" jdbcType="TIMESTAMP" property="secOutStorage"/>
+        <result column="finishedTime" jdbcType="TIMESTAMP" property="finishedTime"/>
+        <result column="productLocation" jdbcType="VARCHAR" property="productLocation"/>
+        <result column="result" jdbcType="VARCHAR" property="result"/>
+        <result column="invalidatedState" jdbcType="VARCHAR" property="invalidatedState"/>
+        <result column="storageStatus" jdbcType="VARCHAR" property="storageStatus"/>
+        <result column="entrust" jdbcType="VARCHAR" property="entrust"/>
+    </resultMap>
+    <sql id="Base_Column_List">
     id, orderNum, workNum, packageId, productNum, sName, sTel, sCity, sAddress, sPoint,
     gName, gTel, gCity, gAddress, gPoint, productType, realWeight, workStatus, comment,
     expenses, gCourier, sCourier, preVolume, riseTime, firInStorage, firOutStorage, secInStorage,
     secOutStorage, finishedTime, productLocation, result, invalidatedState, storageStatus,
     entrust
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from workorder
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from workorder
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from workorder
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.forest.wu.pojo.Workorder">
+    <insert id="insert" parameterType="com.forest.wu.pojo.Workorder">
     insert into workorder (id, orderNum, workNum,
       packageId, productNum, sName,
       sTel, sCity, sAddress,
@@ -80,323 +80,323 @@
       #{result,jdbcType=VARCHAR}, #{invalidatedState,jdbcType=VARCHAR}, #{storageStatus,jdbcType=VARCHAR},
       #{entrust,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.forest.wu.pojo.Workorder">
-    insert into workorder
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="orderNum != null">
-        orderNum,
-      </if>
-      <if test="workNum != null">
-        workNum,
-      </if>
-      <if test="packageId != null">
-        packageId,
-      </if>
-      <if test="productNum != null">
-        productNum,
-      </if>
-      <if test="sName != null">
-        sName,
-      </if>
-      <if test="sTel != null">
-        sTel,
-      </if>
-      <if test="sCity != null">
-        sCity,
-      </if>
-      <if test="sAddress != null">
-        sAddress,
-      </if>
-      <if test="sPoint != null">
-        sPoint,
-      </if>
-      <if test="gName != null">
-        gName,
-      </if>
-      <if test="gTel != null">
-        gTel,
-      </if>
-      <if test="gCity != null">
-        gCity,
-      </if>
-      <if test="gAddress != null">
-        gAddress,
-      </if>
-      <if test="gPoint != null">
-        gPoint,
-      </if>
-      <if test="productType != null">
-        productType,
-      </if>
-      <if test="realWeight != null">
-        realWeight,
-      </if>
-      <if test="workStatus != null">
-        workStatus,
-      </if>
-      <if test="comment != null">
-        comment,
-      </if>
-      <if test="expenses != null">
-        expenses,
-      </if>
-      <if test="gCourier != null">
-        gCourier,
-      </if>
-      <if test="sCourier != null">
-        sCourier,
-      </if>
-      <if test="preVolume != null">
-        preVolume,
-      </if>
-      <if test="riseTime != null">
-        riseTime,
-      </if>
-      <if test="firInStorage != null">
-        firInStorage,
-      </if>
-      <if test="firOutStorage != null">
-        firOutStorage,
-      </if>
-      <if test="secInStorage != null">
-        secInStorage,
-      </if>
-      <if test="secOutStorage != null">
-        secOutStorage,
-      </if>
-      <if test="finishedTime != null">
-        finishedTime,
-      </if>
-      <if test="productLocation != null">
-        productLocation,
-      </if>
-      <if test="result != null">
-        result,
-      </if>
-      <if test="invalidatedState != null">
-        invalidatedState,
-      </if>
-      <if test="storageStatus != null">
-        storageStatus,
-      </if>
-      <if test="entrust != null">
-        entrust,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="orderNum != null">
-        #{orderNum,jdbcType=VARCHAR},
-      </if>
-      <if test="workNum != null">
-        #{workNum,jdbcType=VARCHAR},
-      </if>
-      <if test="packageId != null">
-        #{packageId,jdbcType=BIGINT},
-      </if>
-      <if test="productNum != null">
-        #{productNum,jdbcType=BIGINT},
-      </if>
-      <if test="sName != null">
-        #{sName,jdbcType=VARCHAR},
-      </if>
-      <if test="sTel != null">
-        #{sTel,jdbcType=VARCHAR},
-      </if>
-      <if test="sCity != null">
-        #{sCity,jdbcType=VARCHAR},
-      </if>
-      <if test="sAddress != null">
-        #{sAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="sPoint != null">
-        #{sPoint,jdbcType=VARCHAR},
-      </if>
-      <if test="gName != null">
-        #{gName,jdbcType=VARCHAR},
-      </if>
-      <if test="gTel != null">
-        #{gTel,jdbcType=VARCHAR},
-      </if>
-      <if test="gCity != null">
-        #{gCity,jdbcType=VARCHAR},
-      </if>
-      <if test="gAddress != null">
-        #{gAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="gPoint != null">
-        #{gPoint,jdbcType=VARCHAR},
-      </if>
-      <if test="productType != null">
-        #{productType,jdbcType=VARCHAR},
-      </if>
-      <if test="realWeight != null">
-        #{realWeight,jdbcType=DOUBLE},
-      </if>
-      <if test="workStatus != null">
-        #{workStatus,jdbcType=INTEGER},
-      </if>
-      <if test="comment != null">
-        #{comment,jdbcType=VARCHAR},
-      </if>
-      <if test="expenses != null">
-        #{expenses,jdbcType=DOUBLE},
-      </if>
-      <if test="gCourier != null">
-        #{gCourier,jdbcType=INTEGER},
-      </if>
-      <if test="sCourier != null">
-        #{sCourier,jdbcType=INTEGER},
-      </if>
-      <if test="preVolume != null">
-        #{preVolume,jdbcType=DOUBLE},
-      </if>
-      <if test="riseTime != null">
-        #{riseTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="firInStorage != null">
-        #{firInStorage,jdbcType=TIMESTAMP},
-      </if>
-      <if test="firOutStorage != null">
-        #{firOutStorage,jdbcType=TIMESTAMP},
-      </if>
-      <if test="secInStorage != null">
-        #{secInStorage,jdbcType=TIMESTAMP},
-      </if>
-      <if test="secOutStorage != null">
-        #{secOutStorage,jdbcType=TIMESTAMP},
-      </if>
-      <if test="finishedTime != null">
-        #{finishedTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="productLocation != null">
-        #{productLocation,jdbcType=VARCHAR},
-      </if>
-      <if test="result != null">
-        #{result,jdbcType=VARCHAR},
-      </if>
-      <if test="invalidatedState != null">
-        #{invalidatedState,jdbcType=VARCHAR},
-      </if>
-      <if test="storageStatus != null">
-        #{storageStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="entrust != null">
-        #{entrust,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.forest.wu.pojo.Workorder">
-    update workorder
-    <set>
-      <if test="orderNum != null">
-        orderNum = #{orderNum,jdbcType=VARCHAR},
-      </if>
-      <if test="workNum != null">
-        workNum = #{workNum,jdbcType=VARCHAR},
-      </if>
-      <if test="packageId != null">
-        packageId = #{packageId,jdbcType=BIGINT},
-      </if>
-      <if test="productNum != null">
-        productNum = #{productNum,jdbcType=BIGINT},
-      </if>
-      <if test="sName != null">
-        sName = #{sName,jdbcType=VARCHAR},
-      </if>
-      <if test="sTel != null">
-        sTel = #{sTel,jdbcType=VARCHAR},
-      </if>
-      <if test="sCity != null">
-        sCity = #{sCity,jdbcType=VARCHAR},
-      </if>
-      <if test="sAddress != null">
-        sAddress = #{sAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="sPoint != null">
-        sPoint = #{sPoint,jdbcType=VARCHAR},
-      </if>
-      <if test="gName != null">
-        gName = #{gName,jdbcType=VARCHAR},
-      </if>
-      <if test="gTel != null">
-        gTel = #{gTel,jdbcType=VARCHAR},
-      </if>
-      <if test="gCity != null">
-        gCity = #{gCity,jdbcType=VARCHAR},
-      </if>
-      <if test="gAddress != null">
-        gAddress = #{gAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="gPoint != null">
-        gPoint = #{gPoint,jdbcType=VARCHAR},
-      </if>
-      <if test="productType != null">
-        productType = #{productType,jdbcType=VARCHAR},
-      </if>
-      <if test="realWeight != null">
-        realWeight = #{realWeight,jdbcType=DOUBLE},
-      </if>
-      <if test="workStatus != null">
-        workStatus = #{workStatus,jdbcType=INTEGER},
-      </if>
-      <if test="comment != null">
-        comment = #{comment,jdbcType=VARCHAR},
-      </if>
-      <if test="expenses != null">
-        expenses = #{expenses,jdbcType=DOUBLE},
-      </if>
-      <if test="gCourier != null">
-        gCourier = #{gCourier,jdbcType=INTEGER},
-      </if>
-      <if test="sCourier != null">
-        sCourier = #{sCourier,jdbcType=INTEGER},
-      </if>
-      <if test="preVolume != null">
-        preVolume = #{preVolume,jdbcType=DOUBLE},
-      </if>
-      <if test="riseTime != null">
-        riseTime = #{riseTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="firInStorage != null">
-        firInStorage = #{firInStorage,jdbcType=TIMESTAMP},
-      </if>
-      <if test="firOutStorage != null">
-        firOutStorage = #{firOutStorage,jdbcType=TIMESTAMP},
-      </if>
-      <if test="secInStorage != null">
-        secInStorage = #{secInStorage,jdbcType=TIMESTAMP},
-      </if>
-      <if test="secOutStorage != null">
-        secOutStorage = #{secOutStorage,jdbcType=TIMESTAMP},
-      </if>
-      <if test="finishedTime != null">
-        finishedTime = #{finishedTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="productLocation != null">
-        productLocation = #{productLocation,jdbcType=VARCHAR},
-      </if>
-      <if test="result != null">
-        result = #{result,jdbcType=VARCHAR},
-      </if>
-      <if test="invalidatedState != null">
-        invalidatedState = #{invalidatedState,jdbcType=VARCHAR},
-      </if>
-      <if test="storageStatus != null">
-        storageStatus = #{storageStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="entrust != null">
-        entrust = #{entrust,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.forest.wu.pojo.Workorder">
+    <insert id="insertSelective" parameterType="com.forest.wu.pojo.Workorder">
+        insert into workorder
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="orderNum != null">
+                orderNum,
+            </if>
+            <if test="workNum != null">
+                workNum,
+            </if>
+            <if test="packageId != null">
+                packageId,
+            </if>
+            <if test="productNum != null">
+                productNum,
+            </if>
+            <if test="sName != null">
+                sName,
+            </if>
+            <if test="sTel != null">
+                sTel,
+            </if>
+            <if test="sCity != null">
+                sCity,
+            </if>
+            <if test="sAddress != null">
+                sAddress,
+            </if>
+            <if test="sPoint != null">
+                sPoint,
+            </if>
+            <if test="gName != null">
+                gName,
+            </if>
+            <if test="gTel != null">
+                gTel,
+            </if>
+            <if test="gCity != null">
+                gCity,
+            </if>
+            <if test="gAddress != null">
+                gAddress,
+            </if>
+            <if test="gPoint != null">
+                gPoint,
+            </if>
+            <if test="productType != null">
+                productType,
+            </if>
+            <if test="realWeight != null">
+                realWeight,
+            </if>
+            <if test="workStatus != null">
+                workStatus,
+            </if>
+            <if test="comment != null">
+                comment,
+            </if>
+            <if test="expenses != null">
+                expenses,
+            </if>
+            <if test="gCourier != null">
+                gCourier,
+            </if>
+            <if test="sCourier != null">
+                sCourier,
+            </if>
+            <if test="preVolume != null">
+                preVolume,
+            </if>
+            <if test="riseTime != null">
+                riseTime,
+            </if>
+            <if test="firInStorage != null">
+                firInStorage,
+            </if>
+            <if test="firOutStorage != null">
+                firOutStorage,
+            </if>
+            <if test="secInStorage != null">
+                secInStorage,
+            </if>
+            <if test="secOutStorage != null">
+                secOutStorage,
+            </if>
+            <if test="finishedTime != null">
+                finishedTime,
+            </if>
+            <if test="productLocation != null">
+                productLocation,
+            </if>
+            <if test="result != null">
+                result,
+            </if>
+            <if test="invalidatedState != null">
+                invalidatedState,
+            </if>
+            <if test="storageStatus != null">
+                storageStatus,
+            </if>
+            <if test="entrust != null">
+                entrust,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="orderNum != null">
+                #{orderNum,jdbcType=VARCHAR},
+            </if>
+            <if test="workNum != null">
+                #{workNum,jdbcType=VARCHAR},
+            </if>
+            <if test="packageId != null">
+                #{packageId,jdbcType=BIGINT},
+            </if>
+            <if test="productNum != null">
+                #{productNum,jdbcType=BIGINT},
+            </if>
+            <if test="sName != null">
+                #{sName,jdbcType=VARCHAR},
+            </if>
+            <if test="sTel != null">
+                #{sTel,jdbcType=VARCHAR},
+            </if>
+            <if test="sCity != null">
+                #{sCity,jdbcType=VARCHAR},
+            </if>
+            <if test="sAddress != null">
+                #{sAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="sPoint != null">
+                #{sPoint,jdbcType=VARCHAR},
+            </if>
+            <if test="gName != null">
+                #{gName,jdbcType=VARCHAR},
+            </if>
+            <if test="gTel != null">
+                #{gTel,jdbcType=VARCHAR},
+            </if>
+            <if test="gCity != null">
+                #{gCity,jdbcType=VARCHAR},
+            </if>
+            <if test="gAddress != null">
+                #{gAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="gPoint != null">
+                #{gPoint,jdbcType=VARCHAR},
+            </if>
+            <if test="productType != null">
+                #{productType,jdbcType=VARCHAR},
+            </if>
+            <if test="realWeight != null">
+                #{realWeight,jdbcType=DOUBLE},
+            </if>
+            <if test="workStatus != null">
+                #{workStatus,jdbcType=INTEGER},
+            </if>
+            <if test="comment != null">
+                #{comment,jdbcType=VARCHAR},
+            </if>
+            <if test="expenses != null">
+                #{expenses,jdbcType=DOUBLE},
+            </if>
+            <if test="gCourier != null">
+                #{gCourier,jdbcType=INTEGER},
+            </if>
+            <if test="sCourier != null">
+                #{sCourier,jdbcType=INTEGER},
+            </if>
+            <if test="preVolume != null">
+                #{preVolume,jdbcType=DOUBLE},
+            </if>
+            <if test="riseTime != null">
+                #{riseTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="firInStorage != null">
+                #{firInStorage,jdbcType=TIMESTAMP},
+            </if>
+            <if test="firOutStorage != null">
+                #{firOutStorage,jdbcType=TIMESTAMP},
+            </if>
+            <if test="secInStorage != null">
+                #{secInStorage,jdbcType=TIMESTAMP},
+            </if>
+            <if test="secOutStorage != null">
+                #{secOutStorage,jdbcType=TIMESTAMP},
+            </if>
+            <if test="finishedTime != null">
+                #{finishedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="productLocation != null">
+                #{productLocation,jdbcType=VARCHAR},
+            </if>
+            <if test="result != null">
+                #{result,jdbcType=VARCHAR},
+            </if>
+            <if test="invalidatedState != null">
+                #{invalidatedState,jdbcType=VARCHAR},
+            </if>
+            <if test="storageStatus != null">
+                #{storageStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="entrust != null">
+                #{entrust,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.forest.wu.pojo.Workorder">
+        update workorder
+        <set>
+            <if test="orderNum != null">
+                orderNum = #{orderNum,jdbcType=VARCHAR},
+            </if>
+            <if test="workNum != null">
+                workNum = #{workNum,jdbcType=VARCHAR},
+            </if>
+            <if test="packageId != null">
+                packageId = #{packageId,jdbcType=BIGINT},
+            </if>
+            <if test="productNum != null">
+                productNum = #{productNum,jdbcType=BIGINT},
+            </if>
+            <if test="sName != null">
+                sName = #{sName,jdbcType=VARCHAR},
+            </if>
+            <if test="sTel != null">
+                sTel = #{sTel,jdbcType=VARCHAR},
+            </if>
+            <if test="sCity != null">
+                sCity = #{sCity,jdbcType=VARCHAR},
+            </if>
+            <if test="sAddress != null">
+                sAddress = #{sAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="sPoint != null">
+                sPoint = #{sPoint,jdbcType=VARCHAR},
+            </if>
+            <if test="gName != null">
+                gName = #{gName,jdbcType=VARCHAR},
+            </if>
+            <if test="gTel != null">
+                gTel = #{gTel,jdbcType=VARCHAR},
+            </if>
+            <if test="gCity != null">
+                gCity = #{gCity,jdbcType=VARCHAR},
+            </if>
+            <if test="gAddress != null">
+                gAddress = #{gAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="gPoint != null">
+                gPoint = #{gPoint,jdbcType=VARCHAR},
+            </if>
+            <if test="productType != null">
+                productType = #{productType,jdbcType=VARCHAR},
+            </if>
+            <if test="realWeight != null">
+                realWeight = #{realWeight,jdbcType=DOUBLE},
+            </if>
+            <if test="workStatus != null">
+                workStatus = #{workStatus,jdbcType=INTEGER},
+            </if>
+            <if test="comment != null">
+                comment = #{comment,jdbcType=VARCHAR},
+            </if>
+            <if test="expenses != null">
+                expenses = #{expenses,jdbcType=DOUBLE},
+            </if>
+            <if test="gCourier != null">
+                gCourier = #{gCourier,jdbcType=INTEGER},
+            </if>
+            <if test="sCourier != null">
+                sCourier = #{sCourier,jdbcType=INTEGER},
+            </if>
+            <if test="preVolume != null">
+                preVolume = #{preVolume,jdbcType=DOUBLE},
+            </if>
+            <if test="riseTime != null">
+                riseTime = #{riseTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="firInStorage != null">
+                firInStorage = #{firInStorage,jdbcType=TIMESTAMP},
+            </if>
+            <if test="firOutStorage != null">
+                firOutStorage = #{firOutStorage,jdbcType=TIMESTAMP},
+            </if>
+            <if test="secInStorage != null">
+                secInStorage = #{secInStorage,jdbcType=TIMESTAMP},
+            </if>
+            <if test="secOutStorage != null">
+                secOutStorage = #{secOutStorage,jdbcType=TIMESTAMP},
+            </if>
+            <if test="finishedTime != null">
+                finishedTime = #{finishedTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="productLocation != null">
+                productLocation = #{productLocation,jdbcType=VARCHAR},
+            </if>
+            <if test="result != null">
+                result = #{result,jdbcType=VARCHAR},
+            </if>
+            <if test="invalidatedState != null">
+                invalidatedState = #{invalidatedState,jdbcType=VARCHAR},
+            </if>
+            <if test="storageStatus != null">
+                storageStatus = #{storageStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="entrust != null">
+                entrust = #{entrust,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.forest.wu.pojo.Workorder">
     update workorder
     set orderNum = #{orderNum,jdbcType=VARCHAR},
       workNum = #{workNum,jdbcType=VARCHAR},
@@ -434,125 +434,157 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <!--总公司工单查询-->
-  <select id="selectWorkOrder" resultType="com.forest.wu.pojo.Workorder">
-    select
-    <include refid="Base_Column_List"/>
-    from workorder
-    <trim prefix="where" prefixOverrides="and | or">
-      <if test="workNum!=null and workNum!=''">
-       and workNum like CONCAT ('%',#{workNum},'%')
-      </if>
-      <if test="orderNum!=null and orderNum!=''">
-        and orderNum like CONCAT ('%',#{orderNum},'%')
-      </if>
-      <if test="productNum!=null">
-        and productNum=#{productNum}
-      </if>
-      <if test="packageId!=null">
-        and packageId=#{packageId}
-      </if>
-      <if test="sName!=null">
-        and sName=#{sName}
-      </if>
-      <if test="sTel!=null and sTel!=''">
-        and sTel=#{sTel}
-      </if>
-      <if test="sPoint!=null and sPoint!=''">
-        and sPoint=#{sPoint}
-      </if>
-      <if test="sCity!=null and sCity!=''">
-        and sCity=#{sCity}
-      </if>
-      <if test="gName!=null and gName!=''">
-        and gName=#{gName}
-      </if>
-      <if test="gTel!=null and  gTel!=''">
-        and gTel=#{gTel}
-      </if>
-      <if test="gCity!=null and gCity!=''">
-        and  gCity=#{gCity}
-      </if>
-      <if test="gPoint!=null and gPoint!=''">
-        and  gPoint=#{gPoint}
-      </if>
-      <if test="workStatus!=null">
-        and workStatus=#{workStatus}
-      </if>
-      <if test="gCourier!=null">
-        and gCourier=#{gCourier}
-      </if>
-      <if test="sCourier!=null">
-        and sCourier=#{sCourier}
-      </if>
-      <if test="result!=null and result!=''">
-        and result=#{result}
-      </if>
-    </trim>
-  </select>
+    <!--总公司工单查询-->
+    <select id="selectWorkOrder" resultType="com.forest.wu.pojo.Workorder">
+        select
+        <include refid="Base_Column_List"/>
+        from workorder
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="workNum!=null and workNum!=''">
+                and workNum like CONCAT ('%',#{workNum},'%')
+            </if>
+            <if test="orderNum!=null and orderNum!=''">
+                and orderNum like CONCAT ('%',#{orderNum},'%')
+            </if>
+            <if test="productNum!=null">
+                and productNum=#{productNum}
+            </if>
+            <if test="packageId!=null">
+                and packageId=#{packageId}
+            </if>
+            <if test="sName!=null">
+                and sName=#{sName}
+            </if>
+            <if test="sTel!=null and sTel!=''">
+                and sTel=#{sTel}
+            </if>
+            <if test="sPoint!=null and sPoint!=''">
+                and sPoint=#{sPoint}
+            </if>
+            <if test="sCity!=null and sCity!=''">
+                and sCity=#{sCity}
+            </if>
+            <if test="gName!=null and gName!=''">
+                and gName=#{gName}
+            </if>
+            <if test="gTel!=null and  gTel!=''">
+                and gTel=#{gTel}
+            </if>
+            <if test="gCity!=null and gCity!=''">
+                and gCity=#{gCity}
+            </if>
+            <if test="gPoint!=null and gPoint!=''">
+                and gPoint=#{gPoint}
+            </if>
+            <if test="workStatus!=null">
+                and workStatus=#{workStatus}
+            </if>
+            <if test="gCourier!=null">
+                and gCourier=#{gCourier}
+            </if>
+            <if test="sCourier!=null">
+                and sCourier=#{sCourier}
+            </if>
+            <if test="result!=null and result!=''">
+                and result=#{result}
+            </if>
+        </trim>
+    </select>
+
+
+    <!--分公司查询工单-->
+    <select id="selectWorkOrderByCondition" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from workorder
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="workNum!=null and workNum!=''">
+                and workNum like CONCAT ('%',#{workNum},'%')
+            </if>
+            <if test="orderNum!=null and orderNum!=''">
+                and orderNum like CONCAT ('%',#{orderNum},'%')
+            </if>
+            <if test="productNum!=null">
+                and productNum=#{productNum}
+            </if>
+            <if test="packageId!=null">
+                and packageId=#{packageId}
+            </if>
+            <if test="workStatus!=null">
+                and workStatus=#{workStatus}
+            </if>
+            <if test="storageStatus!=null">
+                and storageStatus=#{storageStatus}
+            </if>
+            <if test="wdName!=null">
+                and (sPoint=#{wdName} or gPoint=#{wdName})
+            </if>
+        </trim>
+    </select>
 
     <select id="selectWorkOrderById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from workorder
         where id = #{id,jdbcType=INTEGER}
     </select>
 
 
-  <!--肖林辉-->
-  <!--快递员工单查询-->
-  <select id="selectWorkOrderByCourier" parameterType="com.forest.wu.pojo.Workorder" resultType="com.forest.wu.pojo.Workorder">
-    select
-    <include refid="Base_Column_List"/>
-    from workorder
-    where 1=1
-      <if test="sCourier!=null">
-      and sCourier=#{sCourier}
-      </if>
-      <if test="workNum!=null">
-        and workNum like CONCAT ('%',#{workNum},'%')
-      </if>
-      <if test="orderNum!=null">
-        and orderNum like CONCAT ('%',#{orderNum},'%')
-      </if>
-     <if test="productNum!=null">
-       and productNum=#{productNum}
-     </if>
-     <if test="packageId!=null">
-       and packageId=#{packageId}
-     </if>
-     <if test="sName!=null">
-       and sName=#{sName}
-     </if>
-     <if test="sTel!=null and sTel!=''">
-       and sTel=#{sTel}
-     </if>
-     <if test="sPoint!=null and sPoint!=''">
-       and sPoint=#{sPoint}
-     </if>
-     <if test="sCity!=null and sCity!=''">
-       and sCity=#{sCity}
-     </if>
-     <if test="gName!=null and gName!=''">
-       and gName=#{gName}
-     </if>
-     <if test="gTel!=null and  gTel!=''">
-       and gTel=#{gTel}
-     </if>
-     <if test="gCity!=null and gCity!=''">
-       and  gCity=#{gCity}
-     </if>
-     <if test="gPoint!=null and gPoint!=''">
-       and  gPoint=#{gPoint}
-     </if>
+    <!--肖林辉-->
+    <!--快递员工单查询-->
+    <select id="selectWorkOrderByCourier" parameterType="com.forest.wu.pojo.Workorder"
+            resultType="com.forest.wu.pojo.Workorder">
+        select
+        <include refid="Base_Column_List"/>
+        from workorder
+        where 1=1
+        <if test="sCourier!=null">
+            and sCourier=#{sCourier}
+        </if>
+        <if test="workNum!=null">
+            and workNum like CONCAT ('%',#{workNum},'%')
+        </if>
+        <if test="orderNum!=null">
+            and orderNum like CONCAT ('%',#{orderNum},'%')
+        </if>
+        <if test="productNum!=null">
+            and productNum=#{productNum}
+        </if>
+        <if test="packageId!=null">
+            and packageId=#{packageId}
+        </if>
+        <if test="sName!=null">
+            and sName=#{sName}
+        </if>
+        <if test="sTel!=null and sTel!=''">
+            and sTel=#{sTel}
+        </if>
+        <if test="sPoint!=null and sPoint!=''">
+            and sPoint=#{sPoint}
+        </if>
+        <if test="sCity!=null and sCity!=''">
+            and sCity=#{sCity}
+        </if>
+        <if test="gName!=null and gName!=''">
+            and gName=#{gName}
+        </if>
+        <if test="gTel!=null and  gTel!=''">
+            and gTel=#{gTel}
+        </if>
+        <if test="gCity!=null and gCity!=''">
+            and gCity=#{gCity}
+        </if>
+        <if test="gPoint!=null and gPoint!=''">
+            and gPoint=#{gPoint}
+        </if>
 
-     <if test="gCourier!=null">
-       and gCourier=#{gCourier}
-     </if>
+        <if test="gCourier!=null">
+            and gCourier=#{gCourier}
+        </if>
 
-     <if test="result!=null and result!=''">
-       and result=#{result}
-     </if>
+        <if test="result!=null and result!=''">
+            and result=#{result}
+        </if>
 
-  </select>
+    </select>
 </mapper>

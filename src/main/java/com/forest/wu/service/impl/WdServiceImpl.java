@@ -2,7 +2,7 @@ package com.forest.wu.service.impl;
 
 import com.forest.wu.dao.OrganizationMapper;
 import com.forest.wu.pojo.Organization;
-import com.forest.wu.service.WangDianService;
+import com.forest.wu.service.WdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -16,7 +16,7 @@ import java.util.List;
  * @create 2018-09-29 14:57
  **/
 @Service
-public class WangDianServiceImpl implements WangDianService {
+public class WdServiceImpl implements WdService {
 
 
     @Autowired

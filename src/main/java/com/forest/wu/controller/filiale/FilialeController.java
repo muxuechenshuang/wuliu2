@@ -2,11 +2,12 @@ package com.forest.wu.controller.filiale;
 
 import com.forest.wu.pojo.Organization;
 import com.forest.wu.pojo.User;
-import com.forest.wu.service.WangDianService;
+import com.forest.wu.pojo.Workorder;
+import com.forest.wu.service.FilialeWorkOrderService;
+import com.forest.wu.service.WdService;
 import com.forest.wu.utils.Constants;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,9 @@ import java.util.List;
 @RequestMapping("/filiale")
 public class FilialeController {
     @Autowired
-    private WangDianService wdService;
+    private WdService wdService;
+    @Autowired
+    private FilialeWorkOrderService workOrderService;
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
@@ -238,7 +241,7 @@ public class FilialeController {
     **/
     @RequestMapping(value = "delwd.json",method = RequestMethod.GET)
     @ResponseBody
-    public Object deleteWd(@Param("id") String id){
+    public Object deleteWd(@RequestParam("id") String id){
         logger.info("delwd==================>"+id);
         HashMap<String, Object> map = new HashMap<String, Object>();
         if(StringUtils.isEmpty(id)){
@@ -264,5 +267,34 @@ public class FilialeController {
         }
         return map;
     }
+
+
+    /**
+    * @author: 李家和
+    * @Description 工单查询
+    * @Date: 16:47 2018/10/5
+    * @Param：[workorder, model]
+    * @return：java.lang.String
+    **/
+    @RequestMapping("/queryworkorder")
+    public String queryWorkOrder(Workorder workorder,Model model,
+                                 @RequestParam(value = "pageIndex",required = false,defaultValue = "1") String pageIndex){
+          List<Workorder> workorderList = null;
+          //分页
+        PageHelper.startPage(Integer.parseInt(pageIndex), Constants.PAGE_SIZE, "id desc");
+        workorderList = workOrderService.queryWorkOrderList(workorder);
+        PageInfo<Workorder> p = new PageInfo<Workorder>(workorderList);
+        //回显
+        model.addAttribute("workorderList",workorderList);
+        model.addAttribute("page", p);
+        model.addAttribute("workNum", workorder.getWorkNum());
+        model.addAttribute("orderNum", workorder.getOrderNum());
+        model.addAttribute("productNum", workorder.getProductNum());
+        model.addAttribute("packageId", workorder.getPackageId());
+        model.addAttribute("workStatus", workorder.getWorkStatus());
+        return "ljh/workorderquery";
+    }
+
+
 
 }

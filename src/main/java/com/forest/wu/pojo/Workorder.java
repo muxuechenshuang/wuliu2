@@ -73,6 +73,9 @@ public class Workorder {
 
     private String entrust;
 
+    //网点名称（用于分公司根据网点名称查询该网点的工单）
+    private String wdName;
+
     public Integer getId() {
         return id;
     }
