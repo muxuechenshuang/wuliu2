@@ -105,8 +105,7 @@
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<textarea class="form-control col-md-7 col-xs-12"  readonly
-									  name="sAddress" id="sAddress">
-              		${workorder.sAddress}</textarea>
+									  name="sAddress" id="sAddress">${workorder.sAddress}</textarea>
 						</div>
 					</div>
 					<div class="item form-group">
@@ -152,8 +151,7 @@
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<textarea class="form-control col-md-7 col-xs-12"  readonly
-									  name="gAddress" id="gAddress">
-								${workorder.gAddress}</textarea>
+									  name="gAddress" id="gAddress">${workorder.gAddress}</textarea>
 						</div>
 					</div>
 
