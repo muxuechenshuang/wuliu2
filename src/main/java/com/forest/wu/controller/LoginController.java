@@ -81,6 +81,7 @@ public class LoginController {
             if (name.get(i).getUsername().equals(username)) {
                 resultMap.put("username", "nameVerification");
                 return resultMap;
+
             }
             //判断邮箱是否已经存在
             if (name.get(i).getEmail().equals(email)) {

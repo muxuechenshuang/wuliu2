@@ -138,7 +138,7 @@
 								</a>
 									<ul class="nav child_menu">
 										<li><a href="${pageContext.request.contextPath}/filiale/wdquery">网点管理</a></li>
-										<li><a href="${pageContext.request.contextPath}/ljh/gongdan_ry.jsp">工单查询</a>
+										<li><a href="${pageContext.request.contextPath}/filiale/queryworkorder">工单查询</a>
 										<li><a href="${pageContext.request.contextPath}/ljh/chuku.jsp">出库</a></li>
 										<li><a href="${pageContext.request.contextPath}/ljh/ruku.jsp">入库</a></li>
 									</ul>

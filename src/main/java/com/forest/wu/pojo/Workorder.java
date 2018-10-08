@@ -19,21 +19,21 @@ public class Workorder {
 
     private String sTel;
 
-    private String sCity;
+    private Integer sCity;
 
     private String sAddress;
 
-    private String sPoint;
+    private Integer sPoint;
 
     private String gName;
 
     private String gTel;
 
-    private String gCity;
+    private Integer gCity;
 
     private String gAddress;
 
-    private String gPoint;
+    private Integer gPoint;
 
     private String productType;
 
@@ -63,18 +63,19 @@ public class Workorder {
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date finishedTime;
 
-    private String productLocation;
+    private Integer productLocation;
 
-    private String result;
+    private Integer auditStatus;
 
-    private String invalidatedState;
+    private Integer invalidatedState;
 
-    private String storageStatus;
+    private Integer storageStatus;
 
-    private String entrust;
+    private Integer entrust;
 
-    //网点名称（用于分公司根据网点名称查询该网点的工单）
-    private String wdName;
+    private Integer entrustNumber;
+
+    private Integer isPay;
 
     public Integer getId() {
         return id;
@@ -132,12 +133,12 @@ public class Workorder {
         this.sTel = sTel == null ? null : sTel.trim();
     }
 
-    public String getsCity() {
+    public Integer getsCity() {
         return sCity;
     }
 
-    public void setsCity(String sCity) {
-        this.sCity = sCity == null ? null : sCity.trim();
+    public void setsCity(Integer sCity) {
+        this.sCity = sCity;
     }
 
     public String getsAddress() {
@@ -148,12 +149,12 @@ public class Workorder {
         this.sAddress = sAddress == null ? null : sAddress.trim();
     }
 
-    public String getsPoint() {
+    public Integer getsPoint() {
         return sPoint;
     }
 
-    public void setsPoint(String sPoint) {
-        this.sPoint = sPoint == null ? null : sPoint.trim();
+    public void setsPoint(Integer sPoint) {
+        this.sPoint = sPoint;
     }
 
     public String getgName() {
@@ -172,12 +173,12 @@ public class Workorder {
         this.gTel = gTel == null ? null : gTel.trim();
     }
 
-    public String getgCity() {
+    public Integer getgCity() {
         return gCity;
     }
 
-    public void setgCity(String gCity) {
-        this.gCity = gCity == null ? null : gCity.trim();
+    public void setgCity(Integer gCity) {
+        this.gCity = gCity;
     }
 
     public String getgAddress() {
@@ -188,12 +189,12 @@ public class Workorder {
         this.gAddress = gAddress == null ? null : gAddress.trim();
     }
 
-    public String getgPoint() {
+    public Integer getgPoint() {
         return gPoint;
     }
 
-    public void setgPoint(String gPoint) {
-        this.gPoint = gPoint == null ? null : gPoint.trim();
+    public void setgPoint(Integer gPoint) {
+        this.gPoint = gPoint;
     }
 
     public String getProductType() {
@@ -308,43 +309,59 @@ public class Workorder {
         this.finishedTime = finishedTime;
     }
 
-    public String getProductLocation() {
+    public Integer getProductLocation() {
         return productLocation;
     }
 
-    public void setProductLocation(String productLocation) {
-        this.productLocation = productLocation == null ? null : productLocation.trim();
+    public void setProductLocation(Integer productLocation) {
+        this.productLocation = productLocation;
     }
 
-    public String getResult() {
-        return result;
+    public Integer getAuditStatus() {
+        return auditStatus;
     }
 
-    public void setResult(String result) {
-        this.result = result == null ? null : result.trim();
+    public void setAuditStatus(Integer auditStatus) {
+        this.auditStatus = auditStatus;
     }
 
-    public String getInvalidatedState() {
+    public Integer getInvalidatedState() {
         return invalidatedState;
     }
 
-    public void setInvalidatedState(String invalidatedState) {
-        this.invalidatedState = invalidatedState == null ? null : invalidatedState.trim();
+    public void setInvalidatedState(Integer invalidatedState) {
+        this.invalidatedState = invalidatedState;
     }
 
-    public String getStorageStatus() {
+    public Integer getStorageStatus() {
         return storageStatus;
     }
 
-    public void setStorageStatus(String storageStatus) {
-        this.storageStatus = storageStatus == null ? null : storageStatus.trim();
+    public void setStorageStatus(Integer storageStatus) {
+        this.storageStatus = storageStatus;
     }
 
-    public String getEntrust() {
+    public Integer getEntrust() {
         return entrust;
     }
 
-    public void setEntrust(String entrust) {
-        this.entrust = entrust == null ? null : entrust.trim();
+    public void setEntrust(Integer entrust) {
+        this.entrust = entrust;
+    }
+
+    public Integer getEntrustNumber() {
+        return entrustNumber;
+    }
+
+    public void setEntrustNumber(Integer entrustNumber) {
+        this.entrustNumber = entrustNumber;
+    }
+
+    public Integer getIsPay() {
+        return isPay;
+    }
+
+    public void setIsPay(Integer isPay) {
+        this.isPay = isPay;
     }
 }
