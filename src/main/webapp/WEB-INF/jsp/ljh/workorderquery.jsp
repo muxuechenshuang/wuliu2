@@ -188,8 +188,8 @@
                                         <td>${workorder.orderNum }</td>
                                         <td>${workorder.packageId }</td>
                                         <td>${workorder.storageStatusName }</td>
-                                        <td><a id="view" href="/filiale/todetail?workorderid=${workorder.id}"
-                                               class="btn btn-primary">查看详情</a></td>
+                                        <td><button type="button"  workorderid="${workorder.id}" id="view"
+                                               class="btn btn-primary">查看详情</button></td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
@@ -245,4 +245,4 @@
 <script
         src="${pageContext.request.contextPath }/statics/localjs/rollpage.js"></script>
 <script
-        src="${pageContext.request.contextPath }/statics/js/zz/gongdan2_zz.js"></script>
+        src="${pageContext.request.contextPath }/statics/localjs/workorderview.js"></script>

@@ -354,9 +354,11 @@ public class FilialeController {
 
 
 
-    public String viewWorkorder(@PathVariable(value = "id")String id){
-
-
+    @RequestMapping(value = "/workorderview/{id}",method = RequestMethod.GET)
+    public String viewWorkorder(@PathVariable(value = "id")String id,Model model){
+        Workorder workorder = null;
+        workorder = workOrderService.queryWorkOrderById(Integer.parseInt(id));
+        model.addAttribute(workorder);
         return "ljh/workorderinfo";
     }
 
