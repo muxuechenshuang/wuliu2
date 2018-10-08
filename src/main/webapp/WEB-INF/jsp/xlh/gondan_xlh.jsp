@@ -101,7 +101,7 @@
 
                                     <th class="sorting_asc" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                        style="width: 124px;"
+                                        style="width: 124px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"
                                         aria-label="First name: activate to sort column descending"
                                         aria-sort="ascending">工单号</th>
                                     <th class="sorting_asc" tabindex="0"
@@ -136,7 +136,7 @@
                                         收件人电话</th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                        style="width: 66px;"
+                                        style="width: 66px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"
                                         aria-label="Last name: activate to sort column ascending">
                                         物品类型</th>
                                     <th class="sorting" tabindex="0"

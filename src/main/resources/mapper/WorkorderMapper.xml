@@ -116,7 +116,7 @@
       #{sTel,jdbcType=VARCHAR}, #{sCity,jdbcType=INTEGER}, #{sAddress,jdbcType=VARCHAR},
       #{sPoint,jdbcType=INTEGER}, #{gName,jdbcType=VARCHAR}, #{gTel,jdbcType=VARCHAR},
       #{gCity,jdbcType=INTEGER}, #{gAddress,jdbcType=VARCHAR}, #{gPoint,jdbcType=INTEGER},
-      #{productType,jdbcType=VARCHAR}, #{realWeight,jdbcType=DOUBLE}, #{workStatus,jdbcType=INTEGER},
+      #{productType,jdbcType=INTEGER}, #{realWeight,jdbcType=DOUBLE}, #{workStatus,jdbcType=INTEGER},
       #{comment,jdbcType=VARCHAR}, #{expenses,jdbcType=DOUBLE}, #{gCourier,jdbcType=INTEGER},
       #{sCourier,jdbcType=INTEGER}, #{preVolume,jdbcType=DOUBLE}, #{riseTime,jdbcType=TIMESTAMP},
       #{firInStorage,jdbcType=TIMESTAMP}, #{firOutStorage,jdbcType=TIMESTAMP}, #{secInStorage,jdbcType=TIMESTAMP},
@@ -260,13 +260,13 @@
                 #{sTel,jdbcType=VARCHAR},
             </if>
             <if test="sCity != null">
-                #{sCity,jdbcType=VARCHAR},
+                #{sCity,jdbcType=INTEGER},
             </if>
             <if test="sAddress != null">
                 #{sAddress,jdbcType=VARCHAR},
             </if>
             <if test="sPoint != null">
-                #{sPoint,jdbcType=VARCHAR},
+                #{sPoint,jdbcType=INTEGER},
             </if>
             <if test="gName != null">
                 #{gName,jdbcType=VARCHAR},
@@ -275,16 +275,16 @@
                 #{gTel,jdbcType=VARCHAR},
             </if>
             <if test="gCity != null">
-                #{gCity,jdbcType=VARCHAR},
+                #{gCity,jdbcType=INTEGER},
             </if>
             <if test="gAddress != null">
                 #{gAddress,jdbcType=VARCHAR},
             </if>
             <if test="gPoint != null">
-                #{gPoint,jdbcType=VARCHAR},
+                #{gPoint,jdbcType=INTEGER},
             </if>
             <if test="productType != null">
-                #{productType,jdbcType=VARCHAR},
+                #{productType,jdbcType=INTEGER},
             </if>
             <if test="realWeight != null">
                 #{realWeight,jdbcType=DOUBLE},
@@ -370,13 +370,13 @@
                 sTel = #{sTel,jdbcType=VARCHAR},
             </if>
             <if test="sCity != null">
-                sCity = #{sCity,jdbcType=VARCHAR},
+                sCity = #{sCity,jdbcType=INTEGER},
             </if>
             <if test="sAddress != null">
                 sAddress = #{sAddress,jdbcType=VARCHAR},
             </if>
             <if test="sPoint != null">
-                sPoint = #{sPoint,jdbcType=VARCHAR},
+                sPoint = #{sPoint,jdbcType=INTEGER},
             </if>
             <if test="gName != null">
                 gName = #{gName,jdbcType=VARCHAR},
@@ -385,16 +385,16 @@
                 gTel = #{gTel,jdbcType=VARCHAR},
             </if>
             <if test="gCity != null">
-                gCity = #{gCity,jdbcType=VARCHAR},
+                gCity = #{gCity,jdbcType=INTEGER},
             </if>
             <if test="gAddress != null">
                 gAddress = #{gAddress,jdbcType=VARCHAR},
             </if>
             <if test="gPoint != null">
-                gPoint = #{gPoint,jdbcType=VARCHAR},
+                gPoint = #{gPoint,jdbcType=INTEGER},
             </if>
             <if test="productType != null">
-                productType = #{productType,jdbcType=VARCHAR},
+                productType = #{productType,jdbcType=INTEGER},
             </if>
             <if test="realWeight != null">
                 realWeight = #{realWeight,jdbcType=DOUBLE},
@@ -467,15 +467,15 @@
       productNum = #{productNum,jdbcType=BIGINT},
       sName = #{sName,jdbcType=VARCHAR},
       sTel = #{sTel,jdbcType=VARCHAR},
-      sCity = #{sCity,jdbcType=VARCHAR},
+      sCity = #{sCity,jdbcType=INTEGER},
       sAddress = #{sAddress,jdbcType=VARCHAR},
-      sPoint = #{sPoint,jdbcType=VARCHAR},
+      sPoint = #{sPoint,jdbcType=INTEGER},
       gName = #{gName,jdbcType=VARCHAR},
       gTel = #{gTel,jdbcType=VARCHAR},
-      gCity = #{gCity,jdbcType=VARCHAR},
+      gCity = #{gCity,jdbcType=INTEGER},
       gAddress = #{gAddress,jdbcType=VARCHAR},
-      gPoint = #{gPoint,jdbcType=VARCHAR},
-      productType = #{productType,jdbcType=VARCHAR},
+      gPoint = #{gPoint,jdbcType=INTEGER},
+      productType = #{productType,jdbcType=INTEGER},
       realWeight = #{realWeight,jdbcType=DOUBLE},
       workStatus = #{workStatus,jdbcType=INTEGER},
       comment = #{comment,jdbcType=VARCHAR},
@@ -598,12 +598,9 @@
 
     <!--肖林辉-->
     <!--快递员工单查询-->
-    <select id="selectWorkOrderByCourier" parameterType="com.forest.wu.pojo.Workorder"
-            resultType="com.forest.wu.pojo.Workorder">
-        select
-        <include refid="Base_Column_List"/>
-        from workorder w
-        where 1=1
+    <select id="selectWorkOrderByCourier" parameterType="com.forest.wu.pojo.Workorder" resultType="com.forest.wu.pojo.Workorder">
+        select *
+        from workorder where 1=1
         <if test="sCourier !=null ">
             and sCourier = #{sCourier}
         </if>
