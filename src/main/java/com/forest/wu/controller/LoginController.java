@@ -1,17 +1,20 @@
 package com.forest.wu.controller;
 
 import com.alibaba.fastjson.JSONArray;
-import com.forest.wu.utils.httpApiDemo.IndustrySMS;
 import com.forest.wu.pojo.User;
 import com.forest.wu.service.UserService;
 import com.forest.wu.utils.MD5;
+import com.forest.wu.utils.httpApiDemo.IndustrySMS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -32,10 +35,15 @@ public class LoginController {
     public String index() {
         return "jzl/index";
     }
+    //个人主页
+    @RequestMapping(value = "/homepage")
+    public String home(){
+        return "jzl/personal";
+    }
 
     //登录页面
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String userAll(@RequestParam String user, @RequestParam String password, HttpSession session) {
+    public String userAll(@RequestParam String user, @RequestParam String password, HttpSession session,HttpServletResponse response) throws IOException {
         List<User> ss = userService.selectULogin();
         //循环查询
         int i = 0;
@@ -44,11 +52,13 @@ public class LoginController {
                 if (ss.get(i).getPassword().equals(password)) {
                     //获取全部的登录信息
                     session.setAttribute("user", ss.get(i));
+                    session.setMaxInactiveInterval(3600);
                     return "xlh/main_xlh";
                 }
             }
             i++;
         } while (i < ss.size());
+
         return "jzl/index";
     }
 
@@ -71,7 +81,6 @@ public class LoginController {
             if (name.get(i).getUsername().equals(username)) {
                 resultMap.put("username", "nameVerification");
                 return resultMap;
-
             }
             //判断邮箱是否已经存在
             if (name.get(i).getEmail().equals(email)) {
@@ -109,6 +118,18 @@ public class LoginController {
         IndustrySMS.setTo(phone);
         IndustrySMS.execute();//运行接口
         String result = IndustrySMS.getResult();//获取验证码
+
+
         return result;
     }
+
+
+//个人主页修改用户信息
+@RequestMapping(value = "/personal", method = RequestMethod.POST)
+public String persona(){
+
+return "";
+}
+
+
 }

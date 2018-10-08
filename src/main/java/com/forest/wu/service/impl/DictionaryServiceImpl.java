@@ -24,4 +24,9 @@ public class DictionaryServiceImpl implements DictionaryService {
     public List<Dictionary> queryDictionaryList(String typeCode) {
         return dictionaryMapper.selectByTypeCode(typeCode);
     }
+
+    @Override
+    public List<Dictionary> selectGoodsStatus() {
+        return dictionaryMapper.selectGoodsStatus();
+    }
 }
