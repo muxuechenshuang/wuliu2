@@ -35,7 +35,7 @@ public class Workorder {
 
     private Integer gPoint;
 
-    private String productType;
+    private Integer productType;
 
     private Double realWeight;
 
@@ -197,12 +197,12 @@ public class Workorder {
         this.gPoint = gPoint;
     }
 
-    public String getProductType() {
+    public Integer getProductType() {
         return productType;
     }
 
-    public void setProductType(String productType) {
-        this.productType = productType == null ? null : productType.trim();
+    public void setProductType(Integer productType) {
+        this.productType = productType;
     }
 
     public Double getRealWeight() {

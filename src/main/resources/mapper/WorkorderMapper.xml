@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?> 
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.forest.wu.dao.WorkorderMapper">
     <resultMap id="BaseResultMap" type="com.forest.wu.pojo.Workorder">
@@ -17,7 +17,7 @@
         <result column="gCity" jdbcType="INTEGER" property="gCity" />
         <result column="gAddress" jdbcType="VARCHAR" property="gAddress" />
         <result column="gPoint" jdbcType="INTEGER" property="gPoint" />
-        <result column="productType" jdbcType="VARCHAR" property="productType" />
+        <result column="productType" jdbcType="INTEGER" property="productType" />
         <result column="realWeight" jdbcType="DOUBLE" property="realWeight" />
         <result column="workStatus" jdbcType="INTEGER" property="workStatus" />
         <result column="comment" jdbcType="VARCHAR" property="comment" />
@@ -75,7 +75,7 @@
       #{sTel,jdbcType=VARCHAR}, #{sCity,jdbcType=INTEGER}, #{sAddress,jdbcType=VARCHAR},
       #{sPoint,jdbcType=INTEGER}, #{gName,jdbcType=VARCHAR}, #{gTel,jdbcType=VARCHAR},
       #{gCity,jdbcType=INTEGER}, #{gAddress,jdbcType=VARCHAR}, #{gPoint,jdbcType=INTEGER},
-      #{productType,jdbcType=VARCHAR}, #{realWeight,jdbcType=DOUBLE}, #{workStatus,jdbcType=INTEGER},
+      #{productType,jdbcType=INTEGER}, #{realWeight,jdbcType=DOUBLE}, #{workStatus,jdbcType=INTEGER},
       #{comment,jdbcType=VARCHAR}, #{expenses,jdbcType=DOUBLE}, #{gCourier,jdbcType=INTEGER},
       #{sCourier,jdbcType=INTEGER}, #{preVolume,jdbcType=DOUBLE}, #{riseTime,jdbcType=TIMESTAMP},
       #{firInStorage,jdbcType=TIMESTAMP}, #{firOutStorage,jdbcType=TIMESTAMP}, #{secInStorage,jdbcType=TIMESTAMP},
@@ -243,7 +243,7 @@
                 #{gPoint,jdbcType=INTEGER},
             </if>
             <if test="productType != null">
-                #{productType,jdbcType=VARCHAR},
+                #{productType,jdbcType=INTEGER},
             </if>
             <if test="realWeight != null">
                 #{realWeight,jdbcType=DOUBLE},
@@ -353,7 +353,7 @@
                 gPoint = #{gPoint,jdbcType=INTEGER},
             </if>
             <if test="productType != null">
-                productType = #{productType,jdbcType=VARCHAR},
+                productType = #{productType,jdbcType=INTEGER},
             </if>
             <if test="realWeight != null">
                 realWeight = #{realWeight,jdbcType=DOUBLE},
@@ -434,7 +434,7 @@
       gCity = #{gCity,jdbcType=INTEGER},
       gAddress = #{gAddress,jdbcType=VARCHAR},
       gPoint = #{gPoint,jdbcType=INTEGER},
-      productType = #{productType,jdbcType=VARCHAR},
+      productType = #{productType,jdbcType=INTEGER},
       realWeight = #{realWeight,jdbcType=DOUBLE},
       workStatus = #{workStatus,jdbcType=INTEGER},
       comment = #{comment,jdbcType=VARCHAR},
@@ -557,10 +557,8 @@
     <!--肖林辉-->
     <!--快递员工单查询-->
     <select id="selectWorkOrderByCourier" parameterType="com.forest.wu.pojo.Workorder" resultType="com.forest.wu.pojo.Workorder">
-        select
-        <include refid="Base_Column_List"/>
-        from workorder
-        where 1=1
+        select *
+        from workorder where 1=1
         <if test="sCourier !=null ">
             and sCourier = #{sCourier}
         </if>
