@@ -307,7 +307,7 @@ public class CenterController {
     
     /**
     * author: 张展
-    * 分公司管理员信息的保存
+    * 新增分公司管理员信息的保存
     * Date: 11:25 2018/10/8
     * Param：
     * Return：
@@ -332,23 +332,7 @@ public class CenterController {
                 String fileName = user.getUsername() + ".jpg";//上传头像图片重命名
                 File targetFile = new File(path, fileName);
 
-//                //新代码开始
-//                // 项目在容器中实际发布运行的根路径
-//                String realPath = request.getSession().getServletContext().getRealPath("/");
-//                // 自定义的文件名称
-//                String trueFileName = String.valueOf(System.currentTimeMillis()) + "." + type;
-//                // 设置存放图片文件的路径
-//                path = realPath+/*System.getProperty("file.separator")+*/trueFileName;
-//                System.out.println("存放图片文件的路径:"+path);
-//                // 转存文件到指定的路径
-//                file.transferTo(new File(path));
-//                System.out.println("文件成功上传到指定目录下");
-////                新代码结束
 
-//                if (!targetFile.exists()) {
-//                    //boolean mkdirs() :  创建此抽象路径名指定的目录，包括创建必需但不存在的父目录。
-//                    targetFile.mkdirs();
-//                }
                 try {
                     //文件移动
                     attach.transferTo(targetFile);
@@ -377,6 +361,78 @@ public class CenterController {
             e.printStackTrace();
         }
         return "redirect:/center/addsonperson";
+    }
+
+    /**
+     * author: 张展
+     * 分公司管理员信息的保存(更新)
+     * Date: 11:25 2018/10/8
+     * Param：
+     * Return：
+     **/
+    @RequestMapping(value = "/addSave6",method = RequestMethod.POST)
+    public String addSave6(User user, BindingResult bindingResult,HttpSession session, HttpServletRequest request,
+                           @RequestParam(value = "picpath", required = false) MultipartFile attach) {
+        String PicPath = null;
+        if (!attach.isEmpty()) {
+            String path = request.getSession().getServletContext().getRealPath("statics" + java.io.File.separator + "uploadfiles");
+            String oldFileName = attach.getOriginalFilename();//原文件名
+            String prefix = FilenameUtils.getExtension(oldFileName);//原文件后缀
+            int filesize = 5000000;
+            if (attach.getSize() > filesize) {//上传大小不得超过 5M
+                request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_4);
+                return "center/addsonperson";
+            } else if (prefix.equalsIgnoreCase("jpg") || prefix.equalsIgnoreCase("png")
+                    || prefix.equalsIgnoreCase("jepg") || prefix.equalsIgnoreCase("pneg")) {//上传图片格式
+                String fileName = user.getUsername() + ".jpg";//上传头像图片重命名
+                File targetFile = new File(path, fileName);
+                try {
+                    //文件移动
+                    attach.transferTo(targetFile);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_2);
+                    return "redirect:/center/addsonperson";
+                }
+                PicPath = request.getContextPath() + "/statics/uploadfiles/" + fileName;
+            } else {
+                request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_3);
+                return "redirect:/center/finduser";
+            }
+        }
+        user.setPicPath(PicPath);
+        try {
+            if (centerService.updateUserById(user) > 0) {
+                //要显示信息要重定向(会刷新一次)
+                return "redirect:/center/finduser";
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return "redirect:/center/finduser";
+    }
+
+    /**
+    * author: 张展
+    * 删除分公司管理员
+    * Date: 16:36 2018/10/9
+    * Param：[userid]
+    * Return：java.lang.String
+    **/
+    @RequestMapping(value = "/delectuser",method = RequestMethod.POST)
+    public String delectuser(Integer userid) {
+
+        try {
+            if (centerService.delectSonCompanyPerson(userid) > 0) {
+                //要显示信息要重定向(会刷新一次)
+                return "redirect:/center/finduser";
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return "redirect:/center/finduser";
     }
 
 

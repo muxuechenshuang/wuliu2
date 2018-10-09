@@ -71,8 +71,8 @@
                                    <%--data-validate-length-range="20" data-validate-words="1" name="sex"--%>
                                    <%--required="required"--%>
                                    <%--placeholder="分公司管理员性别" type="text" maxlength="50">--%>
-                                &nbsp;&nbsp;&nbsp;<input type="radio" name="sex" id="sex" checked>男 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="radio" name="sex" id="sex">女
+                                &nbsp;&nbsp;&nbsp;<input type="radio" name="sex" id="sex" checked value="男">男 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="sex" id="sex" value="女">女
                         </div>
                     </div>
                     <%--<div class="item form-group">--%>

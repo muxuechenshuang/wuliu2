@@ -90,5 +90,7 @@ public interface CenterService {
     public int delectSonCompanyPerson(Integer id)throws Exception;
 
     public User selectByUserId(Integer id)throws Exception;
+
+    public Integer updateUserById(User user)throws Exception;
     
 }

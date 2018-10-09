@@ -218,6 +218,7 @@
             </if>
         </trim>
     </insert>
+    <!--根据ID更新用户信息（分公司管理员已使用）-->
     <update id="updateByPrimaryKeySelective" parameterType="com.forest.wu.pojo.User">
         update user
         <set>
@@ -246,14 +247,16 @@
                 type = #{type,jdbcType=INTEGER},
             </if>
             <if test="time != null">
-                #{time,}
+                time = #{time},
             </if>
             <if test="picPath != null">
-                #{picPath,}
+                picPath = #{picPath}
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
+
+
     <update id="updateByPrimaryKey" parameterType="com.forest.wu.pojo.User">
     update user
     set username = #{username,jdbcType=VARCHAR},
@@ -263,7 +266,9 @@
       sex = #{sex,jdbcType=VARCHAR},
       logo = #{logo,jdbcType=VARCHAR},
       parentid = #{parentid,jdbcType=INTEGER},
-      type = #{type,jdbcType=INTEGER}
+      type = #{type,jdbcType=INTEGER},
+      time = #{time},
+      picPath = #{picPath}
     where id = #{id,jdbcType=INTEGER}
   </update>
     <!-- 查找用户表所需的登录信息 -->

@@ -17,7 +17,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content1">
-                <form class="form-horizontal form-label-left" method="post" action="/center/addSave1" enctype="multipart/form-data">
+                <form class="form-horizontal form-label-left" method="post" action="/center/addSave6" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="${user.id}">
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id">分公司管理员编号 <span
@@ -29,16 +29,16 @@
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">分公司管理员账号 <span
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">账号 <span
                                 class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" class="form-control col-md-7 col-xs-12"
+                            <input type="text" class="form-control col-md-7 col-xs-12" readonly
                                    value="${user.username}" name="username" id="username">
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">分公司管理员密码 <span
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">密码 <span
                                 class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">分公司管理员电话 <span
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">电话 <span
                                 class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -56,7 +56,7 @@
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">地址 <span
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">邮箱 <span
                                 class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
@@ -85,7 +85,7 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="time">账号创建时间 <span
                                 class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" class="form-control col-md-7 col-xs-12"
+                            <input type="text" class="form-control col-md-7 col-xs-12" readonly
                                    value="<fmt:formatDate value="${user.time}" pattern='yyyy-MM-dd HH:mm:ss'/>"
                                    name="time" id="time">
                         </div>
@@ -95,7 +95,7 @@
                                 class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="file" class="form-control col-md-7 col-xs-12" name="picpath"  required="required" id="picpath"/>
-                            <span><img src="${pageContext.request.contextPath }${user.picPath}" id="showpic" width="400" height="400"/></span>
+                            <span><img src="${pageContext.request.contextPath }${user.picPath}" id="showpic" width="400" /></span>
                             <h3 style="color:red">${fileUploadError}</h3>
                         </div>
                     </div>
