@@ -103,7 +103,7 @@
 										</li>
 										<li><a href="/order/toworkorder?courierNum=${user.id}">查询工单</a>
 										</li>
-										<li><a href="/xlh/echarts_xlh.jsp">图形报表</a>
+										<li><a href="${pageContext.request.contextPath }/chartjs.html">图形报表</a>
 										</li>
 									</ul></li>
 								</c:if>
@@ -138,9 +138,9 @@
 								</a>
 									<ul class="nav child_menu">
 										<li><a href="${pageContext.request.contextPath}/filiale/wdquery">网点管理</a></li>
-										<li><a href="${pageContext.request.contextPath}/ljh/gongdan_ry.jsp">工单查询</a>
-										<li><a href="${pageContext.request.contextPath}/ljh/chuku.jsp">出库</a></li>
-										<li><a href="${pageContext.request.contextPath}/ljh/ruku.jsp">入库</a></li>
+										<li><a href="${pageContext.request.contextPath}/filiale/queryworkorder">工单查询</a>
+										<li><a href="${pageContext.request.contextPath}/">出库</a></li>
+										<li><a href="${pageContext.request.contextPath}/filiale/putinstorage">入库</a></li>
 									</ul>
 
 								</li>
@@ -156,13 +156,13 @@
 									<ul class="nav child_menu">
 
 										<li><a href="/center/toselectworkorder">查询工单（总部）</a></li>
-										<li><a href="/center/todetail">工单详情</a></li>
 										<li><a href="/center/returnlist">返货单查询</a></li>
 										<li><a href="/center/returndetail">审核返货单</a></li>
 										<li><a href="/center/addsoncompany">新增分公司</a></li>
 										<li><a href="/center/tosoncompanylist">分公司管理</a></li>
-										<li><a href="/center/soncompanydetail">分公司详情（修改）</a></li>
+										<%--<li><a href="/center/soncompanydetail">分公司详情（修改）</a></li>--%>
 										<li><a href="/center/addsonperson">新增分公司管理</a></li>
+										<li><a href="/center/finduser">查询分公司管理</a></li>
 										<li><a href="/center/baobiao1">报表</a></li>
 							</ul></li>
 								</c:if>

@@ -33,6 +33,7 @@ public class Order_info {
     private Date doorTime;
 
 
+
     private String product;
 
     private Double preWeight;

@@ -1,12 +1,10 @@
 package com.forest.wu.controller;
 
-import com.forest.wu.dao.Order_infoMapper;
-import com.forest.wu.dao.UserMapper;
-import com.forest.wu.dao.WorkorderMapper;
-import com.forest.wu.pojo.Order_info;
-import com.forest.wu.pojo.User;
-import com.forest.wu.pojo.Workorder;
+import com.forest.wu.dao.*;
+import com.forest.wu.pojo.*;
+import com.forest.wu.service.DictionaryService;
 import com.forest.wu.service.Order_infoService;
+import com.forest.wu.service.OrganizationService;
 import com.forest.wu.utils.Constants;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -15,15 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 /**
  * @Author 肖林辉
@@ -41,6 +39,12 @@ public class Order_infoController {
 
     @Autowired
     private WorkorderMapper workorderMapper;
+
+    @Autowired
+    private OrganizationService organizationService;
+
+    @Autowired
+    private DictionaryService   dictionaryService;
 
     /**
     * @author: 肖林辉
@@ -98,8 +102,11 @@ public class Order_infoController {
     * @return：
     **/
 
-    @RequestMapping(value = "/toaddgongdan",method = RequestMethod.GET)
-    public String toOrderXianqing(@RequestParam(value="id",required = false)int id,Model model){
+    @RequestMapping(value = "/toaddgongdan")
+    public String toOrderXianqing(@RequestParam(value="id",required = false)int id,
+                                  @RequestParam(value = "cityId", required = false) String _cityId,
+                                  @RequestParam(value = "branchId", required = false) String _branchId,
+                                  Model model){
         //发送订单的信息
         Order_info orderInfo=orderService.selectOneOrder(id);
         model.addAttribute("order",orderInfo);
@@ -107,6 +114,23 @@ public class Order_infoController {
         //发送工单号
         String workNum=UUID.randomUUID().toString();
         model.addAttribute("workNumber",workNum);
+
+        //发送目标城市集合
+        List<Organization> cityList = organizationService.filialeList();
+        model.addAttribute("cityList", cityList);
+        if (null != _cityId && !"".equals(_cityId) && null != _branchId && !"".equals(_branchId)) {
+            Integer cityId = Integer.parseInt(_cityId);
+            Integer branchId = Integer.valueOf(_branchId);
+            List<Organization> branchList = organizationService.selectByParentId(cityId);
+            model.addAttribute("branchList", branchList);
+            model.addAttribute("cityId", cityId);
+            model.addAttribute("branchId", branchId);
+        }
+
+        //发送物品类型到页面
+        List<Dictionary> goodtypeList=dictionaryService.selectGoodsStatus();
+        model.addAttribute("goodtypeList",goodtypeList);
+
 
         //发送网点名称
 
@@ -123,17 +147,22 @@ public class Order_infoController {
     * @Param：
     * @return：
     **/
-    @RequestMapping(value = "/saveworkorder",method = RequestMethod.GET)
-    public String addWorkorder(Workorder workorder,HttpSession session){
+    @RequestMapping(value = "/saveworkorder")
+    public String addWorkorder(Workorder workorder, BindingResult bindingResult, HttpSession session){
         //根据Id找到相应订单的信息
        //插入工单信息
-        workorder.setProductLocation("2");
+        User user=(User)session.getAttribute("user");
+        workorder.setProductLocation(2);
+        Date date=new Date();
+        workorder.setRiseTime(date);
+        workorder.setgCourier(user.getId());
+        workorder.setWorkStatus(1);  // 工单状态为待审核
        orderService.addWorkorderByCourier(workorder);
        //修改订单中的状态   1为预订  2 已接单  将1 修改为2
         Order_info order = new Order_info();
         order.setOrderNumber(workorder.getOrderNum());
         orderService.updateOrderStatusByCourier(order);
-        User user=(User)session.getAttribute("user");
+
        int  id=user.getId();
        return "redirect:/order/someorder?courierNum="+id;
     }
@@ -233,9 +262,27 @@ public class Order_infoController {
         return "xlh/weituo_xlh";
     }
 
+
+    /**
+    * @author: 肖林辉
+    * @Description   进入工单委托页面
+    * @Date: 9:38 2018/10/6/006
+    * @Param：[orderid, session, model]
+    * @return：java.lang.String
+    **/
+
+    @RequestMapping(value="toworkweituo")
+    public String toworkWeiTuo(@RequestParam(value="id")Integer workid,HttpSession session,Model model){
+        User user=(User)session.getAttribute("user");
+        List<User> couriersList=userMapper.selectCouriers(user.getParentid(),user.getId());
+        model.addAttribute("couriersList",couriersList);
+        model.addAttribute("workId",workid);
+        return "xlh/workweituo_xlh";
+    }
+
     /**
     * @author: 肖林辉 
-    * @Description   委托状态修改
+    * @Description   订单委托状态修改
     * @Date: 14:31 2018/10/5/005
     * @Param：[]
     * @return：java.lang.String
@@ -254,4 +301,63 @@ public class Order_infoController {
         int id=user.getId();
         return "redirect:/order/someorder?courierNum="+id;
     }
+
+    /**
+    * @author: 肖林辉
+    * @Description   工单委托状态修改
+    * @Date: 10:02 2018/10/6/006
+    * @Param：[session, courierId, orderId]
+    * @return：java.lang.String
+    **/
+
+    @RequestMapping("updateworkweituo")
+    public String updateWorkWeituoStatus(HttpSession session,
+                                          @RequestParam(value="courierId")Integer courierId,
+                                          @RequestParam(value="workId")Integer workId) {
+        User user = (User) session.getAttribute("user");
+
+
+        Workorder workorder=new Workorder();
+        workorder.setId(workId);
+        workorder.setEntrust(1);
+        workorder.setEntrustNumber(user.getId());
+
+        workorder.setsCourier(courierId);
+        workorderMapper.updateByPrimaryKeySelective(workorder);
+
+
+        int id=user.getId();
+        return "redirect:/order/toworkorder?courierNum="+id;
+    }
+    /**
+    * @author: 肖林辉 
+    * @Description   借鉴任一的两表联动,显示对应的城市与网点
+    * @Date: 13:53 2018/10/8/008
+    * @Param：[parentId]
+    * @return：java.util.List<com.forest.wu.pojo.Organization>
+    **/
+    
+    @RequestMapping(value = "queryBranchList.json", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Organization> queryBranchList(@RequestParam Integer parentId) {
+        List<Organization> branchList = organizationService.selectByParentId(parentId);
+        return branchList;
+    }
+
+    @RequestMapping(value="finishedWorkorder")
+    public String  updateWorkorder(HttpSession session,
+                                   @RequestParam(value = "id" )String workId){
+        User user = (User) session.getAttribute("user");
+
+        Workorder workorder=new Workorder();
+        workorder.setId(Integer.parseInt(workId));
+        workorder.setWorkStatus(5);
+        Date date=new Date();
+        workorder.setFinishedTime(date);
+        workorderMapper.updateByPrimaryKeySelective(workorder);
+        int id=user.getId();
+        return  "redirect:toworkorder/?courierNum="+id;
+    }
+
+
 }

@@ -195,8 +195,7 @@
 		<div class="x_panel">
 			<div class="x_content">
 				<p class="text-muted font-13 m-b-30"></p>
-				<div id="datatable-responsive_wrapper"
-					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+				<div id="datatable-responsive_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row">
 						<div class="col-sm-12">
 							<table id="datatable-responsive"
@@ -216,11 +215,7 @@
 											style="width: 124px;"
 											aria-label="First name: activate to sort column descending"
 											aria-sort="ascending">工单号</th>
-										<th class="sorting_asc" tabindex="0"
-											aria-controls="datatable-responsive" rowspan="1" colspan="1"
-											style="width: 124px;"
-											aria-label="First name: activate to sort column descending"
-											aria-sort="ascending">订单号</th>
+
 										<th class="sorting" tabindex="0"
 											aria-controls="datatable-responsive" rowspan="1" colspan="1"
 											style="width: 80px;"
@@ -267,7 +262,6 @@
 									<tr role="row" class="odd">
 										<td tabindex="0" class="sorting_1">${workorder.id}</td>
 										<td>${workorder.workNum }</td>
-										<td>${workorder.orderNum }</td>
 										<td>${workorder.gCity }</td>
 										<td>${workorder.gPoint }</td>
 										<td>${workorder.gName }</td>
@@ -318,7 +312,6 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>

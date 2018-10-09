@@ -17,7 +17,7 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content1">
-				<form class="form-horizontal form-label-left">
+				<form class="form-horizontal form-label-left" action="/center/addSave3" method="post">
 					<input type="hidden" name="id" value="${workorder.id}">
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
@@ -109,9 +109,7 @@
 							for="sAddress">寄件人详细地址<span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<textarea class="form-control col-md-7 col-xs-12"
-									  name="sAddress" id="sAddress">
-              		${workorder.sAddress}</textarea>
+							<textarea class="form-control col-md-7 col-xs-12" name="sAddress" id="sAddress">${workorder.sAddress}</textarea>
 						</div>
 					</div>
 					<div class="item form-group">
@@ -153,12 +151,10 @@
 					</div>
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							   for="gAddress">寄件人详细地址<span class="required">*</span>
+							   for="gAddress">收件人详细地址<span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<textarea class="form-control col-md-7 col-xs-12"
-									  name="gAddress" id="gAddress">
-								${workorder.gAddress}</textarea>
+							<textarea class="form-control col-md-7 col-xs-12" name="gAddress" id="gAddress">${workorder.gAddress}</textarea>
 						</div>
 					</div>
 
@@ -305,10 +301,10 @@
 
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							for="result">审核结果<span class="required">*</span></label>
+							for="auditStatus">审核结果<span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<input type="text" class="form-control col-md-7 col-xs-12"
-								   value="${workorder.result}"  name="result" id="result">
+								   value="${workorder.auditStatus}"  name="auditStatus" id="auditStatus">
 						</div>
 					</div>
 					<div class="item form-group">
@@ -335,17 +331,19 @@
 								   value="${workorder.entrust}" name="entrust" id="entrust">
 						</div>
 					</div>
+					<div class="x_content" style="display: block;">
+						<br>
+
+					</div>
+					<div class="form-group">
+						<div class="col-md-6 col-md-offset-3">
+							<input type="submit" id="submit" value="保存修改" class="btn btn-success" />
+							<a href="JavaScript:history.back(-1)" class="btn btn-primary">返回</a>
+						</div>
+					</div>
 				</form>
 			</div>
-			<div class="x_content" style="display: block;">
-				<br>
 
-			</div>
-			<div class="form-group">
-				<div class="col-md-6 col-md-offset-3">
-					<button type="button" class="btn btn-primary" id="back">返回</button>
-				</div>
-			</div>
 			<div class="clearfix"></div>
 			<br />
 			<br />

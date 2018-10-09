@@ -44,6 +44,7 @@ public class LoginController {
                 if (ss.get(i).getPassword().equals(password)) {
                     //获取全部的登录信息
                     session.setAttribute("user", ss.get(i));
+                    session.setMaxInactiveInterval(30*60);
                     return "xlh/main_xlh";
                 }
             }

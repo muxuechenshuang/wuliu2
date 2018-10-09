@@ -95,18 +95,18 @@
                                    class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
                                    cellspacing="0" width="100%" role="grid"
                                    aria-describedby="datatable-responsive_info"
-                                   style="width: 100%;">
+                                   style="width: 100%;table-layout: fixed;">
                                 <thead>
                                 <tr role="row">
 
                                     <th class="sorting_asc" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                        style="width: 124px;"
+                                        style="width: 124px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"
                                         aria-label="First name: activate to sort column descending"
                                         aria-sort="ascending">工单号</th>
                                     <th class="sorting_asc" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                        style="width: 124px;"
+                                        style="width: 124px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"
                                         aria-label="First name: activate to sort column descending"
                                         aria-sort="ascending">订单号</th>
                                     <th class="sorting" tabindex="0"
@@ -136,7 +136,7 @@
                                         收件人电话</th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                        style="width: 66px;"
+                                        style="width: 66px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"
                                         aria-label="Last name: activate to sort column ascending">
                                         物品类型</th>
                                     <th class="sorting" tabindex="0"
@@ -157,8 +157,8 @@
                                 <tbody>
                                 <c:forEach var="workorder" items="${workorderList }" varStatus="status">
                                     <tr role="row" class="odd">
-                                        <td>${workorder.workNum }</td>
-                                        <td>${workorder.orderNum }</td>
+                                        <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${workorder.workNum }</td>
+                                        <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${workorder.orderNum }</td>
                                         <td>${workorder.gCity }</td>
                                         <td>${workorder.gPoint }</td>
                                         <td>${workorder.gName }</td>
@@ -179,8 +179,8 @@
                                                     <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="${pageContext.request.contextPath}/order/toworkorderdesc?id=${workorder.id}" class="addVersion"  data-toggle="tooltip" data-placement="top" title="" data-original-title="查看订单">查看工单</a>
-                                                    </li>
+                                                    <li><a href="${pageContext.request.contextPath}/order/toworkorderdesc?id=${workorder.id}" class="addVersion"  data-toggle="tooltip" data-placement="top" title="" data-original-title="查看订单">查看工单</a></li>
+                                                    <li><a href="${pageContext.request.contextPath}/order/toworkweituo?id=${workorder.id}" class="addVersion"  data-toggle="tooltip" data-placement="top" title="" data-original-title="委托">委托</a>
 
                                                 </ul>
                                             </div>
