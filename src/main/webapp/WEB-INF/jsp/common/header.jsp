@@ -103,7 +103,7 @@
 										</li>
 										<li><a href="/order/toworkorder?courierNum=${user.id}">查询工单</a>
 										</li>
-										<li><a href="/xlh/echarts_xlh.jsp">图形报表</a>
+										<li><a href="${pageContext.request.contextPath }/chartjs.html">图形报表</a>
 										</li>
 									</ul></li>
 								</c:if>
@@ -139,8 +139,8 @@
 									<ul class="nav child_menu">
 										<li><a href="${pageContext.request.contextPath}/filiale/wdquery">网点管理</a></li>
 										<li><a href="${pageContext.request.contextPath}/filiale/queryworkorder">工单查询</a>
-										<li><a href="${pageContext.request.contextPath}/ljh/chuku.jsp">出库</a></li>
-										<li><a href="${pageContext.request.contextPath}/ljh/ruku.jsp">入库</a></li>
+										<li><a href="${pageContext.request.contextPath}/">出库</a></li>
+										<li><a href="${pageContext.request.contextPath}/filiale/putinstorage">入库</a></li>
 									</ul>
 
 								</li>

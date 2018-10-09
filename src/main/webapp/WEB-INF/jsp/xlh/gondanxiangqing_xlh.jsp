@@ -14,15 +14,7 @@
 			<div class="x_content1">
 				<form class="form-horizontal form-label-left">
 					<input type="hidden" name="id" value="${workorder.id}">
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							   for="id">工单ID <span class="required">*</span>
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input class="form-control col-md-7 col-xs-12"  readonly
-								   type="text" name="id" id="id" value="${workorder.id}">
-						</div>
-					</div>
+
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
 							for="workNum">工单号 <span class="required">*</span>
@@ -42,15 +34,7 @@
 						</div>
 					</div>
 
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							for="packageId">合包号<span class="required">*</span>
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input class="form-control col-md-7 col-xs-12" value="${workorder.packageId}"
-								   readonly   type="text" name="packageId" id="packageId">
-						</div>
-					</div>
+
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
 							for="productNum">物件编号 <span class="required">*</span>
@@ -249,42 +233,11 @@
 						</div>
 					</div>
 
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							for="firOutStorage">初次出库时间<span class="required">*</span></label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" class="form-control col-md-7 col-xs-12"  readonly
-								   value="<fmt:formatDate value="${workorder.firOutStorage}" pattern='yyyy-MM-dd HH:mm:ss'/>" name="firOutStorage" id="firOutStorage">
-						</div>
-					</div>
 
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							for="secInStorage">二次入库时间<span class="required">*</span>
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input class="form-control col-md-7 col-xs-12" value="<fmt:formatDate value="${workorder.secInStorage}" pattern='yyyy-MM-dd HH:mm:ss'/>"
-								   readonly type="text" name="secInStorage" id="secInStorage">
-						</div>
-					</div>
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							for="secOutStorage">二次出库时间<span class="required">*</span>
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input class="form-control col-md-7 col-xs-12"
-								   readonly   name="secOutStorage" id="secOutStorage" value="<fmt:formatDate value="${workorder.secOutStorage}" pattern='yyyy-MM-dd HH:mm:ss'/>" type="text">
-						</div>
-					</div>
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							for="finishedTime">完成时间 <span class="required">*</span>
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" value="<fmt:formatDate value="${workorder.finishedTime}" pattern='yyyy-MM-dd HH:mm:ss'/>"
-								   readonly class="form-control col-md-7 col-xs-12" name="finishedTime" id="finishedTime">
-						</div>
-					</div>
+
+
+
+
 
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
@@ -296,50 +249,26 @@
 						</div>
 					</div>
 
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							for="result">审核结果<span class="required">*</span></label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" class="form-control col-md-7 col-xs-12"
-								   readonly  value="${workorder.result}"  name="result" id="result">
-						</div>
-					</div>
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							   for="invalidatedState">失效状态<span class="required">*</span></label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" class="form-control col-md-7 col-xs-12"
-								   readonly   value="${workorder.invalidatedState}"  name="invalidatedState" id="invalidatedState">
-						</div>
-					</div>
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							   for="storageStatus">出入库状态<span class="required">*</span></label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" class="form-control col-md-7 col-xs-12"
-								   readonly   value="${workorder.storageStatus}"  name="storageStatus" id="storageStatus">
-						</div>
-					</div>
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							   for="entrust">委托状态<span class="required">*</span></label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" class="form-control col-md-7 col-xs-12"
-								   readonly   value="${workorder.entrust}" name="entrust" id="entrust">
-						</div>
-					</div>
+
+
+
+
 				</form>
 			</div>
 			<div class="x_content" style="display: block;">
 				<br>
 
 			</div>
+			<form action="${pageContext.request.contextPath}/order/finishedWorkorder">
 			<div class="form-group">
 				<div class="col-md-6 col-md-offset-3">
+					<input type="hidden" name="id" value="${workorder.id}">
+					<button type="submit" class="btn btn-success" id="finished">完成配送</button>
 					<button type="button" class="btn btn-primary" id="back">返回</button>
 				</div>
 			</div>
 			<div class="clearfix"></div>
+			</form>
 			<br />
 			<br />
 		</div>
