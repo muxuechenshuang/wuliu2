@@ -3,7 +3,6 @@ package com.forest.wu.service;
 import com.forest.wu.pojo.Order_info;
 import com.forest.wu.pojo.User;
 import com.forest.wu.pojo.Workorder;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -110,4 +109,44 @@ public interface Order_infoService {
     **/
     
     int updateOrderWeituoStatus(Order_info order);
+
+    /**
+     *
+     * @author: 任一
+     * @Description 客户查询订单数量
+     * @Date: 9:51 2018/10/6
+     * @Param：
+     * @return：int
+     */
+    int getMyOrderCount(Integer userId, String orderNumber, String gName, String gTel, Integer status);
+
+    /**
+     * @author: 任一
+     * @Description 客户查询订单列表（分页，按id逆序）
+     * @Date: 10:56 2018/10/6
+     * @Param：
+     * @return：
+     */
+    List<Order_info> getMyOrderList(Integer userId, String orderNumber, String gName, String gTel, Integer status,
+                                    Integer pageNo, Integer pageSize);
+
+    /**
+     *
+     * @author: 任一
+     * @Description 查看明细
+     * @Date: 13:53 2018/10/8
+     * @Param：
+     * @return：
+     */
+    Order_info getMyOrderInfo(Integer id);
+
+    /**
+     *
+     * @author: 任一
+     * @Description 取消预约
+     * @Date: 9:37 2018/10/9
+     * @Param：
+     * @return：
+     */
+    boolean offOrderById(Integer id);
 }

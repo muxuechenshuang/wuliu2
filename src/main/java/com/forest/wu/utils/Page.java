@@ -56,7 +56,7 @@ public class Page {
 
     public void getByet(){
         if(this.count%this.pageSize==0){
-            this.pageCount=this.pageCount/this.pageSize;
+            this.pageCount=this.count/this.pageSize;
         }else if(this.count%this.pageSize>0){
             this.pageCount=this.count/this.pageSize+1;
         }else{

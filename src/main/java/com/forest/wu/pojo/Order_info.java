@@ -24,8 +24,10 @@ public class Order_info {
     private String gAddress;
 
 
-
     private Integer typeId;
+
+    //任一    货物类型名字
+    private String typeName;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date doorTime;
@@ -61,14 +63,111 @@ public class Order_info {
     private Integer entrustNumber;
 
     //肖林辉  存放网点名称字段
-    private String  name;
+    private String pointName;
 
-    public String getName() {
-        return name;
+    //任一    订单状态名
+    private String statusName;
+
+    //任一    是否付费
+    private String isPay;
+
+    //任一    运费
+    private double expenses;
+
+    //任一    货物所在位置
+    private Integer productLocation;
+
+    //任一    寄件网点名称
+    private String sBranchName;
+
+    //任一    寄件分公司名称
+    private String sCityName;
+
+    //任一    收件网点名称
+    private String gBranchName;
+
+    //任一    收件分公司网点名称
+    private String gCityName;
+
+
+    public String getsBranchName() {
+        return sBranchName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setsBranchName(String sBranchName) {
+        this.sBranchName = sBranchName;
+    }
+
+    public String getsCityName() {
+        return sCityName;
+    }
+
+    public void setsCityName(String sCityName) {
+        this.sCityName = sCityName;
+    }
+
+    public String getgBranchName() {
+        return gBranchName;
+    }
+
+    public void setgBranchName(String gBranchName) {
+        this.gBranchName = gBranchName;
+    }
+
+    public String getgCityName() {
+        return gCityName;
+    }
+
+    public void setgCityName(String gCityName) {
+        this.gCityName = gCityName;
+    }
+
+    public Integer getProductLocation() {
+        return productLocation;
+    }
+
+    public void setProductLocation(Integer productLocation) {
+        this.productLocation = productLocation;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
+    public double getExpenses() {
+        return expenses;
+    }
+
+    public void setExpenses(double expenses) {
+        this.expenses = expenses;
+    }
+
+    public String getIsPay() {
+        return isPay;
+    }
+
+    public void setIsPay(String isPay) {
+        this.isPay = isPay;
+    }
+
+    public String getStatusName() {
+        return statusName;
+    }
+
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
+    }
+
+    public String getPointName() {
+        return pointName;
+    }
+
+    public void setPointName(String pointName) {
+        this.pointName = pointName;
     }
 
     public Integer getId() {
@@ -264,17 +363,14 @@ public class Order_info {
     }
 
 
-
     public void setCityId(int cityId) {
         this.cityId = cityId;
     }
 
 
-
     public void setBranchId(int branchId) {
         this.branchId = branchId;
     }
-
 
 
     public void setTypeId(int typeId) {

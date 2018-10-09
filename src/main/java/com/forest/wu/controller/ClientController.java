@@ -3,6 +3,7 @@ package com.forest.wu.controller;
 import com.forest.wu.pojo.Dictionary;
 import com.forest.wu.pojo.Order_info;
 import com.forest.wu.pojo.Organization;
+import com.forest.wu.pojo.User;
 import com.forest.wu.service.DictionaryService;
 import com.forest.wu.service.Order_infoService;
 import com.forest.wu.service.OrganizationService;
@@ -156,8 +157,8 @@ public class ClientController {
             e.printStackTrace();
         }
 
-        if(branchList.size()==0){
-            model.addAttribute("nullErro","该城市网点正在紧张建设中");
+        if (branchList.size() == 0) {
+            model.addAttribute("nullErro", "该城市网点正在紧张建设中");
             model.addAttribute("cityList", cityList);
             return "ry/branchquery_ry";
         }
@@ -173,23 +174,149 @@ public class ClientController {
     //查件
 
 
+    /**
+     *
+     * @author: 任一
+     * @Description 我要查件页面的进入和查询
+     * @Date: 16:42 2018/10/6
+     * @Param：
+     * @return：
+     */
     @RequestMapping(value = "/query")
-    public String queryInfoList(Model model, HttpSession session){
+    public String queryInfoList(Model model, HttpSession session,
+                                @RequestParam(value = "queryOrderNumber", required = false) String orderNumber,
+                                @RequestParam(value = "queryGName", required = false) String gName,
+                                @RequestParam(value = "queryGTel", required = false) String gTel,
+                                @RequestParam(value = "queryOrderStatus", required = false) String _statusId,
+                                @RequestParam(value = "pageIndex", required = false) String pageIndex) {
+        //清空空格数据（解决未填表单提交后变空格问题）
+        if(orderNumber==null||orderNumber.equals("")){
+            orderNumber=null;
+        }
+        if(gName==null||gName.equals("")){
+            gName=null;
+        }
+        if(gTel==null||gTel.equals("")){
+            gTel=null;
+        }
+
+
+        //用户Id
+        Integer userId = ((User) session.getAttribute("user")).getId();
+
+        List<Dictionary> orderStatusList = null;    //订单状态下拉框
+        List<Order_info> orderList = null;          //查询的订单列表
+
+
+        //页面容量
+        int pageSize = Constants.PAGE_SIZE;
+        //当前页码
+        Integer pageNo = 1;
+        if (pageIndex != null) {
+            try {
+                pageNo = Integer.valueOf(pageIndex);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+
+        Integer statusId = null;
+        if (_statusId != null && !_statusId.equals("")) {
+            statusId = Integer.parseInt(_statusId);
+        }
+
+        //总数量
+        int totalCount = 0;
+        try {
+            totalCount = order_infoService.getMyOrderCount(userId, orderNumber, gName, gTel, statusId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //总页数
+        Page pages = new Page();
+        pages.setPageNo(pageNo);//当前页
+        pages.setPageSize(pageSize);//页大小
+        pages.setCount(totalCount);//数据数量
+        int totalPageCount = pages.getPageCount();
+
+        //控制首页和尾页
+        if (pageNo < 1) {
+            pageNo = 1;
+        } else if (pageNo > totalPageCount) {
+            pageNo = totalPageCount;
+        }
+
+        try {
+            orderStatusList = dictionaryService.queryDictionaryList("orderStatus");
+            orderList = order_infoService.getMyOrderList(userId, orderNumber, gName, gTel, statusId, pageNo, pageSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //未查询到订单列表传入错误信息
+        if(orderList.size() == 0){
+            model.addAttribute("nullListErro","抱歉，未查询到订单");
+        }else{//查询到则传入订单列表
+            model.addAttribute("orderList", orderList);
+        }
+        model.addAttribute("orderStatusList", orderStatusList);
+        model.addAttribute("pages", pages);
+        model.addAttribute("orderNumber", orderNumber);
+        model.addAttribute("gName", gName);
+        model.addAttribute("gTel", gTel);
+        model.addAttribute("orderStatus", statusId);
         return "ry/query_ry";
     }
+
+    /**
+     *
+     * @author: 任一
+     * @Description 查看明细ajax查询方法
+     * @Date: 16:44 2018/10/6
+     * @Param：
+     * @return：
+     */
+    @RequestMapping(value = "getOrderInfo.json",method = RequestMethod.GET)
+    @ResponseBody
+    public Object getOrderInfo(@RequestParam Integer id){
+        HashMap<String,Object> orderInfo = new HashMap<String, Object>();
+        Order_info order = order_infoService.getMyOrderInfo(id);
+        orderInfo.put("orderInfo",order);
+        return orderInfo;
+    }
+
+    /**
+     *
+     * @author: 任一
+     * @Description 取消预约ajax
+     * @Date: 9:50 2018/10/9
+     * @Param：
+     * @return：
+     */
+    @RequestMapping(value = "offOrder.json",method = RequestMethod.GET)
+    @ResponseBody
+    public Object offOrder(@RequestParam Integer id,Model model){
+        HashMap<String,Object> resultMap = new HashMap<String, Object>();
+        if(order_infoService.offOrderById(id)){
+            resultMap.put("result","success");
+        }else{
+            resultMap.put("result","false");
+        }
+        return resultMap;
+    }
+
 
 
     //寄件服务
 
 
     /**
-     *
      * @author: 任一
-     * @Description 
+     * @Description
      * @Date: 16:26 2018/10/4
      * @Param：Model,String(_cityId),String(_branchId)
-     * @return：ry/send_ry
-     * 进入寄件页面
+     * @return：ry/send_ry 进入寄件页面
      */
     @RequestMapping(value = "/intosend", method = RequestMethod.GET)
     public String intosend(Model model,
@@ -213,49 +340,47 @@ public class ClientController {
     }
 
     /**
-     *
      * @author: 任一
      * @Description 保存订单信息
      * @Date: 10:02 2018/10/5
      * @Param：Order_info(order_info),Model(model)
      * @return：
      */
-    @RequestMapping(value = "/savesend",method = RequestMethod.POST)
-    public String savesend (Order_info order_info,Model model){
+    @RequestMapping(value = "/savesend", method = RequestMethod.POST)
+    public String savesend(Order_info order_info, Model model) {
         //订单号
-        int num = (int)(Math.random()*9000)+1000;
+        int num = (int) (Math.random() * 9000) + 1000;
         Date date = new Date();
         DateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
-        String orderNumber = order_info.getUserId()+ format.format(date)+ num;
+        String orderNumber = order_info.getUserId() + format.format(date) + num;
         order_info.setOrderNumber(orderNumber);
 
-        //订单状态
+        //订单状态,委托状态
         order_info.setStatus(1);
+        order_info.setEntrust(1);
 
         //创建时间
         order_info.setRiseTime(new Date());
 
         //执行添加
-        try{
-            if(order_infoService.insertSelective(order_info)){
-                return "redirect:/wuliu/index";
-            }else{
-                model.addAttribute("sendErro","对不起，订单生成失败，请重试或联系管理员");
+        try {
+            if (order_infoService.insertSelective(order_info)) {
+                return "redirect:/calculate/query";
+            } else {
+                model.addAttribute("sendErro", "对不起，订单生成失败，请重试或联系管理员");
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return "redirect:calculate/intosend";
+        return "redirect:/calculate/intosend";
     }
 
     /**
-     *
      * @author: 任一
      * @Description
      * @Date: 16:28 2018/10/4
      * @Param：
-     * @return：List<Organization>
-     * ajax返回网点列表
+     * @return：List<Organization> ajax返回网点列表
      */
     @RequestMapping(value = "queryBranchList.json", method = RequestMethod.GET)
     @ResponseBody
@@ -263,7 +388,6 @@ public class ClientController {
         List<Organization> branchList = organizationService.selectByParentId(parentId);
         return branchList;
     }
-
 
 
     //站内信息
