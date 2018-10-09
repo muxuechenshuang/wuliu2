@@ -24,7 +24,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12" for="id">返货单号</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="id" type="text" class="form-control col-md-7 col-xs-12" id="id">
+                                    <input name="id" type="text" class="form-control col-md-7 col-xs-12" id="id" value="${id}">
                                 </div>
                             </div>
                         </li>
@@ -32,7 +32,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12" for="yid">申请员工工号</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="yid" type="text" class="form-control col-md-7 col-xs-12" id="yid">
+                                    <input name="yid" type="text" class="form-control col-md-7 col-xs-12" id="yid" value="${yid}">
                                 </div>
                             </div>
                         </li>
@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12" for="gid">相关工单单号</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="gid" type="text" class="form-control col-md-7 col-xs-12" id="gid">
+                                    <input name="gid" type="text" class="form-control col-md-7 col-xs-12" id="gid" value="${gid}">
                                 </div>
                             </div>
                         </li>
@@ -48,7 +48,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12" for="gName">收件人姓名</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="gName" type="text" class="form-control col-md-7 col-xs-12" id="gName">
+                                    <input name="gName" type="text" class="form-control col-md-7 col-xs-12" id="gName" value="${gName}">
                                 </div>
                             </div>
                         </li>
@@ -56,7 +56,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12">审核状态</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select name="status" class="form-control" id="status">
+                                    <select name="status" class="form-control" id="status" value="${status}">
                                         <option value="">--请选择--</option>
                                     </select>
                                 </div>
@@ -129,7 +129,7 @@
                                     </th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                        style="width: 66px;"
+                                        style="width: 166px;"
                                         aria-label="Last name: activate to sort column ascending">
                                         备注
                                     </th>

@@ -10,6 +10,13 @@ import java.util.List;
 
 @Repository
 public interface UserMapper {
+    /**
+    * author: 张展
+    * 根据ID删除某个用户对象
+    * Date: 14:45 2018/10/8
+    * Param：[id]
+    * Return：int
+    **/
     int deleteByPrimaryKey(Integer id);
 
     int insert(User record);
@@ -125,5 +132,23 @@ public interface UserMapper {
     **/
     
     List<User> selectCouriers(@Param(value="parentid")int parentid,@Param(value = "id")int id);
-
+    
+    /**
+    * author: 张展
+    * 查询分公司管理列表
+    * Date: 12:47 2018/10/8
+    * Param：
+    * Return：
+    **/
+    List<User> findUser(User user);
+    
+    /**
+    * author: 张展
+    * 查询某个分公司管理
+    * Date: 13:54 2018/10/8
+    * Param：[id]
+    * Return：com.forest.wu.pojo.User
+    **/
+    User selectByUserId(Integer id);
+    
 }

@@ -7,20 +7,20 @@
 		<div class="x_panel">
 			<div class="x_title">
 				<h2>
-					分公司管理 <i class="fa fa-user"></i><small>${devUserSession.devName}
-						- 您可以通过搜索或者其他的筛选项对分公司的信息进行修改、删除等管理操作。^_^</small>
+					分公司管理人员 <i class="fa fa-user"></i><small>${devUserSession.devName}
+						- 您可以通过搜索或者其他的筛选项对分公司的管理人员信息进行修改、删除等管理操作。^_^</small>
 				</h2>
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
-				<form method="post" action="/center/soncompanylist">
+				<form method="post" action="/center/finduser">
 					<input type="hidden" name="pageIndex" value="1" />
 			    <ul>
 					<li>
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">公司编号：</label>
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">管理员ID：</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input name="id" type="number" class="form-control col-md-7 col-xs-12" value="${id }">
+								<input name="id" id="id" type="number" class="form-control col-md-7 col-xs-12" value="${id }">
 							</div>
 						</div>
 					</li>
@@ -30,21 +30,21 @@
 						<div class="form-group">
 							<label class="control-label col-md-3 col-sm-3 col-xs-12">电话：</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input name="phone" type="text" class="form-control col-md-7 col-xs-12" value="${phone }">
+								<input name="phone" id="phone" type="text" class="form-control col-md-7 col-xs-12" value="${phone }">
 							</div>
 						</div>
 					</li>
 						<li>
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">分公司名称：</label>
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">所属分公司</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input name="name" type="text" class="form-control col-md-7 col-xs-12" value="${name }">
+								<input name="parentid" id="parentid" type="text" class="form-control col-md-7 col-xs-12" value="${parentid }">
 							</div>
 						</div>
 					</li>
 
 				
-					<li><button type="submit" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询 </button>
+					<li><input type="submit" class="btn btn-primary" value="查询">
 					 </li>
 				</ul>
 			</form>
@@ -68,19 +68,19 @@
 									<th class="sorting_asc" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="First name: activate to sort column descending"
-										aria-sort="ascending">分公司编号</th>
+										aria-sort="ascending">管理员ID</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
-										分公司名称</th>
+										管理员用户名</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
-									父级组织ID</th>
+										管理员密码</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
-										类型</th>
+										管理员邮箱</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
@@ -88,12 +88,16 @@
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
-										地址</th>
+										性别</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
-										所在城市</th>
-										<th class="sorting" tabindex="0"
+										所属分公司</th>
+									<th class="sorting" tabindex="0"
+										aria-controls="datatable-responsive" rowspan="1" colspan="1"
+										aria-label="Last name: activate to sort column ascending">
+										创建时间</th>
+									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										style="width: 124px;"
 										aria-label="Last name: activate to sort column ascending">
@@ -106,17 +110,18 @@
 								</tr>
 							</thead>
 							<tbody>
-							<c:forEach var="organization" items="${list }" varStatus="status">
+							<c:forEach var="user" items="${list }" varStatus="status">
 								<tr role="row" class="odd">
-									<td tabindex="0" class="sorting_1">${organization.id}</td>
-									<td>${organization.name }</td>
-									<td>${organization.parentId }</td>
-									<td>${organization.type }</td>
-									<td>${organization.phone }</td>
-									<td>${organization.site }</td>
-									<td>${organization.city }</td>
-									<td><a id="lookandmodify" href="/center/tosondetail?organizationid=${organization.id}" class="btn btn-primary" >查看/修改</a></td>
-									<td><a id="delect" href="/center/delect?organizationid=${organization.id}" class="btn btn-primary" >删除</a></td>
+									<td tabindex="0" class="sorting_1">${user.id}</td>
+									<td>${user.username }</td>
+									<td>${user.password }</td>
+									<td>${user.email }</td>
+									<td>${user.phone }</td>
+									<td>${user.sex }</td>
+									<td>${user.parentid }</td>
+									<td><fmt:formatDate value="${user.time}" pattern='yyyy-MM-dd HH:mm:ss'/></td>
+									<td><a id="lookandmodify" href="/center/userDetail?userid=${user.id}" class="btn btn-primary" >查看/修改</a></td>
+									<td><a id="delect" href="/center/delectUser?userid=${user.id}" class="btn btn-primary" >删除</a></td>
 
 								<%--<td><a href="/center/tosondetail?id=${organization.id}" class="btn btn-primary">查看/修改</a></td>--%>
 								</tr>

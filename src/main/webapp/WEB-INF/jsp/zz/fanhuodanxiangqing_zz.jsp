@@ -13,8 +13,8 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content1">
-                    <form class="form-horizontal form-label-left" action="/center/addSave5" method="post">
-                        <input type="hidden" name="id" value="${returnorder.id}">
+                    <form class="form-horizontal form-label-left" action="/center/addSave4" method="post">
+                        <input type="hidden" name="rid" value="${returnorder.id}">
                         <div class="item form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="id">返货单号 <span
                                     class="required">*</span>
@@ -170,13 +170,14 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input type="text" class="form-control col-md-7 col-xs-12" id="status" name="status" readonly
+                                       <%--value="${returnorder.status}">--%>
                                     <c:if test="${returnorder.status eq 1}"> value="未审核" </c:if>
                                     <c:if test="${returnorder.status eq 2}"> value="审核通过，同意返货" </c:if>
                                     <c:if test="${returnorder.status eq 3}"> value="审核不通过，请继续联系配送" </c:if>>
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sPoint">审核时间 <span
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="auditTime">审核时间 <span
                                     class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -217,13 +218,16 @@
                                    <%--href="/center/shenhe?id=${returnorder.id}&comment=${returnorder.comment}&status=2">--%>
                                     <%--审核通过--%>
                                 <%--</a>--%>
-                                    <button type="submit" value="审核通过1">审核通过1</button>
+                                <input type="submit" id="status2" value="审核通过" class="btn btn-success" onclick="javascript:this.form.action='/center/addSave4';"/>
+                                <input type="submit" id="status2" value="审核不通过" class="btn btn-success" onclick="javascript:this.form.action='/center/addSave5';"/>
+
                                 <%--<input type="submit" id="status4" name="status4" class="btn btn-success" value="审核通过" onclick="pass"/>--%>
-                                <a id="status3" name="status3" class="btn btn-success"
-                                   href="/center/shenhe?id=${returnorder.id}&comment=${returnorder.comment}&status=3">
-                                    审核不通过
-                                </a>
-                                <a type="button" class="btn btn-primary" id="back" href="/center/returnlist">返回</a>
+                                <%--<a id="status3" name="status3" class="btn btn-success" onclick="notpass()"--%>
+                                   <%--&lt;%&ndash;href="/center/shenhe?id=${returnorder.id}&comment=${returnorder.comment}&status=3"&ndash;%&gt;--%>
+                                <%-->审核不通过--%>
+                                <%--</a>--%>
+                                <a href="JavaScript:history.back(-1)" class="btn btn-primary">返回</a>
+                                <%--<<input  type="button" class="btn btn-primary" id="back" onclick="back()" value="返回"/>--%>
                             </div>
                         </div>
                     </form>
@@ -233,4 +237,4 @@
             </div>
         </div>
         <%@include file="../common/footer.jsp" %>
-<%--<script src="${pageContext.request.contextPath }/statics/localjs/appcheck.js"></script>--%>
+<script src="${pageContext.request.contextPath }/statics/js/zz/fanhuodanxiangqing.js"></script>

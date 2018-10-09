@@ -82,6 +82,13 @@ public interface CenterService {
 
     public int delectSonCompany(Integer id) throws Exception;
 
+    //新增分公司操作员
     public int addSonCompanyPerson(User user)throws Exception;
+
+    public List<User> selectCompanyPerson(User user) throws Exception;
+
+    public int delectSonCompanyPerson(Integer id)throws Exception;
+
+    public User selectByUserId(Integer id)throws Exception;
     
 }

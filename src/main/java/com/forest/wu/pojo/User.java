@@ -1,8 +1,11 @@
 package com.forest.wu.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class User {
+
     private Integer id;
 
     private String username;
@@ -21,6 +24,10 @@ public class User {
 
     private Integer type;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    private Date time;//时间
+
+    private String picpath;//头像地址
 
 
 
@@ -48,10 +55,6 @@ public class User {
         this.valueName = valueName;
     }
 
-
-    private Date time;//时间
-
-    private String picpath;//
 
     public Date getTime() {
         return time;
