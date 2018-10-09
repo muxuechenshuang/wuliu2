@@ -27,7 +27,7 @@ public class User {
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date time;//时间
 
-    private String picpath;//头像地址
+    private String picPath;//头像地址
 
 
 
@@ -64,12 +64,12 @@ public class User {
         this.time = time;
     }
 
-    public String getPicpath() {
-        return picpath;
+    public String getPicPath() {
+        return picPath;
     }
 
-    public void setPicpath(String picpath) {
-        this.picpath = picpath;
+    public void setPicPath(String picpath) {
+        this.picPath = picpath;
     }
 
     public Integer getId() {

@@ -233,7 +233,7 @@ public class CenterController {
             e.printStackTrace();
         }
         //信息保存失败重新返回新增页面
-        return "center/addsoncompany";
+        return "/center/addsoncompany";
     }
 
 
@@ -345,26 +345,26 @@ public class CenterController {
 //                System.out.println("文件成功上传到指定目录下");
 ////                新代码结束
 
-                if (!targetFile.exists()) {
-                    //boolean mkdirs() :  创建此抽象路径名指定的目录，包括创建必需但不存在的父目录。
-                    targetFile.mkdirs();
-                }
+//                if (!targetFile.exists()) {
+//                    //boolean mkdirs() :  创建此抽象路径名指定的目录，包括创建必需但不存在的父目录。
+//                    targetFile.mkdirs();
+//                }
                 try {
                     //文件移动
                     attach.transferTo(targetFile);
                 } catch (Exception e) {
                     e.printStackTrace();
                     request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_2);
-                    return "center/addsonperson";
+                    return "/center/addsonperson";
                 }
                 PicPath = request.getContextPath() + "/statics/uploadfiles/" + fileName;
                 logoLocPath = path + File.separator + fileName;
             } else {
                 request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_3);
-                return "center/addsonperson";
+                return "redirect:/center/addsonperson";
             }
         }
-        user.setPicpath(PicPath);
+        user.setPicPath(PicPath);
         user.setTime(new Date());
         try {
             if (centerService.addSonCompanyPerson(user) > 0) {
@@ -375,7 +375,7 @@ public class CenterController {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return "center/addsonperson";
+        return "redirect:/center/addsonperson";
     }
 
 

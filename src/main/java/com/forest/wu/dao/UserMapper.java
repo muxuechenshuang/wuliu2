@@ -25,7 +25,7 @@ public interface UserMapper {
      * @Date: 10:33 2018/10/2
      * 注册，往数据库中添加数据
      **/
-    int insertSelective(User record);
+    int insertSelective(User user);
 
     User selectByPrimaryKey(Integer id);
 
