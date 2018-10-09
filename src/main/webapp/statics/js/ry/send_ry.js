@@ -76,9 +76,9 @@ $("#form").submit(function () {
     //判断电话格式
     var isPhone = /^([0-9]{3,4}-)?[0-9]{7,8}$/;
     var isMob=/^((\+?86)|(\(\+86\)))?(13[012356789][0-9]{8}|15[012356789][0-9]{8}|18[02356789][0-9]{8}|147[0-9]{8}|1349[0-9]{7})$/;
-    var sTel = $("#sTel");
-    var gTel = $("#gTel");
-    if(isPhone.test(sTel) || isMob.test(gTel)){
+    var sTel = $("#sTel").val();
+    var gTel = $("#gTel").val();
+    if(isPhone.test(sTel) || isMob.test(sTel)){
         $("#sTelR").html("");
     }else{
         $("#sTelR").html("电话格式不正确,请重新输入");

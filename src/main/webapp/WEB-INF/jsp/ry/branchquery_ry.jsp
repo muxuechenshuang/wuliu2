@@ -81,7 +81,7 @@
 			<div class="row">
 				<div class="col-sm-5">
 					<div class="dataTables_info" id="datatable-responsive_info"
-						 role="status" aria-live="polite">共${pages.pageCount }条记录
+						 role="status" aria-live="polite">共${pages.count }条记录
 						${pages.pageNo }/${pages.pageCount }页</div>
 				</div>
 				<div class="col-sm-7">
