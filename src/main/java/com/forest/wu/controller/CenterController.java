@@ -154,7 +154,6 @@ public class CenterController {
         return "zz/baobiao1_zz";
     }
 
-
     //    分公司添加
     @RequestMapping(value = "/addsoncompany")
     public String addSonCompany() {
@@ -321,7 +320,7 @@ public class CenterController {
         model.addAttribute("gCourier", workorder.getgCourier());
         //送
         model.addAttribute("sCourier", workorder.getsCourier());
-        model.addAttribute("auditStatus", workorder.getResult());
+        model.addAttribute("result", workorder.getAuditStatus());
 
 
         return "zz/gondan2_zz";
