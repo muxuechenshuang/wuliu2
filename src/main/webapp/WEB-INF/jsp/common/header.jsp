@@ -75,7 +75,7 @@
 
 
 								<li>
-									<c:if test="${user.type eq 1 }">
+									<c:if test="${sessionScope.user.type eq 1 }">
 								<li><a><i class="fa fa-edit"></i> 客户(任一)<span
 										class="fa fa-chevron-down"></span>
 								</a>
@@ -93,7 +93,7 @@
 
 
 								<!--肖林辉  -->
-								<c:if test="${user.type eq 2 }">
+								<c:if test="${sessionScope.user.type eq 2 }">
 
 								<li><a><i class="fa fa-home"></i>快递员  肖林辉<span
 										class="fa fa-chevron-down"></span>
@@ -110,7 +110,7 @@
 
 								<!--李普强  -->
 
-								<c:if test="${user.type eq 3 }">
+								<c:if test="${sessionScope.user.type eq 3 }">
 								<li><a><i class="fa fa-home"></i> 网点(李普强) <span
 										class="fa fa-chevron-down"></span>
 								</a>
@@ -131,7 +131,7 @@
 									</ul></li>
 								</c:if>
 
-								<c:if test="${user.type eq 4 }">
+								<c:if test="${sessionScope.user.type eq 4 }">
 								<!--李家和  -->
 								<li><a><i class="fa fa-home"></i>分公司管理<span
 										class="fa fa-chevron-down"></span>
@@ -146,7 +146,7 @@
 								</li>
 								</c:if>
 
-								<c:if test="${user.type eq 5 }">
+								<c:if test="${sessionScope.user.type eq 5 }">
 								<!--张展  -->
 
                                 <li><a><i class="fa fa-home"></i>总公司管理<span

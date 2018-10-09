@@ -95,7 +95,7 @@
                                 class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="file" class="form-control col-md-7 col-xs-12" name="picpath"  required="required" id="picpath"/>
-                            <span><img src="" id="showpic" width="400" height="400"/></span>
+                            <span><img src="${pageContext.request.contextPath }${user.picPath}" id="showpic" width="400" height="400"/></span>
                             <h3 style="color:red">${fileUploadError}</h3>
                         </div>
                     </div>

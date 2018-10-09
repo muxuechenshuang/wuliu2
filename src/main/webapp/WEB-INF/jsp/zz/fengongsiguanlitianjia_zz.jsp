@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+         pageEncoding="UTF-8" isELIgnored="false"%>
 <%@include file="../common/header.jsp" %>
 <div class="clearfix"></div>
 <div class="row">
@@ -22,7 +22,8 @@
                             <input id="username" class="form-control col-md-7 col-xs-12"
                                    data-validate-length-range="20" data-validate-words="1" name="username"
                                    required="required"
-                                   placeholder="分公司管理用户名" type="text" maxlength="50">
+                                   placeholder="分公司管理用户名" type="text" maxlength="15">
+                            <span></span>
                         </div>
                     </div>
                     <div class="item form-group">
@@ -32,8 +33,9 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input id="password" class="form-control col-md-7 col-xs-12"
                                    data-validate-length-range="20" data-validate-words="1" name="password"
-                                   required="required"
-                                   placeholder="分公司管理密码" type="text" maxlength="50">
+                                   required="required" onblur="add()"
+                                   placeholder="分公司管理密码" type="text" maxlength="15">
+                            <span></span>
                         </div>
                     </div>
                     <div class="item form-group">
@@ -43,8 +45,9 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input id="email" class="form-control col-md-7 col-xs-12"
                                    data-validate-length-range="20" data-validate-words="1" name="email"
-                                   required="required"
-                                   placeholder="分公司管理员邮箱" type="text" maxlength="50">
+                                   required="required" onblur="add()"
+                                   placeholder="分公司管理员邮箱" type="text" maxlength="25">
+                            <span></span>
                         </div>
                     </div>
                     <div class="item form-group">
@@ -54,8 +57,9 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input id="phone" class="form-control col-md-7 col-xs-12"
                                    data-validate-length-range="20" data-validate-words="1" name="phone"
-                                   required="required"
-                                   placeholder="分公司管理员电话" type="text" maxlength="50">
+                                   required="required" onblur="add()"
+                                   placeholder="分公司管理员电话" type="text" maxlength="11">
+                            <span></span>
                         </div>
                     </div>
                     <div class="item form-group">
@@ -63,10 +67,12 @@
                                 class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input id="sex" class="form-control col-md-7 col-xs-12"
-                                   data-validate-length-range="20" data-validate-words="1" name="sex"
-                                   required="required"
-                                   placeholder="分公司管理员性别" type="text" maxlength="50">
+                            <%--<input id="sex" class="form-control col-md-7 col-xs-12"--%>
+                                   <%--data-validate-length-range="20" data-validate-words="1" name="sex"--%>
+                                   <%--required="required"--%>
+                                   <%--placeholder="分公司管理员性别" type="text" maxlength="50">--%>
+                                &nbsp;&nbsp;&nbsp;<input type="radio" name="sex" id="sex" checked>男 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="sex" id="sex">女
                         </div>
                     </div>
                     <%--<div class="item form-group">--%>
@@ -90,27 +96,7 @@
                                    placeholder="管理员所属分公司" type="text" maxlength="50">
                         </div>
                     </div>
-                    <%--<div class="item form-group">--%>
-                        <%--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="time">分公司管理员类型 <span--%>
-                                <%--class="required">*</span>--%>
-                        <%--</label>--%>
-                        <%--<div class="col-md-6 col-sm-6 col-xs-12">--%>
-                            <%--<input id="time" class="form-control col-md-7 col-xs-12"--%>
-                                   <%--data-validate-length-range="20" data-validate-words="1" name="time"--%>
-                                   <%--required="required"--%>
-                                   <%--placeholder="分公司管理员类型" type="text" maxlength="50">--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
 
-
-                    <!--           <div class="item form-group"> -->
-                    <!--             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">分公司详情 <span class="required">*</span> -->
-                    <!--             </label> -->
-                    <!--             <div class="col-md-6 col-sm-6 col-xs-12"> -->
-                    <!--               <textarea id="appInfo" name="appInfo"     required="required" -->
-                    <!--               placeholder="请输入分公司的相关信息，本信息作为分公司的详细信息进行软件的介绍。" class="form-control col-md-7 col-xs-12" maxlength="500"></textarea> -->
-                    <!--             </div> -->
-                    <!--           </div> -->
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="picpath">个人头像 <span
                                 class="required">*</span>
@@ -119,8 +105,8 @@
                             <!--             文件上传以及错误信息回显 -->
                             <input type="file" class="form-control col-md-7 col-xs-12" name="picpath"
                                    required="required" id="picpath"/>
-                            <span><img src="" id="showpic" width="400" ,height="400"/></span>
-                            <h4 style="color:red">${fileUploadError}</h4>
+                            <span><img src="" id="showpic" width="400" /></span>
+                            <h3 style="color:red">${fileUploadError}</h3>
                         </div>
                     </div>
                     <div class="ln_solid"></div>
@@ -138,5 +124,5 @@
 </div>
 <%@include file="../common/footer.jsp" %>
  <script src="${pageContext.request.contextPath}/statics/js/zz/fengongsiguanlitianjia.js"></script>
-<script src=".${pageContext.request.contextPath}/statics/js/jquery-1.4.2.min.js"></script>
+<script src="${pageContext.request.contextPath}/statics/js/jquery-1.4.2.min.js"></script>
 <script></script>
