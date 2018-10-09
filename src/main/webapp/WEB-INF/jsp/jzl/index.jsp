@@ -104,7 +104,7 @@
 				<form action="register" method="post">
 					<input type="text" required="required" placeholder="用户名、电话或邮箱" name="user" id="user"><br/><span style="color: white;"></span>
 					<input type="password" required="required" placeholder="密码" name="password" id="password"><br/><span style="color: white;"></span>
-					<input type="submit" value="登录">
+					<input type="submit" value="登录" onclick="register()">
 				</form>
 			</div>
 					
@@ -119,7 +119,7 @@
 					<input type="text" required="required" placeholder="手机号" onblur="login()" maxlength="11"  name="phone" id="phone">
                     <br/><span style="color: white;"></span>
                     <input type="hidden" value="" id="judge" />
-                    <input type="text" required="required" placeholder="输入手机验证码" onblur="Mobile()" maxlength="6" name="yzm" id="yzm"><button id="zy" onclick="code()" disabled="disabled">获取验证码</button>
+                    <input type="text" required="required" placeholder="输入手机验证码" onblur="Mobile()" maxlength="6" name="yzm" id="yzm"><input type="button" id="zy" value="点击发送验证码" onclick="sendCode(this)" />
                     <br/><span style="color: white;"></span>
 
 					<input type="text" required="required" placeholder="邮箱" onblur="login()" maxlength="18"  name="email" id="email">
@@ -688,5 +688,5 @@
     <!-- //FlexSlider-JavaScript -->
 	
 </body>
-<script src="${pageContext.request.contextPath}/indexBootstrap/js/jquery.min.js"></script>
+
 </html>

@@ -271,23 +271,23 @@
       picPath = #{picPath}
     where id = #{id,jdbcType=INTEGER}
   </update>
-    <!-- 查找用户表所需的登录信息 -->
-    <select id="selectULogin" resultType="com.forest.wu.pojo.User">
-        select u.*,o.name,uf.*,d.valueName
-        from user u, organization o, userfunction uf,dictionary d
-        where 1=1
+  <!-- 查找用户表所需的登录信息 -->
+  <select id="selectULogin"  resultType="com.forest.wu.pojo.User">
+    select u.*,o.name,uf.*,d.valueName
+    from user u, organization o, userfunction uf,dictionary d
+    where 1=1
 
-        <if test="parentid != null">
-            and u.parentid=o.id
-        </if>
-        <if test="type != null">
-            and u.type=uf.id
-        </if>
-        <if test="type != null">
-            and u.type=d.valueId and d.typeCode='userRole'
-        </if>
+      <if test="parentid != null">
+      and u.parentid=o.id
+      </if>
+      <if test="type != null">
+      and  u.type=uf.id
+      </if>
+      <if test="type != null">
+        and   u.type=d.valueId and d.typeCode='userRole'
+      </if>
 
-    </select>
+  </select>
 
 
     <!--查询分公司管理列表-->
@@ -312,5 +312,9 @@
         select
         <include refid="Base_Column_List"/>
         from user where id=#{id} and type = 4
+    </select>
+    <!--查询用户信息是否相同-->
+    <select id="find" resultType="com.forest.wu.pojo.User">
+        select username,email,phone from  user
     </select>
 </mapper>

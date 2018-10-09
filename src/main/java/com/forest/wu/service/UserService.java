@@ -18,5 +18,6 @@ public interface UserService {
     int addLogin(User user);
     //检查用户名、手机号和邮箱是否重复
     List<User> findUser();
-
+    //更新个人信息
+    int upHome(User user);
 }

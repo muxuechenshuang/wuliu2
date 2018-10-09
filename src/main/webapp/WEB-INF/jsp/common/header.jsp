@@ -52,9 +52,9 @@
 					<!-- menu profile quick info -->
 					<div class="profile">
 						<div class="profile_pic">
-							<img
-								src="${pageContext.request.contextPath }/statics/images/img.jpg"
-								alt="..." class="img-circle profile_img">
+							<a href="/wuliu/homepage"><img
+								src="${pageContext.request.contextPath }${user.picPath}"
+								alt="..." class="img-circle profile_img"></a>
 						</div>
 						<div class="profile_info">
 							<span>Welcome,</span>
@@ -70,7 +70,7 @@
 					<div id="sidebar-menu"
 						class="main_menu_side hidden-print main_menu">
 						<div class="menu_section">
-							<h3>${devUserSession.devName }</h3>
+							<h3>${user.username }</h3>
 							<ul class="nav side-menu">
 
 
@@ -201,7 +201,7 @@
 							<li class=""><a href="javascript:;"
 								class="user-profile dropdown-toggle" data-toggle="dropdown"
 								aria-expanded="false"> <img
-									src="${pageContext.request.contextPath }/statics/images/img.jpg"
+									src="${pageContext.request.contextPath }${user.picPath}"
 									alt="">${devUserSession.devCode } <span
 									class=" fa fa-angle-down"></span> </a>
 								<ul class="dropdown-menu dropdown-usermenu pull-right">
