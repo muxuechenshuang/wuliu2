@@ -101,16 +101,35 @@
                         </li>
                         <li>
                             <div class="form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12">出入库状态</label>
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">入库状态</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select name="storageStatus" class="form-control">
-                                        <c:if test="${storageStatusList!=null}">
+                                    <select name="inStorageStatus" class="form-control">
+                                        <c:if test="${inStorageStatusList!=null}">
                                             <option value="">--请选择--</option>
-                                            <c:forEach items="${storageStatusList}" var="Status">
+                                            <c:forEach items="${inStorageStatusList}" var="inStatus">
                                                 <option
-                                                        <c:if test="${Status.valueId == storageStatus }">selected="selected"</c:if>
-                                                        value="${Status.valueId}">
-                                                        ${Status.valueName}
+                                                        <c:if test="${inStatus.valueId == inStorageStatus }">selected="selected"</c:if>
+                                                        value="${inStatus.valueId}">
+                                                        ${inStatus.valueName}
+                                                </option>
+                                            </c:forEach>
+                                        </c:if>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">出库状态</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="outStorageStatus" class="form-control">
+                                        <c:if test="${outStorageStatusList!=null}">
+                                            <option value="">--请选择--</option>
+                                            <c:forEach items="${outStorageStatusList}" var="outStatus">
+                                                <option
+                                                        <c:if test="${outStatus.valueId == outStorageStatus }">selected="selected"</c:if>
+                                                        value="${outStatus.valueId}">
+                                                        ${outStatus.valueName}
                                                 </option>
                                             </c:forEach>
                                         </c:if>
@@ -171,7 +190,13 @@
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         style="width: 80px;"
                                         aria-label="Last name: activate to sort column ascending">
-                                        出入库状态
+                                        入库状态
+                                    </th>
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        style="width: 80px;"
+                                        aria-label="Last name: activate to sort column ascending">
+                                        出库状态
                                     </th>
                                     <th class="sorting_asc" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
@@ -187,9 +212,23 @@
                                         <td>${workorder.workStatusName }</td>
                                         <td>${workorder.orderNum }</td>
                                         <td>${workorder.packageId }</td>
-                                        <td>${workorder.storageStatusName }</td>
-                                        <td><button type="button"  workorderid="${workorder.id}" id="view"
-                                               class="btn btn-primary">查看详情</button></td>
+                                        <td>${workorder.inStorageStatusName }</td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${workorder.inStorageStatusName!='待入库'}">
+                                                    ${workorder.outStorageStatusName }
+                                                </c:when>
+                                                <c:otherwise>
+                                                    暂无
+                                                </c:otherwise>
+                                            </c:choose>
+
+                                        </td>
+                                        <td>
+                                            <button type="button" workorderid="${workorder.id}"
+                                                    class="btn btn-primary">查看详情
+                                            </button>
+                                        </td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>

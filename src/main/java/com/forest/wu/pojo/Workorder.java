@@ -79,11 +79,17 @@ public class Workorder {
     //是否已支付
     private Integer isPay;
 
-    //出入库状态id
-    private Integer storageStatus;
+    //入库状态id
+    private Integer inStorageStatus;
 
-    //出入库状态名称
-    private String storageStatusName;
+    //出库状态id
+    private Integer outStorageStatus;
+
+    //入库状态名称
+    private String inStorageStatusName;
+
+    //出库状态名称
+    private String outStorageStatusName;
 
     //工单状态名称
     private String workStatusName;
@@ -433,22 +439,6 @@ public class Workorder {
         this.invalidatedState = invalidatedState;
     }
 
-    public Integer getStorageStatus() {
-        return storageStatus;
-    }
-
-    public void setStorageStatus(Integer storageStatus) {
-        this.storageStatus = storageStatus;
-    }
-
-    public String getStorageStatusName() {
-        return storageStatusName;
-    }
-
-    public void setStorageStatusName(String storageStatusName) {
-        this.storageStatusName = storageStatusName;
-    }
-
     public String getWorkStatusName() {
         return workStatusName;
     }
@@ -519,5 +509,37 @@ public class Workorder {
 
     public void setIsPay(Integer isPay) {
         this.isPay = isPay;
+    }
+
+    public Integer getInStorageStatus() {
+        return inStorageStatus;
+    }
+
+    public void setInStorageStatus(Integer inStorageStatus) {
+        this.inStorageStatus = inStorageStatus;
+    }
+
+    public Integer getOutStorageStatus() {
+        return outStorageStatus;
+    }
+
+    public void setOutStorageStatus(Integer outStorageStatus) {
+        this.outStorageStatus = outStorageStatus;
+    }
+
+    public String getInStorageStatusName() {
+        return inStorageStatusName;
+    }
+
+    public void setInStorageStatusName(String inStorageStatusName) {
+        this.inStorageStatusName = inStorageStatusName;
+    }
+
+    public String getOutStorageStatusName() {
+        return outStorageStatusName;
+    }
+
+    public void setOutStorageStatusName(String outStorageStatusName) {
+        this.outStorageStatusName = outStorageStatusName;
     }
 }

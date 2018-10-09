@@ -34,13 +34,15 @@
         <result column="productLocation" jdbcType="INTEGER" property="productLocation"/>
         <result column="auditStatus" jdbcType="INTEGER" property="auditStatus"/>
         <result column="invalidatedState" jdbcType="INTEGER" property="invalidatedState"/>
-        <result column="storageStatus" jdbcType="INTEGER" property="storageStatus"/>
+        <result column="inStorageStatus" jdbcType="INTEGER" property="inStorageStatus"/>
+        <result column="outStorageStatus" jdbcType="INTEGER" property="outStorageStatus"/>
         <result column="entrust" jdbcType="INTEGER" property="entrust"/>
         <result column="entrustNumber" jdbcType="INTEGER" property="entrustNumber"/>
         <result column="isPay" jdbcType="INTEGER" property="isPay"/>
         <!--id对应的name值-->
         <result column="workStatusName" jdbcType="VARCHAR" property="workStatusName"/>
-        <result column="storageStatusName" jdbcType="VARCHAR" property="storageStatusName"/>
+        <result column="inStorageStatusName" jdbcType="VARCHAR" property="inStorageStatusName"/>
+        <result column="outStorageStatusName" jdbcType="VARCHAR" property="outStorageStatusName"/>
         <result column="productLocationName" jdbcType="VARCHAR" property="productLocationName"/>
         <result column="auditStatusName" jdbcType="VARCHAR" property="auditStatusName"/>
         <result column="invalidatedStateName" jdbcType="VARCHAR" property="invalidatedStateName"/>
@@ -57,7 +59,7 @@
     gName, gTel, gCity, gAddress, gPoint, productType,
     realWeight, workStatus, comment,
     expenses, gCourier, sCourier, preVolume, riseTime, firInStorage, firOutStorage, secInStorage,
-    secOutStorage, finishedTime, productLocation, auditStatus, invalidatedState, storageStatus,
+    secOutStorage, finishedTime, productLocation, auditStatus, invalidatedState, inStorageStatus,outStorageStatus,
     entrust, entrustNumber, isPay
     </sql>
     <sql id="filiale_workorder_List">
@@ -80,8 +82,10 @@
     (SELECT valueName FROM dictionary d WHERE d.typeCode='auditStatus' and w.auditStatus = d.valueId) as auditStatusName,
     invalidatedState,
     (SELECT valueName FROM dictionary d WHERE d.typeCode='invalidatedState' and w.invalidatedState = d.valueId) as invalidatedStateName,
-    storageStatus,
-    (SELECT valueName FROM dictionary d WHERE d.typeCode='storageStatus' and w.storageStatus = d.valueId) as storageStatusName,
+    inStorageStatus,
+    (SELECT valueName FROM dictionary d WHERE d.typeCode='inStorageStatus' and w.inStorageStatus = d.valueId) as inStorageStatusName,
+    outStorageStatus,
+    (SELECT valueName FROM dictionary d WHERE d.typeCode='outStorageStatus' and w.outStorageStatus = d.valueId) as outStorageStatusName,
     entrust,
     (SELECT valueName FROM dictionary d WHERE d.typeCode='entrust' and w.entrust = d.valueId) as entrustName,
     entrustNumber, isPay,
@@ -108,7 +112,7 @@
       sCourier, preVolume, riseTime,
       firInStorage, firOutStorage, secInStorage,
       secOutStorage, finishedTime, productLocation,
-      auditStatus, invalidatedState, storageStatus,
+      auditStatus, invalidatedState, inStorageStatus,outStorageStatus,
       entrust, entrustNumber, isPay
       )
     values (#{id,jdbcType=INTEGER}, #{orderNum,jdbcType=VARCHAR}, #{workNum,jdbcType=VARCHAR},
@@ -121,7 +125,7 @@
       #{sCourier,jdbcType=INTEGER}, #{preVolume,jdbcType=DOUBLE}, #{riseTime,jdbcType=TIMESTAMP},
       #{firInStorage,jdbcType=TIMESTAMP}, #{firOutStorage,jdbcType=TIMESTAMP}, #{secInStorage,jdbcType=TIMESTAMP},
       #{secOutStorage,jdbcType=TIMESTAMP}, #{finishedTime,jdbcType=TIMESTAMP}, #{productLocation,jdbcType=INTEGER},
-      #{auditStatus,jdbcType=INTEGER}, #{invalidatedState,jdbcType=INTEGER}, #{storageStatus,jdbcType=INTEGER},
+      #{auditStatus,jdbcType=INTEGER}, #{invalidatedState,jdbcType=INTEGER}, #{inStorageStatus,jdbcType=INTEGER},#{outStorageStatus,jdbcType=INTEGER},
       #{entrust,jdbcType=INTEGER}, #{entrustNumber,jdbcType=INTEGER}, #{isPay,jdbcType=INTEGER}
       )
   </insert>
@@ -224,8 +228,11 @@
             <if test="invalidatedState != null">
                 invalidatedState,
             </if>
-            <if test="storageStatus != null">
-                storageStatus,
+            <if test="inStorageStatus != null">
+                inStorageStatus,
+            </if>
+            <if test="outStorageStatus != null">
+                outStorageStatus,
             </if>
             <if test="entrust != null">
                 entrust,
@@ -334,8 +341,11 @@
             <if test="invalidatedState != null">
                 #{invalidatedState,jdbcType=INTEGER},
             </if>
-            <if test="storageStatus != null">
-                #{storageStatus,jdbcType=INTEGER},
+            <if test="inStorageStatus != null">
+                #{inStorageStatus,jdbcType=INTEGER},
+            </if>
+            <if test="outStorageStatus != null">
+                #{outStorageStatus,jdbcType=INTEGER},
             </if>
             <if test="entrust != null">
                 #{entrust,jdbcType=INTEGER},
@@ -444,8 +454,11 @@
             <if test="invalidatedState != null">
                 invalidatedState = #{invalidatedState,jdbcType=INTEGER},
             </if>
-            <if test="storageStatus != null">
-                storageStatus = #{storageStatus,jdbcType=INTEGER},
+            <if test="inStorageStatus != null">
+                inStorageStatus = #{inStorageStatus,jdbcType=INTEGER},
+            </if>
+            <if test="outStorageStatus != null">
+                outStorageStatus = #{outStorageStatus,jdbcType=INTEGER},
             </if>
             <if test="entrust != null">
                 entrust = #{entrust,jdbcType=INTEGER},
@@ -492,7 +505,8 @@
       productLocation = #{productLocation,jdbcType=INTEGER},
       auditStatus = #{auditStatus,jdbcType=INTEGER},
       invalidatedState = #{invalidatedState,jdbcType=INTEGER},
-      storageStatus = #{storageStatus,jdbcType=INTEGER},
+      inStorageStatus = #{inStorageStatus,jdbcType=INTEGER},
+      outStorageStatus = #{outStorageStatus,jdbcType=INTEGER},
       entrust = #{entrust,jdbcType=INTEGER},
       entrustNumber = #{entrustNumber,jdbcType=INTEGER},
       isPay = #{isPay,jdbcType=INTEGER}
@@ -578,8 +592,11 @@
             <if test="workStatus!=null">
                 and workStatus=#{workStatus}
             </if>
-            <if test="storageStatus!=null">
-                and storageStatus=#{storageStatus}
+            <if test="inStorageStatus!=null">
+                and inStorageStatus=#{inStorageStatus}
+            </if>
+            <if test="outStorageStatus!=null">
+                and outStorageStatus=#{outStorageStatus}
             </if>
             <if test="wdName!=null">
                 and sPoint=(SELECT id FROM organization WHERE name=#{wdName} ) or gPoint=(SELECT id FROM organization
@@ -598,7 +615,8 @@
 
     <!--肖林辉-->
     <!--快递员工单查询-->
-    <select id="selectWorkOrderByCourier" parameterType="com.forest.wu.pojo.Workorder" resultType="com.forest.wu.pojo.Workorder">
+    <select id="selectWorkOrderByCourier" parameterType="com.forest.wu.pojo.Workorder"
+            resultType="com.forest.wu.pojo.Workorder">
         select *
         from workorder where 1=1
         <if test="sCourier !=null ">
