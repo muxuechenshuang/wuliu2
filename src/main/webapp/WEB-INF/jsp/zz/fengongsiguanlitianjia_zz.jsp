@@ -1,135 +1,107 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<%@include file="../../../common/header.jsp" %>
+<%@include file="../common/header.jsp" %>
 <div class="clearfix"></div>
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>新增分公司管理员信息 <i class="fa fa-user"></i>
-                    <small>${devUserSession.devName}</small>
+                <h2>新增分公司管理员信息
                 </h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <!-- <div class="item form-group">
-                         <label class="control-label col-md-3 col-sm-3 col-xs-12" ></label>
-                         <div class="col-md-6 col-sm-6 col-xs-12">
-                           <form action="uploadlogo" class="dropzone" style="height:100px;">
-                           </form>
-                      <div class="clearfix"></div>
-                   </div>
-                 </div> -->
                 <div class="clearfix"></div>
-                <form class="form-horizontal form-label-left" action="appinfoaddsave" method="post"
+                <form class="form-horizontal form-label-left" action="/center/addSave1" method="post"
                       enctype="multipart/form-data">
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">分公司管理用户名 <span
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">分公司管理用户名 <span
                                 class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input id="softwareName" class="form-control col-md-7 col-xs-12"
-                                   data-validate-length-range="20" data-validate-words="1" name="softwareName"
+                            <input id="username" class="form-control col-md-7 col-xs-12"
+                                   data-validate-length-range="20" data-validate-words="1" name="username"
                                    required="required"
-                                   placeholder="分公司名称" type="text" maxlength="50">
+                                   placeholder="分公司管理用户名" type="text" maxlength="50">
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">分公司管理密码 <span
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">分公司管理密码 <span
                                 class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input id="softwareName" class="form-control col-md-7 col-xs-12"
-                                   data-validate-length-range="20" data-validate-words="1" name="softwareName"
+                            <input id="password" class="form-control col-md-7 col-xs-12"
+                                   data-validate-length-range="20" data-validate-words="1" name="password"
                                    required="required"
-                                   placeholder="分公司名称" type="text" maxlength="50">
+                                   placeholder="分公司管理密码" type="text" maxlength="50">
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">分公司管理员邮箱 <span
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">分公司管理员邮箱 <span
                                 class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input id="softwareName" class="form-control col-md-7 col-xs-12"
-                                   data-validate-length-range="20" data-validate-words="1" name="softwareName"
+                            <input id="email" class="form-control col-md-7 col-xs-12"
+                                   data-validate-length-range="20" data-validate-words="1" name="email"
                                    required="required"
-                                   placeholder="分公司名称" type="text" maxlength="50">
+                                   placeholder="分公司管理员邮箱" type="text" maxlength="50">
                         </div>
                     </div>
-                    --%>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">分公司管理员电话 <span
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="phone">分公司管理员电话 <span
                                 class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input id="APKName" class="form-control col-md-7 col-xs-12"
-                                   data-validate-length-range="20" data-validate-words="1" name="APKName"
+                            <input id="phone" class="form-control col-md-7 col-xs-12"
+                                   data-validate-length-range="20" data-validate-words="1" name="phone"
                                    required="required"
-                                   placeholder="请输入分公司地址" type="text" maxlength="50">
+                                   placeholder="分公司管理员电话" type="text" maxlength="50">
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">分公司管理员性别 <span
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sex">分公司管理员性别 <span
                                 class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input id="APKName" class="form-control col-md-7 col-xs-12"
-                                   data-validate-length-range="20" data-validate-words="1" name="APKName"
+                            <input id="sex" class="form-control col-md-7 col-xs-12"
+                                   data-validate-length-range="20" data-validate-words="1" name="sex"
                                    required="required"
-                                   placeholder="请输入分公司地址" type="text" maxlength="50">
+                                   placeholder="分公司管理员性别" type="text" maxlength="50">
                         </div>
                     </div>
+                    <%--<div class="item form-group">--%>
+                        <%--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">分公司管理员logo <span--%>
+                                <%--class="required">*</span>--%>
+                        <%--</label>--%>
+                        <%--<div class="col-md-6 col-sm-6 col-xs-12">--%>
+                            <%--<input id="supportROM" class="form-control col-md-7 col-xs-12" name="supportROM"--%>
+                                   <%--data-validate-length-range="20" data-validate-words="1" required="required"--%>
+                                   <%--placeholder="请输入分公司电话" type="text" maxlength="50">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">分公司管理员logo <span
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="parentid">管理员所属分公司 <span
                                 class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input id="supportROM" class="form-control col-md-7 col-xs-12" name="supportROM"
-                                   data-validate-length-range="20" data-validate-words="1" required="required"
-                                   placeholder="请输入分公司电话" type="text" maxlength="50">
-                        </div>
-                    </div>
-                    <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">分公司管理员所属组织 <span
-                                class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input id="interfaceLanguage" class="form-control col-md-7 col-xs-12"
-                                   data-validate-length-range="20" data-validate-words="1" name="interfaceLanguage"
+                            <input id="parentid" class="form-control col-md-7 col-xs-12"
+                                   data-validate-length-range="20" data-validate-words="1" name="parentid"
                                    required="required"
-                                   placeholder="分公司所在城市" type="text" maxlength="50">
+                                   placeholder="管理员所属分公司" type="text" maxlength="50">
                         </div>
                     </div>
-                    <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">分公司管理员类型 <span
-                                class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input id="interfaceLanguage" class="form-control col-md-7 col-xs-12"
-                                   data-validate-length-range="20" data-validate-words="1" name="interfaceLanguage"
-                                   required="required"
-                                   placeholder="分公司所在城市" type="text" maxlength="50">
-                        </div>
-                    </div>
-                    <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">分公司管理员创建时间 <span
-                                class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input id="interfaceLanguage" class="form-control col-md-7 col-xs-12"
-                                   data-validate-length-range="20" data-validate-words="1" name="interfaceLanguage"
-                                   required="required"
-                                   placeholder="分公司所在城市" type="text" maxlength="50">
-                        </div>
-                    </div>
-                    <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="select">备用下拉框 <span
-                                class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <select name="categoryLevel1" id="categoryLevel1" class="form-control"
-                                    required="required"> </select>
-                        </div>
-                    </div>
+                    <%--<div class="item form-group">--%>
+                        <%--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="time">分公司管理员类型 <span--%>
+                                <%--class="required">*</span>--%>
+                        <%--</label>--%>
+                        <%--<div class="col-md-6 col-sm-6 col-xs-12">--%>
+                            <%--<input id="time" class="form-control col-md-7 col-xs-12"--%>
+                                   <%--data-validate-length-range="20" data-validate-words="1" name="time"--%>
+                                   <%--required="required"--%>
+                                   <%--placeholder="分公司管理员类型" type="text" maxlength="50">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+
 
                     <!--           <div class="item form-group"> -->
                     <!--             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">分公司详情 <span class="required">*</span> -->
@@ -140,13 +112,13 @@
                     <!--             </div> -->
                     <!--           </div> -->
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">LOGO图片 <span
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="picpath">个人头像 <span
                                 class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <!--             文件上传以及错误信息回显 -->
-                            <input type="file" class="form-control col-md-7 col-xs-12" name="a_logoPicPath"
-                                   required="required" id="a_logoPicPath"/>
+                            <input type="file" class="form-control col-md-7 col-xs-12" name="picpath"
+                                   required="required" id="picpath"/>
                             <span><img src="" id="showpic" width="400" ,height="400"/></span>
                             <h4 style="color:red">${fileUploadError}</h4>
                         </div>
@@ -164,5 +136,7 @@
         </div>
     </div>
 </div>
-<%@include file="../../../common/footer.jsp" %>
-<%-- <script src="${pageContext.request.contextPath }/statics/localjs/appinfoadd.js"></script> --%>
+<%@include file="../common/footer.jsp" %>
+ <script src="${pageContext.request.contextPath}/statics/js/zz/fengongsiguanlitianjia.js"></script>
+<script src=".${pageContext.request.contextPath}/statics/js/jquery-1.4.2.min.js"></script>
+<script></script>

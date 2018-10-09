@@ -1,5 +1,7 @@
 package com.forest.wu.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 //返货单
 public class Return {
@@ -11,6 +13,7 @@ public class Return {
 
     private String result;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date ctreaTime;
 
     private String gName;
@@ -33,6 +36,7 @@ public class Return {
 
     private String sAddress;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date auditTime;
 
     private Integer status;

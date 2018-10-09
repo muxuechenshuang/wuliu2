@@ -281,7 +281,15 @@ public class FilialeController {
      * @return：java.lang.String
      **/
     @RequestMapping("/queryworkorder")
-    public String queryWorkOrder(Workorder workorder, Model model, HttpSession session,
+    public String queryWorkOrder(@RequestParam(value = "workNum", required = false) String workNum,
+                                 @RequestParam(value = "orderNum", required = false) String orderNum,
+                                 @RequestParam(value = "productNum", required = false) String productNum,
+                                 @RequestParam(value = "packageId", required = false) String packageId,
+                                 @RequestParam(value = "wdName", required = false) String wdName,
+                                 @RequestParam(value = "workStatus", required = false) String workStatus,
+                                 @RequestParam(value = "inStorageStatus", required = false) String inStorageStatus,
+                                 @RequestParam(value = "outStorageStatus", required = false) String outStorageStatus,
+                                 Model model, HttpSession session,
                                  @RequestParam(value = "pageIndex", required = false, defaultValue = "1") String pageIndex) {
         //分公司Id
         Integer parentid = ((User) session.getAttribute("user")).getParentid();
@@ -292,27 +300,96 @@ public class FilialeController {
         //工单状态集合
         List<Dictionary> workStatusList = null;
         //出入库状态集合
-        List<Dictionary> storageStatusList = null;
-        //分页
-        PageHelper.startPage(Integer.parseInt(pageIndex), Constants.PAGE_SIZE, "id desc");
-        workorderList = workOrderService.queryWorkOrderList(workorder);
-        PageInfo<Workorder> p = new PageInfo<Workorder>(workorderList);
+        List<Dictionary> inStorageStatusList = null;
+        List<Dictionary> outStorageStatusList = null;
+
+        //workorder对象赋值
+        Workorder workorder = new Workorder();
+        if (!StringUtils.isEmpty(workNum)) {
+            workorder.setWorkNum(workNum);
+        }
+        if (!StringUtils.isEmpty(orderNum)) {
+            workorder.setOrderNum(orderNum);
+        }
+        if (!StringUtils.isEmpty(productNum)) {
+            workorder.setProductNum(Long.valueOf(productNum));
+        }
+        if (!StringUtils.isEmpty(packageId)) {
+            workorder.setPackageId(Long.valueOf(packageId));
+        }
+        if (!StringUtils.isEmpty(wdName)) {
+            workorder.setWdName(wdName);
+        }
+        if (!StringUtils.isEmpty(workStatus)) {
+            workorder.setWorkStatus(Integer.parseInt(workStatus));
+        }
+        if (!StringUtils.isEmpty(inStorageStatus)) {
+            workorder.setInStorageStatus(Integer.parseInt(inStorageStatus));
+        }
+        if (!StringUtils.isEmpty(outStorageStatus)) {
+            workorder.setOutStorageStatus(Integer.parseInt(outStorageStatus));
+        }
+
         //查询网点集合
         wdList = wdService.getWdListByCondition(null, null, null, parentid);
         //查询数据字典中的工单状态集合与出入库状态集合
         workStatusList = dictionaryService.queryDictionaryList("workStatus");
-        storageStatusList = dictionaryService.queryDictionaryList("storageStatus");
+        inStorageStatusList = dictionaryService.queryDictionaryList("inStorageStatus");
+        outStorageStatusList = dictionaryService.queryDictionaryList("outStorageStatus");
+
+        //分页
+        PageHelper.startPage(Integer.parseInt(pageIndex), Constants.PAGE_SIZE, "id desc");
+        workorderList = workOrderService.queryWorkOrderList(workorder);
+        PageInfo<Workorder> p = new PageInfo<Workorder>(workorderList);
+
         //回显
         model.addAttribute("wdList", wdList);
         model.addAttribute("workorderList", workorderList);
         model.addAttribute("workStatusList", workStatusList);
-        model.addAttribute("storageStatusList", storageStatusList);
+        model.addAttribute("inStorageStatusList", inStorageStatusList);
+        model.addAttribute("outStorageStatusList", outStorageStatusList);
         model.addAttribute("page", p);
         model.addAttribute("workNum", workorder.getWorkNum());
         model.addAttribute("orderNum", workorder.getOrderNum());
         model.addAttribute("productNum", workorder.getProductNum());
         model.addAttribute("packageId", workorder.getPackageId());
+        model.addAttribute("workStatus", workorder.getWorkStatus());
+        model.addAttribute("inStorageStatus", workorder.getInStorageStatus());
+        model.addAttribute("outStorageStatus", workorder.getOutStorageStatus());
+        model.addAttribute("wdName", workorder.getWdName());
         return "ljh/workorderquery";
+    }
+
+
+
+    /**
+    * @author: 李家和
+    * @Description 查看工单详情
+    * @Date: 8:57 2018/10/9
+    * @Param：[id, model]
+    * @return：java.lang.String
+    **/
+    @RequestMapping(value = "/workorderview/{id}",method = RequestMethod.GET)
+    public String viewWorkorder(@PathVariable(value = "id")String id,Model model){
+        Workorder workorder = null;
+        workorder = workOrderService.queryWorkOrderById(Integer.parseInt(id));
+        model.addAttribute(workorder);
+        return "ljh/workorderinfo";
+    }
+
+
+
+    /**
+    * @author: 李家和
+    * @Description 跳转到入库界面
+    * @Date: 9:10 2018/10/9
+    * @Param：[]
+    * @return：java.lang.String
+    **/
+    @RequestMapping("/putinstorage")
+    public String  putInStorage(){
+
+        return "ljh/putinstorage";
     }
 
 

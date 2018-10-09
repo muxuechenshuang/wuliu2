@@ -8,7 +8,7 @@
 			<div class="x_title">
 				<h2>
 					分公司管理 <i class="fa fa-user"></i><small>${devUserSession.devName}
-						- 您可以通过搜索或者其他的筛选项对员工的信息进行修改、删除等管理操作。^_^</small>
+						- 您可以通过搜索或者其他的筛选项对分公司的信息进行修改、删除等管理操作。^_^</small>
 				</h2>
 				<div class="clearfix"></div>
 			</div>

@@ -24,23 +24,31 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12" for="id">返货单号</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="querySoftwareName" type="text" class="form-control col-md-7 col-xs-12" id="id">
+                                    <input name="id" type="text" class="form-control col-md-7 col-xs-12" id="id" value="${id}">
                                 </div>
                             </div>
                         </li>
                         <li>
                             <div class="form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12">申请员工工号</label>
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12" for="yid">申请员工工号</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="yid" type="text" class="form-control col-md-7 col-xs-12" id="yid">
+                                    <input name="yid" type="text" class="form-control col-md-7 col-xs-12" id="yid" value="${yid}">
                                 </div>
                             </div>
                         </li>
                         <li>
                             <div class="form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12">相关工单单号</label>
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12" for="gid">相关工单单号</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="gid" type="text" class="form-control col-md-7 col-xs-12" id="gid">
+                                    <input name="gid" type="text" class="form-control col-md-7 col-xs-12" id="gid" value="${gid}">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12" for="gName">收件人姓名</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input name="gName" type="text" class="form-control col-md-7 col-xs-12" id="gName" value="${gName}">
                                 </div>
                             </div>
                         </li>
@@ -48,7 +56,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12">审核状态</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select name="status" class="form-control" id="status">
+                                    <select name="status" class="form-control" id="status" value="${status}">
                                         <option value="">--请选择--</option>
                                     </select>
                                 </div>
@@ -92,13 +100,19 @@
                                     </th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        style="width: 0px;"
+                                        aria-label="Last name: activate to sort column ascending">
+                                        相关工单单号
+                                    </th>
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         style="width: 180px;"
                                         aria-label="Last name: activate to sort column ascending">
                                         返货原因
                                     </th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                        style="width: 80px;"
+                                        style="width: 150px;"
                                         aria-label="Last name: activate to sort column ascending">
                                         创建时间
                                     </th>
@@ -106,16 +120,16 @@
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         style=""
                                         aria-label="Last name: activate to sort column ascending">
-                                    审核状态</th>
+                                        审核状态</th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                        style="width: 124px;"
+                                        style="width: 150px;"
                                         aria-label="Last name: activate to sort column ascending">
                                         审核时间
                                     </th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                        style="width: 66px;"
+                                        style="width: 166px;"
                                         aria-label="Last name: activate to sort column ascending">
                                         备注
                                     </th>
@@ -128,16 +142,19 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>李普强</td>
-                                    <td>13588888888</td>
-                                    <td>市场部</td>
-                                    <td>湖南</td>
-                                    <td>岳阳</td>
-                                    <td>相思树</td>
-                                    <td>8991233883893</td>
-                                    <td><a href="fanhuodanxiangqing_zz.jsp" class="btn btn-primary">审核</a></td>
-                                </tr>
+                                <c:forEach var="returnorder" items="${list1 }" varStatus="status">
+                                    <tr role="row" class="odd">
+                                        <td tabindex="0" class="sorting_1">${returnorder.id}</td>
+                                        <td>${returnorder.yid }</td>
+                                        <td>${returnorder.gid }</td>
+                                        <td>${returnorder.result }</td>
+                                        <td><fmt:formatDate value="${returnorder.ctreaTime}" pattern='yyyy-MM-dd HH:mm:ss'/></td>
+                                        <td>${returnorder.status }</td>
+                                        <td><fmt:formatDate value="${returnorder.auditTime}" pattern='yyyy-MM-dd HH:mm:ss'/></td>
+                                        <td>${returnorder.comment }</td>
+                                        <td><a id="audit" href="/center/returndetail?id=${returnorder.id}" class="btn btn-primary" >审核</a></td>
+                                    </tr>
+                                </c:forEach>
                                 </tbody>
                             </table>
                         </div>

@@ -1,55 +1,100 @@
-<?xml version="1.0" encoding="UTF-8"?> 
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.forest.wu.dao.WorkorderMapper">
     <resultMap id="BaseResultMap" type="com.forest.wu.pojo.Workorder">
-        <id column="id" jdbcType="INTEGER" property="id" />
-        <result column="orderNum" jdbcType="VARCHAR" property="orderNum" />
-        <result column="workNum" jdbcType="VARCHAR" property="workNum" />
-        <result column="packageId" jdbcType="BIGINT" property="packageId" />
-        <result column="productNum" jdbcType="BIGINT" property="productNum" />
-        <result column="sName" jdbcType="VARCHAR" property="sName" />
-        <result column="sTel" jdbcType="VARCHAR" property="sTel" />
-        <result column="sCity" jdbcType="INTEGER" property="sCity" />
-        <result column="sAddress" jdbcType="VARCHAR" property="sAddress" />
-        <result column="sPoint" jdbcType="INTEGER" property="sPoint" />
-        <result column="gName" jdbcType="VARCHAR" property="gName" />
-        <result column="gTel" jdbcType="VARCHAR" property="gTel" />
-        <result column="gCity" jdbcType="INTEGER" property="gCity" />
-        <result column="gAddress" jdbcType="VARCHAR" property="gAddress" />
-        <result column="gPoint" jdbcType="INTEGER" property="gPoint" />
-        <result column="productType" jdbcType="VARCHAR" property="productType" />
-        <result column="realWeight" jdbcType="DOUBLE" property="realWeight" />
-        <result column="workStatus" jdbcType="INTEGER" property="workStatus" />
-        <result column="comment" jdbcType="VARCHAR" property="comment" />
-        <result column="expenses" jdbcType="DOUBLE" property="expenses" />
-        <result column="gCourier" jdbcType="INTEGER" property="gCourier" />
-        <result column="sCourier" jdbcType="INTEGER" property="sCourier" />
-        <result column="preVolume" jdbcType="DOUBLE" property="preVolume" />
-        <result column="riseTime" jdbcType="TIMESTAMP" property="riseTime" />
-        <result column="firInStorage" jdbcType="TIMESTAMP" property="firInStorage" />
-        <result column="firOutStorage" jdbcType="TIMESTAMP" property="firOutStorage" />
-        <result column="secInStorage" jdbcType="TIMESTAMP" property="secInStorage" />
-        <result column="secOutStorage" jdbcType="TIMESTAMP" property="secOutStorage" />
-        <result column="finishedTime" jdbcType="TIMESTAMP" property="finishedTime" />
-        <result column="productLocation" jdbcType="INTEGER" property="productLocation" />
-        <result column="auditStatus" jdbcType="INTEGER" property="auditStatus" />
-        <result column="invalidatedState" jdbcType="INTEGER" property="invalidatedState" />
-        <result column="storageStatus" jdbcType="INTEGER" property="storageStatus" />
-        <result column="entrust" jdbcType="INTEGER" property="entrust" />
-        <result column="entrustNumber" jdbcType="INTEGER" property="entrustNumber" />
-        <result column="isPay" jdbcType="INTEGER" property="isPay" />
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="orderNum" jdbcType="VARCHAR" property="orderNum"/>
+        <result column="workNum" jdbcType="VARCHAR" property="workNum"/>
+        <result column="packageId" jdbcType="BIGINT" property="packageId"/>
+        <result column="productNum" jdbcType="BIGINT" property="productNum"/>
+        <result column="sName" jdbcType="VARCHAR" property="sName"/>
+        <result column="sTel" jdbcType="VARCHAR" property="sTel"/>
+        <result column="sCity" jdbcType="INTEGER" property="sCity"/>
+        <result column="sAddress" jdbcType="VARCHAR" property="sAddress"/>
+        <result column="sPoint" jdbcType="INTEGER" property="sPoint"/>
+        <result column="gName" jdbcType="VARCHAR" property="gName"/>
+        <result column="gTel" jdbcType="VARCHAR" property="gTel"/>
+        <result column="gCity" jdbcType="INTEGER" property="gCity"/>
+        <result column="gAddress" jdbcType="VARCHAR" property="gAddress"/>
+        <result column="gPoint" jdbcType="INTEGER" property="gPoint"/>
+        <result column="productType" jdbcType="VARCHAR" property="productType"/>
+        <result column="realWeight" jdbcType="DOUBLE" property="realWeight"/>
+        <result column="workStatus" jdbcType="INTEGER" property="workStatus"/>
+        <result column="comment" jdbcType="VARCHAR" property="comment"/>
+        <result column="expenses" jdbcType="DOUBLE" property="expenses"/>
+        <result column="gCourier" jdbcType="INTEGER" property="gCourier"/>
+        <result column="sCourier" jdbcType="INTEGER" property="sCourier"/>
+        <result column="preVolume" jdbcType="DOUBLE" property="preVolume"/>
+        <result column="riseTime" jdbcType="TIMESTAMP" property="riseTime"/>
+        <result column="firInStorage" jdbcType="TIMESTAMP" property="firInStorage"/>
+        <result column="firOutStorage" jdbcType="TIMESTAMP" property="firOutStorage"/>
+        <result column="secInStorage" jdbcType="TIMESTAMP" property="secInStorage"/>
+        <result column="secOutStorage" jdbcType="TIMESTAMP" property="secOutStorage"/>
+        <result column="finishedTime" jdbcType="TIMESTAMP" property="finishedTime"/>
+        <result column="productLocation" jdbcType="INTEGER" property="productLocation"/>
+        <result column="auditStatus" jdbcType="INTEGER" property="auditStatus"/>
+        <result column="invalidatedState" jdbcType="INTEGER" property="invalidatedState"/>
+        <result column="inStorageStatus" jdbcType="INTEGER" property="inStorageStatus"/>
+        <result column="outStorageStatus" jdbcType="INTEGER" property="outStorageStatus"/>
+        <result column="entrust" jdbcType="INTEGER" property="entrust"/>
+        <result column="entrustNumber" jdbcType="INTEGER" property="entrustNumber"/>
+        <result column="isPay" jdbcType="INTEGER" property="isPay"/>
+        <!--id对应的name值-->
+        <result column="workStatusName" jdbcType="VARCHAR" property="workStatusName"/>
+        <result column="inStorageStatusName" jdbcType="VARCHAR" property="inStorageStatusName"/>
+        <result column="outStorageStatusName" jdbcType="VARCHAR" property="outStorageStatusName"/>
+        <result column="productLocationName" jdbcType="VARCHAR" property="productLocationName"/>
+        <result column="auditStatusName" jdbcType="VARCHAR" property="auditStatusName"/>
+        <result column="invalidatedStateName" jdbcType="VARCHAR" property="invalidatedStateName"/>
+        <result column="sCityName" jdbcType="VARCHAR" property="sCityName"/>
+        <result column="gCityName" jdbcType="VARCHAR" property="gCityName"/>
+        <result column="sPointName" jdbcType="VARCHAR" property="sPointName"/>
+        <result column="gPointName" jdbcType="VARCHAR" property="gPointName"/>
+        <result column="entrustName" jdbcType="VARCHAR" property="entrustName"/>
+        <result column="isPayName" jdbcType="VARCHAR" property="isPayName"/>
+        <result column="productTypeName" jdbcType="VARCHAR" property="productTypeName"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, orderNum, workNum, packageId, productNum, sName, sTel, sCity, sAddress, sPoint,
-    gName, gTel, gCity, gAddress, gPoint, productType, realWeight, workStatus, comment,
+   id, orderNum, workNum, packageId, productNum, sName, sTel, sCity, sAddress, sPoint,
+    gName, gTel, gCity, gAddress, gPoint, productType,
+    realWeight, workStatus, comment,
     expenses, gCourier, sCourier, preVolume, riseTime, firInStorage, firOutStorage, secInStorage,
-    secOutStorage, finishedTime, productLocation, auditStatus, invalidatedState, storageStatus,
+    secOutStorage, finishedTime, productLocation, auditStatus, invalidatedState, inStorageStatus,outStorageStatus,
     entrust, entrustNumber, isPay
-  </sql>
+    </sql>
+    <sql id="filiale_workorder_List">
+    id, orderNum, workNum, packageId, productNum, sName, sTel, sCity,
+     (SELECT o.city FROM organization o WHERE w.sCity = o.id) as sCityName,
+     sAddress, sPoint,
+     (SELECT name FROM organization o WHERE w.sPoint = o.id) as sPointName,
+    gName, gTel, gCity,
+    (SELECT city FROM organization o WHERE w.gCity = o.id) as gCityName,
+     gAddress, gPoint,
+     (SELECT name FROM organization o WHERE w.gPoint = o.id) as gPointName,
+     productType,
+     (SELECT valueName FROM dictionary d WHERE typeCode='goodsStatus' and w.productType = d.valueId) as productTypeName,
+     realWeight, workStatus,
+    (SELECT valueName FROM dictionary d WHERE typeCode='workStatus' and w.workStatus = d.valueId) as workStatusName,
+    comment,expenses, gCourier, sCourier, preVolume, riseTime, firInStorage, firOutStorage, secInStorage,
+    secOutStorage, finishedTime, productLocation,
+    (SELECT valueName FROM dictionary d WHERE d.typeCode='productLocation' and w.productLocation = d.valueId) as productLocationName,
+    auditStatus,
+    (SELECT valueName FROM dictionary d WHERE d.typeCode='auditStatus' and w.auditStatus = d.valueId) as auditStatusName,
+    invalidatedState,
+    (SELECT valueName FROM dictionary d WHERE d.typeCode='invalidatedState' and w.invalidatedState = d.valueId) as invalidatedStateName,
+    inStorageStatus,
+    (SELECT valueName FROM dictionary d WHERE d.typeCode='inStorageStatus' and w.inStorageStatus = d.valueId) as inStorageStatusName,
+    outStorageStatus,
+    (SELECT valueName FROM dictionary d WHERE d.typeCode='outStorageStatus' and w.outStorageStatus = d.valueId) as outStorageStatusName,
+    entrust,
+    (SELECT valueName FROM dictionary d WHERE d.typeCode='entrust' and w.entrust = d.valueId) as entrustName,
+    entrustNumber, isPay,
+    (SELECT valueName FROM dictionary d WHERE d.typeCode='isPay' and w.isPay = d.valueId) as isPayName
+    </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
-        from workorder
+        <include refid="Base_Column_List"/>
+        from workorder w
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -67,7 +112,7 @@
       sCourier, preVolume, riseTime,
       firInStorage, firOutStorage, secInStorage,
       secOutStorage, finishedTime, productLocation,
-      auditStatus, invalidatedState, storageStatus,
+      auditStatus, invalidatedState, inStorageStatus,outStorageStatus,
       entrust, entrustNumber, isPay
       )
     values (#{id,jdbcType=INTEGER}, #{orderNum,jdbcType=VARCHAR}, #{workNum,jdbcType=VARCHAR},
@@ -75,12 +120,12 @@
       #{sTel,jdbcType=VARCHAR}, #{sCity,jdbcType=INTEGER}, #{sAddress,jdbcType=VARCHAR},
       #{sPoint,jdbcType=INTEGER}, #{gName,jdbcType=VARCHAR}, #{gTel,jdbcType=VARCHAR},
       #{gCity,jdbcType=INTEGER}, #{gAddress,jdbcType=VARCHAR}, #{gPoint,jdbcType=INTEGER},
-      #{productType,jdbcType=VARCHAR}, #{realWeight,jdbcType=DOUBLE}, #{workStatus,jdbcType=INTEGER},
+      #{productType,jdbcType=INTEGER}, #{realWeight,jdbcType=DOUBLE}, #{workStatus,jdbcType=INTEGER},
       #{comment,jdbcType=VARCHAR}, #{expenses,jdbcType=DOUBLE}, #{gCourier,jdbcType=INTEGER},
       #{sCourier,jdbcType=INTEGER}, #{preVolume,jdbcType=DOUBLE}, #{riseTime,jdbcType=TIMESTAMP},
       #{firInStorage,jdbcType=TIMESTAMP}, #{firOutStorage,jdbcType=TIMESTAMP}, #{secInStorage,jdbcType=TIMESTAMP},
       #{secOutStorage,jdbcType=TIMESTAMP}, #{finishedTime,jdbcType=TIMESTAMP}, #{productLocation,jdbcType=INTEGER},
-      #{auditStatus,jdbcType=INTEGER}, #{invalidatedState,jdbcType=INTEGER}, #{storageStatus,jdbcType=INTEGER},
+      #{auditStatus,jdbcType=INTEGER}, #{invalidatedState,jdbcType=INTEGER}, #{inStorageStatus,jdbcType=INTEGER},#{outStorageStatus,jdbcType=INTEGER},
       #{entrust,jdbcType=INTEGER}, #{entrustNumber,jdbcType=INTEGER}, #{isPay,jdbcType=INTEGER}
       )
   </insert>
@@ -183,8 +228,11 @@
             <if test="invalidatedState != null">
                 invalidatedState,
             </if>
-            <if test="storageStatus != null">
-                storageStatus,
+            <if test="inStorageStatus != null">
+                inStorageStatus,
+            </if>
+            <if test="outStorageStatus != null">
+                outStorageStatus,
             </if>
             <if test="entrust != null">
                 entrust,
@@ -243,7 +291,7 @@
                 #{gPoint,jdbcType=INTEGER},
             </if>
             <if test="productType != null">
-                #{productType,jdbcType=VARCHAR},
+                #{productType,jdbcType=INTEGER},
             </if>
             <if test="realWeight != null">
                 #{realWeight,jdbcType=DOUBLE},
@@ -293,8 +341,11 @@
             <if test="invalidatedState != null">
                 #{invalidatedState,jdbcType=INTEGER},
             </if>
-            <if test="storageStatus != null">
-                #{storageStatus,jdbcType=INTEGER},
+            <if test="inStorageStatus != null">
+                #{inStorageStatus,jdbcType=INTEGER},
+            </if>
+            <if test="outStorageStatus != null">
+                #{outStorageStatus,jdbcType=INTEGER},
             </if>
             <if test="entrust != null">
                 #{entrust,jdbcType=INTEGER},
@@ -307,6 +358,7 @@
             </if>
         </trim>
     </insert>
+
     <update id="updateByPrimaryKeySelective" parameterType="com.forest.wu.pojo.Workorder">
         update workorder
         <set>
@@ -353,7 +405,7 @@
                 gPoint = #{gPoint,jdbcType=INTEGER},
             </if>
             <if test="productType != null">
-                productType = #{productType,jdbcType=VARCHAR},
+                productType = #{productType,jdbcType=INTEGER},
             </if>
             <if test="realWeight != null">
                 realWeight = #{realWeight,jdbcType=DOUBLE},
@@ -403,8 +455,11 @@
             <if test="invalidatedState != null">
                 invalidatedState = #{invalidatedState,jdbcType=INTEGER},
             </if>
-            <if test="storageStatus != null">
-                storageStatus = #{storageStatus,jdbcType=INTEGER},
+            <if test="inStorageStatus != null">
+                inStorageStatus = #{inStorageStatus,jdbcType=INTEGER},
+            </if>
+            <if test="outStorageStatus != null">
+                outStorageStatus = #{outStorageStatus,jdbcType=INTEGER},
             </if>
             <if test="entrust != null">
                 entrust = #{entrust,jdbcType=INTEGER},
@@ -434,7 +489,7 @@
       gCity = #{gCity,jdbcType=INTEGER},
       gAddress = #{gAddress,jdbcType=VARCHAR},
       gPoint = #{gPoint,jdbcType=INTEGER},
-      productType = #{productType,jdbcType=VARCHAR},
+      productType = #{productType,jdbcType=INTEGER},
       realWeight = #{realWeight,jdbcType=DOUBLE},
       workStatus = #{workStatus,jdbcType=INTEGER},
       comment = #{comment,jdbcType=VARCHAR},
@@ -451,7 +506,8 @@
       productLocation = #{productLocation,jdbcType=INTEGER},
       auditStatus = #{auditStatus,jdbcType=INTEGER},
       invalidatedState = #{invalidatedState,jdbcType=INTEGER},
-      storageStatus = #{storageStatus,jdbcType=INTEGER},
+      inStorageStatus = #{inStorageStatus,jdbcType=INTEGER},
+      outStorageStatus = #{outStorageStatus,jdbcType=INTEGER},
       entrust = #{entrust,jdbcType=INTEGER},
       entrustNumber = #{entrustNumber,jdbcType=INTEGER},
       isPay = #{isPay,jdbcType=INTEGER}
@@ -462,7 +518,7 @@
     <select id="selectWorkOrder" resultType="com.forest.wu.pojo.Workorder">
         select
         <include refid="Base_Column_List"/>
-        from workorder
+        from workorder w
         <trim prefix="where" prefixOverrides="and | or">
             <if test="workNum!=null and workNum!=''">
                 and workNum like CONCAT ('%',#{workNum},'%')
@@ -519,8 +575,8 @@
     <!--分公司查询工单-->
     <select id="selectWorkOrderByCondition" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List"/>
-        from workorder
+        <include refid="filiale_workorder_List"/>
+        from workorder w
         <trim prefix="where" prefixOverrides="and | or">
             <if test="workNum!=null and workNum!=''">
                 and workNum like CONCAT ('%',#{workNum},'%')
@@ -537,30 +593,33 @@
             <if test="workStatus!=null">
                 and workStatus=#{workStatus}
             </if>
-            <if test="storageStatus!=null">
-                and storageStatus=#{storageStatus}
+            <if test="inStorageStatus!=null">
+                and inStorageStatus=#{inStorageStatus}
+            </if>
+            <if test="outStorageStatus!=null">
+                and outStorageStatus=#{outStorageStatus}
             </if>
             <if test="wdName!=null">
-                and (sPoint=#{wdName} or gPoint=#{wdName})
+                and sPoint=(SELECT id FROM organization WHERE name=#{wdName} ) or gPoint=(SELECT id FROM organization
+                WHERE name=#{wdName} )
             </if>
         </trim>
     </select>
 
     <select id="selectWorkOrderById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List"/>
-        from workorder
+        <include refid="filiale_workorder_List"/>
+        from workorder w
         where id = #{id,jdbcType=INTEGER}
     </select>
 
 
     <!--肖林辉-->
     <!--快递员工单查询-->
-    <select id="selectWorkOrderByCourier" parameterType="com.forest.wu.pojo.Workorder" resultType="com.forest.wu.pojo.Workorder">
-        select
-        <include refid="Base_Column_List"/>
-        from workorder
-        where 1=1
+    <select id="selectWorkOrderByCourier" parameterType="com.forest.wu.pojo.Workorder"
+            resultType="com.forest.wu.pojo.Workorder">
+        select *
+        from workorder where 1=1
         <if test="sCourier !=null ">
             and sCourier = #{sCourier}
         </if>

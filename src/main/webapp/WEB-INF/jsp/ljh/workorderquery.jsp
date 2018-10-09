@@ -26,7 +26,7 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input name="workNum" type="text"
                                            class="form-control col-md-7 col-xs-12"
-                                           value="${workNum }">
+                                           value="${workNum}">
                                 </div>
                             </div>
                         </li>
@@ -89,8 +89,8 @@
                                             <option value="">--请选择--</option>
                                             <c:forEach items="${workStatusList}" var="status">
                                                 <option
-                                                        <c:if test="${status.valueName == workStatus }">selected="selected"</c:if>
-                                                        value="${status.valueName}">
+                                                        <c:if test="${status.valueId == workStatus }">selected="selected"</c:if>
+                                                        value="${status.valueId}">
                                                         ${status.valueName}
                                                 </option>
                                             </c:forEach>
@@ -101,16 +101,35 @@
                         </li>
                         <li>
                             <div class="form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12">出入库状态</label>
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">入库状态</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select name="storageStatus" class="form-control">
-                                        <c:if test="${storageStatusList!=null}">
+                                    <select name="inStorageStatus" class="form-control">
+                                        <c:if test="${inStorageStatusList!=null}">
                                             <option value="">--请选择--</option>
-                                            <c:forEach items="${storageStatusList}" var="Status">
+                                            <c:forEach items="${inStorageStatusList}" var="inStatus">
                                                 <option
-                                                        <c:if test="${Status.valueName == storageStatus }">selected="selected"</c:if>
-                                                        value="${Status.valueName}">
-                                                        ${Status.valueName}
+                                                        <c:if test="${inStatus.valueId == inStorageStatus }">selected="selected"</c:if>
+                                                        value="${inStatus.valueId}">
+                                                        ${inStatus.valueName}
+                                                </option>
+                                            </c:forEach>
+                                        </c:if>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">出库状态</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="outStorageStatus" class="form-control">
+                                        <c:if test="${outStorageStatusList!=null}">
+                                            <option value="">--请选择--</option>
+                                            <c:forEach items="${outStorageStatusList}" var="outStatus">
+                                                <option
+                                                        <c:if test="${outStatus.valueId == outStorageStatus }">selected="selected"</c:if>
+                                                        value="${outStatus.valueId}">
+                                                        ${outStatus.valueName}
                                                 </option>
                                             </c:forEach>
                                         </c:if>
@@ -138,7 +157,7 @@
                         <div class="col-sm-12">
                             <table id="datatable-responsive"
                                    class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
-                                   cellspacing="0" width="100%" role="grid"
+                                   cellspacing="0" width="100%" role="grid" style="table-layout: fixed"
                                    aria-describedby="datatable-responsive_info"
                                    style="width: 100%;">
                                 <thead>
@@ -171,7 +190,13 @@
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                         style="width: 80px;"
                                         aria-label="Last name: activate to sort column ascending">
-                                        出入库状态
+                                        入库状态
+                                    </th>
+                                    <th class="sorting" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        style="width: 80px;"
+                                        aria-label="Last name: activate to sort column ascending">
+                                        出库状态
                                     </th>
                                     <th class="sorting_asc" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
@@ -182,14 +207,28 @@
                                 </thead>
                                 <tbody>
                                 <c:forEach var="workorder" items="${workorderList }">
-                                    <tr role="row" class="odd">
-                                        <td>${workorder.workNum }</td>
-                                        <td>${workorder.workStatus }</td>
+                                    <tr>
+                                        <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${workorder.workNum }</td>
+                                        <td>${workorder.workStatusName }</td>
                                         <td>${workorder.orderNum }</td>
                                         <td>${workorder.packageId }</td>
-                                        <td>${workorder.storageStatus }</td>
-                                        <td><a id="view" href="/filiale/todetail?workorderid=${workorder.id}"
-                                               class="btn btn-primary">查看详情</a></td>
+                                        <td>${workorder.inStorageStatusName }</td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${workorder.inStorageStatusName!='待入库'}">
+                                                    ${workorder.outStorageStatusName }
+                                                </c:when>
+                                                <c:otherwise>
+                                                    暂无
+                                                </c:otherwise>
+                                            </c:choose>
+
+                                        </td>
+                                        <td>
+                                            <button type="button" workorderid="${workorder.id}"
+                                                    class="btn btn-primary">查看详情
+                                            </button>
+                                        </td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
@@ -199,8 +238,8 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="dataTables_info" id="datatable-responsive_info"
-                                 role="status" aria-live="polite">共${page.total }条记录
-                                ${page.pageNum }/${page.pages }页
+                                 role="status" aria-live="polite">共${page.total}条记录
+                                ${page.pageNum }/${page.pages}页
                             </div>
                         </div>
                         <div class="col-sm-7">
@@ -221,12 +260,12 @@
                                     </c:if>
                                     <c:if test="${page.hasNextPage eq true }">
                                         <li class="paginate_button "><a
-                                                href="javascript:page_nav(document.forms[0],${page.nextPage });"
+                                                href="javascript:page_nav(document.forms[0],${page.nextPage});"
                                                 aria-controls="datatable-responsive" data-dt-idx="1"
                                                 tabindex="0">下一页</a>
                                         </li>
                                         <li class="paginate_button next"><a
-                                                href="javascript:page_nav(document.forms[0],${page.lastPage });"
+                                                href="javascript:page_nav(document.forms[0],${page.lastPage});"
                                                 aria-controls="datatable-responsive" data-dt-idx="7"
                                                 tabindex="0">最后一页</a>
                                         </li>
@@ -245,4 +284,4 @@
 <script
         src="${pageContext.request.contextPath }/statics/localjs/rollpage.js"></script>
 <script
-        src="${pageContext.request.contextPath }/statics/js/zz/gongdan2_zz.js"></script>
+        src="${pageContext.request.contextPath }/statics/localjs/workorderview.js"></script>

@@ -113,7 +113,7 @@
               </div>
             </div>
             <div class="item form-group">
-            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">预估体积<span
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">预估体积(m3)<span
                     class="required"></span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -122,7 +122,7 @@
             </div>
           </div>
             <div class="item form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">预估重量<span
+              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">预估重量(kg)<span
                       class="required"></span>
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
@@ -139,16 +139,7 @@
                                            type="text">
               </div>
             </div>
-            <div class="item form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">订单完成时间<span
-                      class="required"></span>
-              </label>
-              <div class="col-md-6 col-sm-6 col-xs-12">
-                <input class="form-control col-md-7 col-xs-12" value=" <fmt:formatDate value="${order.finishTime}" pattern="yyyy-MM-dd HH:mm:ss"/>" readonly
-                                               type="text">
 
-              </div>
-            </div>
 
 
         </form>
