@@ -27,10 +27,10 @@
         <result column="courierNumber" jdbcType="INTEGER" property="courierNumber"/>
         <result column="entrustNumber" jdbcType="INTEGER" property="entrustNumber"/>
         <association property="organization" javaType="com.forest.wu.pojo.Organization">
-            <id column="id" property="id" />
+            <id column="id" property="id"/>
             <result column="name" property="pointName"/>
         </association>
-   </resultMap>
+    </resultMap>
     <sql id="Base_Column_List">
     id, sName, gName, sTel, gTel, cityId, branchId, sAddress, gAddress, doorTime, typeId,
     product, preWeight, comment, orderNumber, status, preVolume, riseTime, finishTime,
@@ -401,4 +401,82 @@
       entrustNumber = #{entrustNumber,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+    <!--任一-->
+    <select id="getMyOrderCount" resultType="int">
+        select count(*) as count
+        from order_info
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="userId != null">
+                and userId = #{userId}
+            </if>
+            <if test="orderNumber != null">
+                and orderNumber = #{orderNumber}
+            </if>
+            <if test="gName != null">
+                and gName = #{gName}
+            </if>
+            <if test="gTel != null">
+                and gTel = #{gTel}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </trim>
+    </select>
+
+    <!--任一-->
+    <select id="getMyOrderList" resultType="com.forest.wu.pojo.Order_info">
+        SELECT a.*,
+        (SELECT valueName FROM dictionary WHERE typeCode = 'orderStatus' AND valueId = a.status)AS statusName,
+        (SELECT valueName FROM dictionary WHERE typeCode = 'isPay'
+        AND valueId = (SELECT isPay FROM workorder
+        WHERE orderNum = a.`orderNumber`)) AS isPay
+        FROM order_info a
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="userId != null">
+                and a.userId = #{userId}
+            </if>
+            <if test="orderNumber != null">
+                and a.orderNumber = #{orderNumber}
+            </if>
+            <if test="gName != null">
+                and a.gName = #{gName}
+            </if>
+            <if test="gTel != null">
+                and a.gTel = #{gTel}
+            </if>
+            <if test="status != null">
+                and a.status = #{status}
+            </if>
+        </trim>
+        order by id DESC
+        limit #{from},#{pageSize}
+    </select>
+
+    <!--任一-->
+    <select id="getMyOrderInfo" resultType="com.forest.wu.pojo.Order_info">
+        select a.*,
+        (select name from organization where id = a.cityId) as sCityName,
+        (select name from organization where id = a.branchId) as sBranchName,
+        (select name from organization where id = (
+        select gCity from workorder where orderNum = a.orderNumber)) as gCityName,
+        (select name from organization where id = (
+        select gPoint from workorder where orderNum = a.orderNumber)) as gBranchName,
+        (select productLocation from workorder where orderNum = a.orderNumber) as productLocation,
+        (select valueName from dictionary where typeCode = 'orderStatus'
+        and valueId = a.status) as statusName,
+        (select valueName from dictionary where typeCode = 'goodsStatus'
+        and valueId = a.typeId) as typeName,
+        (select expenses from workorder where orderNum = a.orderNumber) as expenses
+        from order_info a
+        where id = #{id}
+    </select>
+
+    <!--任一-->
+    <update id="offOrderById" parameterType="Integer">
+        update order_info
+        set status = 4
+        where id = #{id}
+    </update>
 </mapper>
