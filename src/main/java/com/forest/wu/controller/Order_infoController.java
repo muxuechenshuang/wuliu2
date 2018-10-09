@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 /**
  * @Author 肖林辉
@@ -155,6 +156,7 @@ public class Order_infoController {
         Date date=new Date();
         workorder.setRiseTime(date);
         workorder.setgCourier(user.getId());
+        workorder.setWorkStatus(1);  // 工单状态为待审核
        orderService.addWorkorderByCourier(workorder);
        //修改订单中的状态   1为预订  2 已接单  将1 修改为2
         Order_info order = new Order_info();
@@ -342,6 +344,20 @@ public class Order_infoController {
         return branchList;
     }
 
+    @RequestMapping(value="finishedWorkorder")
+    public String  updateWorkorder(HttpSession session,
+                                   @RequestParam(value = "id" )String workId){
+        User user = (User) session.getAttribute("user");
+
+        Workorder workorder=new Workorder();
+        workorder.setId(Integer.parseInt(workId));
+        workorder.setWorkStatus(5);
+        Date date=new Date();
+        workorder.setFinishedTime(date);
+        workorderMapper.updateByPrimaryKeySelective(workorder);
+        int id=user.getId();
+        return  "redirect:toworkorder/?courierNum="+id;
+    }
 
 
 }

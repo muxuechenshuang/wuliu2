@@ -252,26 +252,23 @@
 
 
 
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							   for="entrust">委托状态<span class="required">*</span></label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" class="form-control col-md-7 col-xs-12"
-								   readonly   value="${workorder.entrust}" name="entrust" id="entrust">
-						</div>
-					</div>
+
 				</form>
 			</div>
 			<div class="x_content" style="display: block;">
 				<br>
 
 			</div>
+			<form action="${pageContext.request.contextPath}/order/finishedWorkorder">
 			<div class="form-group">
 				<div class="col-md-6 col-md-offset-3">
+					<input type="hidden" name="id" value="${workorder.id}">
+					<button type="submit" class="btn btn-success" id="finished">完成配送</button>
 					<button type="button" class="btn btn-primary" id="back">返回</button>
 				</div>
 			</div>
 			<div class="clearfix"></div>
+			</form>
 			<br />
 			<br />
 		</div>
