@@ -136,7 +136,7 @@ function doLoop()
 {
     nums--;
     if(nums > 0){
-        btn.value = nums+'秒后可重新获取';
+        btn.value = nums+'秒后重试';
     }else{
         clearInterval(clock); //清除js定时器
         btn.disabled = false;

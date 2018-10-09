@@ -28,8 +28,14 @@ public interface UserMapper {
     int insertSelective(User user);
 
     User selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(User record);
+    /*
+    * @author: 蒋梓伦
+    * @Description
+    * @Date: 19:50 2018/10/8
+    * @Param：更新用户数据
+    * @return：int
+    **/
+    int updateByPrimaryKeySelective(User user);
 
     int updateByPrimaryKey(User record);
     /*
@@ -46,7 +52,7 @@ public interface UserMapper {
     * @Param：[用户名, 邮箱, 手机号]
     * @return：对象集合
     **/
-    List<User> findUser();
+    List<User> find();
     /*
     * @author:李普强
     * @Description描述：用户输入的条件查询出对应的快递员信息，并分页

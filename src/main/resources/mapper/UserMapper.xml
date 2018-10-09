@@ -218,6 +218,7 @@
             </if>
         </trim>
     </insert>
+    <!--更新个人信息-->
     <update id="updateByPrimaryKeySelective" parameterType="com.forest.wu.pojo.User">
         update user
         <set>
@@ -225,13 +226,13 @@
                 username = #{username,jdbcType=VARCHAR},
             </if>
             <if test="password != null">
-                password = #{password,jdbcType=VARCHAR},
+                password = #{password},
             </if>
             <if test="email != null">
-                email = #{email,jdbcType=VARCHAR},
+                email = #{email},
             </if>
             <if test="phone != null">
-                phone = #{phone,jdbcType=VARCHAR},
+                phone = #{phone},
             </if>
             <if test="sex != null">
                 sex = #{sex,jdbcType=VARCHAR},
@@ -246,13 +247,13 @@
                 type = #{type,jdbcType=INTEGER},
             </if>
             <if test="time != null">
-                #{time,}
+                time = #{time},
             </if>
             <if test="picPath != null">
-                #{picPath,}
+                picPath = #{picPath},
             </if>
         </set>
-        where id = #{id,jdbcType=INTEGER}
+        where id = #{id}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.forest.wu.pojo.User">
     update user
@@ -266,23 +267,23 @@
       type = #{type,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-    <!-- 查找用户表所需的登录信息 -->
-    <select id="selectULogin" resultType="com.forest.wu.pojo.User">
-        select u.*,o.name,uf.*,d.valueName
-        from user u, organization o, userfunction uf,dictionary d
-        where 1=1
+  <!-- 查找用户表所需的登录信息 -->
+  <select id="selectULogin"  resultType="com.forest.wu.pojo.User">
+    select u.*,o.name,uf.*,d.valueName
+    from user u, organization o, userfunction uf,dictionary d
+    where 1=1
 
-        <if test="parentid != null">
-            and u.parentid=o.id
-        </if>
-        <if test="type != null">
-            and u.type=uf.id
-        </if>
-        <if test="type != null">
-            and u.type=d.valueId and d.typeCode='userRole'
-        </if>
+      <if test="parentid != null">
+      and u.parentid=o.id
+      </if>
+      <if test="type != null">
+      and  u.type=uf.id
+      </if>
+      <if test="type != null">
+        and   u.type=d.valueId and d.typeCode='userRole'
+      </if>
 
-    </select>
+  </select>
 
 
     <!--查询分公司管理列表-->
@@ -307,5 +308,9 @@
         select
         <include refid="Base_Column_List"/>
         from user where id=#{id} and type = 4
+    </select>
+    <!--查询用户信息是否相同-->
+    <select id="find" resultType="com.forest.wu.pojo.User">
+        select username,email,phone from  user
     </select>
 </mapper>
