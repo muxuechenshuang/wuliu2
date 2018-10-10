@@ -103,7 +103,7 @@
 										</li>
 										<li><a href="/order/toworkorder?courierNum=${user.id}">查询工单</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath }/chartjs.html">图形报表</a>
+										<li><a href="/order/baobiao_someorder?courierNum=${user.id}">图形报表</a>
 										</li>
 									</ul></li>
 								</c:if>
@@ -111,24 +111,27 @@
 								<!--李普强  -->
 
 								<c:if test="${sessionScope.user.type eq 3 }">
-								<li><a><i class="fa fa-home"></i> 网点(李普强) <span
-										class="fa fa-chevron-down"></span>
-								</a>
-									<ul class="nav child_menu">
-										<li><a href="${pageContext.request.contextPath}/wuliu/yuan">员工管理</a>
-										</li>
+									<!--李普强  -->
+									<li><a><i class="fa fa-home"></i> 网点(李普强) <span
+											class="fa fa-chevron-down"></span>
+									</a>
+										<ul class="nav child_menu">
+											<li>
+												<a href="${pageContext.request.contextPath}/wuliu/yuan">员工管理</a>
+											</li>
 
-										<li><a href="${pageContext.request.contextPath}/wuliu/dingdan">查看用户订单</a>
-										</li>
-									<!-- 	<li><a href="shenghe_lpq.jsp">审核订单</a>
-										</li> -->
-										<li><a href="${pageContext.request.contextPath}/lpq/gongdan_lpq.jsp">确认工单</a>
-										</li>
-										<li><a href="${pageContext.request.contextPath}/lpq/fenpei2.jsp">分配工单</a>
-										</li>
-										<li><a href="${pageContext.request.contextPath}/lpq/mix-line-bar.jsp">网点报表</a>
-										</li>
-									</ul></li>
+											<li><a href="${pageContext.request.contextPath}/wuliu/dingdan">查看用户订单</a>
+											</li>
+											<!-- 	<li><a href="shenghe_lpq.jsp">审核订单</a>
+                                                </li> -->
+											<li><a href="${pageContext.request.contextPath}/wuliu/gong">确认工单</a>
+											</li>
+											<li><a href="${pageContext.request.contextPath}/wuliu/fengong">分配工单</a>
+											</li>
+											<li><a href="${pageContext.request.contextPath}/wuliu/biao">网点报表</a>
+											</li>
+										</ul>
+									</li>
 								</c:if>
 
 								<c:if test="${sessionScope.user.type eq 4 }">

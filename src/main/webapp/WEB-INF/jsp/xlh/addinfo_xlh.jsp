@@ -24,6 +24,9 @@
                             <input class="form-control col-md-7 col-xs-12" name="orderNum" value="${order.orderNumber}"
                                    readonly
                                    type="text">
+                            <input class="form-control col-md-7 col-xs-12" name="orderid" value="${order.id}"
+
+                                   type="hidden">
                         </div>
                     </div>
                     <div class="item form-group">
@@ -69,7 +72,7 @@
                                 class="required"></span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" value="${order.name}" readonly
+                            <input class="form-control col-md-7 col-xs-12" value="${order.pointName}" readonly
                                    type="text">
                         </div>
                     </div>
