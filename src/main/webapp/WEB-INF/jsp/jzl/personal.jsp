@@ -22,6 +22,9 @@
                            value="${user.username}" type="text" readonly>
                 </div>
             </div>
+
+            <input type="hidden" value="${user.type}" name="type" id="type">
+
             <div class="item form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >密码 <span class="required">*</span>
                 </label>
@@ -55,14 +58,13 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <img alt="" src="" id="backImg" style="width: 140px">
                     <input type="file" class="form-control col-md-7 col-xs-12" name="picPath"  required="required" id="picPath"/>
-                    ${pageContext.request.contextPath }${user.picPath}
                 </div>
             </div>
             <div class="ln_solid"></div>
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-3">
                     <button id="send" type="submit" class="btn btn-success">保存</button>
-                    <button type="button" class="btn btn-primary" id="back">返回</button>
+                    <a href="javaScript:history.back(-1)"><button type="button" class="btn btn-primary" id="back">返回</button></a>
                     <br/><br/>
                 </div>
             </div>
