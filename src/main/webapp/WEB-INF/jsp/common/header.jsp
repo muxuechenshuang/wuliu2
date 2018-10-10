@@ -12,7 +12,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>飞鸟物流${user.id}</title>
+<title>飞鸟物流${sessionScope.user.id}</title>
 
 
 	<!-- Bootstrap -->
@@ -53,7 +53,7 @@
 					<div class="profile">
 						<div class="profile_pic">
 							<a href="/wuliu/homepage"><img
-								src="${pageContext.request.contextPath }${user.picPath}"
+								src="${pageContext.request.contextPath }${sessionScope.user.picPath}"
 								alt="..." class="img-circle profile_img"></a>
 						</div>
 						<div class="profile_info">
@@ -70,7 +70,7 @@
 					<div id="sidebar-menu"
 						class="main_menu_side hidden-print main_menu">
 						<div class="menu_section">
-							<h3>${user.username }</h3>
+							<h3>${sessionScope.user.username }</h3>
 							<ul class="nav side-menu">
 
 
@@ -201,7 +201,7 @@
 							<li class=""><a href="javascript:;"
 								class="user-profile dropdown-toggle" data-toggle="dropdown"
 								aria-expanded="false"> <img
-									src="${pageContext.request.contextPath }${user.picPath}"
+									src="${pageContext.request.contextPath }${sessionScope.user.picPath}"
 									alt="">${devUserSession.devCode } <span
 									class=" fa fa-angle-down"></span> </a>
 								<ul class="dropdown-menu dropdown-usermenu pull-right">

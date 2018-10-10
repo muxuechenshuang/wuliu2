@@ -121,7 +121,7 @@
 									<td>${user.parentid }</td>
 									<td><fmt:formatDate value="${user.time}" pattern='yyyy-MM-dd HH:mm:ss'/></td>
 									<td><a id="lookandmodify" href="/center/userDetail?userid=${user.id}" class="btn btn-primary" >查看/修改</a></td>
-									<td><a id="delect" href="/center/delectUser?userid=${user.id}" class="btn btn-primary" >删除</a></td>
+									<td><a id="delect" href="/center/delectuser?userid=${user.id}" class="btn btn-primary" >删除</a></td>
 
 								<%--<td><a href="/center/tosondetail?id=${organization.id}" class="btn btn-primary">查看/修改</a></td>--%>
 								</tr>

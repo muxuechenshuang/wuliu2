@@ -295,14 +295,36 @@ public class CenterController {
     * Param：[userid]
     * Return：java.lang.String
     **/
-    @RequestMapping(value = "/delectUser")
-    public String  delectUser(Integer userid){
+//    @RequestMapping(value = "/delectUser")
+//    public String  delectUser(Integer userid){
+//        try {
+//            centerService.delectSonCompanyPerson(userid);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return "zz/fengongsiguanlichaxun_zz";
+//    }
+
+    /**
+     * author: 张展
+     * 删除分公司管理员
+     * Date: 16:36 2018/10/9
+     * Param：[userid]
+     * Return：java.lang.String
+     **/
+    @RequestMapping(value = "/delectuser",method = RequestMethod.POST)
+    public String delectuser(Integer userid) {
+
         try {
-            centerService.delectSonCompanyPerson(userid);
+            if (centerService.delectSonCompanyPerson(userid) > 0) {
+                //要显示信息要重定向(会刷新一次)
+                return "redirect:/center/finduser";
+            }
         } catch (Exception e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return "zz/fengongsiguanlichaxun_zz";
+        return "redirect:/center/finduser";
     }
     
     /**
@@ -413,27 +435,7 @@ public class CenterController {
         return "redirect:/center/finduser";
     }
 
-    /**
-    * author: 张展
-    * 删除分公司管理员
-    * Date: 16:36 2018/10/9
-    * Param：[userid]
-    * Return：java.lang.String
-    **/
-    @RequestMapping(value = "/delectuser",method = RequestMethod.POST)
-    public String delectuser(Integer userid) {
 
-        try {
-            if (centerService.delectSonCompanyPerson(userid) > 0) {
-                //要显示信息要重定向(会刷新一次)
-                return "redirect:/center/finduser";
-            }
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return "redirect:/center/finduser";
-    }
 
 
     /**
