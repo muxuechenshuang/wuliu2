@@ -247,7 +247,9 @@
 			<div class="form-group">
 				<div class="col-md-6 col-md-offset-3">
 					<input type="hidden" name="id" value="${workorder.id}">
+					<c:if test="${workorder.finishedTime == null}">
 					<button type="submit" class="btn btn-success" id="finished">完成配送</button>
+					</c:if>
 					<button type="button" class="btn btn-primary" id="back">返回</button>
 				</div>
 			</div>
