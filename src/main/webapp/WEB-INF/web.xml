@@ -5,4 +5,9 @@
          version="4.0">
     <session-config> <session-timeout>30</session-timeout></session-config>
 
+
+    <listener>
+        <listener-class>com.forest.wu.utils.filter.SessionUserListener</listener-class>
+    </listener>
+
 </web-app>

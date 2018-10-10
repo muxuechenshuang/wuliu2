@@ -19,8 +19,6 @@ function sc(){
     $("#meibu").css("display","none");
   }
 
-
-
 //注册用的判断
 function login() {
 //获取相关字段的值
@@ -102,7 +100,7 @@ function checkMail(mail) {
 }
 //手机号格式
 function checkMobile(phone) {
-    var filter  = /^\d{5,11}$/;
+    var filter  = /^[1][358][0-9]{9}$/;
     if (filter.test(phone))
         return true;
     else {
@@ -110,7 +108,12 @@ function checkMobile(phone) {
     }
 }
 //发送短信
-function code() {
+
+var clock = '';
+var nums = 120;
+var btn;
+function sendCode(thisBtn) {
+
     $.ajax({
         url: "/wuliu/Verification",
         type: "POST",
@@ -119,11 +122,28 @@ function code() {
             phone:$("#phone").val()
         },
         success: function (data) {
-            alert(data)
                 $("#judge").val(data)
             }
         })
+
+    //倒计时
+    btn = thisBtn;
+    btn.disabled = true; //将按钮置为不可点击
+    btn.value = nums+'秒后重试';
+    clock = setInterval(doLoop, 1000); //一秒执行一次
 }
+function doLoop()
+{
+    nums--;
+    if(nums > 0){
+        btn.value = nums+'秒后重试';
+    }else{
+        clearInterval(clock); //清除js定时器
+        btn.disabled = false;
+        btn.value = '点击发送验证码';
+        nums = 120; //重置时间
+    }
+    }
 //判断验证码是否相同
 function Mobile() {
     var a=$("#judge").val();
@@ -140,5 +160,7 @@ function Mobile() {
 
 
 }
+
+
 
 

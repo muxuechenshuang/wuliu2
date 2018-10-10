@@ -32,7 +32,12 @@ public class UserServiceImpl implements UserService {
     //注册用查找接口
     @Override
     public List<User> findUser() {
-        return mapper.findUser();
+        return mapper.find();
+    }
+    //更新用户数据
+    @Override
+    public int upHome(User user) {
+        return mapper.updateByPrimaryKeySelective(user);
     }
 
 
