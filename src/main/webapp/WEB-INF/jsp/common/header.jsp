@@ -103,7 +103,7 @@
 										</li>
 										<li><a href="/order/toworkorder?courierNum=${user.id}">查询工单</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath }/chartjs.html">图形报表</a>
+										<li><a href="/order/baobiao_someorder?courierNum=${user.id}">图形报表</a>
 										</li>
 									</ul></li>
 								</c:if>
