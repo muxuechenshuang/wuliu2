@@ -162,17 +162,11 @@ public class Order_infoServiceImpl implements Order_infoService {
     **/
     
     @Override
-    public int selectOrderCount() {
-        return orderMapper.selectOrderCount();
+    public int selectOrderCount(Integer day) {
+        return orderMapper.selectOrderCount(day);
     }
 
-    /**
-    * @author: 肖林辉 
-    * @Description  查找近7天订单的数量
-    * @Date: 14:21 2018/10/9/009
-    * @Param：[]
-    * @return：int
-    **/
+
     
 
 

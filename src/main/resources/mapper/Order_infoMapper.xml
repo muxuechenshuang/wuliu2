@@ -480,7 +480,7 @@
 
     <!--查询最近7天的订单数量-->
 
-    <select id="selectOrderCount" resultType="java.lang.Integer">
-        SELECT count(*) FROM order_info where DATE_SUB(CURDATE(), INTERVAL 7 DAY) $lt;= date(riseTime)
+    <select id="selectOrderCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+       SELECT count(1) FROM order_info WHERE DATEDIFF(riseTime,NOW())=#{day}
     </select>
 </mapper>

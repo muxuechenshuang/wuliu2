@@ -120,5 +120,5 @@ public interface Order_infoMapper {
      * @return：java.lang.Integer
      **/
 
-    public  Integer  selectOrderCount();
+    public  Integer  selectOrderCount(@Param("day")Integer pastDay);
 }
