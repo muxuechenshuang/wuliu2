@@ -404,6 +404,16 @@ public class Order_infoController {
         return list;
     }
 
+    @RequestMapping(value = "aweekordermonth.json")
+    @ResponseBody
+    public Object selectOrderCountmonth(){
+        List list=new ArrayList();
+
+        for(int i=0;i<30 ;i++){
+            list.add(orderService.selectOrderCount(-i));
+        }
+        return list;
+    }
 
 
 
