@@ -426,9 +426,9 @@
     <select id="getMyOrderList" resultType="com.forest.wu.pojo.Order_info">
         SELECT a.*,
         (SELECT valueName FROM dictionary WHERE typeCode = 'orderStatus' AND valueId = a.status)AS statusName,
-        (SELECT valueName FROM dictionary WHERE typeCode = 'isPay'
-        AND valueId = (SELECT isPay FROM workorder
-        WHERE orderNum = a.`orderNumber`)) AS isPay
+        (SELECT valueName FROM dictionary WHERE typeCode = 'isPay'AND valueId =
+            (SELECT isPay FROM workorder WHERE orderNum = a.`orderNumber`)) AS isPay,
+        (select expenses from workorder where orderNum = a.orderNumber) as expenses
         FROM order_info a
         <trim prefix="where" prefixOverrides="and | or">
             <if test="userId != null">
