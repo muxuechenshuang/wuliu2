@@ -26,10 +26,8 @@
         <result column="sCourier" jdbcType="INTEGER" property="sCourier"/>
         <result column="preVolume" jdbcType="DOUBLE" property="preVolume"/>
         <result column="riseTime" jdbcType="TIMESTAMP" property="riseTime"/>
-        <result column="firInStorage" jdbcType="TIMESTAMP" property="firInStorage"/>
-        <result column="firOutStorage" jdbcType="TIMESTAMP" property="firOutStorage"/>
-        <result column="secInStorage" jdbcType="TIMESTAMP" property="secInStorage"/>
-        <result column="secOutStorage" jdbcType="TIMESTAMP" property="secOutStorage"/>
+        <result column="inStorageTime" jdbcType="TIMESTAMP" property="inStorageTime"/>
+        <result column="outStorageTime" jdbcType="TIMESTAMP" property="outStorageTime"/>
         <result column="finishedTime" jdbcType="TIMESTAMP" property="finishedTime"/>
         <result column="productLocation" jdbcType="INTEGER" property="productLocation"/>
         <result column="auditStatus" jdbcType="INTEGER" property="auditStatus"/>
@@ -58,8 +56,8 @@
    id, orderNum, workNum, packageId, productNum, sName, sTel, sCity, sAddress, sPoint,
     gName, gTel, gCity, gAddress, gPoint, productType,
     realWeight, workStatus, comment,
-    expenses, gCourier, sCourier, preVolume, riseTime, firInStorage, firOutStorage, secInStorage,
-    secOutStorage, finishedTime, productLocation, auditStatus, invalidatedState, inStorageStatus,outStorageStatus,
+    expenses, gCourier, sCourier, preVolume, riseTime, inStorageTime, outStorageTime,
+     finishedTime, productLocation, auditStatus, invalidatedState, inStorageStatus,outStorageStatus,
     entrust, entrustNumber, isPay
     </sql>
     <sql id="filiale_workorder_List">
@@ -75,8 +73,8 @@
      (SELECT valueName FROM dictionary d WHERE typeCode='goodsStatus' and w.productType = d.valueId) as productTypeName,
      realWeight, workStatus,
     (SELECT valueName FROM dictionary d WHERE typeCode='workStatus' and w.workStatus = d.valueId) as workStatusName,
-    comment,expenses, gCourier, sCourier, preVolume, riseTime, firInStorage, firOutStorage, secInStorage,
-    secOutStorage, finishedTime, productLocation,
+    comment,expenses, gCourier, sCourier, preVolume, riseTime, inStorageTime, outStorageTime,
+    finishedTime, productLocation,
     (SELECT valueName FROM dictionary d WHERE d.typeCode='productLocation' and w.productLocation = d.valueId) as productLocationName,
     auditStatus,
     (SELECT valueName FROM dictionary d WHERE d.typeCode='auditStatus' and w.auditStatus = d.valueId) as auditStatusName,
@@ -110,8 +108,7 @@
       productType, realWeight, workStatus,
       comment, expenses, gCourier,
       sCourier, preVolume, riseTime,
-      firInStorage, firOutStorage, secInStorage,
-      secOutStorage, finishedTime, productLocation,
+      inStorageTime, outStorageTime,  finishedTime, productLocation,
       auditStatus, invalidatedState, inStorageStatus,outStorageStatus,
       entrust, entrustNumber, isPay
       )
@@ -123,8 +120,7 @@
       #{productType,jdbcType=INTEGER}, #{realWeight,jdbcType=DOUBLE}, #{workStatus,jdbcType=INTEGER},
       #{comment,jdbcType=VARCHAR}, #{expenses,jdbcType=DOUBLE}, #{gCourier,jdbcType=INTEGER},
       #{sCourier,jdbcType=INTEGER}, #{preVolume,jdbcType=DOUBLE}, #{riseTime,jdbcType=TIMESTAMP},
-      #{firInStorage,jdbcType=TIMESTAMP}, #{firOutStorage,jdbcType=TIMESTAMP}, #{secInStorage,jdbcType=TIMESTAMP},
-      #{secOutStorage,jdbcType=TIMESTAMP}, #{finishedTime,jdbcType=TIMESTAMP}, #{productLocation,jdbcType=INTEGER},
+      #{inStorageTime,jdbcType=TIMESTAMP}, #{outStorageTime,jdbcType=TIMESTAMP}, #{finishedTime,jdbcType=TIMESTAMP}, #{productLocation,jdbcType=INTEGER},
       #{auditStatus,jdbcType=INTEGER}, #{invalidatedState,jdbcType=INTEGER}, #{inStorageStatus,jdbcType=INTEGER},#{outStorageStatus,jdbcType=INTEGER},
       #{entrust,jdbcType=INTEGER}, #{entrustNumber,jdbcType=INTEGER}, #{isPay,jdbcType=INTEGER}
       )
@@ -204,17 +200,11 @@
             <if test="riseTime != null">
                 riseTime,
             </if>
-            <if test="firInStorage != null">
-                firInStorage,
+            <if test="inStorageTime != null">
+                inStorageTime,
             </if>
-            <if test="firOutStorage != null">
-                firOutStorage,
-            </if>
-            <if test="secInStorage != null">
-                secInStorage,
-            </if>
-            <if test="secOutStorage != null">
-                secOutStorage,
+            <if test="outStorageTime != null">
+                outStorageTime,
             </if>
             <if test="finishedTime != null">
                 finishedTime,
@@ -317,17 +307,11 @@
             <if test="riseTime != null">
                 #{riseTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="firInStorage != null">
-                #{firInStorage,jdbcType=TIMESTAMP},
+            <if test="inStorageTime != null">
+                #{inStorageTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="firOutStorage != null">
-                #{firOutStorage,jdbcType=TIMESTAMP},
-            </if>
-            <if test="secInStorage != null">
-                #{secInStorage,jdbcType=TIMESTAMP},
-            </if>
-            <if test="secOutStorage != null">
-                #{secOutStorage,jdbcType=TIMESTAMP},
+            <if test="outStorageTime != null">
+                #{outStorageTime,jdbcType=TIMESTAMP},
             </if>
             <if test="finishedTime != null">
                 #{finishedTime,jdbcType=TIMESTAMP},
@@ -430,17 +414,11 @@
             <if test="riseTime != null">
                 riseTime = #{riseTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="firInStorage != null">
-                firInStorage = #{firInStorage,jdbcType=TIMESTAMP},
+            <if test="inStorageTime != null">
+                inStorageTime = #{inStorageTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="firOutStorage != null">
-                firOutStorage = #{firOutStorage,jdbcType=TIMESTAMP},
-            </if>
-            <if test="secInStorage != null">
-                secInStorage = #{secInStorage,jdbcType=TIMESTAMP},
-            </if>
-            <if test="secOutStorage != null">
-                secOutStorage = #{secOutStorage,jdbcType=TIMESTAMP},
+            <if test="outStorageTime != null">
+                outStorageTime = #{outStorageTime,jdbcType=TIMESTAMP},
             </if>
             <if test="finishedTime != null">
                 finishedTime = #{finishedTime,jdbcType=TIMESTAMP},
@@ -497,10 +475,8 @@
       sCourier = #{sCourier,jdbcType=INTEGER},
       preVolume = #{preVolume,jdbcType=DOUBLE},
       riseTime = #{riseTime,jdbcType=TIMESTAMP},
-      firInStorage = #{firInStorage,jdbcType=TIMESTAMP},
-      firOutStorage = #{firOutStorage,jdbcType=TIMESTAMP},
-      secInStorage = #{secInStorage,jdbcType=TIMESTAMP},
-      secOutStorage = #{secOutStorage,jdbcType=TIMESTAMP},
+      inStorageTime = #{inStorageTime,jdbcType=TIMESTAMP},
+      outStorageTime = #{outStorageTime,jdbcType=TIMESTAMP},
       finishedTime = #{finishedTime,jdbcType=TIMESTAMP},
       productLocation = #{productLocation,jdbcType=INTEGER},
       auditStatus = #{auditStatus,jdbcType=INTEGER},
@@ -603,6 +579,30 @@
                 WHERE name=#{wdName} )
             </if>
         </trim>
+    </select>
+
+    <!--查询所有待入库的工单-->
+    <select id="selectReadyInStorageWorkOrderList" resultMap="BaseResultMap">
+        select
+        <include refid="filiale_workorder_List"/>
+        from workorder w
+        where inStorageStatus=1
+    </select>
+
+    <!--查询所有已入库待出库的工单-->
+    <select id="selectInStorageWorkOrderList" resultMap="BaseResultMap">
+        select
+        <include refid="filiale_workorder_List"/>
+        from workorder w
+        where inStorageStatus!=1 and outStorageStatus=1
+    </select>
+
+    <!--根据工单号查询单个工单-->
+    <select id="selectWorkOrderByWorkNum" resultMap="BaseResultMap">
+        select
+        <include refid="filiale_workorder_List"/>
+        from workorder w
+        where workNum=#{workNum}
     </select>
 
     <select id="selectWorkOrderById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
