@@ -1,16 +1,15 @@
 package com.forest.wu.controller;
 
-import com.forest.wu.pojo.Dictionary;
-import com.forest.wu.pojo.Order_info;
-import com.forest.wu.pojo.Organization;
-import com.forest.wu.pojo.User;
+import com.alipay.api.AlipayApiException;
+import com.alipay.api.AlipayClient;
+import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.request.AlipayTradePagePayRequest;
+import com.forest.wu.pojo.*;
 import com.forest.wu.service.DictionaryService;
+import com.forest.wu.service.NoteService;
 import com.forest.wu.service.Order_infoService;
 import com.forest.wu.service.OrganizationService;
-import com.forest.wu.utils.CalculateMoneyEstimate;
-import com.forest.wu.utils.Constants;
-import com.forest.wu.utils.DistanceUtils;
-import com.forest.wu.utils.Page;
+import com.forest.wu.utils.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -42,6 +42,8 @@ public class ClientController {
     private DictionaryService dictionaryService;
     @Resource
     private Order_infoService order_infoService;
+    @Resource
+    private NoteService noteService;
 
     //运算计费时效
 
@@ -54,9 +56,13 @@ public class ClientController {
      * @return：moneyestimate_ry 进入页面的数据获取
      */
     @RequestMapping("/moneyestimate")
-    public String moneyestimate(Model model) {
+    public String moneyestimate(Model model,HttpSession session) {
         List<Organization> cityList = organizationService.filialeList();
         model.addAttribute("cityList", cityList);
+
+        //站内信息
+        Integer id = ((User)session.getAttribute("user")).getId();
+        getNote(id,model);
         return "ry/moneyestimate_ry";
     }
 
@@ -98,7 +104,7 @@ public class ClientController {
      */
 
     @RequestMapping(value = "/branchquery", method = RequestMethod.GET)
-    public String branchquery(Model model,
+    public String branchquery(Model model,HttpSession session,
                               @RequestParam(value = "city", required = false) String _cityId,
                               @RequestParam(value = "pageIndex", required = false) String pageIndex) {
         List<Organization> cityList = null;
@@ -167,6 +173,10 @@ public class ClientController {
         model.addAttribute("branchList", branchList);
         model.addAttribute("cityId", cityId);
         model.addAttribute("pages", pages);
+
+        //站内信息
+        Integer userId = ((User)session.getAttribute("user")).getId();
+        getNote(userId,model);
         return "ry/branchquery_ry";
     }
 
@@ -175,7 +185,6 @@ public class ClientController {
 
 
     /**
-     *
      * @author: 任一
      * @Description 我要查件页面的进入和查询
      * @Date: 16:42 2018/10/6
@@ -190,14 +199,14 @@ public class ClientController {
                                 @RequestParam(value = "queryOrderStatus", required = false) String _statusId,
                                 @RequestParam(value = "pageIndex", required = false) String pageIndex) {
         //清空空格数据（解决未填表单提交后变空格问题）
-        if(orderNumber==null||orderNumber.equals("")){
-            orderNumber=null;
+        if (orderNumber == null || orderNumber.equals("")) {
+            orderNumber = null;
         }
-        if(gName==null||gName.equals("")){
-            gName=null;
+        if (gName == null || gName.equals("")) {
+            gName = null;
         }
-        if(gTel==null||gTel.equals("")){
-            gTel=null;
+        if (gTel == null || gTel.equals("")) {
+            gTel = null;
         }
 
 
@@ -255,9 +264,9 @@ public class ClientController {
         }
 
         //未查询到订单列表传入错误信息
-        if(orderList.size() == 0){
-            model.addAttribute("nullListErro","抱歉，未查询到订单");
-        }else{//查询到则传入订单列表
+        if (orderList.size() == 0) {
+            model.addAttribute("nullListErro", "抱歉，未查询到订单");
+        } else {//查询到则传入订单列表
             model.addAttribute("orderList", orderList);
         }
         model.addAttribute("orderStatusList", orderStatusList);
@@ -266,46 +275,46 @@ public class ClientController {
         model.addAttribute("gName", gName);
         model.addAttribute("gTel", gTel);
         model.addAttribute("orderStatus", statusId);
+
+        //站内信息显示
+        getNote(userId,model);
         return "ry/query_ry";
     }
 
     /**
-     *
      * @author: 任一
      * @Description 查看明细ajax查询方法
      * @Date: 16:44 2018/10/6
      * @Param：
      * @return：
      */
-    @RequestMapping(value = "getOrderInfo.json",method = RequestMethod.GET)
+    @RequestMapping(value = "getOrderInfo.json", method = RequestMethod.GET)
     @ResponseBody
-    public Object getOrderInfo(@RequestParam Integer id){
-        HashMap<String,Object> orderInfo = new HashMap<String, Object>();
+    public Object getOrderInfo(@RequestParam Integer id) {
+        HashMap<String, Object> orderInfo = new HashMap<String, Object>();
         Order_info order = order_infoService.getMyOrderInfo(id);
-        orderInfo.put("orderInfo",order);
+        orderInfo.put("orderInfo", order);
         return orderInfo;
     }
 
     /**
-     *
      * @author: 任一
      * @Description 取消预约ajax
      * @Date: 9:50 2018/10/9
      * @Param：
      * @return：
      */
-    @RequestMapping(value = "offOrder.json",method = RequestMethod.GET)
+    @RequestMapping(value = "offOrder.json", method = RequestMethod.GET)
     @ResponseBody
-    public Object offOrder(@RequestParam Integer id,Model model){
-        HashMap<String,Object> resultMap = new HashMap<String, Object>();
-        if(order_infoService.offOrderById(id)){
-            resultMap.put("result","success");
-        }else{
-            resultMap.put("result","false");
+    public Object offOrder(@RequestParam Integer id, Model model) {
+        HashMap<String, Object> resultMap = new HashMap<String, Object>();
+        if (order_infoService.offOrderById(id)) {
+            resultMap.put("result", "success");
+        } else {
+            resultMap.put("result", "false");
         }
         return resultMap;
     }
-
 
 
     //寄件服务
@@ -319,13 +328,17 @@ public class ClientController {
      * @return：ry/send_ry 进入寄件页面
      */
     @RequestMapping(value = "/intosend", method = RequestMethod.GET)
-    public String intosend(Model model,
+    public String intosend(Model model,HttpSession session,
                            @RequestParam(value = "cityId", required = false) String _cityId,
                            @RequestParam(value = "branchId", required = false) String _branchId) {
         List<Organization> cityList = organizationService.filialeList();
         List<Dictionary> typeList = dictionaryService.selectGoodsStatus();
         model.addAttribute("typeList", typeList);
         model.addAttribute("cityList", cityList);
+
+        //站内信息
+        Integer userId = ((User)session.getAttribute("user")).getId();
+        getNote(userId,model);
 
         if (null != _cityId && !"".equals(_cityId) && null != _branchId && !"".equals(_branchId)) {
             Integer cityId = Integer.parseInt(_cityId);
@@ -390,7 +403,85 @@ public class ClientController {
     }
 
 
+    //支付宝支付
+
+    /**
+     * @author: 任一
+     * @Description 支付宝支付
+     * @Date: 15:06 2018/10/9
+     * @Param：
+     * @return：
+     */
+    @RequestMapping(value = "/goPay")
+    @ResponseBody
+    public String zhiFuBaoPay(HttpServletRequest request,
+                              HttpServletRequest response,
+                              @RequestParam String orderNumber,
+                              @RequestParam String price,
+                              @RequestParam String product,
+                              @RequestParam String comment) throws Exception {
+
+
+
+        String description = orderNumber;   //订单描述
+
+        //向支付宝发起请求
+        //获得初始化的AlipayClient
+        AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
+        //设置请求参数
+        AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
+        alipayRequest.setReturnUrl(AlipayConfig.return_url);
+        alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
+//        alipayRequest.setReturnUrl("http://domain.com/CallBack/return_url.jsp");
+//        alipayRequest.setNotifyUrl("http://domain.com/CallBack/notify_url.jsp");
+
+        //商户订单号，商户网站订单系统中唯一订单号，必填
+        String out_trade_no = orderNumber;
+        //付款金额，必填
+        String total_amount = price;
+        //订单名称，必填
+        String subject = product;
+        //商品描述，可空
+        String body = comment;
+
+
+        alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\","
+                + "\"total_amount\":\""+ total_amount +"\","
+                + "\"subject\":\""+ subject +"\","
+                + "\"body\":\""+ body +"\","
+                + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
+        //请求
+        String result = "";
+        try {
+            result = alipayClient.pageExecute(alipayRequest).getBody();
+        } catch (AlipayApiException e) {
+            e.printStackTrace();
+        }
+        //输出
+        return result;
+    }
+
+
+    @RequestMapping(value = "/success")
+    public String success(){
+        return "success";
+    }
+
+
+    @RequestMapping(value = "/notify")
+    public String notifys(){
+        return "notify";
+    }
+
+
+
     //站内信息
+
+
+    public void getNote(Integer id,Model model){
+        List<Note> noteList = noteService.getNoteSelf(id);
+        model.addAttribute("noteList",noteList);
+    }
 
 
     //报表

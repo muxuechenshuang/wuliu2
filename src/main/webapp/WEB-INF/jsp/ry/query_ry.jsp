@@ -145,10 +145,19 @@
 											data-toggle="tooltip" data-placement="top"
 											data-original-title="查看订单的详情信息">查看明细</a>
 										</li>
-										<li><a class="payOrder" orderId=${order.id}
-											   status="${order.status}"
+										<li><%--<a class="payOrder" orderId=${order.id}
+											   isPay="${order.isPay}"
+											   href="/calculate/goPay"
 											   data-toggle="tooltip" data-placement="top"
-											   data-original-title="">我要付费</a>
+											   data-original-title="">我要付费</a>--%>
+											<form method="post" action="/calculate/goPay" id="pay">
+                                                <input type="hidden" name="orderNumber" value="${order.orderNumber}">
+												<input type="hidden" id="isPay" value="${order.isPay}">
+                                                <input type="hidden" name="product" value="${order.product}">
+                                                <input type="hidden" name="price" value="${order.expenses}">
+                                                <input type="hidden" name="comment" value="${order.comment}">
+												<input type="submit" value="我要付费" class="payOrder" style="margin-left: 12px;">
+											</form>
 										</li>
 										<li><a class="offOrder" orderId=${order.id}
 											orderStatus="${order.status}"
