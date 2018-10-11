@@ -118,8 +118,9 @@
                                for="sAddress">寄件人详细地址
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-							<input class="form-control col-md-7 col-xs-12" readonly="readonly" value=" ${workorder.sAddress}"
-                                      name="sAddress" id="sAddress"/>
+                            <input class="form-control col-md-7 col-xs-12" readonly="readonly"
+                                   value=" ${workorder.sAddress}"
+                                   name="sAddress" id="sAddress"/>
                         </div>
                     </div>
                     <div class="item form-group">
@@ -165,8 +166,9 @@
                                for="gAddress">收件人详细地址
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-							<input class="form-control col-md-7 col-xs-12" value="${workorder.gAddress}" readonly="readonly"
-                                      name="gAddress" id="gAddress"/>
+                            <input class="form-control col-md-7 col-xs-12" value="${workorder.gAddress}"
+                                   readonly="readonly"
+                                   name="gAddress" id="gAddress"/>
                         </div>
                     </div>
 
@@ -262,14 +264,14 @@
 
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                               for="firInStorage">初次入库时间
+                               for="inStorageTime">入库时间
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <c:choose>
-                                <c:when test="${workorder.firInStorage!=null and workorder.firInStorage!=''}">
+                                <c:when test="${workorder.inStorageTime!=null and workorder.inStorageTime!=''}">
                                     <input type="text"
-                                           value="<fmt:formatDate value="${workorder.firInStorage}" pattern='yyyy-MM-dd HH:mm:ss'/>"
-                                           class="form-control col-md-7 col-xs-12" name="firInStorage" id="firInStorage"
+                                           value="<fmt:formatDate value="${workorder.inStorageTime}" pattern='yyyy-MM-dd HH:mm:ss'/>"
+                                           class="form-control col-md-7 col-xs-12" name="inStorageTime" id="inStorageTime"
                                            readonly="readonly">
                                 </c:when>
                                 <c:otherwise>
@@ -281,31 +283,13 @@
 
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                               for="firOutStorage">初次出库时间</label>
+                               for="outStorageTime">出库时间</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <c:choose>
-                                <c:when test="${workorder.firOutStorage!=null and workorder.firOutStorage!=''}">
+                                <c:when test="${workorder.outStorageTime!=null and workorder.outStorageTime!=''}">
                                     <input type="text" class="form-control col-md-7 col-xs-12" readonly="readonly"
-                                           value="<fmt:formatDate value="${workorder.firOutStorage}" pattern='yyyy-MM-dd HH:mm:ss'/>"
-                                           name="firOutStorage" id="firOutStorage">
-                                </c:when>
-                                <c:otherwise>
-                                    暂无
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
-                    </div>
-
-                    <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                               for="secInStorage">二次入库时间
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <c:choose>
-                                <c:when test="${workorder.secInStorage!=null and workorder.secInStorage!=''}">
-                                    <input class="form-control col-md-7 col-xs-12"
-                                           value="<fmt:formatDate value="${workorder.secInStorage}" pattern='yyyy-MM-dd HH:mm:ss'/>"
-                                           type="text" name="secInStorage" id="secInStorage" readonly="readonly">
+                                           value="<fmt:formatDate value="${workorder.outStorageTime}" pattern='yyyy-MM-dd HH:mm:ss'/>"
+                                           name="outStorageTime" id="outStorageTime">
                                 </c:when>
                                 <c:otherwise>
                                     暂无
@@ -315,24 +299,8 @@
                     </div>
 
 
-                    <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                               for="secOutStorage">二次出库时间
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <c:choose>
-                                <c:when test="${workorder.secOutStorage!=null and workorder.secOutStorage!=''}">
-                                    <input class="form-control col-md-7 col-xs-12" readonly="readonly"
-                                           name="secOutStorage" id="secOutStorage"
-                                           value="<fmt:formatDate value="${workorder.secOutStorage}" pattern='yyyy-MM-dd HH:mm:ss'/>"
-                                           type="text">
-                                </c:when>
-                                <c:otherwise>
-                                    暂无
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
-                    </div>
+
+
 
 
                     <div class="item form-group">
@@ -385,10 +353,26 @@
                     </div>
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                               for="storageStatus">出入库状态</label>
+                               for="inStorageStatus">入库状态</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" class="form-control col-md-7 col-xs-12" readonly="readonly"
-                                   value="${workorder.storageStatusName}" name="storageStatus" id="storageStatus">
+                                   value="${workorder.inStorageStatusName}" name="inStorageStatus" id="inStorageStatus">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                               for="outStorageStatus">出库状态</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <c:choose>
+                                <c:when test="${workorder.outStorageStatusName!=null}">
+                                    <input type="text" class="form-control col-md-7 col-xs-12" readonly="readonly"
+                                           value="${workorder.outStorageStatusName}" name="outStorageStatus"
+                                           id="outStorageStatus">
+                                </c:when>
+                                <c:otherwise>
+                                    暂无
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                     <div class="item form-group">
@@ -417,7 +401,7 @@
     </div>
     <%@include file="../common/footer.jsp" %>
     <script>
-        $("#back").on("click",function(){
+        $("#back").on("click", function () {
             window.location.href = "../queryworkorder";
         });
     </script>

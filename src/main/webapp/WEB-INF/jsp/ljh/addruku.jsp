@@ -15,107 +15,81 @@
 			<div class="x_content">
 				<div class="clearfix"></div>
 				<form id="myForm" class="form-horizontal form-label-left"
-					action="appinfoaddsave" method="post" enctype="multipart/form-data">
-
-
+					action="${pageContext.request.contextPath}/filiale/saveinstorage" method="post" enctype="multipart/form-data">
+					<input  hidden="hidden" type="text" name="id"  value="${workorder.id}">
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							for="name">接收单位 
+							   for="workNum">工单号
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input id="supportROM" class="form-control col-md-7 col-xs-12"
-								name="supportROM" data-validate-length-range="20"
-								data-validate-words="1" required="required" 
-								type="text" readonly="true" value="仓库1">
-						</div>
-						<span id="checksupportROM" style="position: relative; top: 7px;"></span>
-					</div>
-
-
-
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							for="name">发货单位 
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input id="supportROM" class="form-control col-md-7 col-xs-12"
-								name="supportROM" data-validate-length-range="20"
-								data-validate-words="1" readonly="true" type="text"
-								readonly="true" value="2号网点">
+							<input class="form-control col-md-7 col-xs-12" readonly="readonly"
+								   type="text" name="workNum" id="workNum" value="${workorder.workNum}">
 						</div>
 					</div>
-
-
-
-
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							for="textarea">接货时间 
+							   for="orderNum">关联订单号
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input id="appInfo" name="appInfo" required="required"
-								class="form-control col-md-7 col-xs-12" readonly="true"
-								value="2018/7/15"></input>
+							<input type="text" class="form-control col-md-7 col-xs-12" readonly="readonly"
+								   value="${workorder.orderNum}" name="orderNum" id="orderNum">
+						</div>
+					</div>
+					<div class="item form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12"
+							   for="packageId">合包号
+						</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<c:choose>
+								<c:when test="${workorder.packageId!=null}">
+									<input class="form-control col-md-7 col-xs-12" value="${workorder.packageId}"
+										   type="text" readonly="readonly" name="packageId" id="packageId">
+								</c:when>
+								<c:otherwise>
+									暂未进行合包
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 
-
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							for="textarea">单号 
+							   for="productNum">物件编号
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input id="appInfo" name="appInfo" required="required"
-								class="form-control col-md-7 col-xs-12" readonly="true"
-								value="1"></input>
+							<input class="form-control col-md-7 col-xs-12" readonly="readonly"
+								   name="productNum" id="productNum" value="${workorder.productNum}" type="text">
 						</div>
 					</div>
-
-
-
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							for="textarea">合包号
+							   for="productType">货物类型
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input id="appInfo" name="appInfo" required="required"
-								class="form-control col-md-7 col-xs-12" readonly="true"
-								value="1001"></input>
+							<input type="text" class="form-control col-md-7 col-xs-12" readonly="readonly"
+								   value="${workorder.productTypeName}" name="productType" id="productType">
 						</div>
 					</div>
-
-
-
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							for="textarea">重量：kg 
+							   for="realWeight">实际重量:kg<span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input id="appInfo" name="appInfo" required="required"
-								class="form-control col-md-7 col-xs-12" readonly="true"
-								value="2"></input>
+							<input class="form-control col-md-7 col-xs-12" value="${workorder.realWeight}"
+								   required="required"
+								   type="number" name="realWeight" id="realWeight">
 						</div>
 					</div>
-
-
-
-
-					
-
-
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							for="textarea">状态
+							   for="productLocation">物件位置<span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input id="appInfo" name="appInfo" required="required"
-								class="form-control col-md-7 col-xs-12" readonly="true"
-								value="初始入库"></input>
+							<input type="text" value="${workorder.productLocationName}"
+								   class="form-control col-md-7 col-xs-12" name="productLocationName" id="productLocation"
+								   readonly="readonly">
 						</div>
 					</div>
-
-
-
 
 					<div class="ln_solid"></div>
 					<div class="form-group">
