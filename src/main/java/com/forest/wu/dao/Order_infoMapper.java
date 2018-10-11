@@ -131,4 +131,7 @@ public interface Order_infoMapper {
      * @return：
      */
     Integer getMonthOrder(@Param(value = "start")String start,@Param(value = "end")String end);
+
+
+    public  Integer  selectOrderCount(@Param("day")Integer pastDay);
 }
