@@ -342,6 +342,7 @@
             </if>
         </trim>
     </insert>
+
     <update id="updateByPrimaryKeySelective" parameterType="com.forest.wu.pojo.Workorder">
         update workorder
         <set>
@@ -638,4 +639,18 @@
             and gAddress like CONCAT ('%',#{gAddress},'%')
         </if>
     </select>
+
+
+    <!--肖林辉 查单个工单-->
+
+    <select id="selectByPrimaryKeyByCourier" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="filiale_workorder_List"/>
+        from workorder w
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+
+
+
 </mapper>

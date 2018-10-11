@@ -47,13 +47,14 @@ public interface CenterService {
 
     public Workorder selectWorkOrdById(Integer id) throws Exception;
 
+
     //返货单部分
 
-    public List<Workorder> selectReturn(Return returnorder) throws Exception;
+    public List<Return> selectReturn(Return returnorder) throws Exception;
 
+    public Return selectRetrunById(String id) throws Exception;
 
-
-    public int delectReturn(Return returnorder) throws Exception;
+    public int delectReturn(String id) throws Exception;
 
 
     public int updateReturn(Return returnorder) throws Exception;
@@ -81,6 +82,13 @@ public interface CenterService {
 
     public int delectSonCompany(Integer id) throws Exception;
 
+    //新增分公司操作员
     public int addSonCompanyPerson(User user)throws Exception;
+
+    public List<User> selectCompanyPerson(User user) throws Exception;
+
+    public int delectSonCompanyPerson(Integer id)throws Exception;
+
+    public User selectByUserId(Integer id)throws Exception;
     
 }

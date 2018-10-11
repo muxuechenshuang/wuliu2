@@ -2,6 +2,7 @@ package com.forest.wu.dao;
 
 import com.forest.wu.pojo.Dictionary;
 import com.forest.wu.pojo.Workorder;
+import org.omg.CORBA.INTERNAL;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -86,5 +87,17 @@ public interface WorkorderMapper {
      **/
 
     public List<Workorder> selectWorkOrderByCourier(Workorder workorder);
+
+
+    /**
+    * @author: 肖林辉 
+    * @Description   查询一个工单通过id
+    * @Date: 10:33 2018/10/9/009
+    * @Param：[id]
+    * @return：com.forest.wu.pojo.Workorder
+    **/
+    
+    public Workorder selectByPrimaryKeyByCourier(Integer id);
+
 
 }

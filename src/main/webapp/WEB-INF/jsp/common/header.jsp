@@ -52,9 +52,9 @@
 					<!-- menu profile quick info -->
 					<div class="profile">
 						<div class="profile_pic">
-							<img
-								src="${pageContext.request.contextPath }/statics/images/img.jpg"
-								alt="..." class="img-circle profile_img">
+							<a href="/wuliu/homepage"><img
+								src="${pageContext.request.contextPath }${user.picPath}"
+								alt="..." class="img-circle profile_img"></a>
 						</div>
 						<div class="profile_info">
 							<span>Welcome,</span>
@@ -70,12 +70,12 @@
 					<div id="sidebar-menu"
 						class="main_menu_side hidden-print main_menu">
 						<div class="menu_section">
-							<h3>${devUserSession.devName }</h3>
+							<h3>${user.username }</h3>
 							<ul class="nav side-menu">
 
 
 								<li>
-									<c:if test="${user.type eq 1 }">
+									<c:if test="${sessionScope.user.type eq 1 }">
 								<li><a><i class="fa fa-edit"></i> 客户(任一)<span
 										class="fa fa-chevron-down"></span>
 								</a>
@@ -93,7 +93,7 @@
 
 
 								<!--肖林辉  -->
-								<c:if test="${user.type eq 2 }">
+								<c:if test="${sessionScope.user.type eq 2 }">
 
 								<li><a><i class="fa fa-home"></i>快递员  肖林辉<span
 										class="fa fa-chevron-down"></span>
@@ -103,35 +103,38 @@
 										</li>
 										<li><a href="/order/toworkorder?courierNum=${user.id}">查询工单</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath }/chartjs.html">图形报表</a>
+										<li><a href="/order/baobiao_someorder?courierNum=${user.id}">图形报表</a>
 										</li>
 									</ul></li>
 								</c:if>
 
 								<!--李普强  -->
 
-								<c:if test="${user.type eq 3 }">
-								<li><a><i class="fa fa-home"></i> 网点(李普强) <span
-										class="fa fa-chevron-down"></span>
-								</a>
-									<ul class="nav child_menu">
-										<li><a href="${pageContext.request.contextPath}/wuliu/yuan">员工管理</a>
-										</li>
+								<c:if test="${sessionScope.user.type eq 3 }">
+									<!--李普强  -->
+									<li><a><i class="fa fa-home"></i> 网点(李普强) <span
+											class="fa fa-chevron-down"></span>
+									</a>
+										<ul class="nav child_menu">
+											<li>
+												<a href="${pageContext.request.contextPath}/wuliu/yuan">员工管理</a>
+											</li>
 
-										<li><a href="${pageContext.request.contextPath}/wuliu/dingdan">查看用户订单</a>
-										</li>
-									<!-- 	<li><a href="shenghe_lpq.jsp">审核订单</a>
-										</li> -->
-										<li><a href="${pageContext.request.contextPath}/lpq/gongdan_lpq.jsp">确认工单</a>
-										</li>
-										<li><a href="${pageContext.request.contextPath}/lpq/fenpei2.jsp">分配工单</a>
-										</li>
-										<li><a href="${pageContext.request.contextPath}/lpq/mix-line-bar.jsp">网点报表</a>
-										</li>
-									</ul></li>
+											<li><a href="${pageContext.request.contextPath}/wuliu/dingdan">查看用户订单</a>
+											</li>
+											<!-- 	<li><a href="shenghe_lpq.jsp">审核订单</a>
+                                                </li> -->
+											<li><a href="${pageContext.request.contextPath}/wuliu/gong">确认工单</a>
+											</li>
+											<li><a href="${pageContext.request.contextPath}/wuliu/fengong">分配工单</a>
+											</li>
+											<li><a href="${pageContext.request.contextPath}/wuliu/biao">网点报表</a>
+											</li>
+										</ul>
+									</li>
 								</c:if>
 
-								<c:if test="${user.type eq 4 }">
+								<c:if test="${sessionScope.user.type eq 4 }">
 								<!--李家和  -->
 								<li><a><i class="fa fa-home"></i>分公司管理<span
 										class="fa fa-chevron-down"></span>
@@ -146,7 +149,7 @@
 								</li>
 								</c:if>
 
-								<c:if test="${user.type eq 5 }">
+								<c:if test="${sessionScope.user.type eq 5 }">
 								<!--张展  -->
 
                                 <li><a><i class="fa fa-home"></i>总公司管理<span
@@ -156,13 +159,13 @@
 									<ul class="nav child_menu">
 
 										<li><a href="/center/toselectworkorder">查询工单（总部）</a></li>
-										<li><a href="/center/todetail">工单详情</a></li>
 										<li><a href="/center/returnlist">返货单查询</a></li>
 										<li><a href="/center/returndetail">审核返货单</a></li>
 										<li><a href="/center/addsoncompany">新增分公司</a></li>
 										<li><a href="/center/tosoncompanylist">分公司管理</a></li>
-										<li><a href="/center/soncompanydetail">分公司详情（修改）</a></li>
+										<%--<li><a href="/center/soncompanydetail">分公司详情（修改）</a></li>--%>
 										<li><a href="/center/addsonperson">新增分公司管理</a></li>
+										<li><a href="/center/finduser">查询分公司管理</a></li>
 										<li><a href="/center/baobiao1">报表</a></li>
 							</ul></li>
 								</c:if>
@@ -201,7 +204,7 @@
 							<li class=""><a href="javascript:;"
 								class="user-profile dropdown-toggle" data-toggle="dropdown"
 								aria-expanded="false"> <img
-									src="${pageContext.request.contextPath }/statics/images/img.jpg"
+									src="${pageContext.request.contextPath }${user.picPath}"
 									alt="">${devUserSession.devCode } <span
 									class=" fa fa-angle-down"></span> </a>
 								<ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -211,52 +214,41 @@
 									</li>
 								</ul></li>
 
-							<li role="presentation" class="dropdown">
 
-								<a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-									<i class="fa fa-envelope-o"></i>
-									<span class="badge bg-green">2</span>
-								</a>
-								<ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-									<li>
-										<a>
-											<!-- <span class="image"><img src="" alt="Profile Image"></span> -->
-											<span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-											<span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-										</a>
-									</li>
+                        <c:if test="${noteList!=null}">
+                        <li role="presentation" class="dropdown">
 
-									<li>
-										<a>
-											<!-- <span class="image"><img src="" alt="Profile Image"></span> -->
-											<span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-											<span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-										</a>
-									</li>
-									<li>
-										<div class="text-center">
-											<a>
-												<strong>See All Alerts</strong>
-												<i class="fa fa-angle-right"></i>
-											</a>
-										</div>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</nav>
-				</div>
-			</div>
-			<!-- /top navigation -->
-			<div class="right_col" role="main">
-				<div class="">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green">2</span>
+                            </a>
+                            <ul id="note" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                                <c:forEach items="${noteList}" var="note">
+                                    <li><a>
+                                        <span>${note.clientName}</span>
+                                        <span class="time"><fmt:formatDate value="${note.sendTime}" pattern="yyyy-MM-dd HH:ss:mm"/></span>
+                                        <span class="message">${note.noteText}</span>
+                                    </a></li>
+                                </c:forEach>
+
+
+                                <%--<li>
+                                    <div class="text-center">
+                                        <a>
+                                            <strong>See All Alerts</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>--%>
+                            </ul>
+                        </li>
+                        </c:if>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+        <div class="right_col" role="main">
+            <div class="">

@@ -59,7 +59,7 @@
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<select name="queryOrderStatus" class="form-control">
 											<option value="">--请选择--</option>
-										<c:if test="${flatFormList != null }">
+										<c:if test="${orderStatusList != null }">
 											<c:forEach var="status" items="${orderStatusList}">
 												<option
 													<c:if test="${status.valueId == orderStatus }">selected="selected"</c:if>
@@ -75,7 +75,12 @@
 					</ul>
 				</form>
 			</div>
-		
+
+			<c:if test="${nullListErro != null}">
+				<h1>${nullListErro}</h1>
+			</c:if>
+
+			<c:if test="${orderList != null}">
 			<div class="x_title">
 				<h2>您的快递</h2>
 				<table id="datatable-responsive"
@@ -100,6 +105,10 @@
 								aria-controls="datatable-responsive" rowspan="1" colspan="1"
 								aria-label="First name: activate to sort column descending"
 								aria-sort="ascending">订单状态</th>
+							<th class="sorting_asc" tabindex="0"
+								aria-controls="datatable-responsive" rowspan="1" colspan="1"
+								aria-label="First name: activate to sort column descending"
+								aria-sort="ascending">是否付款</th>
 							<th class="sorting" tabindex="0"
 								aria-controls="datatable-responsive" rowspan="1" colspan="1"
 								style="width: 130px;"
@@ -107,13 +116,20 @@
 								操作</th>
 						</tr>
 					</thead>
+
 					<tbody>
 					<c:forEach items="${orderList}" var="order">
-						<tr role="row" class="odd">
+						<tr role="row" class="odd orderList">
 							<td>${order.orderNumber}</td>
 							<td>${order.gName}</td>
 							<td>${order.gTel}</td>
-							<td>${order.status}</td>
+							<td id="status${order.id}">${order.statusName}</td>
+							<td>
+								<c:if test="${order.isPay==null}">
+									未付款
+								</c:if>
+									${order.isPay}
+							</td>
 							<td>
 								<div class="btn-group">
 									<button type="button" class="btn btn-danger">点击操作</button>
@@ -125,13 +141,27 @@
 										<span class="sr-only">Toggle Dropdown</span>
 									</button>
 									<ul class="dropdown-menu" role="menu">
-										<li><a class="viewApp" appinfoid=${order.id },
-											data-toggle="tooltip" data-placement="top" title=""
+										<li><a class="showOrder" orderId=${order.id}
+											data-toggle="tooltip" data-placement="top"
 											data-original-title="查看订单的详情信息">查看明细</a>
 										</li>
-										<li><a class="deleteApp" appinfoid=${prder.id },
-											status="${order.status }"
-											data-toggle="tooltip" data-placement="top" title=""
+										<li><%--<a class="payOrder" orderId=${order.id}
+											   isPay="${order.isPay}"
+											   href="/calculate/goPay"
+											   data-toggle="tooltip" data-placement="top"
+											   data-original-title="">我要付费</a>--%>
+											<form method="post" action="/calculate/goPay" id="pay">
+                                                <input type="hidden" name="orderNumber" value="${order.orderNumber}">
+												<input type="hidden" id="isPay" value="${order.isPay}">
+                                                <input type="hidden" name="product" value="${order.product}">
+                                                <input type="hidden" name="price" value="${order.expenses}">
+                                                <input type="hidden" name="comment" value="${order.comment}">
+												<input type="submit" value="我要付费" class="payOrder" style="margin-left: 12px;">
+											</form>
+										</li>
+										<li><a class="offOrder" orderId=${order.id}
+											orderStatus="${order.status}"
+											data-toggle="tooltip" data-placement="top"
 											data-original-title="">取消预约</a>
 										</li>
 									</ul>
@@ -141,10 +171,50 @@
 					</c:forEach>
 					</tbody>
 				</table>
+
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="dataTables_info" id="datatable-responsive_info"
+                             role="status" aria-live="polite">共${pages.count}条记录
+                            ${pages.pageNo }/${pages.pageCount }页</div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="dataTables_paginate paging_simple_numbers"
+                             id="datatable-responsive_paginate">
+                            <ul class="pagination">
+                                <c:if test="${pages.pageNo > 1}">
+                                    <li class="paginate_button previous"><a
+                                            href="javascript:page_nav(document.forms[0],1);"
+                                            aria-controls="datatable-responsive" data-dt-idx="0"
+                                            tabindex="0">首页</a></li>
+                                    <li class="paginate_button "><a
+                                            href="javascript:page_nav(document.forms[0],${pages.pageNo-1});"
+                                            aria-controls="datatable-responsive" data-dt-idx="1"
+                                            tabindex="0">上一页</a></li>
+                                </c:if>
+                                <c:if test="${pages.pageNo < pages.pageCount }">
+                                    <li class="paginate_button "><a
+                                            href="javascript:page_nav(document.forms[0],${pages.pageNo+1});"
+                                            aria-controls="datatable-responsive" data-dt-idx="1"
+                                            tabindex="0">下一页</a></li>
+                                    <li class="paginate_button next"><a
+                                            href="javascript:page_nav(document.forms[0],${pages.pageCount});"
+                                            aria-controls="datatable-responsive" data-dt-idx="7"
+                                            tabindex="0">最后一页</a></li>
+                                </c:if>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+				</c:if>
+
 				<div class="clearfix"></div>
 			</div>
 
 			<div class="clearfix"></div>
+
+		<div id="info" style="display: none">
 
 			<div class="x_title">
 				<h2>订单详情</h2>
@@ -153,10 +223,10 @@
 			<form class="form-horizontal form-label-left">
 			
 			<div id="wizard" class="form_wizard wizard_horizontal">
-                      <ul class="wizard_steps anchor">
+                      <ul class="wizard_steps anchor" id="productLocation">
 
                         <li>
-                          <a href="#step-1" class="selected" isdone="1" rel="1">
+                          <a href="#step-1" class="done" isdone="1" rel="1">
                             <span class="step_no">1</span>
                             <span class="step_descr">
                                  	寄件人<br>
@@ -167,7 +237,7 @@
                         <li>
                           <a href="#step-2" class="disabled" isdone="0" rel="2">
                             <span class="step_no">2</span>
-                            <span class="step_descr">
+                            <span class="step_descr" id="sBranchName">
                                  	寄件网点<br>
                             </span>
                           </a>
@@ -176,7 +246,7 @@
                         <li>
                           <a href="#step-3" class="disabled" isdone="0" rel="3">
                             <span class="step_no">3</span>
-                            <span class="step_descr">
+                            <span class="step_descr" id="sCityName">
                                 	 寄件城市<br>
                              </span>
                           </a>
@@ -185,7 +255,7 @@
                         <li>
                           <a href="#step-4" class="disabled" isdone="0" rel="4">
                             <span class="step_no">4</span>
-                            <span class="step_descr">
+                            <span class="step_descr" id="gCityName">
                                  	收件城市<br>
                               </span>
                           </a>
@@ -194,7 +264,7 @@
                         <li>
                           <a href="#step-5" class="disabled" isdone="0" rel="5">
                             <span class="step_no">5</span>
-                            <span class="step_descr">
+                            <span class="step_descr" id="gBranchName">
                                 	 收件网点<br>
                               </span>
                           </a>
@@ -214,8 +284,7 @@
 				<input type="hidden" name="id" value="${order.id}">
 
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="orderNumber">订单号
-						<span class="required">*</span> </label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="orderNumber">订单号</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
 						<input class="form-control col-md-7 col-xs-12" id="orderNumber"
 							value="${orderInfo.orderNumber}" type="text" readonly="readonly">
@@ -223,94 +292,110 @@
 				</div>
 
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="orderStatus">订单类型
-						<span class="required">*</span> </label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">订单目前状态</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-						<input class="form-control col-md-7 col-xs-12" id="orderStatus"
+						<input class="form-control col-md-7 col-xs-12" id="status"
 							value="${orderInfo.status}" type="text" readonly="readonly">
 					</div>
 				</div>
 
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">订单现在所在位置
-						<span class="required">*</span> </label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="sName">寄件人姓名</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-						<input class="form-control col-md-7 col-xs-12"
-							value="${orderInfo.softwareName}" type="text" readonly="readonly">
+						<input class="form-control col-md-7 col-xs-12" id="sName"
+							value="${orderInfo.sName}" type="text" readonly="readonly">
 					</div>
 				</div>
 
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">订单目前状态
-						<span class="required">*</span> </label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="sAddress">寄件人地址</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-						<input class="form-control col-md-7 col-xs-12"
-							value="${appInfo.softwareName}" type="text" readonly="readonly">
+						<input class="form-control col-md-7 col-xs-12" id="sAddress"
+							value="${orderInfo.sAddress}" type="text" readonly="readonly">
 					</div>
 				</div>
 
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">寄件人姓名
-						<span class="required">*</span> </label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="sTel">寄件人电话</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-						<input class="form-control col-md-7 col-xs-12"
-							value="${appInfo.softwareName}" type="text" readonly="readonly">
+						<input class="form-control col-md-7 col-xs-12" id="sTel"
+							value="${orderInfo.sTel}" type="text" readonly="readonly">
 					</div>
 				</div>
 
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">寄件人地址
-						<span class="required">*</span> </label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="gName">收件人姓名</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-						<input class="form-control col-md-7 col-xs-12"
-							value="${appInfo.softwareName}" type="text" readonly="readonly">
+						<input class="form-control col-md-7 col-xs-12" id="gName"
+							value="${orderInfo.gName}" type="text" readonly="readonly">
 					</div>
 				</div>
 
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">寄件人电话
-						<span class="required">*</span> </label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="gAddress">收件人地址</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-						<input class="form-control col-md-7 col-xs-12"
-							value="${appInfo.softwareName}" type="text" readonly="readonly">
+						<input class="form-control col-md-7 col-xs-12" id="gAddress"
+							value="${orderInfo.gAddress}" type="text" readonly="readonly">
 					</div>
 				</div>
 
 				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">收件人姓名
-						<span class="required">*</span> </label>
+					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="gTel">收件人电话</label>
 					<div class="col-md-6 col-sm-6 col-xs-12">
-						<input class="form-control col-md-7 col-xs-12"
-							value="${appInfo.softwareName}" type="text" readonly="readonly">
+						<input class="form-control col-md-7 col-xs-12" id="gTel"
+							value="${orderInfo.gTel}" type="text" readonly="readonly">
 					</div>
 				</div>
 
-				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">收件人地址
-						<span class="required">*</span> </label>
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<input class="form-control col-md-7 col-xs-12"
-							value="${appInfo.softwareName}" type="text" readonly="readonly">
-					</div>
-				</div>
+                <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="typeName">货物类型</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input class="form-control col-md-7 col-xs-12" id="typeName"
+                               value="${orderInfo.typeName}" type="text" readonly="readonly">
+                    </div>
+                </div>
 
-				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">收件人电话
-						<span class="required">*</span> </label>
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<input class="form-control col-md-7 col-xs-12"
-							value="${appInfo.softwareName}" type="text" readonly="readonly">
-					</div>
-				</div>
+                <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="product">货物名称</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input class="form-control col-md-7 col-xs-12" id="product"
+                               value="${orderInfo.product}" type="text" readonly="readonly">
+                    </div>
+                </div>
 
-				<div class="item form-group">
-					<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">废除订单理由
-						<span class="required">*</span> </label>
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<input class="form-control col-md-7 col-xs-12"
-							value="${appInfo.softwareName}" type="text" readonly="readonly">
+                <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="riseTime">下单时间</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input class="form-control col-md-7 col-xs-12" id="riseTime"
+                               value="${orderInfo.riseTime}" type="text" readonly="readonly">
+                    </div>
+                </div>
+
+                <div class="item form-group" id="_finishTime" style="display: none;">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="finishTime">送达时间</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input class="form-control col-md-7 col-xs-12" id="finishTime"
+                               value="${orderInfo.finishTime}" type="text" readonly="readonly">
+                    </div>
+                </div>
+
+					<div class="item form-group" id="_reasonForCancle" style="display: none;">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12" for="reasonForCancle">废除订单理由</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<input class="form-control col-md-7 col-xs-12" id="reasonForCancle"
+								   value="${orderInfo.reasonForCancle}" type="text" readonly="readonly">
+						</div>
 					</div>
-				</div>
+
+                <div class="item form-group" id="_expenses" style="display: none;">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="expenses">运费</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input class="form-control col-md-7 col-xs-12" id="expenses"
+                               value="${workOrderInfo.expenses}" type="text" readonly="readonly">
+                    </div>
+                </div>
+
+            </div>
 			</form>
 			<div class="form-group">
 				<div class="col-md-6 col-md-offset-3">
@@ -321,7 +406,7 @@
 			<br />
 			<br />
 		</div>
+		</div>
 	</div>
 	<%@include file="../common/footer.jsp"%>
-	<script
-		src="${pageContext.request.contextPath }/statics/localjs/appinfoview.js"></script>
+    <script src="${pageContext.request.contextPath}/statics/js/ry/query_ry.js"></script>
