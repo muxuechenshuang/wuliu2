@@ -515,24 +515,24 @@
   </update>
 
     <!--总公司工单查询-->
-    <select id="selectWorkOrder" resultType="com.forest.wu.pojo.Workorder">
-        select
-        <include refid="Base_Column_List"/>
-        from workorder w
+    <select id="selectWorkOrder" resultMap="BaseResultMap">
+        select *
+        from workorder
         <trim prefix="where" prefixOverrides="and | or">
             <if test="workNum!=null and workNum!=''">
                 and workNum like CONCAT ('%',#{workNum},'%')
             </if>
+
             <if test="orderNum!=null and orderNum!=''">
                 and orderNum like CONCAT ('%',#{orderNum},'%')
             </if>
-            <if test="productNum!=null">
+            <if test="productNum!=null and productNum!=''">
                 and productNum=#{productNum}
             </if>
-            <if test="packageId!=null">
+            <if test="packageId!=null and packageId!=''">
                 and packageId=#{packageId}
             </if>
-            <if test="sName!=null">
+            <if test="sName!=null and sName!=''">
                 and sName=#{sName}
             </if>
             <if test="sTel!=null and sTel!=''">
@@ -556,17 +556,14 @@
             <if test="gPoint!=null and gPoint!=''">
                 and gPoint=#{gPoint}
             </if>
-            <if test="workStatus!=null">
+            <if test="workStatus!=null and workStatus!=''">
                 and workStatus=#{workStatus}
             </if>
-            <if test="gCourier!=null">
+            <if test="gCourier!=null and gCourier!=''">
                 and gCourier=#{gCourier}
             </if>
-            <if test="sCourier!=null">
+            <if test="sCourier!=null and sCourier!=''">
                 and sCourier=#{sCourier}
-            </if>
-            <if test="auditStatus!=null and auditStatus!=''">
-                and auditStatus=#{auditStatus}
             </if>
         </trim>
     </select>

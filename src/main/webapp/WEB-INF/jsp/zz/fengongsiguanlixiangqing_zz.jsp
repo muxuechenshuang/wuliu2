@@ -65,12 +65,22 @@
                         </div>
                     </div>
 
+                    <%--<div class="item form-group">--%>
+                        <%--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="sex">性别 <span--%>
+                                <%--class="required">*</span></label>--%>
+                        <%--<div class="col-md-6 col-sm-6 col-xs-12">--%>
+                            <%--<input type="text" class="form-control col-md-7 col-xs-12"--%>
+                                   <%--value="${user.sex}" name="sex" id="sex">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                     <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sex">性别 <span
-                                class="required">*</span></label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sex">分公司管理员性别 <span
+                                class="required">*</span>
+                        </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" class="form-control col-md-7 col-xs-12"
-                                   value="${user.sex}" name="sex" id="sex">
+                            &nbsp;&nbsp;&nbsp;<input type="radio" name="sex" id="sex" <c:if test="${user.sex eq '男'}">checked</c:if>
+                         value="男">男 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="sex" id="sex1" value="女" <c:if test="${user.sex eq '女'}">checked</c:if> >女
                         </div>
                     </div>
                     <div class="item form-group">

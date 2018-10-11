@@ -2,6 +2,9 @@ package com.forest.wu.controller;
 
 import com.forest.wu.pojo.*;
 import com.forest.wu.service.CenterService;
+import com.forest.wu.service.FilialeWorkOrderService;
+import com.forest.wu.service.OrganizationService;
+import com.forest.wu.service.WdService;
 import com.forest.wu.utils.Constants;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -17,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,6 +35,11 @@ import java.util.List;
 public class CenterController {
     @Autowired
     private CenterService centerService;
+    @Autowired
+    private OrganizationService organizationService;
+    @Autowired
+    private FilialeWorkOrderService filialeWorkOrderService;
+
 
     /**
     * author: 张展
@@ -178,7 +187,6 @@ public class CenterController {
     public String select(Organization organization, Model model, HttpSession session) {
         List<Organization> list = null;
         Integer id = 0;
-        String id1 = null;
         String phone = null;
         String name = null;
 
@@ -191,8 +199,7 @@ public class CenterController {
         id = organization.getId();
         phone = organization.getPhone();
         name = organization.getName();
-        System.out.println(list.toString());
-        model.addAttribute("id", id1);
+        model.addAttribute("id", id);
         model.addAttribute("phone", phone);
         model.addAttribute("name", name);
         model.addAttribute("list", list);
@@ -450,6 +457,8 @@ public class CenterController {
         try {
             Workorder workorder = centerService.selectWorkOrdById(Integer.valueOf(workorderid));
             model.addAttribute("workorder", workorder);
+            List<Organization> cityList = organizationService.filialeList();
+            model.addAttribute("cityList", cityList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -480,13 +489,16 @@ public class CenterController {
     public String selectworkOrder(@RequestParam(required = true, defaultValue = "1") Integer pageIndex,
                                   Workorder workorder, Model model) {
 //        String workNum = null;
-
+        List<Organization> cityList = organizationService.filialeList();
+        model.addAttribute("cityList", cityList);
         PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
         try {
 //            系统自动封装对象已经转型
 //            if (workorder.getPackageId()!=null){
 //                workorder.setPackageId(Integer.parseInt(workorder.getPackageId()));
 //            }
+            //已解决问题
+//            List<Workorder> workorderList = filialeWorkOrderService.queryWorkOrderList(workorder);
             List<Workorder> workorderList = centerService.selectWorkOrder(workorder);
             PageInfo<Workorder> p = new PageInfo<Workorder>(workorderList);
             model.addAttribute("pageIndex", p);
@@ -512,7 +524,6 @@ public class CenterController {
         model.addAttribute("gCourier", workorder.getgCourier());
         //送
         model.addAttribute("sCourier", workorder.getsCourier());
-        model.addAttribute("result", workorder.getAuditStatus());
 
 
         return "zz/gondan2_zz";
@@ -529,6 +540,8 @@ public class CenterController {
     public String tosondetail(@RequestParam(value = "organizationid") String organizationid, Model model) {
         try {
             Organization organization = centerService.selectById(Integer.valueOf(organizationid));
+            List<Organization> cityList = organizationService.filialeList();
+            model.addAttribute("cityList", cityList);
             model.addAttribute("organization", organization);
         } catch (Exception e) {
             e.printStackTrace();
@@ -586,7 +599,7 @@ public class CenterController {
     * Return：
     **/
     @RequestMapping(value = "/addSave3")
-    public String addSave3(Workorder workorder) {
+    public String addSave3(Workorder workorder,BindingResult bindingResult) {
         int id = workorder.getId();
         try {
             centerService.updateWorkOrder(workorder);
@@ -614,4 +627,64 @@ public class CenterController {
 //        model.addAttribute("order",orderList);
 //        return "zz/xiangqing_zz";
 //    }
+    /**
+     * @author: 张展
+     * @Description 获取下拉框
+     * @Date: 16:26 2018/10/4
+     * @Param：Model,String(_cityId),String(_branchId)
+     * @return：ry/send_ry 进入寄件页面
+     */
+    @RequestMapping(value = "/cityList", method = RequestMethod.GET)
+    public String cityList(Model model
+                          , @RequestParam(value = "sCity", required = false) String _cityId,
+                           @RequestParam(value = "sPoint", required = false) String _branchId
+    ) {
+        List<Organization> cityList = organizationService.filialeList();
+
+        model.addAttribute("cityList", cityList);
+
+        if (null != _cityId && !"".equals(_cityId) && null != _branchId && !"".equals(_branchId)) {
+            Integer cityId = Integer.parseInt(_cityId);
+            Integer branchId = Integer.valueOf(_branchId);
+            List<Organization> branchList = organizationService.selectByParentId(cityId);
+            model.addAttribute("branchList", branchList);
+            model.addAttribute("cityId", cityId);
+            model.addAttribute("branchId", branchId);
+        }
+
+        return "zz/gondan2_zz";
+    }
+
+    /**
+     * @author: 任一
+     * @Description ajax返回网点列表
+     * @Date: 16:28 2018/10/4
+     * @Param：
+     * @return：List<Organization>
+     */
+    @RequestMapping(value = "queryBranchList.json")
+    @ResponseBody
+    public List<Organization> queryBranchList(@RequestParam Integer parentId) {
+        List<Organization> branchList = organizationService.selectByParentId(parentId);
+        return branchList;
+    }
+
+    @RequestMapping(value = "/baobiao2")
+    public String baobiao2(){
+        return "zz/baobiao2";
+    }
+
+    @RequestMapping(value = "/baobiao3")
+    public String baobiao3(Model model){
+        List x = new ArrayList(5);
+        List y = new ArrayList(5);
+
+        for (int i=0;i<x.size();i++){
+            x.set(i, i);
+            y.set(i, i + 1);
+        }
+        model.addAttribute("x",x);
+        model.addAttribute("y",y);
+        return "zz/baobiao3";
+    }
 }

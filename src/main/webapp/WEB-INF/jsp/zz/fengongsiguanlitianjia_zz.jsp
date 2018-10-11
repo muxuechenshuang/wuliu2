@@ -72,7 +72,7 @@
                                    <%--required="required"--%>
                                    <%--placeholder="分公司管理员性别" type="text" maxlength="50">--%>
                                 &nbsp;&nbsp;&nbsp;<input type="radio" name="sex" id="sex" checked value="男">男 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="radio" name="sex" id="sex" value="女">女
+                            <input type="radio" name="sex" id="sex1" value="女">女
                         </div>
                     </div>
                     <%--<div class="item form-group">--%>
