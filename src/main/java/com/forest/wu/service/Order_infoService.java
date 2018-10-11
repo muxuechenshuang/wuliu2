@@ -149,4 +149,27 @@ public interface Order_infoService {
      * @return：
      */
     boolean offOrderById(Integer id);
+
+
+    /**
+    * @author: 肖林辉
+    * @Description  查询单个工单
+    * @Date: 10:34 2018/10/9/009
+    * @Param：[id]
+    * @return：int
+    **/
+
+    Workorder selectByPrimaryKeyByCourier(Integer id);
+
+    
+    /**
+    * @author: 肖林辉 
+    * @Description   最近一周的订单数量
+    * @Date: 15:39 2018/10/9/009
+    * @Param：[]
+    * @return：int
+    **/
+    
+    int selectOrderCount(Integer day);
+
 }

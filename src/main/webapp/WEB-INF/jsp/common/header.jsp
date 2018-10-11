@@ -103,7 +103,7 @@
 										</li>
 										<li><a href="/order/toworkorder?courierNum=${user.id}">查询工单</a>
 										</li>
-										<li><a href="${pageContext.request.contextPath }/chartjs.html">图形报表</a>
+										<li><a href="/order/baobiao_someorder?courierNum=${user.id}">图形报表</a>
 										</li>
 									</ul></li>
 								</c:if>
@@ -111,24 +111,27 @@
 								<!--李普强  -->
 
 								<c:if test="${sessionScope.user.type eq 3 }">
-								<li><a><i class="fa fa-home"></i> 网点(李普强) <span
-										class="fa fa-chevron-down"></span>
-								</a>
-									<ul class="nav child_menu">
-										<li><a href="${pageContext.request.contextPath}/wuliu/yuan">员工管理</a>
-										</li>
+									<!--李普强  -->
+									<li><a><i class="fa fa-home"></i> 网点(李普强) <span
+											class="fa fa-chevron-down"></span>
+									</a>
+										<ul class="nav child_menu">
+											<li>
+												<a href="${pageContext.request.contextPath}/wuliu/yuan">员工管理</a>
+											</li>
 
-										<li><a href="${pageContext.request.contextPath}/wuliu/dingdan">查看用户订单</a>
-										</li>
-									<!-- 	<li><a href="shenghe_lpq.jsp">审核订单</a>
-										</li> -->
-										<li><a href="${pageContext.request.contextPath}/lpq/gongdan_lpq.jsp">确认工单</a>
-										</li>
-										<li><a href="${pageContext.request.contextPath}/lpq/fenpei2.jsp">分配工单</a>
-										</li>
-										<li><a href="${pageContext.request.contextPath}/lpq/mix-line-bar.jsp">网点报表</a>
-										</li>
-									</ul></li>
+											<li><a href="${pageContext.request.contextPath}/wuliu/dingdan">查看用户订单</a>
+											</li>
+											<!-- 	<li><a href="shenghe_lpq.jsp">审核订单</a>
+                                                </li> -->
+											<li><a href="${pageContext.request.contextPath}/wuliu/gong">确认工单</a>
+											</li>
+											<li><a href="${pageContext.request.contextPath}/wuliu/fengong">分配工单</a>
+											</li>
+											<li><a href="${pageContext.request.contextPath}/wuliu/biao">网点报表</a>
+											</li>
+										</ul>
+									</li>
 								</c:if>
 
 								<c:if test="${sessionScope.user.type eq 4 }">
@@ -214,52 +217,41 @@
 									</li>
 								</ul></li>
 
-							<li role="presentation" class="dropdown">
 
-								<a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-									<i class="fa fa-envelope-o"></i>
-									<span class="badge bg-green">2</span>
-								</a>
-								<ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-									<li>
-										<a>
-											<!-- <span class="image"><img src="" alt="Profile Image"></span> -->
-											<span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-											<span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-										</a>
-									</li>
+                        <c:if test="${noteList!=null}">
+                        <li role="presentation" class="dropdown">
 
-									<li>
-										<a>
-											<!-- <span class="image"><img src="" alt="Profile Image"></span> -->
-											<span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-											<span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-										</a>
-									</li>
-									<li>
-										<div class="text-center">
-											<a>
-												<strong>See All Alerts</strong>
-												<i class="fa fa-angle-right"></i>
-											</a>
-										</div>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</nav>
-				</div>
-			</div>
-			<!-- /top navigation -->
-			<div class="right_col" role="main">
-				<div class="">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green">2</span>
+                            </a>
+                            <ul id="note" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                                <c:forEach items="${noteList}" var="note">
+                                    <li><a>
+                                        <span>${note.clientName}</span>
+                                        <span class="time"><fmt:formatDate value="${note.sendTime}" pattern="yyyy-MM-dd HH:ss:mm"/></span>
+                                        <span class="message">${note.noteText}</span>
+                                    </a></li>
+                                </c:forEach>
+
+
+                                <%--<li>
+                                    <div class="text-center">
+                                        <a>
+                                            <strong>See All Alerts</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>--%>
+                            </ul>
+                        </li>
+                        </c:if>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+        <div class="right_col" role="main">
+            <div class="">

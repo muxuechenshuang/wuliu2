@@ -79,4 +79,14 @@
       sendTime = #{sendTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <!--任一-->
+  <select id="getNoteSelf" resultType="com.forest.wu.pojo.Note">
+    select a.*,
+    (select username from user where id = a.clientId)as clientName
+    from note a
+    where clientId = #{clientId}
+    group by sendTime DESC
+    limit 0,5
+  </select>
 </mapper>

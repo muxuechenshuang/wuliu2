@@ -1,5 +1,7 @@
 package com.forest.wu.pojo;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class Note {
@@ -9,7 +11,19 @@ public class Note {
 
     private String noteText;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date sendTime;
+
+    private String clientName;
+
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
 
     public Long getId() {
         return id;

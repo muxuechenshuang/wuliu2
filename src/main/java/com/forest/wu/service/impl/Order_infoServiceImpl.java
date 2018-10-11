@@ -137,6 +137,38 @@ public class Order_infoServiceImpl implements Order_infoService {
         return orderMapper.updateOrderToWeituoStatus(order);
     }
 
+    
+    /**
+    * @author: 肖林辉 
+    * @Description  查询单个工单
+    * @Date: 10:35 2018/10/9/009
+    * @Param：[id]
+    * @return：int
+    **/
+    
+    @Override
+    public Workorder selectByPrimaryKeyByCourier(Integer id) {
+        return workorderMapper.selectByPrimaryKeyByCourier(id);
+    }
+    
+    
+    
+    /**
+    * @author: 肖林辉 
+    * @Description 最近一周的订单
+    * @Date: 15:40 2018/10/9/009
+    * @Param：[]
+    * @return：int
+    **/
+    
+    @Override
+    public int selectOrderCount(Integer day) {
+        return orderMapper.selectOrderCount(day);
+    }
+
+
+    
+
 
     /**
      * @author: 任一
@@ -207,4 +239,6 @@ public class Order_infoServiceImpl implements Order_infoService {
         }
         return flag;
     }
+
+
 }

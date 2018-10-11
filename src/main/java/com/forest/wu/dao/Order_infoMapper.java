@@ -110,4 +110,15 @@ public interface Order_infoMapper {
      * @return：
      */
     int offOrderById(@Param(value = "id")Integer id);
+
+
+    /**
+     * @author: 肖林辉
+     * @Description 查询最近一周的订单数量
+     * @Date: 15:38 2018/10/9/009
+     * @Param：[]
+     * @return：java.lang.Integer
+     **/
+
+    public  Integer  selectOrderCount(@Param("day")Integer pastDay);
 }

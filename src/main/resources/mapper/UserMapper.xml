@@ -21,13 +21,20 @@
 
     <!--肖林辉-->
     <!--查询条件   登录的快递员  网点下的所有快递员  除本身-->
-    <select id="selectCouriers" parameterType="int" resultType="com.forest.wu.pojo.User">
+    <select id="selectCouriers" parameterType="java.lang.Integer" resultType="com.forest.wu.pojo.User">
         select
         <include refid="Base_Column_List"/>
         from user
         where parentid = #{parentid} and id not in(#{id})
     </select>
-
+    <!--通过parentid在组织表中查询出他的地址-->
+    <select id="stringSite" resultType="java.lang.String">
+        select site from organization where id=#{parentid};
+    </select>
+    <!--查询所有快递员-->
+    <select id="allUser" resultType="com.forest.wu.pojo.User">
+        select * from user where type=2 and parentid=#{parentid}
+    </select>
     <!--更新一个订单对象信息-->
     <update id="updateOrder_info">
         update  order_info set
@@ -42,7 +49,59 @@
             comment=#{comment}
     where id = #{id}
     </update>
+    <!--新增一个快递员-->
+    <insert id="addUserKuai" >
 
+    insert into user (username,password,email,phone,sex,parentid,type,time)
+             values(#{username}, #{password}, #{email}, #{phone},#{sex},#{parentid}, #{type},#{time})
+    </insert>
+    <!--删除一个快递员-->
+    <delete id="deleteUser">
+        delete from user where id=#{uid}
+    </delete>
+
+    <!--分配工单后更新工单表-->
+    <update id="updateWorkor" >
+        update workorder set sCourier=#{id} where id=#{gid}
+    </update>
+
+    <!--查询出工单对象集合-->
+    <select id="selectWor" resultType="com.forest.wu.pojo.Workorder">
+        SELECT w.*,o.site FROM WORKORDER w,organization o where
+
+        w.sPoint=o.id or w.gPoint=o.id
+        <if test="id!=null">
+            and w.id=#{id}
+        </if>
+        <if test="gName!=null">
+            and w.gName like concat('%',#{gName},'%')
+        </if>
+        <if test="gTel!=null">
+            and w.gTel like concat('%',#{gTel},'%')
+        </if>
+        <if test="sName!=null">
+            and w.sName like concat('%',#{sName},'%')
+        </if>
+        <if test="sTel!=null">
+            and w.sTel like concat('%',#{sTel},'%')
+        </if>
+        <if test="workStatus!=null">
+            and w.workStatus=#{workStatus}
+        </if>
+        <if test="gCourier!=null">
+            and w.gCourier=#{gCourier}
+        </if>
+        <if test="workNum!=null">
+            and w.workNum=#{workNum}
+        </if>
+        <if test="orderNum!=null">
+            and w.orderNum=#{orderNum}
+        </if>
+        <if test="gPoint!=null">
+            and w.gPoint like concat('%',#{gPoint},'%')
+        </if>
+        order  by w.risetime desc
+    </select>
 
     <!--通过id查询一个订单对象-->
     <select id="selectOrder_Info" resultType="com.forest.wu.pojo.Order_info">
@@ -50,35 +109,38 @@
         select * from order_info where id =#{id}
 
     </select>
+    <!--根据工单id查询一个工单信息-->
+    <select id="selectWorkor" resultType="com.forest.wu.pojo.Workorder">
+        select * from workorder where id=#{id}
+    </select>
     <!--查询订单-->
     <select id="selectOrder" resultType="com.forest.wu.pojo.Order_info">
-        select * from order_info where 1=1
+        select * from order_info  where branchId=#{parentid}
         <if test="id!=null">
             and id =#{id}
-
         </if>
-
         <if test="sTel!=null">
             and sTel =#{sTel}
-
         </if>
         <if test="status!=null">
             and status=#{status}
-
         </if>
         <if test="gName!=null">
             and gName like concat('%',#{gName},'%')
-
         </if>
 
     </select>
-
-
+    <!--分配订单后更新订单表信息-->
+    <update id="updateOrder">
+        update order_info set courierNumber=#{uid}
+         where id=#{orderid}
+    </update>
     <!--更新修改一个快递员信息-->
-    <update id="updateUser">
+    <update id="updateUser" >
         update user set username=#{username},email=#{email},phone=#{phone},
         sex=#{sex},parentid=#{parentid},type=#{type} where id=#{id}
     </update>
+
 
 
     <!--通过id查询出一个快递员对象-->
@@ -88,29 +150,28 @@
 
 
     <!--模糊查询，按id，username，phone，email。查询对应的快递员-->
-    <select id="selectUser" resultType="com.forest.wu.pojo.User">
-        select * from user where type=3
+    <select id="selectUsers" resultType="com.forest.wu.pojo.User">
+        select u.*,o.site from `user` u, organization o where u.parentid=o.id and
+        u.type=#{type} and u.parentid=#{parentid}
         <if test="id!=''">
-            and id like concat('%',#{id},'%')
+            and u.id=#{id}
         </if>
         <if test="username!=''">
-            and username like concat('%',#{username},'%')
+            and u.username like concat('%',#{username},'%')
         </if>
         <if test="phone!=''">
-            and phone like concat('%',#{phone},'%')
+            and u.phone like concat('%',#{phone},'%')
         </if>
         <if test="email!=''">
-            and email like concat('%',#{email},'%')
+            and u.email like concat('%',#{email},'%')
         </if>
-
-        order by time limit #{pageNo},#{pageSize}
-
+        order by time desc limit #{pageNo},#{pageSize}
     </select>
 
     <!--按id，username，phone，email，模糊查询，type类型为3，也就是快递员查询总记录数-->
-    <select id="count" resultType="int">
+    <select id="count" resultType="java.lang.Integer" >
 
-        select count(1) from user where type =3
+        select count(1) from user where type=#{type} and parentid=#{parentid}
         <if test="id!=''">
             and id like concat('%',#{id},'%')
         </if>
@@ -126,15 +187,15 @@
 
     </select>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from user
-        where id = #{id,jdbcType=INTEGER}
+      select
+      <include refid="Base_Column_List" />
+      from user
+      where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from user
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
+      delete from user
+      where id = #{id,jdbcType=INTEGER}
+    </delete>
     <insert id="insert" parameterType="com.forest.wu.pojo.User">
     insert into user (id, username, password,
       email, phone, sex,

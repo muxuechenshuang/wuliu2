@@ -42,7 +42,7 @@
        返回订单集合
      -->
     <select id="selectOneOrderByCourier" parameterType="int" resultType="com.forest.wu.pojo.Order_info">
-        select ord.*,og.name
+        select ord.*,og.name as pointName
         from order_info  ord,Organization og
         where ord.id = #{id} and  ord.branchId = og.id
     </select>
@@ -426,9 +426,9 @@
     <select id="getMyOrderList" resultType="com.forest.wu.pojo.Order_info">
         SELECT a.*,
         (SELECT valueName FROM dictionary WHERE typeCode = 'orderStatus' AND valueId = a.status)AS statusName,
-        (SELECT valueName FROM dictionary WHERE typeCode = 'isPay'
-        AND valueId = (SELECT isPay FROM workorder
-        WHERE orderNum = a.`orderNumber`)) AS isPay
+        (SELECT valueName FROM dictionary WHERE typeCode = 'isPay'AND valueId =
+            (SELECT isPay FROM workorder WHERE orderNum = a.`orderNumber`)) AS isPay,
+        (select expenses from workorder where orderNum = a.orderNumber) as expenses
         FROM order_info a
         <trim prefix="where" prefixOverrides="and | or">
             <if test="userId != null">
@@ -476,4 +476,11 @@
         set status = 4
         where id = #{id}
     </update>
+
+
+    <!--查询最近7天的订单数量-->
+
+    <select id="selectOrderCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+       SELECT count(1) FROM order_info WHERE DATEDIFF(riseTime,NOW())=#{day}
+    </select>
 </mapper>

@@ -52,6 +52,7 @@ public class LoginController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String userAll(@RequestParam String user, @RequestParam String password, HttpSession session,HttpServletResponse response) throws IOException {
         List<User> ss = userService.selectULogin();
+
         //循环查询
         int i = 0;
         do {
@@ -114,6 +115,7 @@ public class LoginController {
         login.setEmail(user.getEmail());
         login.setPhone(user.getPhone());
         login.setType(1);
+        login.setPicPath("/statics/uploadfiles/user.png");
         userService.addLogin(login);
         return "jzl/index";
     }
@@ -171,6 +173,7 @@ public String persona(User user, BindingResult bindingResult, HttpServletRequest
         user.setPicPath(PicPath);
         user.setId(Integer.parseInt(userid));
         userService.upHome(user);
+        session.setAttribute("user",user);
         return "jzl/personal";
 
 }

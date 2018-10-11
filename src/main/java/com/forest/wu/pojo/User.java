@@ -24,12 +24,19 @@ public class User {
 
     private Integer type;
 
+    private String  site;
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date time;//时间
 
     private String picPath;//头像地址
 
+    public String getSite() {
+        return site;
+    }
 
+    public void setSite(String site) {
+        this.site = site;
+    }
 
     /*
     * @author: 蒋梓伦

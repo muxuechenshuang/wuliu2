@@ -169,7 +169,7 @@
                                                     <span class="sr-only">Toggle Dropdown</span>
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="${pageContext.request.contextPath}/order/toorderdesc?id=${orderL.id}&parentid=${user.parentid}&usertype=${user.type}" class="addVersion"  data-toggle="tooltip" data-placement="top" title="" data-original-title="查看订单">查看订单</a>
+                                                    <li><a href="${pageContext.request.contextPath}/order/toorderdesc?id=${orderL.id}" class="addVersion"  data-toggle="tooltip" data-placement="top" title="" data-original-title="查看订单">查看订单</a>
                                                     <li><a href="${pageContext.request.contextPath}/order/toaddgongdan?id=${orderL.id}" class="addVersion"  data-toggle="tooltip" data-placement="top" title="" data-original-title="生成工单">生成工单</a>
                                                     <li><a href="${pageContext.request.contextPath}/order/toweituo?id=${orderL.id}" class="addVersion"  data-toggle="tooltip" data-placement="top" title="" data-original-title="委托">委托</a>
                                                     </li>
