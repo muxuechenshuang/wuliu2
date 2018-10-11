@@ -314,6 +314,10 @@
         ]
     };
 
+
+
+
+
     myChart.showLoading();	//数据加载完之前先显示一段简单的loading动画
 
     var tems=[];		//存放订单数量

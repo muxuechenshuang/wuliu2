@@ -124,7 +124,7 @@
 											</li>
 											<!-- 	<li><a href="shenghe_lpq.jsp">审核订单</a>
                                                 </li> -->
-											<li><a href="${pageContext.request.contextPath}/wuliu/gong">确认工单</a>
+											<li><a href="${pageContext.request.contextPath}/wuliu/gongs">确认工单</a>
 											</li>
 											<li><a href="${pageContext.request.contextPath}/wuliu/fengong">分配工单</a>
 											</li>
