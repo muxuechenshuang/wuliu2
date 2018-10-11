@@ -284,7 +284,7 @@ public class CenterController {
      * @Return：java.lang.String
      **/
     @RequestMapping(value = "/addsonperson")
-    public String addSonCompanyPerson(@ModelAttribute("user") User user) {
+    public String addSonCompanyPerson() {
         return "zz/fengongsiguanlitianjia_zz";
     }
     
@@ -355,7 +355,7 @@ public class CenterController {
                 } catch (Exception e) {
                     e.printStackTrace();
                     request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_2);
-                    return "/center/addsonperson";
+                    return "redirect:/center/addsonperson";
                 }
                 PicPath = request.getContextPath() + "/statics/uploadfiles/" + fileName;
                 logoLocPath = path + File.separator + fileName;
@@ -366,6 +366,7 @@ public class CenterController {
         }
         user.setPicPath(PicPath);
         user.setTime(new Date());
+        user.setType(4);
         try {
             if (centerService.addSonCompanyPerson(user) > 0) {
                 //要显示新增加的信息要重定向(会刷新一次)

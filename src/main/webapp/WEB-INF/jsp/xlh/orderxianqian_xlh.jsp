@@ -7,7 +7,7 @@
     <div class="x_panel">
       <div class="x_title">
         <h2>
-          订单详情${user.type}<i class="fa fa-user"></i><small></small>
+          订单详情<i class="fa fa-user"></i><small></small>
 
         </h2>
         <div class="clearfix"></div>
@@ -99,7 +99,7 @@
                     class="required"></span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input class="form-control col-md-7 col-xs-12" value="${order.name}" readonly
+              <input class="form-control col-md-7 col-xs-12" value="${order.pointName}" readonly
                      type="text">
             </div>
           </div>

@@ -69,7 +69,7 @@
 							for="sCity">寄件人城市 <span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<input type="text" class="form-control col-md-7 col-xs-12"   readonly
-								   value="${workorder.sCity}" name="sCity" id="sCity">
+								   value="${workorder.sCityName}" name="sCity" id="sCity">
 
 						</div>
 					</div>
@@ -80,7 +80,7 @@
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<input type="text" class="form-control col-md-7 col-xs-12"  readonly
-								value="${workorder.sPoint}" name="sPoint" id="sPoint">
+								value="${workorder.sPointName}" name="sPoint" id="sPoint">
 						</div>
 					</div>
 					<div class="item form-group">
@@ -115,7 +115,7 @@
 							for="gCity">收件人城市 <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" value="${workorder.gCity}"   readonly
+							<input type="text" value="${workorder.gCityName}"   readonly
 								class="form-control col-md-7 col-xs-12" name="gCity" id="gCity">
 						</div>
 					</div>
@@ -125,7 +125,7 @@
 							for="gPoint">收件人网点 <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" value="${workorder.gPoint}"   readonly
+							<input type="text" value="${workorder.gPointName}"   readonly
 								class="form-control col-md-7 col-xs-12" name="gPoint" id="gPoint">
 						</div>
 					</div>
@@ -145,7 +145,7 @@
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<input type="text" class="form-control col-md-7 col-xs-12"  readonly
-								value="${workorder.productType}" name="productType" id="productType">
+								value="${workorder.productTypeName}" name="productType" id="productType">
 						</div>
 					</div>
 					<div class="item form-group">
@@ -162,19 +162,11 @@
 							for="workStatus">工单状态 <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input class="form-control col-md-7 col-xs-12" value="${workorder.workStatus}"  readonly
+							<input class="form-control col-md-7 col-xs-12" value="${workorder.workStatusName}"  readonly
 								   name="workStatus" id="workStatus" type="text">
 						</div>
 					</div>
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							for="comment">备注 <span class="required">*</span>
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" value="${workorder.comment}"   readonly
-								class="form-control col-md-7 col-xs-12" name="comment" id="comment">
-						</div>
-					</div>
+
 
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
@@ -204,15 +196,7 @@
 								   type="text" name="sCourier" id="sCourier">
 						</div>
 					</div>
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							for="preVolume">实际体积 <span class="required">*</span>
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input class="form-control col-md-7 col-xs-12"   readonly
-								   name="preVolume" id="preVolume"value="${workorder.preVolume}" type="text" >
-						</div>
-					</div>
+
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
 							for="riseTime">生成时间 <span class="required">*</span>
@@ -223,15 +207,7 @@
 						</div>
 					</div>
 
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							for="firInStorage">初次入库时间 <span class="required">*</span>
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" value="<fmt:formatDate value="${workorder.firInStorage}" pattern='yyyy-MM-dd HH:mm:ss'/>"  readonly
-								   class="form-control col-md-7 col-xs-12" name="firInStorage" id="firInStorage">
-						</div>
-					</div>
+
 
 
 
@@ -244,12 +220,20 @@
 							for="productLocation">物件位置 <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" value="${workorder.productLocation}"
+							<input type="text" value="${workorder.productLocationName}"
 								   readonly    class="form-control col-md-7 col-xs-12" name="productLocation" id="productLocation">
 						</div>
 					</div>
 
-
+					<div class="item form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12"
+							   for="comment">备注 <span class="required">*</span>
+						</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<input type="text" value="${workorder.comment}"   readonly
+								   class="form-control col-md-7 col-xs-12" name="comment" id="comment">
+						</div>
+					</div>
 
 
 
