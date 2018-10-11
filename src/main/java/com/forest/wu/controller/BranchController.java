@@ -290,6 +290,15 @@ public class BranchController {
         return "lpq/gongdan_lpq";
     }
 
+    //确认工单页面点击确认按钮后
+    @RequestMapping(value = "que")
+ public String getWorkor2(Model model,@RequestParam(value = "id")String id){
+       Workorder workorder= courierService.selectWorkor(Integer.valueOf(id));
+        model.addAttribute("workorder",workorder);
+        return "lpq/querengongdan2";
+    }
+
+
 
     //点击分配工单，跳转到分配工单页面
     @RequestMapping(value = "/fengong")
