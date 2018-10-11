@@ -121,4 +121,14 @@ public interface Order_infoMapper {
      **/
 
     public  Integer  selectOrderCount();
+
+    /**
+     *
+     * @author: 任一
+     * @Description 查询某时间段里订单数
+     * @Date: 14:31 2018/10/11
+     * @Param：
+     * @return：
+     */
+    Integer getMonthOrder(@Param(value = "start")String start,@Param(value = "end")String end);
 }

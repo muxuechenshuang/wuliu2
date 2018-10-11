@@ -88,6 +88,8 @@
 										</li>
 										<li><a href="/calculate/intosend">寄件服务</a>
 										</li>
+										<li><a href="/calculate/intobaobiao">报表</a>
+										</li>
 									</ul></li>
 									</c:if>
 

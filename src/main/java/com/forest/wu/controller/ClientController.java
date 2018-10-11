@@ -485,4 +485,35 @@ public class ClientController {
 
 
     //报表
+
+    /**
+     *
+     * @author: 任一
+     * @Description 进入报表页面
+     * @Date: 14:07 2018/10/11
+     * @Param：
+     * @return：
+     */
+    @RequestMapping(value = "/intobaobiao")
+    public String intoBaoBiao(){
+        return "ry/baobiao_ry";
+    }
+
+    @RequestMapping(value = "getbaobiao.json")
+    @ResponseBody
+    public Object getBaoBiao(){
+        List<Integer> result = null;
+        String[] month = {"2018-01-01","2018-02-01","2018-03-01","2018-04-01","2018-05-01",
+                "2018-06-01","2018-07-01","2018-08-01","2018-09-01","2018-10-01",
+                "2018-11-01","2018-12-01"};
+        for(int i = 0 ; i < month.length; i++){
+            String start = month[i];
+            String end = month[i+1];
+            if(month.length == i+1){
+                end = month[0];
+            }
+            result.add(order_infoService.getMonthOrder(start,end));
+        }
+        return result;
+    }
 }

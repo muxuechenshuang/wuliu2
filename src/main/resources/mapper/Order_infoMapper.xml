@@ -483,4 +483,10 @@
     <select id="selectOrderCount" resultType="java.lang.Integer">
         SELECT count(*) FROM order_info where DATE_SUB(CURDATE(), INTERVAL 7 DAY) $lt;= date(riseTime)
     </select>
+
+    <!--任一-->
+    <select id="getMonthOrder" resultType="Integer">
+        select count(*) from order_info
+        where riseTime between #{start} and #{end}
+    </select>
 </mapper>
