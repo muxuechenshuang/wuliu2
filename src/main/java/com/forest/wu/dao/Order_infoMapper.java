@@ -131,7 +131,7 @@ public interface Order_infoMapper {
      * @Param：
      * @return：
      */
-    Integer getMonthOrder(@Param(value = "start")Date start,@Param(value = "end") Date end);
+    Integer getMonthOrder(@Param(value = "userId") Integer userId,@Param(value = "start")Date start,@Param(value = "end") Date end);
 
 
     public  Integer  selectOrderCount(@Param("day")Integer pastDay);

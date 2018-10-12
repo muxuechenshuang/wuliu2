@@ -253,7 +253,7 @@ public class Order_infoServiceImpl implements Order_infoService {
      * @return：
      */
     @Override
-    public Integer getMonthOrder( String _start, String _end){
+    public Integer getMonthOrder(Integer id, String _start, String _end){
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date start = null;
         Date end = null;
@@ -263,7 +263,7 @@ public class Order_infoServiceImpl implements Order_infoService {
         }catch (ParseException e){
             e.printStackTrace();
         }
-        return orderMapper.getMonthOrder(start,end);
+        return orderMapper.getMonthOrder(id,start,end);
     }
 
 

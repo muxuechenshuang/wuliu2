@@ -164,8 +164,14 @@ public class ClientController {
             e.printStackTrace();
         }
 
+        //限制分公司
         if (branchList.size() == 0) {
             model.addAttribute("nullErro", "该城市网点正在紧张建设中");
+            model.addAttribute("cityList", cityList);
+            return "ry/branchquery_ry";
+        }
+        if(cityId != 2 && cityId != 3 && cityId != 9 && cityId != 10){
+            model.addAttribute("nullErro", "该城市分公司正在紧张建设中");
             model.addAttribute("cityList", cityList);
             return "ry/branchquery_ry";
         }
@@ -400,6 +406,10 @@ public class ClientController {
     @ResponseBody
     public List<Organization> queryBranchList(@RequestParam Integer parentId) {
         List<Organization> branchList = organizationService.selectByParentId(parentId);
+        //限制分公司选择
+        if(parentId != 2 && parentId != 3 && parentId !=9 && parentId !=10){
+            branchList =null;
+        }
         return branchList;
     }
 
@@ -553,13 +563,14 @@ public class ClientController {
      */
     @RequestMapping(value = "getbaobiao.json")
     @ResponseBody
-    public Object getBaoBiao(){
+    public Object getBaoBiao(HttpSession session){
         List<Integer> result = new ArrayList<Integer>();
         String[] month = {"2018-01-01","2018-02-01","2018-03-01","2018-04-01","2018-05-01",
                 "2018-06-01","2018-07-01","2018-08-01","2018-09-01","2018-10-01",
                 "2018-11-01","2018-12-01"};
         String start = null;
         String end = null;
+        Integer id = ((User)session.getAttribute("user")).getId();
         for(int i = 0 ; i < month.length; i++){
             start = month[i];
             if(i+1 == month.length){
@@ -567,7 +578,7 @@ public class ClientController {
             }else{
                 end = month[i+1];
             }
-            if(!result.add(order_infoService.getMonthOrder(start,end))){
+            if(!result.add(order_infoService.getMonthOrder(id,start,end))){
                 return false;
             }
         }
