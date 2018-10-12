@@ -5,20 +5,20 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 public class Outstorage {
-    private Integer outId;
+    private Long outId;
 
     private Integer sendUnit;
 
     private Integer getUnit;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-    private Date out_time;
+    private Date outStorageTime;
 
-    private Integer productNum;
+    private Long productNum;
 
-    private Integer workorderId;
+    private String workorderId;
 
-    private Integer packageId;
+    private Long packageId;
 
     private Double packageWeight;
 
@@ -36,7 +36,26 @@ public class Outstorage {
     //出库状态名称
     private String outStorageStatusName;
 
-    public Integer getWorkorderId() {
+    //分公司名称
+    private String storageIdName;
+
+    public Date getOutStorageTime() {
+        return outStorageTime;
+    }
+
+    public void setOutStorageTime(Date outStorageTime) {
+        this.outStorageTime = outStorageTime;
+    }
+
+    public String getStorageIdName() {
+        return storageIdName;
+    }
+
+    public void setStorageIdName(String storageIdName) {
+        this.storageIdName = storageIdName;
+    }
+
+    public String getWorkorderId() {
         return workorderId;
     }
 
@@ -48,7 +67,7 @@ public class Outstorage {
         this.storageId = storageId;
     }
 
-    public void setWorkorderId(Integer workorderId) {
+    public void setWorkorderId(String workorderId) {
         this.workorderId = workorderId;
     }
 
@@ -76,11 +95,11 @@ public class Outstorage {
         this.outStorageStatusName = outStorageStatusName;
     }
 
-    public Integer getOutId() {
+    public Long getOutId() {
         return outId;
     }
 
-    public void setOutId(Integer outId) {
+    public void setOutId(Long outId) {
         this.outId = outId;
     }
 
@@ -100,27 +119,27 @@ public class Outstorage {
         this.getUnit = getUnit;
     }
 
-    public Date getOut_time() {
-        return out_time;
+    public Date getoutStorageTime() {
+        return outStorageTime;
     }
 
-    public void setOut_time(Date out_time) {
-        this.out_time = out_time;
+    public void setoutStorageTime(Date outStorageTime) {
+        this.outStorageTime = outStorageTime;
     }
 
-    public Integer getProductNum() {
+    public Long getProductNum() {
         return productNum;
     }
 
-    public void setProductNum(Integer productNum) {
+    public void setProductNum(Long productNum) {
         this.productNum = productNum;
     }
 
-    public Integer getPackageId() {
+    public Long getPackageId() {
         return packageId;
     }
 
-    public void setPackageId(Integer packageId) {
+    public void setPackageId(Long packageId) {
         this.packageId = packageId;
     }
 

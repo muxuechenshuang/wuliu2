@@ -489,61 +489,61 @@ public class FilialeController {
 
 
     /**
-    * @author: 李家和
-    * @Description 跳转到入库页面
-    * @Date: 14:21 2018/10/11
-    * @Param：[session, model, workNum]
-    * @return：java.lang.String
-    **/
+     * @author: 李家和
+     * @Description 进行入库
+     * @Date: 14:21 2018/10/11
+     * @Param：[session, model, workNum]
+     * @return：java.lang.String
+     **/
     @RequestMapping(value = "/addinstorage/{workNum}")
-    public String addInStorage(HttpSession session,Model model,
+    public String addInStorage(HttpSession session, Model model,
                                @PathVariable("workNum") String workNum) {
         Integer parentId = ((User) session.getAttribute("user")).getParentid();
         Organization filiale = organizationService.queryOrganizationById(parentId);
         Workorder workorder = workOrderService.queryWorkOrderByWorkNum(workNum);
         model.addAttribute(workorder);
-        model.addAttribute("orgnization",filiale);
+        model.addAttribute("orgnization", filiale);
         return "ljh/addruku";
     }
 
     /**
-    * @author: 李家和
-    * @Description 入库操作
-    * @Date: 14:22 2018/10/11
-    * @Param：[workorder, session]
-    * @return：java.lang.String
-    **/
-    @RequestMapping(value = "/saveinstorage",method = RequestMethod.POST)
-    public String saveInstorage(Workorder workorder,BindingResult rs, HttpSession session){
+     * @author: 李家和
+     * @Description 保存入库操作
+     * @Date: 14:22 2018/10/11
+     * @Param：[workorder, session]
+     * @return：java.lang.String
+     **/
+    @RequestMapping(value = "/saveinstorage", method = RequestMethod.POST)
+    public String saveInstorage(Workorder workorder, BindingResult rs, HttpSession session) {
         String workNum = workorder.getWorkNum();
         //获取完整的工单对象
-       Workorder workorder1 = workOrderService.queryWorkOrderByWorkNum(workNum);
+        Workorder workorder1 = workOrderService.queryWorkOrderByWorkNum(workNum);
 
         //生成一个入库交接单对象
         Instorage instorage = new Instorage();
-        if(!StringUtils.isEmpty(workorder1.getsPoint())){
+        if (!StringUtils.isEmpty(workorder1.getsPoint())) {
             instorage.setSendUnit(workorder1.getsPoint());
         }
-        if(!StringUtils.isEmpty(workorder1.getgPoint())){
+        if (!StringUtils.isEmpty(workorder1.getgPoint())) {
             instorage.setGetUnit(workorder1.getgPoint());
         }
         instorage.setInStorageTime(new Date(System.currentTimeMillis()));
-        if(!StringUtils.isEmpty(workorder1.getProductNum())){
+        if (!StringUtils.isEmpty(workorder1.getProductNum())) {
             instorage.setProductNum(workorder1.getProductNum());
         }
-        if(!StringUtils.isEmpty(workorder1.getPackageId())){
+        if (!StringUtils.isEmpty(workorder1.getPackageId())) {
             instorage.setPackageId(workorder1.getPackageId());
         }
-        if(!StringUtils.isEmpty(workorder1.getProductNum())){
+        if (!StringUtils.isEmpty(workorder1.getProductNum())) {
             instorage.setProductNum(workorder1.getProductNum());
         }
-        if(!StringUtils.isEmpty(workorder1.getWorkNum())){
+        if (!StringUtils.isEmpty(workorder1.getWorkNum())) {
             instorage.setWorkorderId(workorder1.getWorkNum());
         }
-        if(!StringUtils.isEmpty(((User) session.getAttribute("user")).getParentid())){
+        if (!StringUtils.isEmpty(((User) session.getAttribute("user")).getParentid())) {
             instorage.setStorageId(((User) session.getAttribute("user")).getParentid());
         }
-        if(!StringUtils.isEmpty(workorder1.getRealWeight())){
+        if (!StringUtils.isEmpty(workorder1.getRealWeight())) {
             instorage.setPackageWeight(workorder1.getRealWeight());
         }
 
@@ -552,11 +552,76 @@ public class FilialeController {
         workorder1.setInStorageStatus(2);//设置工单为已入库
         workorder1.setOutStorageStatus(1);//设置工单为待出库
         workorder1.setInStorageTime(new Date(System.currentTimeMillis()));//设置工单的入库时间
-        if(storageService.saveInstorage(instorage) && workOrderService.saveWorkOrder(workorder1)){
+        if (storageService.saveInstorage(instorage) && workOrderService.saveWorkOrder(workorder1)) {
             //入库成功
             return "redirect:/filiale/putinstorage";
         }
         return "ljh/addruku";
     }
+
+
+    /**
+    * @author: 李家和
+    * @Description 出库主界面
+    * @Date: 9:58 2018/10/12
+    * @Param：[model, outId, workorderId, packageId, outStorageStatus, pageIndex]
+    * @return：java.lang.String
+    **/
+    @RequestMapping(value = "/putoutstorage")
+    public String outInstorage(Model model, @RequestParam(value = "outId", required = false) String outId,
+                               @RequestParam(value = "workorderId", required = false) String workorderId,
+                               @RequestParam(value = "packageId", required = false) String packageId,
+                               @RequestParam(value = "outStorageStatus", required = false) String outStorageStatus,
+                               @RequestParam(value = "pageIndex", required = false, defaultValue = "1") String pageIndex) {
+
+        //出库交接单列表
+        List<Outstorage> outstorageList = null;
+        //出库状态列表
+        List<Dictionary> outStorageStatusList = null;
+        //封装出库交接单对象并赋值
+        Outstorage outstorage = new Outstorage();
+        if (!StringUtils.isEmpty(outId)) {
+            outstorage.setOutId(Long.valueOf(outId));
+        }
+        if (!StringUtils.isEmpty(workorderId)) {
+            outstorage.setWorkorderId(workorderId);
+        }
+        if (!StringUtils.isEmpty(packageId)) {
+            outstorage.setPackageId(Long.valueOf(packageId));
+        }
+        if (!StringUtils.isEmpty(outStorageStatus)) {
+            if (!"1".equals(outStorageStatus)) {
+                //出库状态不为1，表示查询已出库的交接单
+                outstorage.setOutStorageStatus(Integer.parseInt(outStorageStatus));
+            } else {//出库状态为1，表示查询待出库的工单
+                //待出库工单列表
+                List<Workorder> readyOutWorkOrderList = null;
+                PageHelper.startPage(Integer.parseInt(pageIndex), Constants.PAGE_SIZE, "id desc");
+                readyOutWorkOrderList = workOrderService.queryReadyOutStorageWorkOrderList();
+                PageInfo<Workorder> p2 = new PageInfo<Workorder>(readyOutWorkOrderList);
+                model.addAttribute("readyOutWorkOrderList", readyOutWorkOrderList);
+                model.addAttribute("page2", p2);
+            }
+        }
+
+
+        //分页
+        PageHelper.startPage(Integer.parseInt(pageIndex), Constants.PAGE_SIZE, "outId desc");
+        outstorageList = storageService.queryOutstorageList(outstorage);
+        PageInfo<Outstorage> p = new PageInfo<Outstorage>(outstorageList);
+        model.addAttribute("page", p);
+
+        outStorageStatusList = dictionaryService.queryDictionaryList("outStorageStatus");
+        model.addAttribute("outstorageList", outstorageList);
+        model.addAttribute("outStorageStatusList", outStorageStatusList);
+        model.addAttribute("outId", outstorage.getOutId());
+        model.addAttribute("workorderId", outstorage.getWorkorderId());
+        model.addAttribute("packageId", outstorage.getPackageId());
+        model.addAttribute("inStorageStatus", outStorageStatus);
+
+
+        return "ljh/putoutinstorage";
+    }
+
 
 }
