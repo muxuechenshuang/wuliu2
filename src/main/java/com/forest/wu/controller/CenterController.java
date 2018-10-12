@@ -669,22 +669,23 @@ public class CenterController {
         return branchList;
     }
 
-    @RequestMapping(value = "/baobiao2")
+    @RequestMapping(value = "/baobiao3")
     public String baobiao2(){
-        return "zz/baobiao2";
+        return "zz/baobiao3";
     }
 
-    @RequestMapping(value = "/baobiao3")
-    public String baobiao3(Model model){
-        List x = new ArrayList(5);
-        List y = new ArrayList(5);
+    @ResponseBody
+    @RequestMapping(value = "/shuju3.json")
+    public Object shuju3(Model model){
+        List x = new ArrayList();
+        List y = new ArrayList();
 
-        for (int i=0;i<x.size();i++){
-            x.set(i, i);
-            y.set(i, i + 1);
+        for (int i=1;i<21;i++){
+            x.add(i);
+            y.add(i + 1);
         }
         model.addAttribute("x",x);
-        model.addAttribute("y",y);
-        return "zz/baobiao3";
+//        model.addAttribute("y",y);
+        return x;
     }
 }
