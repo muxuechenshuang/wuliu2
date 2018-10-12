@@ -203,79 +203,15 @@
       where id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.forest.wu.pojo.User">
-      insert into user (id, username, password,
-        email, phone, sex,
-        logo, parentid, type
-        )
-      values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-        #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR},
-        #{logo,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}
-        )
-    </insert>
-
-
-
-    <update id="updateByPrimaryKeySelective" parameterType="com.forest.wu.pojo.User">
-      update user
-      <set>
-        <if test="username != null">
-          username = #{username,jdbcType=VARCHAR},
-        </if>
-        <if test="password != null">
-          password = #{password,jdbcType=VARCHAR},
-        </if>
-        <if test="email != null">
-          email = #{email,jdbcType=VARCHAR},
-        </if>
-        <if test="phone != null">
-          phone = #{phone,jdbcType=VARCHAR},
-        </if>
-        <if test="sex != null">
-          sex = #{sex,jdbcType=VARCHAR},
-        </if>
-        <if test="logo != null">
-          logo = #{logo,jdbcType=VARCHAR},
-        </if>
-        <if test="parentid != null">
-          parentid = #{parentid,jdbcType=INTEGER},
-        </if>
-        <if test="type != null">
-          type = #{type,jdbcType=INTEGER},
-        </if>
-      </set>
-      where id = #{id,jdbcType=INTEGER}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="com.forest.wu.pojo.User">
-      update user
-      set username = #{username,jdbcType=VARCHAR},
-        password = #{password,jdbcType=VARCHAR},
-        email = #{email,jdbcType=VARCHAR},
-        phone = #{phone,jdbcType=VARCHAR},
-        sex = #{sex,jdbcType=VARCHAR},
-        logo = #{logo,jdbcType=VARCHAR},
-        parentid = #{parentid,jdbcType=INTEGER},
-        type = #{type,jdbcType=INTEGER}
-      where id = #{id,jdbcType=INTEGER}
-    </update>
-    <!-- 查找用户表所需的登录信息 -->
-    <select id="selectULogin"  resultType="com.forest.wu.pojo.User">
-        select u.*,o.name,uf.*,d.valueName
-        from user u, organization o, userfunction uf,dictionary d
-        where 1=1
-
-        <if test="parentid != null">
-            and u.parentid=o.id
-        </if>
-        <if test="type != null">
-            and  u.type=uf.id
-        </if>
-        <if test="type != null">
-            and   u.type=d.valueId and d.typeCode='userRole'
-        </if>
-
-    </select>
-
-
+    insert into user (id, username, password,
+      email, phone, sex,
+      logo, parentid, type
+      )
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR},
+      #{logo,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}
+      )
+  </insert>
     <insert id="insertSelective" parameterType="com.forest.wu.pojo.User">
         insert into user
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -306,6 +242,12 @@
             <if test="type != null">
                 type,
             </if>
+            <if test="time != null">
+                time,
+            </if>
+            <if test="picPath != null">
+                picPath
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -335,12 +277,84 @@
             <if test="type != null">
                 #{type,jdbcType=INTEGER},
             </if>
+            <if test="time != null">
+                #{time},
+            </if>
+            <if test="picPath != null">
+                #{picPath}
+            </if>
         </trim>
     </insert>
+    <!--根据ID更新用户信息（分公司管理员已使用）-->
+    <update id="updateByPrimaryKeySelective" parameterType="com.forest.wu.pojo.User">
+        update user
+        <set>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="logo != null">
+                logo = #{logo,jdbcType=VARCHAR},
+            </if>
+            <if test="parentid != null">
+                parentid = #{parentid,jdbcType=INTEGER},
+            </if>
+            <if test="type != null">
+                type = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="time != null">
+                time = #{time},
+            </if>
+            <if test="picPath != null">
+                picPath = #{picPath}
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 
 
+    <update id="updateByPrimaryKey" parameterType="com.forest.wu.pojo.User">
+    update user
+    set username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      parentid = #{parentid,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      time = #{time},
+      picPath = #{picPath}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 查找用户表所需的登录信息 -->
+  <select id="selectULogin"  resultType="com.forest.wu.pojo.User">
+    select u.*,o.name,uf.*,d.valueName
+    from user u, organization o, userfunction uf,dictionary d
+    where 1=1
 
+      <if test="parentid != null">
+      and u.parentid=o.id
+      </if>
+      <if test="type != null">
+      and  u.type=uf.id
+      </if>
+      <if test="type != null">
+        and   u.type=d.valueId and d.typeCode='userRole'
+      </if>
 
+  </select>
 
 
     <!--查询分公司管理列表-->

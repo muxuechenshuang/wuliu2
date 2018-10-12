@@ -139,4 +139,9 @@ public class CenterServiceImpl implements CenterService {
         return userMapper.selectByUserId(id);
     }
 
+    @Override
+    public Integer updateUserById(User user) throws Exception {
+        return userMapper.updateByPrimaryKeySelective(user);
+    }
+
 }
