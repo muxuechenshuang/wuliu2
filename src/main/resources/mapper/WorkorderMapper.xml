@@ -342,6 +342,7 @@
             </if>
         </trim>
     </insert>
+
     <update id="updateByPrimaryKeySelective" parameterType="com.forest.wu.pojo.Workorder">
         update workorder
         <set>
@@ -589,12 +590,13 @@
         where inStorageStatus=1
     </select>
 
+
     <!--查询所有已入库待出库的工单-->
-    <select id="selectInStorageWorkOrderList" resultMap="BaseResultMap">
+    <select id="selectOutStorageWorkOrderList" resultMap="BaseResultMap">
         select
         <include refid="filiale_workorder_List"/>
         from workorder w
-        where inStorageStatus!=1 and outStorageStatus=1
+        where inStorageStatus=2 and outStorageStatus=1
     </select>
 
     <!--根据工单号查询单个工单-->
@@ -638,4 +640,18 @@
             and gAddress like CONCAT ('%',#{gAddress},'%')
         </if>
     </select>
+
+
+    <!--肖林辉 查单个工单-->
+
+    <select id="selectByPrimaryKeyByCourier" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="filiale_workorder_List"/>
+        from workorder w
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+
+
+
 </mapper>

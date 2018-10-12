@@ -49,7 +49,7 @@ public class FilialeWorkOrderServiceImpl implements FilialeWorkOrderService {
     }
 
     @Override
-    public List<Workorder> queryInStorageOrderList() {
-        return workorderMapper.selectInStorageWorkOrderList();
+    public List<Workorder> queryReadyOutStorageWorkOrderList() {
+        return workorderMapper.selectOutStorageWorkOrderList();
     }
 }
