@@ -6,8 +6,6 @@ import com.forest.wu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * 用户实体类
  *
@@ -21,8 +19,8 @@ public class UserServiceImpl implements UserService {
     private UserMapper mapper;
     //登录接口实现
     @Override
-    public List<User> selectULogin() {
-        return mapper.selectULogin();
+    public User selectULogin(String user,String password) {
+        return mapper.selectULogin(user,password);
     }
     //注册接口实现
     @Override
@@ -31,8 +29,16 @@ public class UserServiceImpl implements UserService {
     }
     //注册用查找接口
     @Override
-    public List<User> findUser() {
-        return mapper.find();
+    public User findUser(String username) {
+        return mapper.find(username);
+    }
+    @Override
+    public User findUser1(String email) {
+        return mapper.find1(email);
+    }
+    @Override
+    public User findUser2(String phone) {
+        return mapper.find2(phone);
     }
     //更新用户数据
     @Override

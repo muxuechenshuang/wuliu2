@@ -259,19 +259,22 @@
     </update>
     <!-- 查找用户表所需的登录信息 -->
     <select id="selectULogin"  resultType="com.forest.wu.pojo.User">
-        select u.*,o.name,uf.*,d.valueName
-        from user u, organization o, userfunction uf,dictionary d
-        where 1=1
-
-        <if test="parentid != null">
-            and u.parentid=o.id
-        </if>
-        <if test="type != null">
-            and  u.type=uf.id
-        </if>
-        <if test="type != null">
-            and   u.type=d.valueId and d.typeCode='userRole'
-        </if>
+        <!--select u.*,o.name,uf.*,d.valueName-->
+        <!--from user u, organization o, userfunction uf,dictionary d-->
+        <!--where 1=1-->
+        <!---->
+        <!--<if test="parentid != null">-->
+            <!--and u.parentid=o.id-->
+        <!--</if>-->
+        <!--<if test="type != null">-->
+            <!--and  u.type=uf.id-->
+        <!--</if>-->
+        <!--<if test="type != null">-->
+            <!--and   u.type=d.valueId and d.typeCode='userRole'-->
+        <!--</if>-->
+        select * from  user where
+        (username = #{user } or email = #{user } or phone = #{user })
+         and  password = #{password}
 
     </select>
 
@@ -368,6 +371,13 @@
     </select>
     <!--查询用户信息是否相同-->
     <select id="find" resultType="com.forest.wu.pojo.User">
-        select username,email,phone from  user
+        select * from  user  WHERE username=#{username}
     </select>
+    <select id="find1" resultType="com.forest.wu.pojo.User">
+         select * from  user  WHERE email=#{email}
+    </select>
+    <select id="find2" resultType="com.forest.wu.pojo.User">
+        select * from  user  WHERE phone=#{phone}
+    </select>
+
 </mapper>
