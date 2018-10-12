@@ -57,13 +57,13 @@ public class ClientController {
      * @return：moneyestimate_ry 进入页面的数据获取
      */
     @RequestMapping("/moneyestimate")
-    public String moneyestimate(Model model,HttpSession session) {
+    public String moneyestimate(Model model, HttpSession session) {
         List<Organization> cityList = organizationService.filialeList();
         model.addAttribute("cityList", cityList);
 
         //站内信息
-        Integer id = ((User)session.getAttribute("user")).getId();
-        getNote(id,model);
+        Integer id = ((User) session.getAttribute("user")).getId();
+        getNote(id, model);
         return "ry/moneyestimate_ry";
     }
 
@@ -105,7 +105,7 @@ public class ClientController {
      */
 
     @RequestMapping(value = "/branchquery", method = RequestMethod.GET)
-    public String branchquery(Model model,HttpSession session,
+    public String branchquery(Model model, HttpSession session,
                               @RequestParam(value = "city", required = false) String _cityId,
                               @RequestParam(value = "pageIndex", required = false) String pageIndex) {
         List<Organization> cityList = null;
@@ -170,7 +170,7 @@ public class ClientController {
             model.addAttribute("cityList", cityList);
             return "ry/branchquery_ry";
         }
-        if(cityId != 2 && cityId != 3 && cityId != 9 && cityId != 10){
+        if (cityId != 2 && cityId != 3 && cityId != 9 && cityId != 10) {
             model.addAttribute("nullErro", "该城市分公司正在紧张建设中");
             model.addAttribute("cityList", cityList);
             return "ry/branchquery_ry";
@@ -182,8 +182,8 @@ public class ClientController {
         model.addAttribute("pages", pages);
 
         //站内信息
-        Integer userId = ((User)session.getAttribute("user")).getId();
-        getNote(userId,model);
+        Integer userId = ((User) session.getAttribute("user")).getId();
+        getNote(userId, model);
         return "ry/branchquery_ry";
     }
 
@@ -284,7 +284,7 @@ public class ClientController {
         model.addAttribute("orderStatus", statusId);
 
         //站内信息显示
-        getNote(userId,model);
+        getNote(userId, model);
         return "ry/query_ry";
     }
 
@@ -335,7 +335,7 @@ public class ClientController {
      * @return：ry/send_ry 进入寄件页面
      */
     @RequestMapping(value = "/intosend", method = RequestMethod.GET)
-    public String intosend(Model model,HttpSession session,
+    public String intosend(Model model, HttpSession session,
                            @RequestParam(value = "cityId", required = false) String _cityId,
                            @RequestParam(value = "branchId", required = false) String _branchId) {
         List<Organization> cityList = organizationService.filialeList();
@@ -344,8 +344,8 @@ public class ClientController {
         model.addAttribute("cityList", cityList);
 
         //站内信息
-        Integer userId = ((User)session.getAttribute("user")).getId();
-        getNote(userId,model);
+        Integer userId = ((User) session.getAttribute("user")).getId();
+        getNote(userId, model);
 
         if (null != _cityId && !"".equals(_cityId) && null != _branchId && !"".equals(_branchId)) {
             Integer cityId = Integer.parseInt(_cityId);
@@ -407,8 +407,8 @@ public class ClientController {
     public List<Organization> queryBranchList(@RequestParam Integer parentId) {
         List<Organization> branchList = organizationService.selectByParentId(parentId);
         //限制分公司选择
-        if(parentId != 2 && parentId != 3 && parentId !=9 && parentId !=10){
-            branchList =null;
+        if (parentId != 2 && parentId != 3 && parentId != 9 && parentId != 10) {
+            branchList = null;
         }
         return branchList;
     }
@@ -423,7 +423,7 @@ public class ClientController {
      * @Param：
      * @return：
      */
-    @RequestMapping(value = "/goPay")
+    @RequestMapping(value = "/goPay", produces = "text/html; charset=UTF-8")
     @ResponseBody
     public String zhiFuBaoPay(HttpServletRequest request,
                               HttpServletRequest response,
@@ -431,7 +431,6 @@ public class ClientController {
                               @RequestParam String price,
                               @RequestParam String product,
                               @RequestParam String comment) throws Exception {
-
 
 
         String description = orderNumber;   //订单描述
@@ -456,10 +455,10 @@ public class ClientController {
         String body = comment;
 
 
-        alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\","
-                + "\"total_amount\":\""+ total_amount +"\","
-                + "\"subject\":\""+ subject +"\","
-                + "\"body\":\""+ body +"\","
+        alipayRequest.setBizContent("{\"out_trade_no\":\"" + out_trade_no + "\","
+                + "\"total_amount\":\"" + total_amount + "\","
+                + "\"subject\":\"" + subject + "\","
+                + "\"body\":\"" + body + "\","
                 + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
         //请求
         String result = "";
@@ -472,42 +471,85 @@ public class ClientController {
         return result;
     }
 
-
+    /**
+     *
+     * @author: 任一
+     * @Description 支付成功同步通知页面
+     * @Date: 16:43 2018/10/12
+     * @Param：
+     * @return：
+     */
     @RequestMapping(value = "/success")
-    public String success(){
-        return "success";
+    public String success(HttpServletRequest request,Model model) {
+//        Map<String, String> params = new HashMap<String, String>();
+//        Map<String, String[]> requestParams = request.getParameterMap();
+//        for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext(); ) {
+//            String name = (String) iter.next();
+//            String[] values = (String[]) requestParams.get(name);
+//            String valueStr = "";
+//            for (int i = 0; i < values.length; i++) {
+//                valueStr = (i == values.length - 1) ? valueStr + values[i]
+//                        : valueStr + values[i] + ",";
+//            }
+//        }
+//        //调用SDK验证签名
+//        boolean signVerified = AlipaySignature.rsaCheckV1(params,AlipayConfig.alipay_public_key,AlipayConfig.charset,AlipayConfig.sign_type);
+//
+//        if(signVerified) {
+//            //商户订单号
+//            String orderNumber = new String(request.getParameter("out_trade_no"));
+//            //支付宝交易号
+//
+//            //付款金额
+//        }
+
+        //订单号
+        String orderNumber = new String(request.getParameter("out_trade_no"));
+        //修改支付状态
+        if(order_infoService.payDone(orderNumber)){
+            model.addAttribute("result","支付成功！");
+        }else{
+            model.addAttribute("result","支付失败，很抱歉，请稍后重试或联系客服！");
+        }
+        model.addAttribute("orderNumber",orderNumber);
+
+        return "ry/success";
     }
 
-
+    /**
+     *
+     * @author: 任一
+     * @Description 支付异步通知页面
+     * @Date: 16:43 2018/10/12
+     * @Param：
+     * @return：
+     */
     @RequestMapping(value = "/notify")
-    public String notifys(){
-        return "notify";
+    public String notifys() {
+        return "ry/notify";
     }
-
 
 
     //站内信息
 
     /**
-     *
      * @author: 任一
      * @Description 获取站内信息
      * @Date: 17:01 2018/10/11
      * @Param：
      * @return：
      */
-    public void getNote(Integer id,Model model){
+    public void getNote(Integer id, Model model) {
         //信息集合
         List<Note> noteList = noteService.getNoteSelf(id);
-        model.addAttribute("noteList",noteList);
+        model.addAttribute("noteList", noteList);
 
         //未读邮件数
         Integer noRead = noteService.noReadCount(id);
-        model.addAttribute("noRead",noRead);
+        model.addAttribute("noRead", noRead);
     }
 
     /**
-     *
      * @author: 任一
      * @Description ajax更新数据已读状态
      * @Date: 9:30 2018/10/12
@@ -516,21 +558,21 @@ public class ClientController {
      */
     @RequestMapping(value = "readNote.json")
     @ResponseBody
-    public Object readNote(HttpSession session){
-        HashMap<String,Object> result = new HashMap<String, Object>();
-        Integer id = ((User)session.getAttribute("user")).getId();
+    public Object readNote(HttpSession session) {
+        HashMap<String, Object> result = new HashMap<String, Object>();
+        Integer id = ((User) session.getAttribute("user")).getId();
         //邮件改为已读
-        if(!noteService.readDone(id)){
-            result.put("doneErro","数据异常，错误代码：ddd，请联系管理员");
+        if (!noteService.readDone(id)) {
+            result.put("doneErro", "数据异常，错误代码：ddd，请联系管理员");
         }
         return result;
     }
 
     @RequestMapping(value = "readAll.json")
     @ResponseBody
-    public Object readAll(HttpSession session){
+    public Object readAll(HttpSession session) {
 //        List<Note> allNote = new ArrayList<Note>();
-        Integer id = ((User)session.getAttribute("user")).getId();
+        Integer id = ((User) session.getAttribute("user")).getId();
         List<Note> allNote = noteService.getAllSelf(id);
         return allNote;
     }
@@ -539,7 +581,6 @@ public class ClientController {
     //报表
 
     /**
-     *
      * @author: 任一
      * @Description 进入报表页面
      * @Date: 14:07 2018/10/11
@@ -547,14 +588,13 @@ public class ClientController {
      * @return：
      */
     @RequestMapping(value = "/intobaobiao")
-    public String intoBaoBiao(Model model,HttpSession session){
-        Integer id = ((User)session.getAttribute("user")).getId();
-        getNote(id,model);
+    public String intoBaoBiao(Model model, HttpSession session) {
+        Integer id = ((User) session.getAttribute("user")).getId();
+        getNote(id, model);
         return "ry/baobiao_ry";
     }
 
     /**
-     *
      * @author: 任一
      * @Description ajax返回报表数据
      * @Date: 16:33 2018/10/11
@@ -563,22 +603,22 @@ public class ClientController {
      */
     @RequestMapping(value = "getbaobiao.json")
     @ResponseBody
-    public Object getBaoBiao(HttpSession session){
+    public Object getBaoBiao(HttpSession session) {
         List<Integer> result = new ArrayList<Integer>();
-        String[] month = {"2018-01-01","2018-02-01","2018-03-01","2018-04-01","2018-05-01",
-                "2018-06-01","2018-07-01","2018-08-01","2018-09-01","2018-10-01",
-                "2018-11-01","2018-12-01"};
+        String[] month = {"2018-01-01", "2018-02-01", "2018-03-01", "2018-04-01", "2018-05-01",
+                "2018-06-01", "2018-07-01", "2018-08-01", "2018-09-01", "2018-10-01",
+                "2018-11-01", "2018-12-01"};
         String start = null;
         String end = null;
-        Integer id = ((User)session.getAttribute("user")).getId();
-        for(int i = 0 ; i < month.length; i++){
+        Integer id = ((User) session.getAttribute("user")).getId();
+        for (int i = 0; i < month.length; i++) {
             start = month[i];
-            if(i+1 == month.length){
+            if (i + 1 == month.length) {
                 end = month[0];
-            }else{
-                end = month[i+1];
+            } else {
+                end = month[i + 1];
             }
-            if(!result.add(order_infoService.getMonthOrder(id,start,end))){
+            if (!result.add(order_infoService.getMonthOrder(id, start, end))) {
                 return false;
             }
         }

@@ -266,5 +266,22 @@ public class Order_infoServiceImpl implements Order_infoService {
         return orderMapper.getMonthOrder(id,start,end);
     }
 
+    /**
+     *
+     * @author: 任一
+     * @Description 完成支付修改是否支付的状态
+     * @Date: 16:27 2018/10/12
+     * @Param：
+     * @return：
+     */
+    @Override
+    public boolean payDone(String orderNum){
+        boolean flag = false;
+        if(workorderMapper.payDone(orderNum) > 0){
+            flag = true;
+        }
+        return flag;
+    }
+
 
 }
