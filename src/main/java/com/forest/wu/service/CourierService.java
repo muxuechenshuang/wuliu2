@@ -180,5 +180,12 @@ public interface CourierService {
     **/
     int updateWorkor(Integer id, Integer gid);
 
-
+    /*
+    * @author:李普强
+    * @Description描述：查询一个月的订单条数
+    * @Date: 15:26 2018/10/11
+    * @Param参数：无参
+    * @return返回值：Int
+    **/
+    List<Integer> selectYueDin();
 }

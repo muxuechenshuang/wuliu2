@@ -124,7 +124,7 @@
 											</li>
 											<!-- 	<li><a href="shenghe_lpq.jsp">审核订单</a>
                                                 </li> -->
-											<li><a href="${pageContext.request.contextPath}/wuliu/gong">确认工单</a>
+											<li><a href="${pageContext.request.contextPath}/wuliu/gongs">确认工单</a>
 											</li>
 											<li><a href="${pageContext.request.contextPath}/wuliu/fengong">分配工单</a>
 											</li>
@@ -214,52 +214,41 @@
 									</li>
 								</ul></li>
 
-							<li role="presentation" class="dropdown">
 
-								<a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-									<i class="fa fa-envelope-o"></i>
-									<span class="badge bg-green">2</span>
-								</a>
-								<ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-									<li>
-										<a>
-											<!-- <span class="image"><img src="" alt="Profile Image"></span> -->
-											<span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-											<span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-										</a>
-									</li>
+                        <c:if test="${noteList!=null}">
+                        <li role="presentation" class="dropdown">
 
-									<li>
-										<a>
-											<!-- <span class="image"><img src="" alt="Profile Image"></span> -->
-											<span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-											<span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-										</a>
-									</li>
-									<li>
-										<div class="text-center">
-											<a>
-												<strong>See All Alerts</strong>
-												<i class="fa fa-angle-right"></i>
-											</a>
-										</div>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</nav>
-				</div>
-			</div>
-			<!-- /top navigation -->
-			<div class="right_col" role="main">
-				<div class="">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green">2</span>
+                            </a>
+                            <ul id="note" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                                <c:forEach items="${noteList}" var="note">
+                                    <li><a>
+                                        <span>${note.clientName}</span>
+                                        <span class="time"><fmt:formatDate value="${note.sendTime}" pattern="yyyy-MM-dd HH:ss:mm"/></span>
+                                        <span class="message">${note.noteText}</span>
+                                    </a></li>
+                                </c:forEach>
+
+
+                                <%--<li>
+                                    <div class="text-center">
+                                        <a>
+                                            <strong>See All Alerts</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>--%>
+                            </ul>
+                        </li>
+                        </c:if>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+        <div class="right_col" role="main">
+            <div class="">

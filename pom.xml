@@ -110,6 +110,12 @@
             <artifactId>commons-codec</artifactId>
             <version>1.6</version>
         </dependency>
+        <!--沙盒支付宝-->
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>3.3.49.ALL</version>
+        </dependency>
 
         <!-- shiro权限控制框架 -->
         <dependency>

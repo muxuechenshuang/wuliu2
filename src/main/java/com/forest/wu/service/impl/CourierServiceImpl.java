@@ -120,5 +120,10 @@ public class CourierServiceImpl implements CourierService {
         return userMapper.updateWorkor(id, gid);
     }
 
+    @Override
+    public List<Integer> selectYueDin() {
+        return userMapper.selectYueDin();
+    }
+
 
 }

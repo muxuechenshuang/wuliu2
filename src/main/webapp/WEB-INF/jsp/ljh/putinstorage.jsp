@@ -1,193 +1,315 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@include file="../common/header.jsp"%>
+         pageEncoding="UTF-8" %>
 
-<div class="page-title">
-	<div class="title_left">
-		<h3>
-			入库 <small>您可以对包裹进行入库操作</small>
-		</h3>
-	</div>
-
-	<div class="title_right">
-		<div
-			class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Search for...">
-				<span class="input-group-btn">
-					<button class="btn btn-default" type="button">搜索</button>
-				</span>
-			</div>
-		</div>
-	</div>
-</div>
-
+<%@include file="../common/header.jsp" %>
 <div class="clearfix"></div>
-
 <div class="row">
-	<div class="col-md-12 col-sm-12 col-xs-12">
-		<div class="x_panel">
-			<div class="x_title">
-				<h2>
-					入库<small>列表</small>
-				</h2>
-				<ul class="nav navbar-right panel_toolbox">
-					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-					</li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false"><i
-							class="fa fa-wrench"></i></a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Settings 1</a></li>
-							<li><a href="#">Settings 2</a></li>
-						</ul></li>
-					<li><a class="close-link"><i class="fa fa-close"></i></a></li>
-				</ul>
-				<div class="clearfix"></div>
-			</div>
-			<div class="x_content">
-				<p class="text-muted font-13 m-b-30"></p>
-				<table id="datatable" class="table table-striped table-bordered">
-					<thead>
-						<tr>
-							<th>入库交接单号</th>
-							<th>状态</th>
-							<th>合包号</th>
-							<th>接收单位</th>
-							<th>发出单位</th>
-							<th>接收时间</th>
-						</tr>
-					</thead>
+    <div class="col-md-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    入库 <i class="fa fa-user"></i>
+                    <small>${user.username}
+                        - 您可以对包裹进行入库操作，也可以查看已入库的包裹。^_^
+                    </small>
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <form method="post" action="/filiale/putinstorage">
+                    <input type="hidden" name="pageIndex" value="1"/>
+                    <ul>
+                        <li>
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">入库交接单号</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input name="receiptId" type="text"
+                                           class="form-control col-md-7 col-xs-12"
+                                           value="${receiptId}">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">工单编号</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input name="workorderId" type="text"
+                                           class="form-control col-md-7 col-xs-12"
+                                           value="${workorderId}">
+                                </div>
+                            </div>
+                        </li>
 
+                        <li>
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">合包号</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input name="packageId" type="text"
+                                           class="form-control col-md-7 col-xs-12"
+                                           value="${packageId }">
+                                </div>
+                            </div>
+                        </li>
 
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td>二次入库</td>
-							<td>1001</td>
-							<td>仓库1</td>
-							<td>2号网点</td>
-							<td>2018/7/15</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>中转入库</td>
-							<td>1001</td>
-							<td>仓库1</td>
-							<td>2号网点</td>
-							<td>2018/7/15</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>中转入库</td>
-							<td>1001</td>
-							<td>仓库1</td>
-							<td>2号网点</td>
-							<td>2018/7/15</td>
-						</tr>
-						<tr>
-							<td>4</td>
-							<td>初始入库</td>
-							<td>1002</td>
-							<td>仓库1</td>
-							<td>2号网点</td>
-							<td>2018/7/15</td>
-						</tr>
-						<tr>
-							<td>5</td>
-							<td>初始入库</td>
-							<td>1002</td>
-							<td>仓库1</td>
-							<td>2号网点</td>
-							<td>2018/7/15</td>
-						</tr>
+                        <li>
+                            <div class="form-group">
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">入库状态</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select name="inStorageStatus" class="form-control">
+                                        <c:if test="${inStorageStatusList!=null}">
+                                            <option value="">--请选择--</option>
+                                            <c:forEach items="${inStorageStatusList}" var="inStatus">
+                                                <option class=""
+                                                        <c:if test="${inStatus.valueId == inStorageStatus }">selected="selected"</c:if>
+                                                        value="${inStatus.valueId}">
+                                                        ${inStatus.valueName}
+                                                </option>
+                                            </c:forEach>
+                                        </c:if>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
 
+                        <li>
+                            <button type="submit" class="btn btn-primary">查
+                                &nbsp;&nbsp;&nbsp;&nbsp;询
+                            </button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_content">
+                <p class="text-muted font-13 m-b-30"></p>
+                <div id="datatable-responsive_wrapper"
+                     class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="datatable-responsive"
+                                   class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
+                                   cellspacing="0" width="100%" role="grid" style="table-layout: fixed"
+                                   aria-describedby="datatable-responsive_info"
+                                   style="width: 100%;">
+                                <thead>
+                                <tr role="row">
+                                    <c:choose>
+                                        <c:when test="${inStorageStatus==1}">
+                                            <th class="sorting_asc" tabindex="0"
+                                                aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                style="width: 80px;"
+                                                aria-label="First name: activate to sort column descending"
+                                                aria-sort="ascending">工单号
+                                            </th>
+                                            <th class="sorting_asc" tabindex="0"
+                                                aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                style="width: 80px;"
+                                                aria-label="First name: activate to sort column descending"
+                                                aria-sort="ascending">合包号
+                                            </th>
+                                            <th class="sorting" tabindex="0"
+                                                aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                style="width: 80px;"
+                                                aria-label="Last name: activate to sort column ascending">
+                                                入库状态
+                                            </th>
+                                            <th class="sorting" tabindex="0"
+                                                aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                style="width: 80px;"
+                                                aria-label="Last name: activate to sort column ascending">
+                                                重量：kg
+                                            </th>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <th class="sorting_asc" tabindex="0"
+                                                aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                style="width: 124px;"
+                                                aria-label="First name: activate to sort column descending"
+                                                aria-sort="ascending">入库交接单号
+                                            </th>
+                                            <th class="sorting_asc" tabindex="0"
+                                                aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                style="width: 124px;"
+                                                aria-label="First name: activate to sort column descending"
+                                                aria-sort="ascending">工单号
+                                            </th>
+                                            <th class="sorting_asc" tabindex="0"
+                                                aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                style="width: 124px;"
+                                                aria-label="First name: activate to sort column descending"
+                                                aria-sort="ascending">合包号
+                                            </th>
+                                            <th class="sorting" tabindex="0"
+                                                aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                style="width: 80px;"
+                                                aria-label="Last name: activate to sort column ascending">
+                                                入库状态
+                                            </th>
+                                            <th class="sorting" tabindex="0"
+                                                aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                                style="width: 80px;"
+                                                aria-label="Last name: activate to sort column ascending">
+                                                入库时间
+                                            </th>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <th class="sorting_asc" tabindex="0"
+                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                        aria-label="First name: activate to sort column descending"
+                                        aria-sort="ascending" style="width: 120px">操作
+                                    </th>
+                                </tr>
 
-					</tbody>
-				</table>
-			</div>
-		</div>
+                                </thead>
+                                <tbody>
+                                <c:choose>
+                                    <c:when test="${inStorageStatus==1}">
+                                        <c:forEach items="${readyInWorkOrderList}" var="workorder">
+                                            <tr>
+                                                <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${workorder.workNum}</td>
+                                                <td>
+                                                    <c:choose>
+                                                        <c:when test="${workorder.packageId!=null}">
+                                                            ${workorder.packageId}
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            未进行合包
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </td>
+                                                <td>${workorder.inStorageStatusName }</td>
+                                                <td>${workorder.realWeight}</td>
+                                                <td>
+                                                    <a href="${pageContext.request.contextPath}/filiale/addinstorage/${workorder.workNum}" type="buttoon" class="btn btn-success">入库</a>
+                                                    <c:if test="${workorder.packageId==null}">
+                                                        <a href="${pageContext.request.contextPath}/filiale/addpackage/${workorder.workNum}"
+                                                           type="button" class="btn btn-primary">合包</a>
+                                                    </c:if>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:forEach var="instorage" items="${instorageList }">
+                                            <tr>
+                                                <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${instorage.receiptId }</td>
+                                                <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${instorage.workorderId }</td>
+                                                <td>
+                                                    <c:choose>
+                                                        <c:when test="${instorage.packageId!=null}">
+                                                            ${instorage.packageId}
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            未进行合包
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </td>
+                                                <td>${instorage.inStorageStatusName }</td>
+                                                <td><fmt:formatDate value="${instorage.inStorageTime}"
+                                                                    pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                                <td class="view">
+                                                    <button type="button" receiptId="${instorage.receiptId}"
+                                                            class="btn btn-primary">查看详情
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </c:otherwise>
+                                </c:choose>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="dataTables_info" id="datatable-responsive_info"
+                                 role="status" aria-live="polite">
+                                <c:choose>
+                                    <c:when test="${inStorageStatus==1}">
+                                        共${page2.total}条记录
+                                        ${page2.pageNum }/${page2.pages}页
+                                    </c:when>
+                                    <c:otherwise>
+                                        共${page.total}条记录
+                                        ${page.pageNum }/${page.pages}页
+                                    </c:otherwise>
+                                </c:choose>
 
-		<div class="x_panel">
-			<div class="x_title">
-				<h2>
-					单号<small>列表</small>
-				</h2>
-				<ul class="nav navbar-right panel_toolbox">
-					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-					</li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false"><i
-							class="fa fa-wrench"></i></a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Settings 1</a></li>
-							<li><a href="#">Settings 2</a></li>
-						</ul></li>
-					<li><a class="close-link"><i class="fa fa-close"></i></a></li>
-				</ul>
-				<div class="clearfix"></div>
-			</div>
-			<div class="x_content">
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="dataTables_paginate paging_simple_numbers"
+                                 id="datatable-responsive_paginate">
+                                <ul class="pagination">
+                                    <c:choose>
+                                        <c:when test="${inStorageStatus==1}">
+                                            <c:if test="${pag2.hasPreviousPage eq true }">
+                                                <li class="paginate_button previous"><a
+                                                        href="javascript:page_nav(document.forms[0],1);"
+                                                        aria-controls="datatable-responsive" data-dt-idx="0"
+                                                        tabindex="0">首页</a>
+                                                </li>
+                                                <li class="paginate_button "><a
+                                                        href="javascript:page_nav(document.forms[0],${pag2.prePage});"
+                                                        aria-controls="datatable-responsive" data-dt-idx="1"
+                                                        tabindex="0">上一页</a>
+                                                </li>
+                                            </c:if>
+                                            <c:if test="${pag2.hasNextPage eq true }">
+                                                <li class="paginate_button "><a
+                                                        href="javascript:page_nav(document.forms[0],${pag2.nextPage});"
+                                                        aria-controls="datatable-responsive" data-dt-idx="1"
+                                                        tabindex="0">下一页</a>
+                                                </li>
+                                                <li class="paginate_button next"><a
+                                                        href="javascript:page_nav(document.forms[0],${pag2.lastPage});"
+                                                        aria-controls="datatable-responsive" data-dt-idx="7"
+                                                        tabindex="0">最后一页</a>
+                                                </li>
+                                            </c:if>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:if test="${page.hasPreviousPage eq true }">
+                                                <li class="paginate_button previous"><a
+                                                        href="javascript:page_nav(document.forms[0],1);"
+                                                        aria-controls="datatable-responsive" data-dt-idx="0"
+                                                        tabindex="0">首页</a>
+                                                </li>
+                                                <li class="paginate_button "><a
+                                                        href="javascript:page_nav(document.forms[0],${page.prePage});"
+                                                        aria-controls="datatable-responsive" data-dt-idx="1"
+                                                        tabindex="0">上一页</a>
+                                                </li>
+                                            </c:if>
+                                            <c:if test="${page.hasNextPage eq true }">
+                                                <li class="paginate_button "><a
+                                                        href="javascript:page_nav(document.forms[0],${page.nextPage});"
+                                                        aria-controls="datatable-responsive" data-dt-idx="1"
+                                                        tabindex="0">下一页</a>
+                                                </li>
+                                                <li class="paginate_button next"><a
+                                                        href="javascript:page_nav(document.forms[0],${page.lastPage});"
+                                                        aria-controls="datatable-responsive" data-dt-idx="7"
+                                                        tabindex="0">最后一页</a>
+                                                </li>
+                                            </c:if>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-				<table class="table table-striped table-bordered">
-					<thead>
-						<tr>
-							<th>单号</th>
-							<th>重量：kg</th>
-							<th>状态</th>
-							<th>操作</th>
-						</tr>
-					</thead>
-
-
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td>2</td>
-							<td>初始入库</td>
-							<td><button  type="submit" class="btn btn-success">入库</button>
-							<button type="button" class="btn btn-primary" >合包</button></td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>2</td>
-							<td>初始入库</td>
-							<td><button  type="submit" class="btn btn-success">入库</button>
-							<button type="button" class="btn btn-primary" >合包</button></td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>2</td>
-							<td>二次入库</td>
-							<td><button id="send" type="submit" class="btn btn-success">入库</button>
-							<button type="button" class="btn btn-primary" >合包</button></td>
-						</tr>
-						<tr>
-							<td>4</td>
-							<td>2</td>
-							<td>二次入库</td>
-							<td><button  type="submit" class="btn btn-success">入库</button>
-							<button type="button" class="btn btn-primary" >合包</button></td>
-						</tr>
-						<tr>
-							<td>5</td>
-							<td>2</td>
-							<td>中转入库</td>
-							<td><button  type="submit" class="btn btn-success">入库</button>
-							<button type="button" class="btn btn-primary">合包</button></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
 </div>
-
-
-
-<%@include file="../common/footer.jsp"%>
-
-
-
-
-
+<%@include file="../common/footer.jsp" %>
+<script
+        src="${pageContext.request.contextPath }/statics/localjs/rollpage.js"></script>
+<script
+        src="${pageContext.request.contextPath }/statics/localjs/putinstorage.js"></script>

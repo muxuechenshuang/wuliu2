@@ -2,6 +2,7 @@ package com.forest.wu.controller;
 
 import com.forest.wu.dao.*;
 import com.forest.wu.pojo.*;
+import com.forest.wu.pojo.Dictionary;
 import com.forest.wu.service.DictionaryService;
 import com.forest.wu.service.Order_infoService;
 import com.forest.wu.service.OrganizationService;
@@ -18,9 +19,8 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.servlet.http.HttpSession;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.io.Console;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -393,10 +393,30 @@ public class Order_infoController {
     }
 
 
-    @RequestMapping(value = "aweekorder")
+    @RequestMapping(value = "aweekorder.json")
     @ResponseBody
-    public int selectOrderCount(){
-        return orderService.selectOrderCount();
+    public Object selectOrderCount(){
+        List list=new ArrayList();
+
+        for(int i=0;i<7 ;i++){
+            list.add(orderService.selectOrderCount(-i));
+        }
+        return list;
     }
+
+    @RequestMapping(value = "aweekordermonth.json")
+    @ResponseBody
+    public Object selectOrderCountmonth(){
+        List list=new ArrayList();
+
+        for(int i=0;i<30 ;i++){
+            list.add(orderService.selectOrderCount(-i));
+        }
+        return list;
+    }
+
+
+
+
 
 }

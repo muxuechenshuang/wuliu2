@@ -170,6 +170,6 @@ public interface Order_infoService {
     * @return：int
     **/
     
-    int selectOrderCount();
+    int selectOrderCount(Integer day);
 
 }

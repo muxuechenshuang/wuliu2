@@ -180,6 +180,7 @@
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
                                                     <li><a href="${pageContext.request.contextPath}/order/toworkorderdesc?id=${workorder.id}" class="addVersion"  data-toggle="tooltip" data-placement="top" title="" data-original-title="查看订单">查看工单</a></li>
+
                                                     <li><a href="${pageContext.request.contextPath}/order/toworkweituo?id=${workorder.id}" class="addVersion"  data-toggle="tooltip" data-placement="top" title="" data-original-title="委托">委托</a>
 
                                                 </ul>

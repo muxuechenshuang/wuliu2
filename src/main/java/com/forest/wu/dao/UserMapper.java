@@ -262,4 +262,13 @@ public interface UserMapper {
     **/
     int updateWorkor(@Param(value = "id") Integer id,
                      @Param(value = "gid") Integer gid);
+
+    /*
+    * @author:李普强
+    * @Description描述：查询一个月订单条数
+    * @Date: 15:28 2018/10/11
+    * @Param参数：无参
+    * @return返回值：int
+    **/
+    List<Integer> selectYueDin();
 }

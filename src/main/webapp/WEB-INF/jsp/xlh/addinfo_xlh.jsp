@@ -167,7 +167,7 @@
                             <select id="productType" name="productType" class="form-control" style="width: 200px;">
                                 <option value="">--请选择类型--</option>
                                 <c:forEach var="goodtype" items="${goodtypeList}">
-                                    <option value="${goodtype.id}">${goodtype.valueName}</option>
+                                    <option value="${goodtype.valueId}">${goodtype.valueName}</option>
                                 </c:forEach>
 
                             </select>
