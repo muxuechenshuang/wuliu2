@@ -366,7 +366,7 @@ public class BranchController {
         return "lpq/tianjiayuangong2";
     }
 
-    //添加完成后点击保存后的方法
+    //添加完成后点击保存后的方法，使用了文件上传
     @RequestMapping(value = "/baokuai",method = RequestMethod.POST)
     public String addUserKuai2(User user, BindingResult bindingResult, HttpSession session, HttpServletRequest request,
                                @RequestParam(value = "picPath", required = false) MultipartFile attach){
@@ -459,6 +459,8 @@ public class BranchController {
 
         return "lpq/nian";
     }
+
+    //查询月度报表方法
     @RequestMapping(value = "yue")
     @ResponseBody
     public Object getYue(){
@@ -478,6 +480,8 @@ public class BranchController {
         /*List<Integer> result=courierService.selectYueDin();*/
         return result;
     }
+
+    //查询季度报表方法
     @RequestMapping(value = "jidu")
     @ResponseBody
     public Object getJidu(){
@@ -489,6 +493,7 @@ public class BranchController {
         /*List<Integer> result=courierService.selectYueDin();*/
         return result;
     }
+    //查询年度报表方法
     @RequestMapping(value = "nian")
     @ResponseBody
     public Object getNian(){

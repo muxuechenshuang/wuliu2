@@ -2,8 +2,6 @@ package com.forest.wu.service;
 
 import com.forest.wu.pojo.User;
 
-import java.util.List;
-
 /**
  * 用户接口
  *
@@ -13,11 +11,14 @@ import java.util.List;
 
 public interface UserService {
     //登录
-    List<User> selectULogin();
+    User selectULogin(String user,String password);
     //注册
     int addLogin(User user);
     //检查用户名、手机号和邮箱是否重复
-    List<User> findUser();
+    User findUser(String username);
+    User findUser1(String email);
+    User findUser2(String phone);
+
     //更新个人信息
     int upHome(User user);
 }

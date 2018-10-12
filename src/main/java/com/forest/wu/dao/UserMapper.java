@@ -50,7 +50,7 @@ public interface UserMapper {
     * @Date: 9:41 2018/9/29
     * 查询用户登录信息
     **/
-    List<User> selectULogin();
+    User selectULogin(String user,String password);
 
     /*
     * @author: 蒋梓伦
@@ -59,7 +59,11 @@ public interface UserMapper {
     * @Param：[用户名, 邮箱, 手机号]
     * @return：对象集合
     **/
-    List<User> find();
+    User find(String username);
+    User find1(String email);
+    User find2(String phone);
+
+
 
     /*
      * @author:李普强
