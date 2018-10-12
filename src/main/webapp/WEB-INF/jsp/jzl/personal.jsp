@@ -3,23 +3,23 @@
 <%@include file="../common/header.jsp"%>
 <div class="page-title">
     <div class="title_left">
-        <img src="${pageContext.request.contextPath }${user.picPath}"
+        <img src="${pageContext.request.contextPath }${sessionScope.user.picPath}"
              alt="..." class="img-circle profile_img" style="width: 20%">
         <h3 style="float: right">
-            欢迎你:${user.username}
+            欢迎你:${sessionScope.user.username}
         </h3>
 </div>
     <div class="x_content">
         <div class="clearfix"></div>
         <form class="form-horizontal form-label-left" action="personal" method="post" enctype="multipart/form-data">
-            <input type="hidden" value="${user.id}" name="userid" id="userid">
+            <input type="hidden" value="${sessionScope.user.id}" name="userid" id="userid">
             <div class="item form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" >用户名 <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <input id="username" class="form-control col-md-7 col-xs-12"
                            data-validate-length-range="20" data-validate-words="1" name="username"  required="required"
-                           value="${user.username}" type="text" readonly>
+                           value="${sessionScope.user.username}" type="text" readonly>
                 </div>
             </div>
 
@@ -31,7 +31,7 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <input id="password" class="form-control col-md-7 col-xs-12"
                            data-validate-length-range="20" data-validate-words="1" name="password"   required="required"
-                           value="${user.password}" type="password" maxlength="15"><span style="color: red;"></span>
+                           value="${sessionScope.user.password}" type="password" maxlength="15"><span style="color: red;"></span>
                 </div>
             </div>
             <div class="item form-group">
@@ -40,7 +40,7 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <input id="phone" class="form-control col-md-7 col-xs-12" name="phone"
                            data-validate-length-range="20" data-validate-words="1"   required="required"
-                           value="${user.phone}" type="text" maxlength="11"><span style="color: red;"></span>
+                           value="${sessionScope.user.phone}" type="text" maxlength="11"><span style="color: red;"></span>
                 </div>
             </div>
             <div class="item form-group">
@@ -49,14 +49,14 @@
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <input id="email" class="form-control col-md-7 col-xs-12"
                            data-validate-length-range="20" data-validate-words="1" name="email"   required="required"
-                           value="${user.email}" type="text" maxlength="18"><span style="color: red;"></span>
+                           value="${sessionScope.user.email}" type="text" maxlength="18"><span style="color: red;"></span>
                 </div>
             </div>
             <div class="item form-group">
                 <label class="control-label col-md-3 col-sm-3 col-xs-12">头像 <span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <img alt="" src="" id="backImg" style="width: 140px">
+                    <img alt="" src=" ${pageContext.request.contextPath }${sessionScope.user.picPath}" id="backImg" style="width: 140px">
                     <input type="file" class="form-control col-md-7 col-xs-12" name="picPath"  required="required" id="picPath"/>
                 </div>
             </div>
