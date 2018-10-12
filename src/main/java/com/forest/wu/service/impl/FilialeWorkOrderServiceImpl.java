@@ -19,6 +19,19 @@ public class FilialeWorkOrderServiceImpl implements FilialeWorkOrderService {
     @Autowired
     private WorkorderMapper workorderMapper;
 
+    @Override
+    public boolean saveWorkOrder(Workorder workorder) {
+        boolean flag = false;
+        if(workorderMapper.updateByPrimaryKeySelective(workorder)>0){
+            flag = true;
+        }
+        return flag;
+    }
+
+    @Override
+    public Workorder queryWorkOrderByWorkNum(String workNum) {
+        return workorderMapper.selectWorkOrderByWorkNum(workNum);
+    }
 
     @Override
     public List<Workorder> queryWorkOrderList(Workorder workorder) {
@@ -28,5 +41,15 @@ public class FilialeWorkOrderServiceImpl implements FilialeWorkOrderService {
     @Override
     public Workorder queryWorkOrderById(Integer id) {
         return workorderMapper.selectWorkOrderById(id);
+    }
+
+    @Override
+    public List<Workorder> queryReadyInStorageWorkOrderList() {
+        return workorderMapper.selectReadyInStorageWorkOrderList();
+    }
+
+    @Override
+    public List<Workorder> queryReadyOutStorageWorkOrderList() {
+        return workorderMapper.selectOutStorageWorkOrderList();
     }
 }

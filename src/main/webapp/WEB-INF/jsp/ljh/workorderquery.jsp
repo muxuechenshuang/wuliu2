@@ -210,7 +210,7 @@
                                     <tr>
                                         <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${workorder.workNum }</td>
                                         <td>${workorder.workStatusName }</td>
-                                        <td>${workorder.orderNum }</td>
+                                        <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${workorder.orderNum }</td>
                                         <td>${workorder.packageId }</td>
                                         <td>${workorder.inStorageStatusName }</td>
                                         <td>

@@ -56,4 +56,14 @@ public interface OrganizationService {
      */
     public List<Organization> getBranchList(Integer parentId, Integer currentPageNo, Integer pageSize);
 
+
+    /**
+    * @author: 李家和
+    * @Description 根据id查询单个组织对象
+    * @Date: 11:43 2018/10/11
+    * @Param：[id]
+    * @return：com.forest.wu.pojo.Organization
+    **/
+    public  Organization queryOrganizationById(Integer id);
+
 }
