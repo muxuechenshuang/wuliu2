@@ -58,8 +58,8 @@
     <!--新增一个快递员-->
     <insert id="addUserKuai" >
 
-    insert into user (username,password,email,phone,sex,parentid,type,time)
-             values(#{username}, #{password}, #{email}, #{phone},#{sex},#{parentid}, #{type},#{time})
+    insert into user (username,password,email,phone,sex,parentid,type,time,picPath)
+             values(#{username}, #{password}, #{email}, #{phone},#{sex},#{parentid}, #{type},#{time},#{picPath})
     </insert>
     <!--删除一个快递员-->
     <delete id="deleteUser">
