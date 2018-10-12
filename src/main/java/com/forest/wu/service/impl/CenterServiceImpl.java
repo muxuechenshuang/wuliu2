@@ -1,9 +1,6 @@
 package com.forest.wu.service.impl;
 
-import com.forest.wu.dao.Order_infoMapper;
-import com.forest.wu.dao.OrganizationMapper;
-import com.forest.wu.dao.ReturnMapper;
-import com.forest.wu.dao.WorkorderMapper;
+import com.forest.wu.dao.*;
 import com.forest.wu.pojo.*;
 import com.forest.wu.service.CenterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +26,8 @@ public class CenterServiceImpl implements CenterService {
     private Order_infoMapper order_infoMapper;
     @Autowired
     private OrganizationMapper organizationMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public List<Workorder> selectWorkOrder(Workorder workorder) throws Exception {
@@ -42,7 +41,7 @@ public class CenterServiceImpl implements CenterService {
 
     @Override
     public int updateWorkOrder(Workorder workorder) throws Exception {
-        return 0;
+        return workorderMapper.updateByPrimaryKeySelective(workorder);
     }
 
     @Override
@@ -52,18 +51,24 @@ public class CenterServiceImpl implements CenterService {
     }
 
     @Override
-    public List<Workorder> selectReturn(Return returnorder) throws Exception {
-        return null;
+    public List<Return> selectReturn(Return returnorder) throws Exception {
+        return returnMapper.selectReturn(returnorder);
     }
 
     @Override
-    public int delectReturn(Return returnorder) throws Exception {
-        return 0;
+    public Return selectRetrunById(String id) throws Exception {
+
+        return returnMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int delectReturn(String id) throws Exception {
+        return returnMapper.deleteByPrimaryKey(id);
     }
 
     @Override
     public int updateReturn(Return returnorder) throws Exception {
-        return 0;
+        return returnMapper.updateByPrimaryKeySelective(returnorder);
     }
 
     @Override
@@ -116,6 +121,27 @@ public class CenterServiceImpl implements CenterService {
 
     @Override
     public int addSonCompanyPerson(User user) throws Exception {
-        return 0;
+        return userMapper.insertSelective(user);
     }
+
+    @Override
+    public List<User> selectCompanyPerson(User user) throws Exception {
+        return userMapper.findUser(user);
+    }
+
+    @Override
+    public int delectSonCompanyPerson(Integer id) throws Exception {
+        return userMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public User selectByUserId(Integer id) throws Exception {
+        return userMapper.selectByUserId(id);
+    }
+
+    @Override
+    public Integer updateUserById(User user) throws Exception {
+        return userMapper.updateByPrimaryKeySelective(user);
+    }
+
 }

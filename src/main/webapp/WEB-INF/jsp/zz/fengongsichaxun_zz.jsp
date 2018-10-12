@@ -8,7 +8,7 @@
 			<div class="x_title">
 				<h2>
 					分公司管理 <i class="fa fa-user"></i><small>${devUserSession.devName}
-						- 您可以通过搜索或者其他的筛选项对员工的信息进行修改、删除等管理操作。^_^</small>
+						- 您可以通过搜索或者其他的筛选项对分公司的信息进行修改、删除等管理操作。^_^</small>
 				</h2>
 				<div class="clearfix"></div>
 			</div>
@@ -18,9 +18,9 @@
 			    <ul>
 					<li>
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">公司编号：</label>
+							<label class="control-label col-md-3 col-sm-3 col-xs-12" for="id">公司编号：</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
-								<input name="id" type="number" class="form-control col-md-7 col-xs-12" value="${id }">
+								<input name="id" id="id" type="number" class="form-control col-md-7 col-xs-12" value="${id }">
 							</div>
 						</div>
 					</li>
@@ -76,14 +76,6 @@
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
-									父级组织ID</th>
-									<th class="sorting" tabindex="0"
-										aria-controls="datatable-responsive" rowspan="1" colspan="1"
-										aria-label="Last name: activate to sort column ascending">
-										类型</th>
-									<th class="sorting" tabindex="0"
-										aria-controls="datatable-responsive" rowspan="1" colspan="1"
-										aria-label="Last name: activate to sort column ascending">
 										电话</th>
 									<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
@@ -93,6 +85,10 @@
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										aria-label="Last name: activate to sort column ascending">
 										所在城市</th>
+									<th class="sorting" tabindex="0"
+										aria-controls="datatable-responsive" rowspan="1" colspan="1"
+										aria-label="Last name: activate to sort column ascending">
+										介绍</th>
 										<th class="sorting" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
 										style="width: 124px;"
@@ -110,11 +106,10 @@
 								<tr role="row" class="odd">
 									<td tabindex="0" class="sorting_1">${organization.id}</td>
 									<td>${organization.name }</td>
-									<td>${organization.parentId }</td>
-									<td>${organization.type }</td>
 									<td>${organization.phone }</td>
 									<td>${organization.site }</td>
 									<td>${organization.city }</td>
+									<td>${organization.introduction }</td>
 									<td><a id="lookandmodify" href="/center/tosondetail?organizationid=${organization.id}" class="btn btn-primary" >查看/修改</a></td>
 									<td><a id="delect" href="/center/delect?organizationid=${organization.id}" class="btn btn-primary" >删除</a></td>
 

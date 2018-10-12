@@ -2,6 +2,7 @@ package com.forest.wu.controller;
 
 import com.forest.wu.dao.*;
 import com.forest.wu.pojo.*;
+import com.forest.wu.pojo.Dictionary;
 import com.forest.wu.service.DictionaryService;
 import com.forest.wu.service.Order_infoService;
 import com.forest.wu.service.OrganizationService;
@@ -18,9 +19,8 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.servlet.http.HttpSession;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.io.Console;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -33,6 +33,7 @@ import java.util.regex.Pattern;
 public class Order_infoController {
     @Autowired
     private Order_infoService  orderService;
+
 
     @Autowired
     private UserMapper userMapper;
@@ -94,6 +95,36 @@ public class Order_infoController {
         return "xlh/dindan_xlh";
     }
 
+
+    /**
+     * @author: 肖林辉
+     * @Description   按条件查询,模糊查询
+     * @Date: 16:28 2018/9/30/030
+     * @Param：[pageIndex, queryOrderNum, querysName, querysTel, order, model]
+     * @return：java.lang.String
+     **/
+
+    @RequestMapping("/baobiao_someorder")
+    public String baobiao_someOrder(@RequestParam(required = true,defaultValue = "1")Integer pageIndex,
+                            @RequestParam(value = "orderNumber",required = false)String queryOrderNum,
+                            @RequestParam(value = "sName",required = false)String querysName,
+                            @RequestParam(value = "sTel",required = false)String querysTel,
+                            @RequestParam(value = "courierNum",required = false)Integer courierNum,
+                            Order_info order, Model model){
+
+        PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
+        order.setCourierNumber(courierNum);
+        List<Order_info> orderList=orderService.selectSomeOrder(order);
+        PageInfo<Order_info> p=new PageInfo<Order_info>(orderList);
+        model.addAttribute("pageIndex",p);
+        model.addAttribute("order",orderList);
+
+        //回显
+        model.addAttribute("queryNumber",queryOrderNum);
+        model.addAttribute("querysName",querysName);
+        model.addAttribute("querysTel",querysTel);
+        return "xlh/baobiao_dindan_xlh";
+    }
     /**
     * @author: 肖林辉 
     * @Description  订单页面跳转到订单详情页面
@@ -148,13 +179,15 @@ public class Order_infoController {
     * @return：
     **/
     @RequestMapping(value = "/saveworkorder")
-    public String addWorkorder(Workorder workorder, BindingResult bindingResult, HttpSession session){
+    public String addWorkorder(Workorder workorder, BindingResult bindingResult, HttpSession session,
+                               @RequestParam("orderid")String id){
         //根据Id找到相应订单的信息
        //插入工单信息
         User user=(User)session.getAttribute("user");
         workorder.setProductLocation(2);
         Date date=new Date();
         workorder.setRiseTime(date);
+        workorder.setProductNum(Long.valueOf(id));
         workorder.setgCourier(user.getId());
         workorder.setWorkStatus(1);  // 工单状态为待审核
        orderService.addWorkorderByCourier(workorder);
@@ -163,8 +196,8 @@ public class Order_infoController {
         order.setOrderNumber(workorder.getOrderNum());
         orderService.updateOrderStatusByCourier(order);
 
-       int  id=user.getId();
-       return "redirect:/order/someorder?courierNum="+id;
+       int  uid=user.getId();
+       return "redirect:/order/someorder?courierNum="+uid;
     }
     
     /**
@@ -177,12 +210,12 @@ public class Order_infoController {
     
     @RequestMapping(value="/toorderdesc")
     public String toOrderDesc(@RequestParam(value="id",required = false)String id,
-                              @RequestParam(value="parentid",required = false)String parentid,
-                              @RequestParam(value = "usertype",required = false)String usertype, Model model){
+                              Model model,HttpSession session){
+        User user=(User)session.getAttribute("user");
         Order_info orderInfo=orderService.selectOneOrder(Integer.parseInt(id));
         model.addAttribute("order",orderInfo);
 
-        List<User>  couriersList = userMapper.selectCouriers(Integer.parseInt(parentid),Integer.parseInt(usertype));
+        List<User>  couriersList = userMapper.selectCouriers(user.getParentid(),user.getType());
         model.addAttribute("couriers",couriersList);
         return  "xlh/orderxianqian_xlh";
     }
@@ -236,7 +269,7 @@ public class Order_infoController {
                                   @RequestParam(value = "id")Integer id){
         /*User user=(User)session.getAttribute("user");*/
         try {
-            Workorder workorder=workorderMapper.selectWorkOrderById(id);
+            Workorder workorder=orderService.selectByPrimaryKeyByCourier(id);
             model.addAttribute(workorder);
 
         } catch (Exception e) {
@@ -358,6 +391,32 @@ public class Order_infoController {
         int id=user.getId();
         return  "redirect:toworkorder/?courierNum="+id;
     }
+
+
+    @RequestMapping(value = "aweekorder.json")
+    @ResponseBody
+    public Object selectOrderCount(){
+        List list=new ArrayList();
+
+        for(int i=0;i<7 ;i++){
+            list.add(orderService.selectOrderCount(-i));
+        }
+        return list;
+    }
+
+    @RequestMapping(value = "aweekordermonth.json")
+    @ResponseBody
+    public Object selectOrderCountmonth(){
+        List list=new ArrayList();
+
+        for(int i=0;i<30 ;i++){
+            list.add(orderService.selectOrderCount(-i));
+        }
+        return list;
+    }
+
+
+
 
 
 }

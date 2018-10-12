@@ -1,17 +1,21 @@
 package com.forest.wu.controller;
 
 import com.alibaba.fastjson.JSONArray;
-import com.forest.wu.utils.httpApiDemo.IndustrySMS;
 import com.forest.wu.pojo.User;
 import com.forest.wu.service.UserService;
+import com.forest.wu.utils.Constants;
 import com.forest.wu.utils.MD5;
+import com.forest.wu.utils.httpApiDemo.IndustrySMS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,7 +26,7 @@ import java.util.List;
  * @create 2018-09-29 9:31
  **/
 @Controller
-@RequestMapping(value="/wuliu")
+@RequestMapping(value="/log")
 public class LoginController {
 
     @Autowired
@@ -35,29 +39,45 @@ public class LoginController {
 
     //登录页面
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String userAll(@RequestParam String user, @RequestParam String password, HttpSession session) {
+    public String userAll(@RequestParam String user, @RequestParam String password, HttpSession session,HttpServletResponse response) throws IOException {
         List<User> ss = userService.selectULogin();
+
         //循环查询
         int i = 0;
         do {
             if (ss.get(i).getUsername().equals(user) || ss.get(i).getEmail().equals(user) || ss.get(i).getPhone().equals(user)) {
                 if (ss.get(i).getPassword().equals(password)) {
                     //获取全部的登录信息
-                    session.setAttribute("user", ss.get(i));
-                    session.setMaxInactiveInterval(30*60);
+                    if(ss.get(i).getType().equals(1)) {
+                        session.setAttribute(Constants.CLIENT_USER_SESSION, ss.get(i));
+                    }else if(ss.get(i).getType().equals(2)){
+                        session.setAttribute(Constants.COURIER_USER_SESSION, ss.get(i));
+                    }else if(ss.get(i).getType().equals(3)){
+                        session.setAttribute(Constants.SITE_USER_SESSION, ss.get(i));
+                    }else if(ss.get(i).getType().equals(4)){
+                        session.setAttribute(Constants.FILIALE_USER_SESSION, ss.get(i));
+                    }else if(ss.get(i).getType().equals(5)) {
+                        session.setAttribute(Constants.CENTER_USER_SESSION, ss.get(i));
+                    }
+                    session.setMaxInactiveInterval(3600);
                     return "xlh/main_xlh";
                 }
             }
             i++;
         } while (i < ss.size());
+
         return "jzl/index";
     }
 
     //注销
-    @RequestMapping("wuliu/index")
+    @RequestMapping("log/index")
     public String devLogout(HttpSession session) {
         //        清除
-        session.removeAttribute("user");
+        session.removeAttribute(Constants.CLIENT_USER_SESSION);
+        session.removeAttribute(Constants.COURIER_USER_SESSION);
+        session.removeAttribute(Constants.SITE_USER_SESSION);
+        session.removeAttribute(Constants.FILIALE_USER_SESSION);
+        session.removeAttribute(Constants.CENTER_USER_SESSION);
         return "jzl/index";
     }
 
@@ -99,6 +119,7 @@ public class LoginController {
         login.setEmail(user.getEmail());
         login.setPhone(user.getPhone());
         login.setType(1);
+        login.setPicPath("/statics/uploadfiles/user.png");
         userService.addLogin(login);
         return "jzl/index";
     }
@@ -112,4 +133,8 @@ public class LoginController {
         String result = IndustrySMS.getResult();//获取验证码
         return result;
     }
+
+
+
+
 }

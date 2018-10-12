@@ -20,9 +20,9 @@
 					<ul>
 						<li>
 							<div class="form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">工单号</label>
+								<label class="control-label col-md-4 col-sm-4 col-xs-12" for="workNum">工单号</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input name="workNum" type="text"
+									<input name="workNum" type="text" id="workNum"
 										class="form-control col-md-7 col-xs-12"
 										value="${workNum }">
 								</div>
@@ -30,9 +30,9 @@
 						</li>
 						<li>
 							<div class="form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">订单号</label>
+								<label class="control-label col-md-4 col-sm-4 col-xs-12" for="orderNum">订单号</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input name="orderNum" type="text"
+									<input name="orderNum" type="text" id="orderNum"
 										class="form-control col-md-7 col-xs-12"
 										value="${orderNum }">
 								</div>
@@ -40,9 +40,9 @@
 						</li>
 						<li>
 							<div class="form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">物件编号</label>
+								<label class="control-label col-md-4 col-sm-4 col-xs-12" for="productNum">物件编号</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input name="productNum" type="text"
+									<input name="productNum" type="text" id="productNum"
 										class="form-control col-md-7 col-xs-12"
 										value="${productNum }">
 								</div>
@@ -50,9 +50,9 @@
 						</li>
 						<li>
 							<div class="form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">合包号</label>
+								<label class="control-label col-md-4 col-sm-4 col-xs-12" for="packageId">合包号</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input name="packageId" type="text"
+									<input name="packageId" type="text" id="packageId"
 										class="form-control col-md-7 col-xs-12"
 										value="${packageId }">
 								</div>
@@ -60,9 +60,9 @@
 						</li>
 						<li>
 							<div class="form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">寄件人姓名</label>
+								<label class="control-label col-md-4 col-sm-4 col-xs-12" for="sName">寄件人姓名</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<input name="sName" type="text"
+									<input name="sName" type="text" id="sName"
 										class="form-control col-md-7 col-xs-12"
 										value="${sName }">
 								</div>
@@ -83,9 +83,13 @@
 							<div class="form-group">
 								<label class="control-label col-md-4 col-sm-4 col-xs-12">寄件人城市</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<select id="sCity" name="sCity"
-										class="form-control">
+									<select id="sCity" name="sCity" class="form-control">
 										<option value="">--请选择--</option>
+										<c:forEach var="cityList" items="${cityList}">
+											<option value="${cityList.id}"
+													<c:if test="${cityList.id == cityId}">selected="selected"</c:if>
+											>${cityList.city}</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
@@ -96,7 +100,14 @@
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<select id="sPoint" name="sPoint"
 										class="form-control">
-										<option value="">--请选择--</option>
+										<option value="">--请选择网点--</option>
+										<c:if test="${branchList!=null}">
+											<c:forEach var="branchList" items="${branchList}">
+												<option value="${branchList.id}"
+														<c:if test="${branchList.id == branchId}">selected="selected"</c:if>
+												>${branchList.name}</option>
+											</c:forEach>
+										</c:if>
 									</select>
 								</div>
 							</div>
@@ -128,20 +139,51 @@
 									<select id="gCity" name="gCity"
 										class="form-control">
 										<option value="">--请选择--</option>
+										<c:forEach var="cityList" items="${cityList}">
+											<option value="${cityList.id}"
+													<c:if test="${cityList.id == cityId}">selected="selected"</c:if>
+											>${cityList.city}</option>
+										</c:forEach>
 									</select>
 								</div>
 							</div>
 						</li>
 						<li>
 							<div class="form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">收件人网点</label>
+								<label class="control-label col-md-4 col-sm-4 col-xs-12" for="gPoint">网点名称</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<select id="gPoint" name="gPoint"
-										class="form-control">
-										<option value="">--请选择--</option>
+											class="form-control">
+										<%--<option value="">--请选择--</option>--%>
+										<%--<c:if test="${branchList!=null}">--%>
+											<%--<c:forEach items="${branchList}" var="branchList">--%>
+												<%--<option--%>
+														<%--<c:if test="${branchList.id == branchid}">selected="selected"</c:if>--%>
+														<%--value="${branchList.name}">--%>
+														<%--${branchList.name}--%>
+												<%--</option>--%>
+											<%--</c:forEach>--%>
+										<%--</c:if>--%>
+										<option value="">--请选择网点--</option>
+										<c:if test="${branchList!=null}">
+											<c:forEach var="branchList" items="${branchList}">
+												<option value="${branchList.id}"
+														<c:if test="${branchList.id == branchId}">selected="selected"</c:if>
+												>${branchList.name}</option>
+											</c:forEach>
+										</c:if>
 									</select>
 								</div>
 							</div>
+							<%--<div class="form-group">--%>
+								<%--<label class="control-label col-md-4 col-sm-4 col-xs-12">收件人网点</label>--%>
+								<%--<div class="col-md-6 col-sm-6 col-xs-12">--%>
+									<%--<select id="gPoint" name="gPoint"--%>
+										<%--class="form-control">--%>
+										<%--<option value="">--请选择--</option>--%>
+									<%--</select>--%>
+								<%--</div>--%>
+							<%--</div>--%>
 						</li>
 						<li>
 							<div class="form-group">
@@ -174,16 +216,16 @@
 								</div>
 							</div>
 						</li>
-						<li>
-							<div class="form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">审核结果</label>
-								<div class="col-md-6 col-sm-6 col-xs-12">
-									<select name="result" class="form-control">
-										<option value="">--请选择--</option>
-									</select>
-								</div>
-							</div>
-						</li>
+						<%--<li>--%>
+							<%--<div class="form-group">--%>
+								<%--<label class="control-label col-md-4 col-sm-4 col-xs-12">审核结果</label>--%>
+								<%--<div class="col-md-6 col-sm-6 col-xs-12">--%>
+									<%--<select name="result" class="form-control">--%>
+										<%--<option value="">--请选择--</option>--%>
+									<%--</select>--%>
+								<%--</div>--%>
+							<%--</div>--%>
+						<%--</li>--%>
 						<li><button type="submit" class="btn btn-primary">查
 								&nbsp;&nbsp;&nbsp;&nbsp;询</button></li>
 					</ul>
@@ -195,8 +237,7 @@
 		<div class="x_panel">
 			<div class="x_content">
 				<p class="text-muted font-13 m-b-30"></p>
-				<div id="datatable-responsive_wrapper"
-					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+				<div id="datatable-responsive_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row">
 						<div class="col-sm-12">
 							<table id="datatable-responsive"
@@ -216,11 +257,7 @@
 											style="width: 124px;"
 											aria-label="First name: activate to sort column descending"
 											aria-sort="ascending">工单号</th>
-										<th class="sorting_asc" tabindex="0"
-											aria-controls="datatable-responsive" rowspan="1" colspan="1"
-											style="width: 124px;"
-											aria-label="First name: activate to sort column descending"
-											aria-sort="ascending">订单号</th>
+
 										<th class="sorting" tabindex="0"
 											aria-controls="datatable-responsive" rowspan="1" colspan="1"
 											style="width: 80px;"
@@ -267,7 +304,6 @@
 									<tr role="row" class="odd">
 										<td tabindex="0" class="sorting_1">${workorder.id}</td>
 										<td>${workorder.workNum }</td>
-										<td>${workorder.orderNum }</td>
 										<td>${workorder.gCity }</td>
 										<td>${workorder.gPoint }</td>
 										<td>${workorder.gName }</td>
@@ -318,7 +354,6 @@
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
