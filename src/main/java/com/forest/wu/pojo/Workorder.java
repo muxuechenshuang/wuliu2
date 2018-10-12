@@ -53,13 +53,9 @@ public class Workorder {
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date riseTime;
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-    private Date firInStorage;
+    private Date inStorageTime;//入库时间
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-    private Date firOutStorage;
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-    private Date secInStorage;
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
-    private Date secOutStorage;
+    private Date outStorageTime;//出库时间
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date finishedTime;
 
@@ -375,36 +371,20 @@ public class Workorder {
         this.riseTime = riseTime;
     }
 
-    public Date getFirInStorage() {
-        return firInStorage;
+    public Date getInStorageTime() {
+        return inStorageTime;
     }
 
-    public void setFirInStorage(Date firInStorage) {
-        this.firInStorage = firInStorage;
+    public void setInStorageTime(Date inStorageTime) {
+        this.inStorageTime = inStorageTime;
     }
 
-    public Date getFirOutStorage() {
-        return firOutStorage;
+    public Date getOutStorageTime() {
+        return outStorageTime;
     }
 
-    public void setFirOutStorage(Date firOutStorage) {
-        this.firOutStorage = firOutStorage;
-    }
-
-    public Date getSecInStorage() {
-        return secInStorage;
-    }
-
-    public void setSecInStorage(Date secInStorage) {
-        this.secInStorage = secInStorage;
-    }
-
-    public Date getSecOutStorage() {
-        return secOutStorage;
-    }
-
-    public void setSecOutStorage(Date secOutStorage) {
-        this.secOutStorage = secOutStorage;
+    public void setOutStorageTime(Date outStorageTime) {
+        this.outStorageTime = outStorageTime;
     }
 
     public Date getFinishedTime() {

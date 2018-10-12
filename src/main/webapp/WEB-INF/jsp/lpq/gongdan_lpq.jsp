@@ -139,7 +139,7 @@
 										<td>${workor.gAddress}</td>
 										<td>${workor.gCourier}</td>
 										<td>${workor.riseTime}</td>
-										<td><a href="javascript:;" class="btn btn-primary">确认</a></td>
+										<td><a href="${pageContext.request.contextPath}/wuliu/que?id=${workor.id}" class="btn btn-primary">确认</a></td>
 									</tr>
 								</c:forEach>
 								</tbody>

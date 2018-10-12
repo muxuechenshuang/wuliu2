@@ -12,7 +12,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>飞鸟物流${sessionScope.user.id}</title>
+<title>飞鸟物流</title>
 
 
 	<!-- Bootstrap -->
@@ -52,8 +52,8 @@
 					<!-- menu profile quick info -->
 					<div class="profile">
 						<div class="profile_pic">
-							<a href="/wuliu/homepage"><img
-								src="${pageContext.request.contextPath }${sessionScope.user.picPath}"
+							<a href="/wu/homepage"><img
+								src="${pageContext.request.contextPath }${user.picPath}"
 								alt="..." class="img-circle profile_img"></a>
 						</div>
 						<div class="profile_info">
@@ -124,7 +124,7 @@
 											</li>
 											<!-- 	<li><a href="shenghe_lpq.jsp">审核订单</a>
                                                 </li> -->
-											<li><a href="${pageContext.request.contextPath}/wuliu/gong">确认工单</a>
+											<li><a href="${pageContext.request.contextPath}/wuliu/gongs">确认工单</a>
 											</li>
 											<li><a href="${pageContext.request.contextPath}/wuliu/fengong">分配工单</a>
 											</li>
@@ -187,7 +187,7 @@
 						</a> <a data-toggle="tooltip" data-placement="top" title="Lock"> <span
 							class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
 						</a> <a data-toggle="tooltip" data-placement="top" title="Logout"
-							href="${pageContext.request.contextPath }/wuliu/index"> <span
+							href="${pageContext.request.contextPath }/log/index"> <span
 							class="glyphicon glyphicon-off" aria-hidden="true"></span> </a>
 					</div>
 					<!-- /menu footer buttons -->
@@ -212,7 +212,7 @@
 									class=" fa fa-angle-down"></span> </a>
 								<ul class="dropdown-menu dropdown-usermenu pull-right">
 									<li><a
-										href="${pageContext.request.contextPath }/wuliu/index"><i
+										href="${pageContext.request.contextPath }/log/index"><i
 											class="fa fa-sign-out pull-right"></i> Log Out</a>
 									</li>
 								</ul></li>

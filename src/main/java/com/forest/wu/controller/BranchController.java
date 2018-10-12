@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -289,6 +290,15 @@ public class BranchController {
         return "lpq/gongdan_lpq";
     }
 
+    //确认工单页面点击确认按钮后
+    @RequestMapping(value = "que")
+ public String getWorkor2(Model model,@RequestParam(value = "id")String id){
+       Workorder workorder= courierService.selectWorkor(Integer.valueOf(id));
+        model.addAttribute("workorder",workorder);
+        return "lpq/querengongdan2";
+    }
+
+
 
     //点击分配工单，跳转到分配工单页面
     @RequestMapping(value = "/fengong")
@@ -377,10 +387,72 @@ public class BranchController {
     }
 
 
-    //进入报表页面
+    //进入yue月报表页面
     @RequestMapping(value = "/biao")
     public String getBiao(){
 
         return "lpq/yue";
+    }
+
+    //进入jidu季度报表页面
+    @RequestMapping(value = "/biao2")
+    public String getBiao2(){
+
+        return "lpq/jidu";
+    }
+    //进入nian年报表页面
+    @RequestMapping(value = "/biao3")
+    public String getBiao3(){
+
+        return "lpq/nian";
+    }
+    @RequestMapping(value = "yue")
+    @ResponseBody
+    public Object getYue(){
+        List<Integer> result =new ArrayList<Integer>();
+        result.add(10);
+        result.add(20);
+        result.add(30);
+        result.add(10);
+        result.add(40);
+        result.add(70);
+        result.add(30);
+        result.add(200);
+        result.add(50);
+        result.add(10);
+        result.add(80);
+        result.add(90);
+        /*List<Integer> result=courierService.selectYueDin();*/
+        return result;
+    }
+    @RequestMapping(value = "jidu")
+    @ResponseBody
+    public Object getJidu(){
+        List<Integer> result =new ArrayList<Integer>();
+        result.add(110);
+        result.add(90);
+        result.add(200);
+        result.add(300);
+        /*List<Integer> result=courierService.selectYueDin();*/
+        return result;
+    }
+    @RequestMapping(value = "nian")
+    @ResponseBody
+    public Object getNian(){
+        List<Integer> result =new ArrayList<Integer>();
+        result.add(123);
+        result.add(343);
+        result.add(200);
+        result.add(300);
+        result.add(400);
+        result.add(700);
+        result.add(300);
+        result.add(200);
+        result.add(500);
+        result.add(100);
+        result.add(800);
+        result.add(900);
+        /*List<Integer> result=courierService.selectYueDin();*/
+        return result;
     }
 }

@@ -27,6 +27,12 @@
         from user
         where parentid = #{parentid} and id not in(#{id})
     </select>
+    <!--查询一个月的订单数量-->
+    <select id="selectYueDin">
+        select count(1) from organization
+
+    </select>
+
     <!--通过parentid在组织表中查询出他的地址-->
     <select id="stringSite" resultType="java.lang.String">
         select site from organization where id=#{parentid};
