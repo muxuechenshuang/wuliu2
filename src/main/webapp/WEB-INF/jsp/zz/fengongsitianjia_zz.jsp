@@ -82,7 +82,7 @@
                         <div class="col-md-6 col-md-offset-3">
                             <button id="send" type="submit" class="btn btn-success">保存</button>
                             <button id="reset" type="reset" class="btn btn-success">重置</button>
-                            <button type="button" class="btn btn-primary" id="back">返回</button>
+                            <a href="JavaScript:history.back(-1)" class="btn btn-primary">返回</a>
                             <br/><br/>
                         </div>
                     </div>

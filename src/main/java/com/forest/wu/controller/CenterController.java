@@ -2,6 +2,9 @@ package com.forest.wu.controller;
 
 import com.forest.wu.pojo.*;
 import com.forest.wu.service.CenterService;
+import com.forest.wu.service.FilialeWorkOrderService;
+import com.forest.wu.service.OrganizationService;
+import com.forest.wu.service.WdService;
 import com.forest.wu.utils.Constants;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -17,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,6 +35,11 @@ import java.util.List;
 public class CenterController {
     @Autowired
     private CenterService centerService;
+    @Autowired
+    private OrganizationService organizationService;
+    @Autowired
+    private FilialeWorkOrderService filialeWorkOrderService;
+
 
     /**
     * author: 张展
@@ -178,7 +187,6 @@ public class CenterController {
     public String select(Organization organization, Model model, HttpSession session) {
         List<Organization> list = null;
         Integer id = 0;
-        String id1 = null;
         String phone = null;
         String name = null;
 
@@ -191,8 +199,7 @@ public class CenterController {
         id = organization.getId();
         phone = organization.getPhone();
         name = organization.getName();
-        System.out.println(list.toString());
-        model.addAttribute("id", id1);
+        model.addAttribute("id", id);
         model.addAttribute("phone", phone);
         model.addAttribute("name", name);
         model.addAttribute("list", list);
@@ -295,19 +302,41 @@ public class CenterController {
     * Param：[userid]
     * Return：java.lang.String
     **/
-    @RequestMapping(value = "/delectUser")
-    public String  delectUser(Integer userid){
+//    @RequestMapping(value = "/delectUser")
+//    public String  delectUser(Integer userid){
+//        try {
+//            centerService.delectSonCompanyPerson(userid);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return "zz/fengongsiguanlichaxun_zz";
+//    }
+
+    /**
+     * author: 张展
+     * 删除分公司管理员
+     * Date: 16:36 2018/10/9
+     * Param：[userid]
+     * Return：java.lang.String
+     **/
+    @RequestMapping(value = "/delectuser",method = RequestMethod.POST)
+    public String delectuser(Integer userid) {
+
         try {
-            centerService.delectSonCompanyPerson(userid);
+            if (centerService.delectSonCompanyPerson(userid) > 0) {
+                //要显示信息要重定向(会刷新一次)
+                return "redirect:/center/finduser";
+            }
         } catch (Exception e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return "zz/fengongsiguanlichaxun_zz";
+        return "redirect:/center/finduser";
     }
     
     /**
     * author: 张展
-    * 分公司管理员信息的保存
+    * 新增分公司管理员信息的保存
     * Date: 11:25 2018/10/8
     * Param：
     * Return：
@@ -332,23 +361,7 @@ public class CenterController {
                 String fileName = user.getUsername() + ".jpg";//上传头像图片重命名
                 File targetFile = new File(path, fileName);
 
-//                //新代码开始
-//                // 项目在容器中实际发布运行的根路径
-//                String realPath = request.getSession().getServletContext().getRealPath("/");
-//                // 自定义的文件名称
-//                String trueFileName = String.valueOf(System.currentTimeMillis()) + "." + type;
-//                // 设置存放图片文件的路径
-//                path = realPath+/*System.getProperty("file.separator")+*/trueFileName;
-//                System.out.println("存放图片文件的路径:"+path);
-//                // 转存文件到指定的路径
-//                file.transferTo(new File(path));
-//                System.out.println("文件成功上传到指定目录下");
-////                新代码结束
 
-//                if (!targetFile.exists()) {
-//                    //boolean mkdirs() :  创建此抽象路径名指定的目录，包括创建必需但不存在的父目录。
-//                    targetFile.mkdirs();
-//                }
                 try {
                     //文件移动
                     attach.transferTo(targetFile);
@@ -379,6 +392,58 @@ public class CenterController {
         return "redirect:/center/addsonperson";
     }
 
+    /**
+     * author: 张展
+     * 分公司管理员信息的保存(更新)
+     * Date: 11:25 2018/10/8
+     * Param：
+     * Return：
+     **/
+    @RequestMapping(value = "/addSave6",method = RequestMethod.POST)
+    public String addSave6(User user, BindingResult bindingResult,HttpSession session, HttpServletRequest request,
+                           @RequestParam(value = "picpath", required = false) MultipartFile attach) {
+        String PicPath = null;
+        if (!attach.isEmpty()) {
+            String path = request.getSession().getServletContext().getRealPath("statics" + java.io.File.separator + "uploadfiles");
+            String oldFileName = attach.getOriginalFilename();//原文件名
+            String prefix = FilenameUtils.getExtension(oldFileName);//原文件后缀
+            int filesize = 5000000;
+            if (attach.getSize() > filesize) {//上传大小不得超过 5M
+                request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_4);
+                return "center/addsonperson";
+            } else if (prefix.equalsIgnoreCase("jpg") || prefix.equalsIgnoreCase("png")
+                    || prefix.equalsIgnoreCase("jepg") || prefix.equalsIgnoreCase("pneg")) {//上传图片格式
+                String fileName = user.getUsername() + ".jpg";//上传头像图片重命名
+                File targetFile = new File(path, fileName);
+                try {
+                    //文件移动
+                    attach.transferTo(targetFile);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_2);
+                    return "redirect:/center/addsonperson";
+                }
+                PicPath = request.getContextPath() + "/statics/uploadfiles/" + fileName;
+            } else {
+                request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_3);
+                return "redirect:/center/finduser";
+            }
+        }
+        user.setPicPath(PicPath);
+        try {
+            if (centerService.updateUserById(user) > 0) {
+                //要显示信息要重定向(会刷新一次)
+                return "redirect:/center/finduser";
+            }
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return "redirect:/center/finduser";
+    }
+
+
+
 
     /**
      * author: 张展
@@ -392,6 +457,8 @@ public class CenterController {
         try {
             Workorder workorder = centerService.selectWorkOrdById(Integer.valueOf(workorderid));
             model.addAttribute("workorder", workorder);
+            List<Organization> cityList = organizationService.filialeList();
+            model.addAttribute("cityList", cityList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -422,13 +489,16 @@ public class CenterController {
     public String selectworkOrder(@RequestParam(required = true, defaultValue = "1") Integer pageIndex,
                                   Workorder workorder, Model model) {
 //        String workNum = null;
-
+        List<Organization> cityList = organizationService.filialeList();
+        model.addAttribute("cityList", cityList);
         PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
         try {
 //            系统自动封装对象已经转型
 //            if (workorder.getPackageId()!=null){
 //                workorder.setPackageId(Integer.parseInt(workorder.getPackageId()));
 //            }
+            //已解决问题
+//            List<Workorder> workorderList = filialeWorkOrderService.queryWorkOrderList(workorder);
             List<Workorder> workorderList = centerService.selectWorkOrder(workorder);
             PageInfo<Workorder> p = new PageInfo<Workorder>(workorderList);
             model.addAttribute("pageIndex", p);
@@ -454,7 +524,6 @@ public class CenterController {
         model.addAttribute("gCourier", workorder.getgCourier());
         //送
         model.addAttribute("sCourier", workorder.getsCourier());
-        model.addAttribute("result", workorder.getAuditStatus());
 
 
         return "zz/gondan2_zz";
@@ -471,6 +540,8 @@ public class CenterController {
     public String tosondetail(@RequestParam(value = "organizationid") String organizationid, Model model) {
         try {
             Organization organization = centerService.selectById(Integer.valueOf(organizationid));
+            List<Organization> cityList = organizationService.filialeList();
+            model.addAttribute("cityList", cityList);
             model.addAttribute("organization", organization);
         } catch (Exception e) {
             e.printStackTrace();
@@ -528,7 +599,7 @@ public class CenterController {
     * Return：
     **/
     @RequestMapping(value = "/addSave3")
-    public String addSave3(Workorder workorder) {
+    public String addSave3(Workorder workorder,BindingResult bindingResult) {
         int id = workorder.getId();
         try {
             centerService.updateWorkOrder(workorder);
@@ -556,4 +627,65 @@ public class CenterController {
 //        model.addAttribute("order",orderList);
 //        return "zz/xiangqing_zz";
 //    }
+    /**
+     * @author: 张展
+     * @Description 获取下拉框
+     * @Date: 16:26 2018/10/4
+     * @Param：Model,String(_cityId),String(_branchId)
+     * @return：ry/send_ry 进入寄件页面
+     */
+    @RequestMapping(value = "/cityList", method = RequestMethod.GET)
+    public String cityList(Model model
+                          , @RequestParam(value = "sCity", required = false) String _cityId,
+                           @RequestParam(value = "sPoint", required = false) String _branchId
+    ) {
+        List<Organization> cityList = organizationService.filialeList();
+
+        model.addAttribute("cityList", cityList);
+
+        if (null != _cityId && !"".equals(_cityId) && null != _branchId && !"".equals(_branchId)) {
+            Integer cityId = Integer.parseInt(_cityId);
+            Integer branchId = Integer.valueOf(_branchId);
+            List<Organization> branchList = organizationService.selectByParentId(cityId);
+            model.addAttribute("branchList", branchList);
+            model.addAttribute("cityId", cityId);
+            model.addAttribute("branchId", branchId);
+        }
+
+        return "zz/gondan2_zz";
+    }
+
+    /**
+     * @author: 任一
+     * @Description ajax返回网点列表
+     * @Date: 16:28 2018/10/4
+     * @Param：
+     * @return：List<Organization>
+     */
+    @RequestMapping(value = "queryBranchList.json")
+    @ResponseBody
+    public List<Organization> queryBranchList(@RequestParam Integer parentId) {
+        List<Organization> branchList = organizationService.selectByParentId(parentId);
+        return branchList;
+    }
+
+    @RequestMapping(value = "/baobiao3")
+    public String baobiao2(){
+        return "zz/baobiao3";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/shuju3.json")
+    public Object shuju3(Model model){
+        List x = new ArrayList();
+        List y = new ArrayList();
+
+        for (int i=1;i<21;i++){
+            x.add(i);
+            y.add(i + 1);
+        }
+        model.addAttribute("x",x);
+//        model.addAttribute("y",y);
+        return x;
+    }
 }

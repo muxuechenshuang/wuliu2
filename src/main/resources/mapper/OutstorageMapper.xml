@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.forest.wu.dao.OutstorageMapper">
+    <resultMap id="BaseResultMap" type="com.forest.wu.pojo.Outstorage">
+        <id column="outId" jdbcType="INTEGER" property="outId"/>
+        <result column="sendUnit" jdbcType="INTEGER" property="sendUnit"/>
+        <result column="getUnit" jdbcType="INTEGER" property="getUnit"/>
+        <result column="outStorageTime" jdbcType="TIMESTAMP" property="outStorageTime"/>
+        <result column="productNum" jdbcType="INTEGER" property="productNum"/>
+        <result column="workorderId" jdbcType="VARCHAR" property="workorderId"/>
+        <result column="packageId" jdbcType="INTEGER" property="packageId"/>
+        <result column="packageWeight" jdbcType="DOUBLE" property="packageWeight"/>
+        <result column="outStorageStatus" jdbcType="INTEGER" property="outStorageStatus"/>
+        <result column="storageId" jdbcType="INTEGER" property="storageId"/>
+        <result column="sendUnitName" jdbcType="VARCHAR" property="sendUnitName"/>
+        <result column="getUnitName" jdbcType="VARCHAR" property="getUnitName"/>
+        <result column="outStorageStatusName" jdbcType="VARCHAR" property="outStorageStatusName"/>
+        <result column="storageIdName" jdbcType="VARCHAR" property="storageIdName"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    outId, sendUnit, getUnit, outStorageTime, productNum, workorderId,packageId, packageWeight, outStorageStatus,storageId
+  </sql>
+    <sql id="Query_Column_List">
+     outId, sendUnit,
+     (select name from organization o where i.sendUnit=o.id) as sendUnitName,
+     getUnit,
+     (select name from organization o where i.getUnit=o.id) as getUnitName,
+     outStorageTime, productNum, workorderId,packageId, packageWeight,
+     outStorageStatus,
+    (SELECT valueName FROM dictionary d WHERE d.typeCode='outStorageStatus' and i.outStorageStatus = d.valueId) as outStorageStatusName,
+    storageId,
+    (select name from organization o where i.storageId=o.id) as storageIdName
+  </sql>
+
+    <!--按条件查询出库交接单-->
+    <select id="selectOutstorageList" resultMap="BaseResultMap">
+        select
+        <include refid="Query_Column_List"/>
+        from outstorage i
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="outId != null">
+                and outId=#{outId}
+            </if>
+            <if test="workorderId != null">
+                and workorderId=#{workorderId}
+            </if>
+            <if test="packageId != null">
+                and packageId=#{packageId}
+            </if>
+            <if test="outStorageStatus != null">
+                and outStorageStatus=#{outStorageStatus}
+            </if>
+        </trim>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from outstorage
+        where outId = #{outId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from outstorage
+    where outId = #{outId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.forest.wu.pojo.Outstorage">
+    insert into outstorage (outId, sendUnit, getUnit,
+      outStorageTime, productNum, workorderId,packageId,
+      packageWeight, outStorageStatus)
+    values (#{outId,jdbcType=INTEGER}, #{sendUnit,jdbcType=INTEGER}, #{getUnit,jdbcType=INTEGER},
+      #{outStorageTime,jdbcType=TIMESTAMP}, #{productNum,jdbcType=INTEGER},#{workorderId,jdbcType=VARCHAR}, #{packageId,jdbcType=INTEGER},
+      #{packageWeight,jdbcType=DOUBLE}, #{outStorageStatus,jdbcType=INTEGER}),#{storageId,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertSelective" parameterType="com.forest.wu.pojo.Outstorage">
+        insert into outstorage
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="outId != null">
+                outId,
+            </if>
+            <if test="sendUnit != null">
+                sendUnit,
+            </if>
+            <if test="getUnit != null">
+                getUnit,
+            </if>
+            <if test="outStorageTime != null">
+                outStorageTime,
+            </if>
+            <if test="productNum != null">
+                productNum,
+            </if>
+            <if test="workorderId != null">
+                workorderId,
+            </if>
+            <if test="packageId != null">
+                packageId,
+            </if>
+            <if test="packageWeight != null">
+                packageWeight,
+            </if>
+            <if test="outStorageStatus != null">
+                outStorageStatus,
+            </if>
+            <if test="storageId != null">
+                storageId
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="outId != null">
+                #{outId,jdbcType=INTEGER},
+            </if>
+            <if test="sendUnit != null">
+                #{sendUnit,jdbcType=INTEGER},
+            </if>
+            <if test="getUnit != null">
+                #{getUnit,jdbcType=INTEGER},
+            </if>
+            <if test="outStorageTime != null">
+                #{outStorageTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="productNum != null">
+                #{productNum,jdbcType=INTEGER},
+            </if>
+            <if test="workorderId != null">
+                #{workorderId,jdbcType=VARCHAR},
+            </if>
+            <if test="packageId != null">
+                #{packageId,jdbcType=INTEGER},
+            </if>
+            <if test="packageWeight != null">
+                #{packageWeight,jdbcType=DOUBLE},
+            </if>
+            <if test="outStorageStatus != null">
+                #{outStorageStatus,jdbcType=INTEGER},
+            </if>
+            <if test="storageId != null">
+                #{storageId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.forest.wu.pojo.Outstorage">
+        update outstorage
+        <set>
+            <if test="sendUnit != null">
+                sendUnit = #{sendUnit,jdbcType=INTEGER},
+            </if>
+            <if test="getUnit != null">
+                getUnit = #{getUnit,jdbcType=INTEGER},
+            </if>
+            <if test="outStorageTime != null">
+                outStorageTime = #{outStorageTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="productNum != null">
+                productNum = #{productNum,jdbcType=INTEGER},
+            </if>
+            <if test="workorderId != null">
+                workorderId = #{workorderId,jdbcType=VARCHAR},
+            </if>
+            <if test="packageId != null">
+                packageId = #{packageId,jdbcType=INTEGER},
+            </if>
+            <if test="packageWeight != null">
+                packageWeight = #{packageWeight,jdbcType=DOUBLE},
+            </if>
+            <if test="outStorageStatus != null">
+                outStorageStatus = #{outStorageStatus,jdbcType=INTEGER},
+            </if>
+            <if test="storageId != null">
+                storageId = #{storageId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where outId = #{outId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.forest.wu.pojo.Outstorage">
+    update outstorage
+    set sendUnit = #{sendUnit,jdbcType=INTEGER},
+      getUnit = #{getUnit,jdbcType=INTEGER},
+      outStorageTime = #{outStorageTime,jdbcType=TIMESTAMP},
+      productNum = #{productNum,jdbcType=INTEGER},
+       workorderId = #{workorderId,jdbcType=VARCHAR},
+      packageId = #{packageId,jdbcType=INTEGER},
+      packageWeight = #{packageWeight,jdbcType=DOUBLE},
+      outStorageStatus = #{outStorageStatus,jdbcType=INTEGER},
+      storageId = #{storageId,jdbcType=INTEGER}
+    where outId = #{outId,jdbcType=INTEGER}
+  </update>
+</mapper>

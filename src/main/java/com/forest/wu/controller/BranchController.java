@@ -10,17 +10,24 @@ import com.forest.wu.utils.Constants;
 import com.forest.wu.utils.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -289,6 +296,15 @@ public class BranchController {
         return "lpq/gongdan_lpq";
     }
 
+    //确认工单页面点击确认按钮后
+    @RequestMapping(value = "que")
+ public String getWorkor2(Model model,@RequestParam(value = "id")String id){
+       Workorder workorder= courierService.selectWorkor(Integer.valueOf(id));
+        model.addAttribute("workorder",workorder);
+        return "lpq/querengongdan2";
+    }
+
+
 
     //点击分配工单，跳转到分配工单页面
     @RequestMapping(value = "/fengong")
@@ -345,24 +361,71 @@ public class BranchController {
 
 
     //点击添加员工，跳转到新增员工快递员的页面
-    @RequestMapping(value = "kuai")
+    @RequestMapping(value = "/kuai")
     public String addUserKuai(){
         return "lpq/tianjiayuangong2";
     }
 
     //添加完成后点击保存后的方法
-    @RequestMapping(value = "baokuai")
-    public String addUserKuai2(User user,HttpSession session){
+    @RequestMapping(value = "/baokuai",method = RequestMethod.POST)
+    public String addUserKuai2(User user, BindingResult bindingResult, HttpSession session, HttpServletRequest request,
+                               @RequestParam(value = "picPath", required = false) MultipartFile attach){
+
+        String logoPicPath =  null;
+        String logoLocPath =  null;
+        if(!attach.isEmpty()){
+            //原文件路径
+            String path = request.getSession().getServletContext().getRealPath("statics"+java.io.File.separator+"uploadfiles");
+            //原文件名
+            String oldFileName = attach.getOriginalFilename();
+            //原文件后缀
+            String prefix = FilenameUtils.getExtension(oldFileName);
+            int filesize = 500000;
+            //上传大小不得超过 50k
+            if(attach.getSize() > filesize){
+                request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_4);
+                return "redirect:/wuliu/kuai";
+            }else if(prefix.equalsIgnoreCase("jpg") || prefix.equalsIgnoreCase("png")
+                    ||prefix.equalsIgnoreCase("jepg") || prefix.equalsIgnoreCase("pneg")){//上传图片格式
+                //图片名
+                String fileName = user.getUsername() + ".jpg";//上传LOGO图片命名:apk名称.apk
+
+                File targetFile = new File(path,fileName);
+               /* if(!targetFile.exists()){
+                    targetFile.mkdirs();//创建文件
+                }*/
+                try {
+                    //保存
+                    attach.transferTo(targetFile);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_2);
+                    return "redirect:/wuliu/kuai";
+                }
+                //项目中url路径
+                logoPicPath = request.getContextPath()+ "/statics/uploadfiles/"+fileName;
+                //服务器的路径
+                logoLocPath = /*path+File.separator+*/fileName;
+            }else{//为空返回新增页面，并提示信息
+                request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_3);
+                return "redirect:/wuliu/kuai";
+            }
+        }
+
         System.out.print(user.getUsername()+"离谱强");
+        user.setPicPath(logoPicPath);
         user.setType(2);
         user.setTime(new Date());
         user.setParentid(((User)session.getAttribute("user")).getParentid());
-        int result=courierService.addUserKuai(user);
-        if(result>0){
-            return "redirect:/wuliu/list";
-        }
-        return "lpq/tianjiayuangong2";
+
+          int result=courierService.addUserKuai(user);
+          if(result>0){
+              return "redirect:/wuliu/list";
+          }
+        return "redirect:/wuliu/kuai";
     }
+
+
 
     //删除员工
     @RequestMapping(value = "shan")
@@ -377,10 +440,72 @@ public class BranchController {
     }
 
 
-    //进入报表页面
+    //进入yue月报表页面
     @RequestMapping(value = "/biao")
     public String getBiao(){
 
         return "lpq/yue";
+    }
+
+    //进入jidu季度报表页面
+    @RequestMapping(value = "/biao2")
+    public String getBiao2(){
+
+        return "lpq/jidu";
+    }
+    //进入nian年报表页面
+    @RequestMapping(value = "/biao3")
+    public String getBiao3(){
+
+        return "lpq/nian";
+    }
+    @RequestMapping(value = "yue")
+    @ResponseBody
+    public Object getYue(){
+        List<Integer> result =new ArrayList<Integer>();
+        result.add(10);
+        result.add(20);
+        result.add(30);
+        result.add(10);
+        result.add(40);
+        result.add(70);
+        result.add(30);
+        result.add(200);
+        result.add(50);
+        result.add(10);
+        result.add(80);
+        result.add(90);
+        /*List<Integer> result=courierService.selectYueDin();*/
+        return result;
+    }
+    @RequestMapping(value = "jidu")
+    @ResponseBody
+    public Object getJidu(){
+        List<Integer> result =new ArrayList<Integer>();
+        result.add(110);
+        result.add(90);
+        result.add(200);
+        result.add(300);
+        /*List<Integer> result=courierService.selectYueDin();*/
+        return result;
+    }
+    @RequestMapping(value = "nian")
+    @ResponseBody
+    public Object getNian(){
+        List<Integer> result =new ArrayList<Integer>();
+        result.add(123);
+        result.add(343);
+        result.add(200);
+        result.add(300);
+        result.add(400);
+        result.add(700);
+        result.add(300);
+        result.add(200);
+        result.add(500);
+        result.add(100);
+        result.add(800);
+        result.add(900);
+        /*List<Integer> result=courierService.selectYueDin();*/
+        return result;
     }
 }
