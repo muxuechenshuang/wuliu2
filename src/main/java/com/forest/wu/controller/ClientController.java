@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -477,10 +478,51 @@ public class ClientController {
 
     //站内信息
 
-
+    /**
+     *
+     * @author: 任一
+     * @Description 获取站内信息
+     * @Date: 17:01 2018/10/11
+     * @Param：
+     * @return：
+     */
     public void getNote(Integer id,Model model){
+        //信息集合
         List<Note> noteList = noteService.getNoteSelf(id);
         model.addAttribute("noteList",noteList);
+
+        //未读邮件数
+        Integer noRead = noteService.noReadCount(id);
+        model.addAttribute("noRead",noRead);
+    }
+
+    /**
+     *
+     * @author: 任一
+     * @Description ajax更新数据已读状态
+     * @Date: 9:30 2018/10/12
+     * @Param：
+     * @return：
+     */
+    @RequestMapping(value = "readNote.json")
+    @ResponseBody
+    public Object readNote(HttpSession session){
+        HashMap<String,Object> result = new HashMap<String, Object>();
+        Integer id = ((User)session.getAttribute("user")).getId();
+        //邮件改为已读
+        if(!noteService.readDone(id)){
+            result.put("doneErro","数据异常，错误代码：ddd，请联系管理员");
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "readAll.json")
+    @ResponseBody
+    public Object readAll(HttpSession session){
+//        List<Note> allNote = new ArrayList<Note>();
+        Integer id = ((User)session.getAttribute("user")).getId();
+        List<Note> allNote = noteService.getAllSelf(id);
+        return allNote;
     }
 
 
@@ -495,24 +537,39 @@ public class ClientController {
      * @return：
      */
     @RequestMapping(value = "/intobaobiao")
-    public String intoBaoBiao(){
+    public String intoBaoBiao(Model model,HttpSession session){
+        Integer id = ((User)session.getAttribute("user")).getId();
+        getNote(id,model);
         return "ry/baobiao_ry";
     }
 
+    /**
+     *
+     * @author: 任一
+     * @Description ajax返回报表数据
+     * @Date: 16:33 2018/10/11
+     * @Param：
+     * @return：
+     */
     @RequestMapping(value = "getbaobiao.json")
     @ResponseBody
     public Object getBaoBiao(){
-        List<Integer> result = null;
+        List<Integer> result = new ArrayList<Integer>();
         String[] month = {"2018-01-01","2018-02-01","2018-03-01","2018-04-01","2018-05-01",
                 "2018-06-01","2018-07-01","2018-08-01","2018-09-01","2018-10-01",
                 "2018-11-01","2018-12-01"};
+        String start = null;
+        String end = null;
         for(int i = 0 ; i < month.length; i++){
-            String start = month[i];
-            String end = month[i+1];
-            if(month.length == i+1){
+            start = month[i];
+            if(i+1 == month.length){
                 end = month[0];
+            }else{
+                end = month[i+1];
             }
-            result.add(order_infoService.getMonthOrder(start,end));
+            if(!result.add(order_infoService.getMonthOrder(start,end))){
+                return false;
+            }
         }
         return result;
     }

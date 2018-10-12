@@ -4,6 +4,7 @@ import com.forest.wu.pojo.Order_info;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -130,7 +131,7 @@ public interface Order_infoMapper {
      * @Param：
      * @return：
      */
-    Integer getMonthOrder(@Param(value = "start")String start,@Param(value = "end")String end);
+    Integer getMonthOrder(@Param(value = "start")Date start,@Param(value = "end") Date end);
 
 
     public  Integer  selectOrderCount(@Param("day")Integer pastDay);

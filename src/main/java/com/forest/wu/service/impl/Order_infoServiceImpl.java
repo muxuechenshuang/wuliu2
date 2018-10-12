@@ -10,6 +10,10 @@ import com.forest.wu.service.Order_infoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -249,7 +253,16 @@ public class Order_infoServiceImpl implements Order_infoService {
      * @return：
      */
     @Override
-    public Integer getMonthOrder( String start, String end){
+    public Integer getMonthOrder( String _start, String _end){
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date start = null;
+        Date end = null;
+        try{
+            start = format.parse(_start);
+            end = format.parse(_end);
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
         return orderMapper.getMonthOrder(start,end);
     }
 

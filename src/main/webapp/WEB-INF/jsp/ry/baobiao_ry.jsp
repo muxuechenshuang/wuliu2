@@ -4,16 +4,15 @@
 <div class="clearfix"></div>
 <div class="row">
 
-
+    <!-- 显示Echarts图表 -->
+    <div style="height:410px;min-height:100px;margin:0 auto;" id="main"></div>
 
 </div>
 </div>
 
-<script type="text/javascript" src="../statics/js/jquery-1.8.3.js"></script>
-<script type="text/javascript" src="../statics/js/echarts.js"></script>
+<script src="${pageContext.request.contextPath}/statics/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/statics/js/echarts.js"></script>
 
-<!-- 显示Echarts图表 -->
-<div style="height:410px;min-height:100px;margin:0 auto;" id="main"></div>
 
 
 <script type="text/javascript">
@@ -76,11 +75,18 @@
         },
         yAxis : [	//Y轴（这里我设置了两个Y轴，左右各一个）
             {
+                type:'value',
+                name:'订单数(件)',
+                axisLabel:{
+                    formatter:'{value}件'
+                }
+            }
+            /*{
                 //第一个（左边）Y轴，yAxisIndex为0
                 type : 'value',
                 name : '温度',
-                /* max: 120,
-                min: -40, */
+                /!* max: 120,
+                min: -40, *!/
                 axisLabel : {
                     formatter: '{value} ℃'	//控制输出格式
                 }
@@ -93,11 +99,17 @@
                 axisLabel : {
                     formatter: '{value} hPa'
                 }
-            }
+            }*/
 
         ],
         series : [	//系列（内容）列表
             {
+                name:'订单数（件）',
+                type:'line',
+                symbol:'emptycircle',
+                data:[]
+            }
+           /* {
                 name:'温度（℃）',
                 type:'line',	//折线图表示（生成温度曲线）
                 symbol:'emptycircle',	//设置折线图中表示每个坐标点的符号；emptycircle：空心圆；emptyrect：空心矩形；circle：实心圆；emptydiamond：菱形
@@ -123,12 +135,12 @@
                 name:'雨量（mm）',
                 type:'bar',		//柱状图表示
                 //barMinHeight: 10,	//柱条最小高度，可用于防止某数据项的值过小而影响交互
-                /* label: {	//显示值
+                /!* label: {	//显示值
                     normal: {
                         show: true,
                         position: 'top'
                     }
-                }, */
+                }, *!/
                 data:[]
             },
 
@@ -137,7 +149,7 @@
                 type:'line',
                 symbol:'emptydiamond',
                 data:[]
-            }
+            }*/
         ]
     };
 
