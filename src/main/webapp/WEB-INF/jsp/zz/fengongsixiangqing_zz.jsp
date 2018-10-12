@@ -60,6 +60,14 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="city">城市 <span
                                 class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
+                            <%--<select id="city" name="city" class="form-control">--%>
+                                <%--<option value="">--请选择--</option>--%>
+                                <%--<c:forEach var="cityList" items="${cityList}">--%>
+                                    <%--<option value="${cityList.id}"--%>
+                                            <%--<c:if test="${cityList.id == organization.city}">selected="selected"</c:if>--%>
+                                    <%-->${cityList.city}</option>--%>
+                                <%--</c:forEach>--%>
+                            <%--</select>--%>
                             <input type="text" class="form-control col-md-7 col-xs-12"
                                    value="${organization.city}" name="city" id="city">
                         </div>
@@ -75,7 +83,7 @@
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
                             <button type="submit" class="btn btn-primary" id="get">确认</button>
-                            <button type="button" class="btn btn-primary" id="back">返回</button>
+                            <a href="JavaScript:history.back(-1)" class="btn btn-primary">返回</a>
                         </div>
                     </div>
                 </form>

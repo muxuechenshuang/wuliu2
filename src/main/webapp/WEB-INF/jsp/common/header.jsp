@@ -12,7 +12,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>飞鸟物流${user.id}</title>
+<title>飞鸟物流</title>
 
 
 	<!-- Bootstrap -->
@@ -70,7 +70,7 @@
 					<div id="sidebar-menu"
 						class="main_menu_side hidden-print main_menu">
 						<div class="menu_section">
-							<h3>${user.username }</h3>
+							<h3>${sessionScope.user.username }</h3>
 							<ul class="nav side-menu">
 
 
@@ -142,8 +142,8 @@
 									<ul class="nav child_menu">
 										<li><a href="${pageContext.request.contextPath}/filiale/wdquery">网点管理</a></li>
 										<li><a href="${pageContext.request.contextPath}/filiale/queryworkorder">工单查询</a>
-										<li><a href="${pageContext.request.contextPath}/">出库</a></li>
 										<li><a href="${pageContext.request.contextPath}/filiale/putinstorage">入库</a></li>
+										<li><a href="${pageContext.request.contextPath}/filiale/putoutstorage">出库</a></li>
 									</ul>
 
 								</li>
@@ -158,16 +158,19 @@
 
 									<ul class="nav child_menu">
 
-										<li><a href="/center/toselectworkorder">查询工单（总部）</a></li>
+										<li><a href="/center/cityList">查询工单（总部）</a></li>
 										<li><a href="/center/returnlist">返货单查询</a></li>
-										<li><a href="/center/returndetail">审核返货单</a></li>
+										<%--<li><a href="/center/returndetail">审核返货单</a></li>--%>
 										<li><a href="/center/addsoncompany">新增分公司</a></li>
-										<li><a href="/center/tosoncompanylist">分公司管理</a></li>
+										<li><a href="/center/soncompanylist">分公司管理</a></li>
 										<%--<li><a href="/center/soncompanydetail">分公司详情（修改）</a></li>--%>
 										<li><a href="/center/addsonperson">新增分公司管理</a></li>
 										<li><a href="/center/finduser">查询分公司管理</a></li>
 										<li><a href="/center/baobiao1">报表</a></li>
-							</ul></li>
+										<li><a href="/center/baobiao2">报表2</a></li>
+										<li><a href="/center/baobiao3">报表3</a></li>
+
+									</ul></li>
 								</c:if>
 						</ul></div>
 
@@ -204,7 +207,7 @@
 							<li class=""><a href="javascript:;"
 								class="user-profile dropdown-toggle" data-toggle="dropdown"
 								aria-expanded="false"> <img
-									src="${pageContext.request.contextPath }${user.picPath}"
+									src="${pageContext.request.contextPath }${sessionScope.user.picPath}"
 									alt="">${devUserSession.devCode } <span
 									class=" fa fa-angle-down"></span> </a>
 								<ul class="dropdown-menu dropdown-usermenu pull-right">
