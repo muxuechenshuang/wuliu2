@@ -44,16 +44,20 @@ $(".showOrder").on("click", function () {
                     $("#gBranchName").html(data.orderInfo.gBranchName);
                     $("#gCityName").html(data.orderInfo.gCityName);
                 }
-                var liArr = $("#productLocation li");
+                /*var liArr = $("#productLocation li");
                 //重置
-                for (var i = 1; i < 6; i++) {
-                    liArr.removeClass("done");
-                    liArr.addClass("disabled")
-                }
+                liArr.removeClass();
+                liArr.addClass("disabled");
                 //循环添加样式
-                for (var i = 1; i < data.orderInfo.productLocation; i++) {
+                for (var i = 0; i < data.orderInfo.productLocation; i++) {
                     liArr[i].removeClass("disabled");
                     liArr[i].addClass("done");
+                }*/
+                $("#productLocation li a").removeClass();
+                $("#productLocation li a").addClass("disabled");
+                for(var i =0 ; i<data.orderInfo.productLocation; i++){
+                    $("#productLocation li:eq("+i+") a").removeClass();
+                    $("#productLocation li:eq("+i+") a").addClass("done");
                 }
             }
         }
@@ -93,6 +97,10 @@ $(".payOrder").on("click", function () {
     var isPay = obj.parents("#pay").children("#isPay").val();
     var status = obj.parents("#pay").children("#orderStatus").val();
     // var isPay = obj.attr("isPay");
+    if(status == 4){
+        alert("您的订单已取消预约，不用支付哟！");
+        return false;
+    }
     if (isPay == null || isPay == "" ||status ==1) {
         alert("很抱歉，在预约的订单暂不能支付!");
         return false;
