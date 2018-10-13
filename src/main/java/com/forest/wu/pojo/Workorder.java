@@ -61,6 +61,9 @@ public class Workorder {
 
     private Integer productLocation;
 
+    //合包重量
+    private Double packageWeight;
+
     //审核结果id
     private Integer auditStatus;
 
@@ -122,6 +125,14 @@ public class Workorder {
 
     //货物类型名称
     private String productTypeName;
+
+    public Double getPackageWeight() {
+        return packageWeight;
+    }
+
+    public void setPackageWeight(Double packageWeight) {
+        this.packageWeight = packageWeight;
+    }
 
     public String getIsPayName() {
         return isPayName;
