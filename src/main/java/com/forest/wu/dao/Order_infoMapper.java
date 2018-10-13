@@ -4,6 +4,7 @@ import com.forest.wu.pojo.Order_info;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -119,6 +120,19 @@ public interface Order_infoMapper {
      * @Param：[]
      * @return：java.lang.Integer
      **/
+
+    public  Integer  selectOrderCount();
+
+    /**
+     *
+     * @author: 任一
+     * @Description 查询某时间段里订单数
+     * @Date: 14:31 2018/10/11
+     * @Param：
+     * @return：
+     */
+    Integer getMonthOrder(@Param(value = "userId") Integer userId,@Param(value = "start")Date start,@Param(value = "end") Date end);
+
 
     public  Integer  selectOrderCount(@Param("day")Integer pastDay);
 }

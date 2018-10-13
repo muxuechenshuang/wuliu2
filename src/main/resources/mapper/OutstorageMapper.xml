@@ -52,10 +52,18 @@
             </if>
         </trim>
     </select>
+    <!--根据工单号查询出库交接单-->
+    <select id="selectOutStorageByWorkNum" resultMap="BaseResultMap">
+        select
+        <include refid="Query_Column_List"/>
+        from outstorage i
+        where workorderId = #{workorderId}
+    </select>
+
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List"/>
-        from outstorage
+        <include refid="Query_Column_List"/>
+        from outstorage i
         where outId = #{outId,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">

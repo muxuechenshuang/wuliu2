@@ -172,4 +172,24 @@ public interface Order_infoService {
     
     int selectOrderCount(Integer day);
 
+    /**
+     *
+     * @author: 任一
+     * @Description 查询某时间段里订单数
+     * @Date: 14:31 2018/10/11
+     * @Param：
+     * @return：
+     */
+    Integer getMonthOrder(Integer id, String start,String end);
+
+    /**
+     *
+     * @author: 任一
+     * @Description 完成支付修改是否支付的状态
+     * @Date: 16:27 2018/10/12
+     * @Param：
+     * @return：
+     */
+    boolean payDone(String orderNum);
+
 }

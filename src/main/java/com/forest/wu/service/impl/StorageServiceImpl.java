@@ -5,6 +5,8 @@ import com.forest.wu.dao.OutstorageMapper;
 import com.forest.wu.pojo.Instorage;
 import com.forest.wu.pojo.Outstorage;
 import com.forest.wu.service.StorageService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,8 @@ public class StorageServiceImpl implements StorageService {
 
     @Autowired
     private OutstorageMapper outstorageMapper;
+
+ private  Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public Instorage queryInstorage(Long id) {
@@ -49,8 +53,13 @@ public class StorageServiceImpl implements StorageService {
     }
 
     @Override
-    public Outstorage queryOutstorage(Long id) {
+    public Outstorage queryOutstorageById(Long id) {
         return outstorageMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public Instorage queryInstorageByWorkNum(String id) {
+        return instorageMapper.selectByWorkNum(id);
     }
 
     @Override

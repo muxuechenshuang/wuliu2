@@ -46,7 +46,7 @@ function login() {
     }
 
     $.ajax({
-        url: "/wuliu/login",
+        url: "/log/login",
         type: "POST",
         data: {
             username: username,
@@ -115,7 +115,7 @@ var btn;
 function sendCode(thisBtn) {
 
     $.ajax({
-        url: "/wuliu/Verification",
+        url: "/log/Verification",
         type: "POST",
         dataType:"json",
         data: {
@@ -157,9 +157,28 @@ function Mobile() {
         document.getElementById("submit").disabled=false;
         return true;
     }
-
-
 }
+    //登录
+    function register() {
+        $.ajax({
+            url: "register",
+            type: "POST",
+            dataType:"json",
+            data: {
+                "user":$("#user").val(),
+                "password":$("#password").val()
+            },
+            success: function (data) {
+            if(data==false){
+                alert("登录失败，请检查用户名或密码是否正确");
+                return false;
+            }else if(data==true){
+                return true;
+            }
+            }
+        })
+    }
+
 
 
 
