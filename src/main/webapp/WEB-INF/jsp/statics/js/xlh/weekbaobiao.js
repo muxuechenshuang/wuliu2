@@ -111,11 +111,8 @@ $.ajax({	//使用JQuery内置的Ajax方法
                     data: tems
                 },
             ]
-        });
+        })
     },
-
-
-
 
     error : function(errorMsg) {
         //请求失败时执行该函数

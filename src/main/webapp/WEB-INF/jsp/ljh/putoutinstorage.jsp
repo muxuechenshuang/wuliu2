@@ -16,7 +16,7 @@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <form method="post" action="/filiale/putinstorage">
+                <form method="post" action="/filiale/putoutstorage">
                     <input type="hidden" name="pageIndex" value="1"/>
                     <ul>
                         <li>
@@ -183,11 +183,8 @@
                                                 <td>${workorder.outStorageStatusName }</td>
                                                 <td>${workorder.realWeight}</td>
                                                 <td>
-                                                    <a href="${pageContext.request.contextPath}/filiale/addinstorage/${workorder.workNum}" type="buttoon" class="btn btn-success">出库</a>
-                                                    <c:if test="${workorder.packageId==null}">
-                                                        <a href="${pageContext.request.contextPath}/filiale/addpackage/${workorder.workNum}"
-                                                           type="button" class="btn btn-primary">拆包</a>
-                                                    </c:if>
+                                                    <a href="${pageContext.request.contextPath}/filiale/addoutstorage/${workorder.workNum}" type="buttoon" class="btn btn-success">出库</a>
+
                                                 </td>
                                             </tr>
                                         </c:forEach>

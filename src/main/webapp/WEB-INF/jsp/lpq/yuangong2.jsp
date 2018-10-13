@@ -127,7 +127,7 @@
 							<tbody>
 							<c:forEach items="${listUser}" var="courier" varStatus="add">
 								<tr>
-								 <td>${add.count}</td>
+								 <td>${courier.id}</td>
 								 <td>${courier.phone}</td>
 								 <td>${courier.username}</td>
 								 <td>${courier.sex}</td>
