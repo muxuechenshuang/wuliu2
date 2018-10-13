@@ -67,7 +67,9 @@
                           </textarea>
                             </c:when>
                             <c:otherwise>
-                                暂无
+                                 <textarea class="form-control col-md-7 col-xs-12" readonly="readonly">
+                                          暂无
+                                 </textarea>
                             </c:otherwise>
                         </c:choose>
 
