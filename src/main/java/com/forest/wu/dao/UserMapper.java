@@ -50,7 +50,7 @@ public interface UserMapper {
     * @Date: 9:41 2018/9/29
     * 查询用户登录信息
     **/
-    User selectULogin(String user,String password);
+    User selectULogin( @Param(value = "user")String user,@Param(value = "password")String password);
 
     /*
     * @author: 蒋梓伦
