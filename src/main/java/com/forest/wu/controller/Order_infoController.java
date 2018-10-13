@@ -190,6 +190,7 @@ public class Order_infoController {
         workorder.setProductNum(Long.valueOf(id));
         workorder.setgCourier(user.getId());
         workorder.setWorkStatus(1);  // 工单状态为待审核
+        workorder.setInStorageStatus(1);//工单状态为待入库
        orderService.addWorkorderByCourier(workorder);
        //修改订单中的状态   1为预订  2 已接单  将1 修改为2
         Order_info order = new Order_info();
