@@ -53,7 +53,7 @@
 					<div class="profile">
 						<div class="profile_pic">
 							<a href="/wu/homepage"><img
-								src="${pageContext.request.contextPath }${user.picPath}"
+								src="${pageContext.request.contextPath }${sessionScope.user.picPath}"
 								alt="..." class="img-circle profile_img"></a>
 						</div>
 						<div class="profile_info">
@@ -160,7 +160,7 @@
 
 									<ul class="nav child_menu">
 
-										<li><a href="/center/cityList">查询工单（总部）</a></li>
+										<li><a href="/center/selectworkorder">查询工单（总部）</a></li>
 										<li><a href="/center/returnlist">返货单查询</a></li>
 										<%--<li><a href="/center/returndetail">审核返货单</a></li>--%>
 										<li><a href="/center/addsoncompany">新增分公司</a></li>

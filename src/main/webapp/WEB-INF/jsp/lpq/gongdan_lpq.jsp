@@ -130,7 +130,7 @@
 								<tbody>
 								<c:forEach items="${listWorkorder}"  var="workor" varStatus="add">
 									<tr>
-										<td>${add.count}</td>
+										<td>${workor.workNum}</td>
 										<td>${workor.sName}</td>
 										<td>${workor.sTel}</td>
 										<td>${workor.sAddress}</td>
@@ -149,7 +149,7 @@
 					<div class="row">
 						<div class="col-sm-5">
 							<div class="dataTables_info" id="datatable-responsive_info"
-								 role="status" aria-live="polite">共${pages.pages }条记录
+								 role="status" aria-live="polite">共${pages.total }条记录
 								${pages.pageNum }/${pages.pages}页</div>
 						</div>
 						<div class="col-sm-7">

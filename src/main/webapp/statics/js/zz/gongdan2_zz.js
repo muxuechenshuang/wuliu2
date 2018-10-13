@@ -34,7 +34,6 @@ $("#sCity").change(function () {
 });
 
 $("#gCity").change(function () {
-    alert(1);
     var cityId = $("#gCity").val();
     if(cityId!=null&&cityId!==""){
         $.ajax({

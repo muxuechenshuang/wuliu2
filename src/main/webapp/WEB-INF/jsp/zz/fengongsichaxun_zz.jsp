@@ -112,54 +112,55 @@
 									<td>${organization.introduction }</td>
 									<td><a id="lookandmodify" href="/center/tosondetail?organizationid=${organization.id}" class="btn btn-primary" >查看/修改</a></td>
 									<td><a id="delect" href="/center/delect?organizationid=${organization.id}" class="btn btn-primary" >删除</a></td>
-
-								<%--<td><a href="/center/tosondetail?id=${organization.id}" class="btn btn-primary">查看/修改</a></td>--%>
 								</tr>
 							</c:forEach>
 							</tbody>
 						</table>
 					</div>
 				</div>
-				<%--<div class="row">--%>
-					<%--<div class="col-sm-5">--%>
-						<%--<div class="dataTables_info" id="datatable-responsive_info"--%>
-							<%--role="status" aria-live="polite">共${pages.totalCount }条记录--%>
-							<%--${pages.currentPageNo }/${pages.totalPageCount }页</div>--%>
-					<%--</div>--%>
-					<%--<div class="col-sm-7">--%>
-						<%--<div class="dataTables_paginate paging_simple_numbers"--%>
-							<%--id="datatable-responsive_paginate">--%>
-							<%--<ul class="pagination">--%>
-								<%--<c:if test="${pages.currentPageNo > 1}">--%>
-									<%--<li class="paginate_button previous"><a--%>
-										<%--href="javascript:page_nav(document.forms[0],1);"--%>
-										<%--aria-controls="datatable-responsive" data-dt-idx="0"--%>
-										<%--tabindex="0">首页</a>--%>
-									<%--</li>--%>
-									<%--<li class="paginate_button "><a--%>
-										<%--href="javascript:page_nav(document.forms[0],${pages.currentPageNo-1});"--%>
-										<%--aria-controls="datatable-responsive" data-dt-idx="1"--%>
-										<%--tabindex="0">上一页</a>--%>
-									<%--</li>--%>
-								<%--</c:if>--%>
-								<%--<c:if test="${pages.currentPageNo < pages.totalPageCount }">--%>
-									<%--<li class="paginate_button "><a--%>
-										<%--href="javascript:page_nav(document.forms[0],${pages.currentPageNo+1 });"--%>
-										<%--aria-controls="datatable-responsive" data-dt-idx="1"--%>
-										<%--tabindex="0">下一页</a>--%>
-									<%--</li>--%>
-									<%--<li class="paginate_button next"><a--%>
-										<%--href="javascript:page_nav(document.forms[0],${pages.totalPageCount });"--%>
-										<%--aria-controls="datatable-responsive" data-dt-idx="7"--%>
-										<%--tabindex="0">最后一页</a>--%>
-									<%--</li>--%>
-								<%--</c:if>--%>
-							<%--</ul>--%>
-						<%--</div>--%>
-					<%--</div>--%>
-				<%--</div>--%>
+				<div class="row">
+					<div class="col-sm-5">
+						<div class="dataTables_info" id="datatable-responsive_info"
+							 role="status" aria-live="polite">共${page.total}条记录
+							${page.pageNum }/${page.pages}页
+						</div>
+					</div>
+					<div class="col-sm-7">
+						<div class="dataTables_paginate paging_simple_numbers"
+							 id="datatable-responsive_paginate">
+							<ul class="pagination">
+								<c:if test="${page.hasPreviousPage eq true }">
+									<li class="paginate_button previous"><a
+											href="javascript:page_nav(document.forms[0],1);"
+											aria-controls="datatable-responsive" data-dt-idx="0"
+											tabindex="0">首页</a>
+									</li>
+									<li class="paginate_button "><a
+											href="javascript:page_nav(document.forms[0],${page.prePage});"
+											aria-controls="datatable-responsive" data-dt-idx="1"
+											tabindex="0">上一页</a>
+									</li>
+								</c:if>
+								<c:if test="${page.hasNextPage eq true }">
+									<li class="paginate_button "><a
+											href="javascript:page_nav(document.forms[0],${page.nextPage});"
+											aria-controls="datatable-responsive" data-dt-idx="1"
+											tabindex="0">下一页</a>
+									</li>
+									<li class="paginate_button next"><a
+											href="javascript:page_nav(document.forms[0],${page.lastPage});"
+											aria-controls="datatable-responsive" data-dt-idx="7"
+											tabindex="0">最后一页</a>
+									</li>
+								</c:if>
+							</ul>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+</div>
+</div>
 </div>
 <%@include file="../common/footer.jsp"%>

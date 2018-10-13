@@ -174,7 +174,7 @@
         order by time desc limit #{pageNo},#{pageSize}
     </select>
 
-    <!--按id，username，phone，email，模糊查询，type类型为3，也就是快递员查询总记录数-->
+    <!--按id，username，phone，email，模糊查询，type类型为2，也就是快递员查询总记录数-->
     <select id="count" resultType="java.lang.Integer" >
 
         select count(1) from user where type=#{type} and parentid=#{parentid}
@@ -213,7 +213,7 @@
         )
     </insert>
 
-    <!-- 查找用户表所需的登录信息 -->
+    <!-- 查找用户表所需的登录信息三种方式登录 -->
     <select id="selectULogin"  resultType="com.forest.wu.pojo.User">
         select * from  user where
         (username = #{user } or email = #{user } or phone = #{user })

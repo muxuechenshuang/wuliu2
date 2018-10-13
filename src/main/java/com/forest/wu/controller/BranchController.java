@@ -218,8 +218,8 @@ public class BranchController {
         //uid快递员id，orderid订单id，通过session获得网点id
         User user=courierService.getUser(uid);//传入一个快递员id，获得一个快递对象
         /*User user2=(User) session.getAttribute("user");//获得网点id*/
-       int result= courierService.updateOrder(Integer.valueOf(uid),
-                                   Integer.valueOf(orderid));
+        int result= courierService.updateOrder(Integer.valueOf(uid),
+                Integer.valueOf(orderid));
         return user;
     }
 
@@ -230,7 +230,7 @@ public class BranchController {
                           @RequestParam(value = "gid" ,required = false)String gid,
                           HttpSession session){
         System.out.print(id+"\t"+gid+"李普强");
-      //id为快递员id，gid为工单id，分配工单后需要更新工单表
+        //id为快递员id，gid为工单id，分配工单后需要更新工单表
         User user=courierService.getUser(id);
         courierService.updateWorkor(Integer.valueOf(id),Integer.valueOf(gid));
         return user;
@@ -298,8 +298,8 @@ public class BranchController {
 
     //确认工单页面点击确认按钮后
     @RequestMapping(value = "que")
- public String getWorkor2(Model model,@RequestParam(value = "id")String id){
-       Workorder workorder= courierService.selectWorkor(Integer.valueOf(id));
+    public String getWorkor2(Model model,@RequestParam(value = "id")String id){
+        Workorder workorder= courierService.selectWorkor(Integer.valueOf(id));
         model.addAttribute("workorder",workorder);
         return "lpq/querengongdan2";
     }
@@ -418,10 +418,10 @@ public class BranchController {
         user.setTime(new Date());
         user.setParentid(((User)session.getAttribute("user")).getParentid());
 
-          int result=courierService.addUserKuai(user);
-          if(result>0){
-              return "redirect:/wuliu/list";
-          }
+        int result=courierService.addUserKuai(user);
+        if(result>0){
+            return "redirect:/wuliu/list";
+        }
         return "redirect:/wuliu/kuai";
     }
 
@@ -432,10 +432,10 @@ public class BranchController {
     @ResponseBody
     public Object deleteUser(@RequestParam(value ="uid",required = false) String uid){
 
-       int result=courierService.deleteUser(Integer.valueOf(uid));
-       if(result>0){
-           return true;
-       }
+        int result=courierService.deleteUser(Integer.valueOf(uid));
+        if(result>0){
+            return true;
+        }
         return false;
     }
 
