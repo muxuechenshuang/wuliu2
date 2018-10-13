@@ -660,6 +660,14 @@
     </select>
 
 
+    <!--任一-->
+    <update id="payDone" parameterType="java.lang.String">
+        update workorder
+        set isPay = 2
+        where orderNum = #{orderNum}
+    </update>
+
+
 
 
 </mapper>
