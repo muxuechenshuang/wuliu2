@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * 登录注册Controller
@@ -36,38 +35,42 @@ public class LoginController {
     public String index() {
         return "jzl/index";
     }
-
     //登录页面
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String userAll(@RequestParam String user, @RequestParam String password, HttpSession session,HttpServletResponse response) throws IOException {
-        List<User> ss = userService.selectULogin();
+    @RequestMapping(value = "/indextou")
+    public String ma(@RequestParam String user, @RequestParam String password, HttpSession session,HttpServletResponse response) throws IOException {
 
-        //循环查询
-        int i = 0;
-        do {
-            if (ss.get(i).getUsername().equals(user) || ss.get(i).getEmail().equals(user) || ss.get(i).getPhone().equals(user)) {
-                if (ss.get(i).getPassword().equals(password)) {
-                    //获取全部的登录信息
-                    if(ss.get(i).getType().equals(1)) {
-                        session.setAttribute(Constants.CLIENT_USER_SESSION, ss.get(i));
-                    }else if(ss.get(i).getType().equals(2)){
-                        session.setAttribute(Constants.COURIER_USER_SESSION, ss.get(i));
-                    }else if(ss.get(i).getType().equals(3)){
-                        session.setAttribute(Constants.SITE_USER_SESSION, ss.get(i));
-                    }else if(ss.get(i).getType().equals(4)){
-                        session.setAttribute(Constants.FILIALE_USER_SESSION, ss.get(i));
-                    }else if(ss.get(i).getType().equals(5)) {
-                        session.setAttribute(Constants.CENTER_USER_SESSION, ss.get(i));
-                    }
-                    session.setMaxInactiveInterval(3600);
-                    return "xlh/main_xlh";
-                }
-            }
-            i++;
-        } while (i < ss.size());
-
+        if(userService.selectULogin(user,password)!= null) {
+            //给权限赋值
+            User ss = userService.selectULogin(user,password);
+           if (ss.getType().equals(1)) {
+               session.setAttribute(Constants.CLIENT_USER_SESSION, ss);
+           } else if (ss.getType().equals(2)) {
+               session.setAttribute(Constants.COURIER_USER_SESSION, ss);
+           } else if (ss.getType().equals(3)) {
+               session.setAttribute(Constants.SITE_USER_SESSION, ss);
+           } else if (ss.getType().equals(4)) {
+               session.setAttribute(Constants.FILIALE_USER_SESSION, ss);
+           } else if (ss.getType().equals(5)) {
+               session.setAttribute(Constants.CENTER_USER_SESSION, ss);
+           }
+           session.setMaxInactiveInterval(3600);
+           return "xlh/main_xlh";
+       }
         return "jzl/index";
     }
+
+    //登录验证
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @ResponseBody
+    public Object userAll(@RequestParam String user, @RequestParam String password, HttpSession session,HttpServletResponse response) throws IOException {
+        //检查是否存在
+        if(userService.selectULogin(user,password) == null) {
+            //将结果返回给前台页面
+            return false;
+        }
+        return true;
+    }
+
 
     //注销
     @RequestMapping("log/index")
@@ -86,27 +89,43 @@ public class LoginController {
     @ResponseBody
     public Object login(@RequestParam String username, @RequestParam String email, @RequestParam String phone) {
         HashMap<String, String> resultMap = new HashMap<String, String>();
-        List<User> name = userService.findUser();
-        for (int i = 0; i < name.size(); i++) {
-            //判断用户名是否已经存在
-            if (name.get(i).getUsername().equals(username)) {
+
+            if(userService.findUser(username)!=null){
                 resultMap.put("username", "nameVerification");
                 return resultMap;
-
             }
-            //判断邮箱是否已经存在
-            if (name.get(i).getEmail().equals(email)) {
+            if(userService.findUser1(email)!=null){
                 resultMap.put("email", "emailVerification");
                 return resultMap;
             }
-            //判断手机号是否已经存在
-            if (name.get(i).getPhone().equals(phone)) {
+            if(userService.findUser2(phone)!=null){
                 resultMap.put("phone", "phoneVerification");
                 return resultMap;
             }
-        }
 
         return JSONArray.toJSONString(resultMap);
+
+
+//        for (int i = 0; i < name.size(); i++) {
+//            //判断用户名是否已经存在
+//            if (name.get(i).getUsername().equals(username)) {
+//                resultMap.put("username", "nameVerification");
+//                return resultMap;
+//
+//            }
+//            //判断邮箱是否已经存在
+//            if (name.get(i).getEmail().equals(email)) {
+//                resultMap.put("email", "emailVerification");
+//                return resultMap;
+//            }
+//            //判断手机号是否已经存在
+//            if (name.get(i).getPhone().equals(phone)) {
+//                resultMap.put("phone", "phoneVerification");
+//                return resultMap;
+//            }
+//        }
+//
+//        return JSONArray.toJSONString(resultMap);
     }
 
     //注册页面

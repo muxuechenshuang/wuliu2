@@ -1,21 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@include file="../common/header.jsp"%>
-
+		 pageEncoding="UTF-8" %>
+<%@include file="../common/header.jsp" %>
 <div class="clearfix"></div>
 <div class="row">
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_panel">
 			<div class="x_title">
 				<h2>
-					新增入库<i class="fa fa-user"></i><small>${devUserSession.devName}</small>
+					拆包<i class="fa fa-user"></i>
+					<small>${user.username}</small>
 				</h2>
 				<div class="clearfix"></div>
 			</div>
-			<div class="x_content">
+			<div class="x_title">
+				<h2>工单信息</h2>
 				<div class="clearfix"></div>
-				<form id="myForm" class="form-horizontal form-label-left"
-					action="${pageContext.request.contextPath}/filiale/saveinstorage" method="post" enctype="multipart/form-data">
+			</div>
+			<div class="x_content1">
+				<form class="form-horizontal form-label-left" action="${pageContext.request.contextPath}/filiale/saveunpackage" method="post">
 					<input  hidden="hidden" type="text" name="id"  value="${workorder.id}">
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
@@ -40,15 +42,9 @@
 							   for="packageId">合包号
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<c:choose>
-								<c:when test="${workorder.packageId!=null}">
-									<input class="form-control col-md-7 col-xs-12" value="${workorder.packageId}"
-										   type="text" readonly="readonly" name="packageId" id="packageId">
-								</c:when>
-								<c:otherwise>
-									暂未进行合包
-								</c:otherwise>
-							</c:choose>
+							<input class="form-control col-md-7 col-xs-12" value="${workorder.packageId}"
+								   type="text" readonly="readonly" name="packageId" id="packageId">
+
 						</div>
 					</div>
 
@@ -72,42 +68,34 @@
 					</div>
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							   for="realWeight">实际重量:kg<span class="required">*</span>
+							   for="realWeight">实际重量:kg
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<input class="form-control col-md-7 col-xs-12" value="${workorder.realWeight}"
-								   required="required"
-								   type="number" name="realWeight" id="realWeight">
+								   readonly="readonly"
+								   type="text" name="realWeight" id="realWeight">
 						</div>
 					</div>
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							   for="productLocation">物件位置<span class="required">*</span>
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" value="${workorder.productLocationName}"
-								   class="form-control col-md-7 col-xs-12" name="productLocationName" id="productLocation"
-								   readonly="readonly">
-						</div>
-					</div>
-
-					<div class="ln_solid"></div>
 					<div class="form-group">
 						<div class="col-md-6 col-md-offset-3">
-							<button id="send" type="submit" class="btn btn-success">入库</button>
+							<button type="submit" class="btn btn-success">拆包</button>
 							<button type="button" class="btn btn-primary" id="back">返回</button>
-							<br /> <br />
 						</div>
 					</div>
 				</form>
 			</div>
+			<div class="x_content" style="display: block;">
+				<br>
+			</div>
+
+			<div class="clearfix"></div>
+			<br/>
+			<br/>
 		</div>
 	</div>
-</div>
-
-<%@include file="../common/footer.jsp"%>
-<script>
-    $("#back").on("click", function () {
-        window.location.href = "../putinstorage";
-    });
-</script>
+	<%@include file="../common/footer.jsp" %>
+	<script>
+        $("#back").on("click", function () {
+            window.location.href = "../putinstorage";
+        });
+	</script>

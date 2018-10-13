@@ -14,7 +14,8 @@
         <div class="clearfix"></div>
       </div>
       <div class="x_content1">
-        <form class="form-horizontal form-label-left"  action="${pageContext.request.contextPath}/wuliu/baokuai" method="post">
+        <form class="form-horizontal form-label-left"  action="${pageContext.request.contextPath}/wuliu/baokuai"
+              method="post" enctype="multipart/form-data">
 
           <div class="item form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" >员工姓名 <span class="required">*</span>
@@ -60,6 +61,18 @@
               </select>
             </div>
           </div>
+          <div class="item form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="picpath">个人头像 <span
+                    class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+              <!--             文件上传以及错误信息回显 -->
+              <input type="file" class="form-control col-md-7 col-xs-12" name="picPath"
+                     required="required" id="picpath"/>
+              <span><img src="" id="showpic" width="400" /></span>
+              <h3 style="color:red">${fileUploadError}</h3>
+            </div>
+          </div>
           <div class="form-group">
             <div class="col-md-6 col-md-offset-3">
               <input type="submit" class="btn btn-primary" id="b" value="添加" />
@@ -81,4 +94,5 @@
     </div>
   </div>
   <%@include file="../common/footer.jsp"%>
+  <script src="${pageContext.request.contextPath}/statics/js/zz/fengongsiguanlitianjia.js"></script>
   <script src="${pageContext.request.contextPath }/statics/localjs/appinfoview.js"></script>

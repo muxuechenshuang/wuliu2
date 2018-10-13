@@ -89,4 +89,27 @@
     group by sendTime DESC
     limit 0,5
   </select>
+
+  <!--任一-->
+  <select id="noReadCount" resultType="java.lang.Integer">
+    select count(*)
+    from note
+    where clientId = #{clientId} and status = 1
+  </select>
+
+  <!--任一-->
+  <update id="readDone" parameterType="java.lang.Integer">
+    update  note
+    set status = 2
+    where clientId = #{clientId};
+  </update>
+
+  <!--任一-->
+  <select id="getAllSelf" parameterType="java.lang.Integer" resultType="com.forest.wu.pojo.Note">
+    select a.*,
+    (select username from user where id = a.clientId)as clientName
+    from note a
+    where clientId = #{clientId}
+    group by sendTime DESC
+  </select>
 </mapper>

@@ -61,6 +61,14 @@
         from instorage i
         where receiptId = #{receiptId,jdbcType=BIGINT}
     </select>
+
+    <select id="selectByWorkNum"  resultMap="BaseResultMap">
+        select
+        <include refid="Query_Column_List"/>
+        from instorage i
+        where workorderId = #{workorderId}
+    </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from instorage
     where receiptId = #{receiptId,jdbcType=BIGINT}

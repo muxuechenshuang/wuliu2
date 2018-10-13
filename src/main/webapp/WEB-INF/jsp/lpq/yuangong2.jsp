@@ -19,7 +19,7 @@
 			    <ul>
 					<li>
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">员工编号：</label>
+							<label class="control-label col-md-4 col-sm-4 col-xs-12">员工编号：</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<input name="id" type="text" class="form-control col-md-7 col-xs-12" value="${id}">
 							</div>
@@ -29,7 +29,7 @@
 					
 					   <li>
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">姓名：</label>
+							<label class="control-label col-md-4 col-sm-4 col-xs-12">姓名：</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<input name="username" type="text" class="form-control col-md-7 col-xs-12" value="${username }">
 							</div>
@@ -37,7 +37,7 @@
 					   </li>
 						<li>
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">手机号：</label>
+							<label class="control-label col-md-4 col-sm-4 col-xs-12">手机号：</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<input name="phone" type="text" class="form-control col-md-7 col-xs-12" value="${phone}">
 							</div>
@@ -45,7 +45,7 @@
 					   </li>
 						<li>
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">邮箱：</label>
+							<label class="control-label col-md-4 col-sm-4 col-xs-12">邮箱：</label>
 							<div class="col-md-6 col-sm-6 col-xs-12">
 								<input name="email" type="text" class="form-control col-md-7 col-xs-12" value="${email}">
 							</div>
@@ -71,7 +71,7 @@
 					   </li> --%>
 				
 					<li><button type="submit" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询 </button>
-					<button type="submit" class="btn btn-primary"> 返 &nbsp;&nbsp;&nbsp;&nbsp;回 </button></li>
+					<button type="button" class="btn btn-primary"> 返 &nbsp;&nbsp;&nbsp;&nbsp;回 </button></li>
 				</ul>
 			</form>
 			
@@ -127,7 +127,7 @@
 							<tbody>
 							<c:forEach items="${listUser}" var="courier" varStatus="add">
 								<tr>
-								 <td>${add.count}</td>
+								 <td>${courier.id}</td>
 								 <td>${courier.phone}</td>
 								 <td>${courier.username}</td>
 								 <td>${courier.sex}</td>

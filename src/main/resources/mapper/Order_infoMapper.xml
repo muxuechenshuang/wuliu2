@@ -483,4 +483,10 @@
     <select id="selectOrderCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
        SELECT count(1) FROM order_info WHERE DATEDIFF(riseTime,NOW())=#{day}
     </select>
+
+    <!--任一-->
+    <select id="getMonthOrder" resultType="java.lang.Integer">
+        select count(*) from order_info
+        where userId = #{userId} and riseTime between #{start} and #{end}
+    </select>
 </mapper>

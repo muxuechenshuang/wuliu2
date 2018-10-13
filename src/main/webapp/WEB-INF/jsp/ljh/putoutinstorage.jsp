@@ -8,24 +8,24 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>
-                    入库 <i class="fa fa-user"></i>
+                    出库 <i class="fa fa-user"></i>
                     <small>${user.username}
-                        - 您可以对包裹进行入库操作，也可以查看已入库的包裹。^_^
+                        - 您可以对包裹进行出库操作，也可以查看已出库的包裹。^_^
                     </small>
                 </h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <form method="post" action="/filiale/putinstorage">
+                <form method="post" action="/filiale/putoutstorage">
                     <input type="hidden" name="pageIndex" value="1"/>
                     <ul>
                         <li>
                             <div class="form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12">入库交接单号</label>
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">出库交接单号</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="receiptId" type="text"
+                                    <input name="outId" type="text"
                                            class="form-control col-md-7 col-xs-12"
-                                           value="${receiptId}">
+                                           value="${outId}">
                                 </div>
                             </div>
                         </li>
@@ -53,16 +53,16 @@
 
                         <li>
                             <div class="form-group">
-                                <label class="control-label col-md-4 col-sm-4 col-xs-12">入库状态</label>
+                                <label class="control-label col-md-4 col-sm-4 col-xs-12">出库状态</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select name="inStorageStatus" class="form-control">
-                                        <c:if test="${inStorageStatusList!=null}">
+                                    <select name="outStorageStatus" class="form-control">
+                                        <c:if test="${outStorageStatusList!=null}">
                                             <option value="">--请选择--</option>
-                                            <c:forEach items="${inStorageStatusList}" var="inStatus">
+                                            <c:forEach items="${outStorageStatusList}" var="outStatus">
                                                 <option class=""
-                                                        <c:if test="${inStatus.valueId == inStorageStatus }">selected="selected"</c:if>
-                                                        value="${inStatus.valueId}">
-                                                        ${inStatus.valueName}
+                                                        <c:if test="${outStatus.valueId == outStorageStatus }">selected="selected"</c:if>
+                                                        value="${outStatus.valueId}">
+                                                        ${outStatus.valueName}
                                                 </option>
                                             </c:forEach>
                                         </c:if>
@@ -97,7 +97,7 @@
                                 <thead>
                                 <tr role="row">
                                     <c:choose>
-                                        <c:when test="${inStorageStatus==1}">
+                                        <c:when test="${outStorageStatus==1}">
                                             <th class="sorting_asc" tabindex="0"
                                                 aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                                 style="width: 80px;"
@@ -114,7 +114,7 @@
                                                 aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                                 style="width: 80px;"
                                                 aria-label="Last name: activate to sort column ascending">
-                                                入库状态
+                                                出库状态
                                             </th>
                                             <th class="sorting" tabindex="0"
                                                 aria-controls="datatable-responsive" rowspan="1" colspan="1"
@@ -128,7 +128,7 @@
                                                 aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                                 style="width: 124px;"
                                                 aria-label="First name: activate to sort column descending"
-                                                aria-sort="ascending">入库交接单号
+                                                aria-sort="ascending">出库交接单号
                                             </th>
                                             <th class="sorting_asc" tabindex="0"
                                                 aria-controls="datatable-responsive" rowspan="1" colspan="1"
@@ -146,13 +146,13 @@
                                                 aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                                 style="width: 80px;"
                                                 aria-label="Last name: activate to sort column ascending">
-                                                入库状态
+                                                出库状态
                                             </th>
                                             <th class="sorting" tabindex="0"
                                                 aria-controls="datatable-responsive" rowspan="1" colspan="1"
                                                 style="width: 80px;"
                                                 aria-label="Last name: activate to sort column ascending">
-                                                入库时间
+                                                出库时间
                                             </th>
                                         </c:otherwise>
                                     </c:choose>
@@ -166,8 +166,8 @@
                                 </thead>
                                 <tbody>
                                 <c:choose>
-                                    <c:when test="${inStorageStatus==1}">
-                                        <c:forEach items="${readyInWorkOrderList}" var="workorder">
+                                    <c:when test="${outStorageStatus==1}">
+                                        <c:forEach items="${readyOutWorkOrderList}" var="workorder">
                                             <tr>
                                                 <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${workorder.workNum}</td>
                                                 <td>
@@ -180,42 +180,35 @@
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </td>
-                                                <td>${workorder.inStorageStatusName }</td>
+                                                <td>${workorder.outStorageStatusName }</td>
                                                 <td>${workorder.realWeight}</td>
                                                 <td>
-                                                    <a href="${pageContext.request.contextPath}/filiale/addinstorage/${workorder.workNum}" type="buttoon" class="btn btn-success">入库</a>
-                                                    <c:if test="${workorder.packageId==null}">
-                                                        <a href="${pageContext.request.contextPath}/filiale/addpackage/${workorder.workNum}"
-                                                           type="button" class="btn btn-primary">合包</a>
-                                                    </c:if>
-                                                    <c:if test="${workorder.packageId!=null}">
-                                                        <a href="${pageContext.request.contextPath}/filiale/unpackage/${workorder.workNum}"
-                                                           type="button" class="btn btn-primary">拆包</a>
-                                                    </c:if>
+                                                    <a href="${pageContext.request.contextPath}/filiale/addoutstorage/${workorder.workNum}" type="buttoon" class="btn btn-success">出库</a>
+
                                                 </td>
                                             </tr>
                                         </c:forEach>
                                     </c:when>
                                     <c:otherwise>
-                                        <c:forEach var="instorage" items="${instorageList }">
+                                        <c:forEach var="outstorage" items="${outstorageList }">
                                             <tr>
-                                                <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${instorage.receiptId }</td>
-                                                <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${instorage.workorderId }</td>
+                                                <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${outstorage.outId }</td>
+                                                <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${outstorage.workorderId }</td>
                                                 <td>
                                                     <c:choose>
-                                                        <c:when test="${instorage.packageId!=null}">
-                                                            ${instorage.packageId}
+                                                        <c:when test="${outstorage.packageId!=null}">
+                                                            ${outstorage.packageId}
                                                         </c:when>
                                                         <c:otherwise>
                                                             未进行合包
                                                         </c:otherwise>
                                                     </c:choose>
                                                 </td>
-                                                <td>${instorage.inStorageStatusName }</td>
-                                                <td><fmt:formatDate value="${instorage.inStorageTime}"
+                                                <td>${outstorage.outStorageStatusName }</td>
+                                                <td><fmt:formatDate value="${outstorage.outStorageTime}"
                                                                     pattern="yyyy-MM-dd HH:mm:ss"/></td>
                                                 <td class="view">
-                                                    <button type="button" receiptId="${instorage.receiptId}"
+                                                    <button type="button" outId="${outstorage.outId}"
                                                             class="btn btn-primary">查看详情
                                                     </button>
                                                 </td>
@@ -232,7 +225,7 @@
                             <div class="dataTables_info" id="datatable-responsive_info"
                                  role="status" aria-live="polite">
                                 <c:choose>
-                                    <c:when test="${inStorageStatus==1}">
+                                    <c:when test="${outStorageStatus==1}">
                                         共${page2.total}条记录
                                         ${page2.pageNum }/${page2.pages}页
                                     </c:when>
@@ -249,27 +242,27 @@
                                  id="datatable-responsive_paginate">
                                 <ul class="pagination">
                                     <c:choose>
-                                        <c:when test="${inStorageStatus==1}">
-                                            <c:if test="${pag2.hasPreviousPage eq true }">
+                                        <c:when test="${outStorageStatus==1}">
+                                            <c:if test="${page2.hasPreviousPage eq true }">
                                                 <li class="paginate_button previous"><a
                                                         href="javascript:page_nav(document.forms[0],1);"
                                                         aria-controls="datatable-responsive" data-dt-idx="0"
                                                         tabindex="0">首页</a>
                                                 </li>
                                                 <li class="paginate_button "><a
-                                                        href="javascript:page_nav(document.forms[0],${pag2.prePage});"
+                                                        href="javascript:page_nav(document.forms[0],${page2.prePage});"
                                                         aria-controls="datatable-responsive" data-dt-idx="1"
                                                         tabindex="0">上一页</a>
                                                 </li>
                                             </c:if>
-                                            <c:if test="${pag2.hasNextPage eq true }">
+                                            <c:if test="${page2.hasNextPage eq true }">
                                                 <li class="paginate_button "><a
-                                                        href="javascript:page_nav(document.forms[0],${pag2.nextPage});"
+                                                        href="javascript:page_nav(document.forms[0],${page2.nextPage});"
                                                         aria-controls="datatable-responsive" data-dt-idx="1"
                                                         tabindex="0">下一页</a>
                                                 </li>
                                                 <li class="paginate_button next"><a
-                                                        href="javascript:page_nav(document.forms[0],${pag2.lastPage});"
+                                                        href="javascript:page_nav(document.forms[0],${page2.lastPage});"
                                                         aria-controls="datatable-responsive" data-dt-idx="7"
                                                         tabindex="0">最后一页</a>
                                                 </li>

@@ -25,6 +25,7 @@ public interface FilialeWorkOrderService {
      **/
     List<Workorder> queryReadyInStorageWorkOrderList();
 
+
     /**
      * @author: 李家和
      * @Description 查询所有已入库待出库的工单
@@ -32,24 +33,24 @@ public interface FilialeWorkOrderService {
      * @Param：[]
      * @return：java.util.List<com.forest.wu.pojo.Workorder>
      **/
-    List<Workorder> queryInStorageOrderList();
+    List<Workorder> queryReadyOutStorageWorkOrderList();
 
     /**
-    * @author: 李家和
-    * @Description 根据工单号查询工单
-    * @Date: 10:01 2018/10/11
-    * @Param：[]
-    * @return：com.forest.wu.pojo.Workorder
-    **/
+     * @author: 李家和
+     * @Description 根据工单号查询工单
+     * @Date: 10:01 2018/10/11
+     * @Param：[]
+     * @return：com.forest.wu.pojo.Workorder
+     **/
     Workorder queryWorkOrderByWorkNum(String workNum);
 
     /**
-    * @author: 李家和
-    * @Description 保存修改工单
-    * @Date: 10:27 2018/10/11
-    * @Param：[workorder]
-    * @return：boolean
-    **/
+     * @author: 李家和
+     * @Description 保存修改工单
+     * @Date: 10:27 2018/10/11
+     * @Param：[workorder]
+     * @return：boolean
+     **/
     boolean saveWorkOrder(Workorder workorder);
 
 

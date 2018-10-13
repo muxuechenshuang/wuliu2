@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>支付成功！越南新娘正在运送！</h1>
+<h1>您的订单${orderNumber},${result}</h1>
+<form action="/calculate/query">
+    <input type="submit" value="点我点我！">
+</form>
 </body>
 </html>

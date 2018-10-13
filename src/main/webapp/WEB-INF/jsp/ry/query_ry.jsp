@@ -153,6 +153,7 @@
 											<form method="post" action="/calculate/goPay" id="pay">
                                                 <input type="hidden" name="orderNumber" value="${order.orderNumber}">
 												<input type="hidden" id="isPay" value="${order.isPay}">
+												<input type="hidden" id="orderStatus" value="${order.status}">
                                                 <input type="hidden" name="product" value="${order.product}">
                                                 <input type="hidden" name="price" value="${order.expenses}">
                                                 <input type="hidden" name="comment" value="${order.comment}">

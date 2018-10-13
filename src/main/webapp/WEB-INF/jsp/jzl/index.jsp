@@ -101,7 +101,7 @@
 						<h4>不坠青云志</h4>
 					</div>
 			<div class="sub-main-w31" id="denglu">	
-				<form action="register" method="post">
+				<form action="${pageContext.request.contextPath}/log/indextou" method="post" onsubmit="return register()">
 					<input type="text" required="required" placeholder="用户名、电话或邮箱" name="user" id="user"><br/><span style="color: white;"></span>
 					<input type="password" required="required" placeholder="密码" name="password" id="password"><br/><span style="color: white;"></span>
 					<input type="submit" value="登录" onclick="register()">
