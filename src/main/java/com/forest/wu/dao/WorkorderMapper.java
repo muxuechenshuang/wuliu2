@@ -108,4 +108,8 @@ public interface WorkorderMapper {
      */
     int payDone(@Param(value = "orderNum") String orderNum);
 
+    int workorderCount(@Param(value = "cityid") Integer cityid);
+
+    List workStatus();
+
 }

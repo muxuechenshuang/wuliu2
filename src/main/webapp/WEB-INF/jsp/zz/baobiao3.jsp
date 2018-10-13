@@ -23,10 +23,12 @@
 
 <script type="text/javascript">
 
+    var dataAxis = ['北京', '上海', '深圳', '成都'];
+    // var data = [220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220];
     // var dataAxis = ['点', '击', '柱', '子', '或', '者', '两', '指', '在', '触', '屏', '上', '滑', '动', '能', '够', '自', '动', '缩', '放'];
-    var data = [220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220];
-    // var dataAxis = ['点', '击', '柱', '子', '或', '者', '两', '指', '在', '触', '屏', '上', '滑', '动', '能', '够', '自', '动', '缩', '放'];
-    var dataAxis=[];
+    // var data = [220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220];
+    var data =[];
+    // var dataAxis=[];
     $.ajax({	//使用JQuery内置的Ajax方法
         type: "get",		//post请求方式
         async: true,		//异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
@@ -37,13 +39,13 @@
             alert(result);
             //请求成功时执行该函数内容，result即为服务器返回的json对象
             for (var i = 0; i < result.length; i++) {
-                dataAxis.push(result[i]);
+                data.push(result[i]);
             }
             var dom = document.getElementById("container");
             var myChart = echarts.init(dom);
             var app = {};
             option = null;
-            var yMax = 500;
+            var yMax = 10;
             var dataShadow = [];
             for (var i = 0; i < data.length; i++) {
                 dataShadow.push(yMax);
@@ -52,7 +54,7 @@
 
             option = {
                 title: {
-                    text: '特性示例：渐变色 阴影 点击缩放',
+                    text: '各分公司处理工单总数',
                     subtext: 'Feature Sample: Gradient Color, Shadow, Click Zoom'
                 },
                 xAxis: {

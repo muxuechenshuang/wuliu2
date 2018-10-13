@@ -1,6 +1,7 @@
 package com.forest.wu.service;
 
 import com.forest.wu.pojo.*;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -92,5 +93,9 @@ public interface CenterService {
     public User selectByUserId(Integer id)throws Exception;
 
     public Integer updateUserById(User user)throws Exception;
-    
+
+    int workorderCount(@Param(value = "cityid") Integer cityid)throws Exception;
+
+    //查询所有所有工单状态
+    List workStatus();
 }

@@ -168,8 +168,8 @@
 										<%--<li><a href="/center/soncompanydetail">分公司详情（修改）</a></li>--%>
 										<li><a href="/center/addsonperson">新增分公司管理</a></li>
 										<li><a href="/center/finduser">查询分公司管理</a></li>
-										<li><a href="/center/baobiao1">报表</a></li>
-										<li><a href="/center/baobiao2">报表2</a></li>
+										<%--<li><a href="/center/baobiao1">报表</a></li>--%>
+										<%--<li><a href="/center/baobiao2">报表2</a></li>--%>
 										<li><a href="/center/baobiao3">报表3</a></li>
 
 									</ul></li>
