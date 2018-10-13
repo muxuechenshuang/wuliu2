@@ -222,41 +222,24 @@
 
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							   for="number">初次入库时间 <span class="required">*</span>
+							   for="number">入库时间 <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" value="<fmt:formatDate value='${workorder.firInStorage}' pattern='yyyy-MM-dd HH:mm:ss'/>"
+							<input type="text" value="<fmt:formatDate value='${workorder.inStorageTime}' pattern='yyyy-MM-dd HH:mm:ss'/>"
 								   class="form-control col-md-7 col-xs-12" readonly="readonly">
 						</div>
 					</div>
 
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							   for="select">初次出库时间<span class="required">*</span></label>
+							   for="select">出库时间<span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<input type="text" class="form-control col-md-7 col-xs-12"
-								   value="<fmt:formatDate value='${workorder.firOutStorage}' pattern='yyyy-MM-dd HH:mm:ss'/>" readonly="readonly">
+								   value="<fmt:formatDate value='${workorder.outStorageTime}' pattern='yyyy-MM-dd HH:mm:ss'/>" readonly="readonly">
 						</div>
 					</div>
 
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							   for="name">二次入库时间<span class="required">*</span>
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input class="form-control col-md-7 col-xs-12" value="<fmt:formatDate value='${workorder.secInStorage}' pattern='yyyy-MM-dd HH:mm:ss'/>"
-								   type="text" readonly="readonly">
-						</div>
-					</div>
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							   for="name">二次出库时间<span class="required">*</span>
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input class="form-control col-md-7 col-xs-12"
-								   readonly="readonly" value="<fmt:formatDate value='${workorder.secOutStorage}' pattern='yyyy-MM-dd HH:mm:ss'/> " type="text">
-						</div>
-					</div>
+
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
 							   for="number">完成时间 <span class="required">*</span>
