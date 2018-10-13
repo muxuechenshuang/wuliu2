@@ -39,7 +39,7 @@ public class LoginController {
     @RequestMapping(value = "/indextou")
     public String ma(@RequestParam String user, @RequestParam String password, HttpSession session,HttpServletResponse response) throws IOException {
 
-        if(userService.selectULogin(user,password) != null) {
+        if(userService.selectULogin(user,password)!= null) {
             //给权限赋值
             User ss = userService.selectULogin(user,password);
            if (ss.getType().equals(1)) {
