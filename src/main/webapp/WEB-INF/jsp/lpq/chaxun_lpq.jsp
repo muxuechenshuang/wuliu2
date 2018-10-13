@@ -157,7 +157,7 @@
 
 										</td>
 										<td >分配：<span class="pei2">  </span></td>
-										<td>${order.entrust}</td>
+										<td>${order.username}</td>
 										<td><a href="javascript:;" class="btn btn-primary pp"  >分配</a>
 											<a href="${pageContext.request.contextPath}/wuliu/xiangqing?id=${order.id}" class="btn btn-primary">订单详情</a>
 										</td>
