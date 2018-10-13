@@ -44,7 +44,6 @@
             var app = {};
             option = null;
             var yMax = 500;
-            alert(dataAxis);
             var dataShadow = [];
             for (var i = 0; i < data.length; i++) {
                 dataShadow.push(yMax);

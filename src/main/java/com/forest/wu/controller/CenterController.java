@@ -20,9 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * 总公司
@@ -49,21 +47,26 @@ public class CenterController {
     * Return：java.lang.String
     **/
     @RequestMapping(value = "/returnlist")
-    public String returnlist(Return returnorder, Model model) {
+    public String returnlist( @RequestParam(value = "pageIndex", required = false, defaultValue = "1") String pageIndex,
+                              Return returnorder, Model model) {
         try {
+            PageHelper.startPage(Integer.parseInt(pageIndex), Constants.PAGE_SIZE);
             List<Return> list1 = centerService.selectReturn(returnorder);
-//            model.addAttribute("returnorder",returnorder);
+            PageInfo<Return> p = new PageInfo<Return>(list1);
+            model.addAttribute("page", p);
             model.addAttribute("list1", list1);
-            model.addAttribute("id",returnorder.getId());
-            model.addAttribute("yid",returnorder.getYid());
-            model.addAttribute("gid",returnorder.getGid());
-            model.addAttribute("gName",returnorder.getgName());
-            model.addAttribute("status",returnorder.getStatus());
 
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        model.addAttribute("id",returnorder.getId());
+        model.addAttribute("yid",returnorder.getYid());
+        model.addAttribute("gid",returnorder.getGid());
+        model.addAttribute("gName",returnorder.getgName());
+        model.addAttribute("status",returnorder.getStatus());
+
         return "zz/fanhuodanlist_zz";
     }
 
@@ -184,25 +187,22 @@ public class CenterController {
      * Return：java.lang.String
      **/
     @RequestMapping(value = "/soncompanylist")
-    public String select(Organization organization, Model model, HttpSession session) {
-        List<Organization> list = null;
-        Integer id = 0;
-        String phone = null;
-        String name = null;
-
+    public String select(@RequestParam(value = "pageIndex", required = false, defaultValue = "1") String pageIndex,
+                         Organization organization, Model model, HttpSession session) {
         try {
-            list = centerService.selectSonCompany(organization);
+            PageHelper.startPage(Integer.parseInt(pageIndex), Constants.PAGE_SIZE,"id desc");
+            List<Organization> list = centerService.selectSonCompany(organization);
+            PageInfo<Organization> p = new PageInfo<Organization>(list);
+            model.addAttribute("page", p);
+            model.addAttribute("list", list);
         } catch (Exception e) {
             e.printStackTrace();
         }
         //回显
-        id = organization.getId();
-        phone = organization.getPhone();
-        name = organization.getName();
-        model.addAttribute("id", id);
-        model.addAttribute("phone", phone);
-        model.addAttribute("name", name);
-        model.addAttribute("list", list);
+        model.addAttribute("id", organization.getId());
+        model.addAttribute("phone", organization.getPhone());
+        model.addAttribute("name", organization.getName());
+
         return "zz/fengongsichaxun_zz";
     }
 
@@ -252,9 +252,13 @@ public class CenterController {
     * Return：java.lang.String
     **/
     @RequestMapping(value = "/finduser")
-    public String finduser(User user,Model model){
+    public String finduser(@RequestParam(value = "pageIndex", required = false, defaultValue = "1") String pageIndex,
+                           User user,Model model){
         try {
+            PageHelper.startPage(Integer.parseInt(pageIndex), Constants.PAGE_SIZE,"id desc");
             List<User> list = centerService.selectCompanyPerson(user);
+            PageInfo<User> p = new PageInfo<User>(list);
+            model.addAttribute("page", p);
             model.addAttribute("list",list);
             model.addAttribute("id",user.getId());
             model.addAttribute("phone",user.getPhone());
@@ -319,7 +323,7 @@ public class CenterController {
      * Param：[userid]
      * Return：java.lang.String
      **/
-    @RequestMapping(value = "/delectuser",method = RequestMethod.POST)
+    @RequestMapping(value = "/delectuser")
     public String delectuser(Integer userid) {
 
         try {
@@ -355,7 +359,7 @@ public class CenterController {
             int filesize = 5000000;
             if (attach.getSize() > filesize) {//上传大小不得超过 5M
                 request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_4);
-                return "center/addsonperson";
+                return "zz/fengongsiguanlitianjia_zz";
             } else if (prefix.equalsIgnoreCase("jpg") || prefix.equalsIgnoreCase("png")
                     || prefix.equalsIgnoreCase("jepg") || prefix.equalsIgnoreCase("pneg")) {//上传图片格式
                 String fileName = user.getUsername() + ".jpg";//上传头像图片重命名
@@ -368,13 +372,13 @@ public class CenterController {
                 } catch (Exception e) {
                     e.printStackTrace();
                     request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_2);
-                    return "redirect:/center/addsonperson";
+                    return "zz/fengongsiguanlitianjia_zz";
                 }
                 PicPath = request.getContextPath() + "/statics/uploadfiles/" + fileName;
                 logoLocPath = path + File.separator + fileName;
             } else {
                 request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_3);
-                return "redirect:/center/addsonperson";
+                return "zz/fengongsiguanlitianjia_zz";
             }
         }
         user.setPicPath(PicPath);
@@ -412,7 +416,7 @@ public class CenterController {
                 request.setAttribute("fileUploadError", Constants.FILEUPLOAD_ERROR_4);
                 return "center/addsonperson";
             } else if (prefix.equalsIgnoreCase("jpg") || prefix.equalsIgnoreCase("png")
-                    || prefix.equalsIgnoreCase("jepg") || prefix.equalsIgnoreCase("pneg")) {//上传图片格式
+                    || prefix.equalsIgnoreCase("jepg") || prefix.equalsIgnoreCase("gif")) {//上传图片格式
                 String fileName = user.getUsername() + ".jpg";//上传头像图片重命名
                 File targetFile = new File(path, fileName);
                 try {
@@ -486,22 +490,15 @@ public class CenterController {
      * Return：java.lang.String
      **/
     @RequestMapping("/selectworkorder")
-    public String selectworkOrder(@RequestParam(required = true, defaultValue = "1") Integer pageIndex,
+    public String selectworkOrder( @RequestParam(value = "pageIndex", required = false, defaultValue = "1") String pageIndex,
                                   Workorder workorder, Model model) {
-//        String workNum = null;
         List<Organization> cityList = organizationService.filialeList();
         model.addAttribute("cityList", cityList);
-        PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
         try {
-//            系统自动封装对象已经转型
-//            if (workorder.getPackageId()!=null){
-//                workorder.setPackageId(Integer.parseInt(workorder.getPackageId()));
-//            }
-            //已解决问题
-//            List<Workorder> workorderList = filialeWorkOrderService.queryWorkOrderList(workorder);
+            PageHelper.startPage(Integer.parseInt(pageIndex), Constants.PAGE_SIZE, "id desc");
             List<Workorder> workorderList = centerService.selectWorkOrder(workorder);
             PageInfo<Workorder> p = new PageInfo<Workorder>(workorderList);
-            model.addAttribute("pageIndex", p);
+            model.addAttribute("page", p);
             model.addAttribute("workorderList", workorderList);
         } catch (Exception e) {
             e.printStackTrace();
@@ -524,8 +521,6 @@ public class CenterController {
         model.addAttribute("gCourier", workorder.getgCourier());
         //送
         model.addAttribute("sCourier", workorder.getsCourier());
-
-
         return "zz/gondan2_zz";
     }
 
@@ -577,18 +572,16 @@ public class CenterController {
      * Param：[]
      * Return：java.lang.String
      **/
-    @ResponseBody
-    @RequestMapping(value = "/delect.json")
-    public Integer delect(@RequestParam(value = "organizationid") String organizationid) {
+    @RequestMapping(value = "/delect")
+    public String delect(@RequestParam(value = "organizationid") String organizationid) {
         try {
-//            if (centerService.delectSonCompany(Integer.valueOf(organizationid))>0);
-//            return "redirect:/center/soncompanylist";
-            return centerService.delectSonCompany(Integer.valueOf(organizationid));
+            if (centerService.delectSonCompany(Integer.valueOf(organizationid))>0);
+            return "redirect:/center/soncompanylist";
+//            return centerService.delectSonCompany(Integer.valueOf(organizationid));
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        return "/center/soncompanylist";
-        return 0;
+        return "/center/soncompanylist";
     }
 
     /**
@@ -677,6 +670,7 @@ public class CenterController {
     @ResponseBody
     @RequestMapping(value = "/shuju3.json")
     public Object shuju3(Model model){
+        Map<String,Object> map = new HashMap<String,Object>();
         List x = new ArrayList();
         List y = new ArrayList();
 
@@ -684,7 +678,7 @@ public class CenterController {
             x.add(i);
             y.add(i + 1);
         }
-        model.addAttribute("x",x);
+//        model.addAttribute("x",x);
 //        model.addAttribute("y",y);
         return x;
     }
