@@ -188,6 +188,10 @@
                                                         <a href="${pageContext.request.contextPath}/filiale/addpackage/${workorder.workNum}"
                                                            type="button" class="btn btn-primary">合包</a>
                                                     </c:if>
+                                                    <c:if test="${workorder.packageId!=null}">
+                                                        <a href="${pageContext.request.contextPath}/filiale/unpackage/${workorder.workNum}"
+                                                           type="button" class="btn btn-primary">拆包</a>
+                                                    </c:if>
                                                 </td>
                                             </tr>
                                         </c:forEach>

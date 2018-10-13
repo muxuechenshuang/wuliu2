@@ -25,6 +25,8 @@ public interface StorageService {
 
     Instorage queryInstorage(Long id);
 
+    Instorage queryInstorageByWorkNum(String workNum);
+
     boolean saveInstorage(Instorage instorage);
 
     /**
@@ -36,7 +38,8 @@ public interface StorageService {
      **/
     List<Outstorage> queryOutstorageList(Outstorage outstorage);
 
-    Outstorage queryOutstorage(Long id);
+
+    Outstorage queryOutstorageById(Long id);
 
     boolean saveOutstorage(Outstorage outstorage);
 
