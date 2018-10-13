@@ -53,7 +53,7 @@
 					<div class="profile">
 						<div class="profile_pic">
 							<a href="/wu/homepage"><img
-								src="${pageContext.request.contextPath }${user.picPath}"
+								src="${pageContext.request.contextPath }${sessionScope.user.picPath}"
 								alt="..." class="img-circle profile_img"></a>
 						</div>
 						<div class="profile_info">
@@ -87,6 +87,8 @@
 										<li><a href="/calculate/moneyestimate">运费时效查询</a>
 										</li>
 										<li><a href="/calculate/intosend">寄件服务</a>
+										</li>
+										<li><a href="/calculate/intobaobiao">报表</a>
 										</li>
 									</ul></li>
 									</c:if>
@@ -158,7 +160,7 @@
 
 									<ul class="nav child_menu">
 
-										<li><a href="/center/cityList">查询工单（总部）</a></li>
+										<li><a href="/center/selectworkorder">查询工单（总部）</a></li>
 										<li><a href="/center/returnlist">返货单查询</a></li>
 										<%--<li><a href="/center/returndetail">审核返货单</a></li>--%>
 										<li><a href="/center/addsoncompany">新增分公司</a></li>
@@ -224,7 +226,7 @@
                             <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
                                aria-expanded="false">
                                 <i class="fa fa-envelope-o"></i>
-                                <span class="badge bg-green">2</span>
+								<span class="badge bg-green ifRead">${noRead}</span>
                             </a>
                             <ul id="note" class="dropdown-menu list-unstyled msg_list" role="menu">
 
@@ -237,14 +239,14 @@
                                 </c:forEach>
 
 
-                                <%--<li>
+                                <li>
                                     <div class="text-center">
-                                        <a>
+                                        <a class="selectAll">
                                             <strong>See All Alerts</strong>
                                             <i class="fa fa-angle-right"></i>
                                         </a>
                                     </div>
-                                </li>--%>
+                                </li>
                             </ul>
                         </li>
                         </c:if>
@@ -252,6 +254,46 @@
                 </nav>
             </div>
         </div>
+
+			<script src="${pageContext.request.contextPath}/statics/js/jquery-1.8.3.js" type="text/javascript"></script>
+            <script>
+                $(".dropdown").on("click",function () {
+                    $.ajax({
+                        type:"GET",
+                        url: "readNote.json",
+                        dataType: "json",
+                        success:function (result){
+                            if (result.doneErro != null){
+                                alert(result.doneErro);
+                                return false;
+							}
+							$(".ifRead").html("0");
+						}
+                    })
+                });
+                $(".selectAll").on("click",function () {
+					$.ajax({
+                        type:"GET",
+                        url: "readAll.json",
+                        dataType: "json",
+						success:function (result) {
+							$("#note").find("li").remove();
+							for(var i = 0; i < result.length; i++){
+							    $("#note").append("<li><a>\n" +
+                                    "<span>"+result[i].clientName+"</span>\n" +
+                                    "<span class=\"time\">"+result[i].sendTime+"<%--<fmt:formatDate value=\""+result[i].sendTime+"\" pattern=\"yyyy-MM-dd HH:ss:mm\"/>--%></span>\n" +
+                                    "<span class=\"message\">"+result[i].noteText+"</span>\n" +
+                                    "</a></li>")
+							}
+							$(".dropdown").addClass("open");
+							$(".dropdown-toggle").attr("aria-expanded","true");
+                        }
+
+					})
+                })
+            </script>
+
+
         <!-- /top navigation -->
         <div class="right_col" role="main">
             <div class="">

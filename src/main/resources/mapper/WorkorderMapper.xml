@@ -22,6 +22,7 @@
         <result column="workStatus" jdbcType="INTEGER" property="workStatus"/>
         <result column="comment" jdbcType="VARCHAR" property="comment"/>
         <result column="expenses" jdbcType="DOUBLE" property="expenses"/>
+        <result column="packageWeight" jdbcType="DOUBLE" property="packageWeight"/>
         <result column="gCourier" jdbcType="INTEGER" property="gCourier"/>
         <result column="sCourier" jdbcType="INTEGER" property="sCourier"/>
         <result column="preVolume" jdbcType="DOUBLE" property="preVolume"/>
@@ -56,7 +57,7 @@
    id, orderNum, workNum, packageId, productNum, sName, sTel, sCity, sAddress, sPoint,
     gName, gTel, gCity, gAddress, gPoint, productType,
     realWeight, workStatus, comment,
-    expenses, gCourier, sCourier, preVolume, riseTime, inStorageTime, outStorageTime,
+    expenses,packageWeight,packageWeight, gCourier, sCourier, preVolume, riseTime, inStorageTime, outStorageTime,
      finishedTime, productLocation, auditStatus, invalidatedState, inStorageStatus,outStorageStatus,
     entrust, entrustNumber, isPay
     </sql>
@@ -73,9 +74,9 @@
      (SELECT valueName FROM dictionary d WHERE typeCode='goodsStatus' and w.productType = d.valueId) as productTypeName,
      realWeight, workStatus,
     (SELECT valueName FROM dictionary d WHERE typeCode='workStatus' and w.workStatus = d.valueId) as workStatusName,
-    comment,expenses, gCourier, sCourier, preVolume, riseTime, inStorageTime, outStorageTime,
+    comment,expenses, packageWeight,gCourier, sCourier, preVolume, riseTime, inStorageTime, outStorageTime,
     finishedTime, productLocation,
-    (SELECT valueName FROM dictionary d WHERE d.typeCode='productLocation' and w.productLocation = d.valueId) as productLocationName,
+    (SELECT name FROM organization o WHERE w.productLocation=o.id) as productLocationName,
     auditStatus,
     (SELECT valueName FROM dictionary d WHERE d.typeCode='auditStatus' and w.auditStatus = d.valueId) as auditStatusName,
     invalidatedState,
@@ -106,7 +107,7 @@
       sPoint, gName, gTel,
       gCity, gAddress, gPoint,
       productType, realWeight, workStatus,
-      comment, expenses, gCourier,
+      comment, expenses,packageWeight, gCourier,
       sCourier, preVolume, riseTime,
       inStorageTime, outStorageTime,  finishedTime, productLocation,
       auditStatus, invalidatedState, inStorageStatus,outStorageStatus,
@@ -118,7 +119,7 @@
       #{sPoint,jdbcType=INTEGER}, #{gName,jdbcType=VARCHAR}, #{gTel,jdbcType=VARCHAR},
       #{gCity,jdbcType=INTEGER}, #{gAddress,jdbcType=VARCHAR}, #{gPoint,jdbcType=INTEGER},
       #{productType,jdbcType=INTEGER}, #{realWeight,jdbcType=DOUBLE}, #{workStatus,jdbcType=INTEGER},
-      #{comment,jdbcType=VARCHAR}, #{expenses,jdbcType=DOUBLE}, #{gCourier,jdbcType=INTEGER},
+      #{comment,jdbcType=VARCHAR}, #{expenses,jdbcType=DOUBLE}, #{packageWeight,jdbcType=DOUBLE},#{gCourier,jdbcType=INTEGER},
       #{sCourier,jdbcType=INTEGER}, #{preVolume,jdbcType=DOUBLE}, #{riseTime,jdbcType=TIMESTAMP},
       #{inStorageTime,jdbcType=TIMESTAMP}, #{outStorageTime,jdbcType=TIMESTAMP}, #{finishedTime,jdbcType=TIMESTAMP}, #{productLocation,jdbcType=INTEGER},
       #{auditStatus,jdbcType=INTEGER}, #{invalidatedState,jdbcType=INTEGER}, #{inStorageStatus,jdbcType=INTEGER},#{outStorageStatus,jdbcType=INTEGER},
@@ -187,6 +188,9 @@
             </if>
             <if test="expenses != null">
                 expenses,
+            </if>
+            <if test="packageWeight != null">
+                packageWeight,
             </if>
             <if test="gCourier != null">
                 gCourier,
@@ -294,6 +298,9 @@
             </if>
             <if test="expenses != null">
                 #{expenses,jdbcType=DOUBLE},
+            </if>
+            <if test="packageWeight != null">
+                #{packageWeight,jdbcType=DOUBLE},
             </if>
             <if test="gCourier != null">
                 #{gCourier,jdbcType=INTEGER},
@@ -403,6 +410,9 @@
             <if test="expenses != null">
                 expenses = #{expenses,jdbcType=DOUBLE},
             </if>
+            <if test="packageWeight != null">
+                packageWeight = #{packageWeight,jdbcType=DOUBLE},
+            </if>
             <if test="gCourier != null">
                 gCourier = #{gCourier,jdbcType=INTEGER},
             </if>
@@ -472,6 +482,7 @@
       workStatus = #{workStatus,jdbcType=INTEGER},
       comment = #{comment,jdbcType=VARCHAR},
       expenses = #{expenses,jdbcType=DOUBLE},
+      packageWeight = #{packageWeight,jdbcType=DOUBLE},
       gCourier = #{gCourier,jdbcType=INTEGER},
       sCourier = #{sCourier,jdbcType=INTEGER},
       preVolume = #{preVolume,jdbcType=DOUBLE},
@@ -647,6 +658,14 @@
         from workorder w
         where id = #{id,jdbcType=INTEGER}
     </select>
+
+
+    <!--任一-->
+    <update id="payDone" parameterType="java.lang.String">
+        update workorder
+        set isPay = 2
+        where orderNum = #{orderNum}
+    </update>
 
 
 

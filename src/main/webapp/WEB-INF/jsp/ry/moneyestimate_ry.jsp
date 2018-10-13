@@ -19,7 +19,7 @@
 									<select id="cityA" name="cityA"
 										class="form-control">
 											<option value="0">--请选择始发地--</option>
-											<c:forEach var="cityList" items="${cityList}">
+											<c:forEach var="cityList" items="${cityList}" end="3">
 												<option value="${cityList.city}">${cityList.city}</option>
 											</c:forEach>
 									</select>
@@ -32,7 +32,7 @@
 									<select id="cityB" name="cityB"
 										class="form-control">
 											<option value="0">--请选择目的地--</option>
-										<c:forEach var="cityList" items="${cityList}">
+										<c:forEach var="cityList" items="${cityList}" end="3">
 											<option value="${cityList.city}">${cityList.city}</option>
 										</c:forEach>
 									</select>

@@ -29,7 +29,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sTel">电话： <span class="required">*</span>
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input id="sTel" class="form-control col-md-7 col-xs-12" value="${sessionScope.user.phone}"
+              <input id="sTel" class="form-control col-md-7 col-xs-12" value=""
               	data-validate-length-range="20" data-validate-words="1" name="sTel"   required="required"
               	placeholder="请输入电话" type="text"><span id="sTelR" style="color: red;"></span>
             </div>

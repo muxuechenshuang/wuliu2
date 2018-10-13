@@ -10,6 +10,10 @@ import com.forest.wu.service.Order_infoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -235,6 +239,45 @@ public class Order_infoServiceImpl implements Order_infoService {
     public boolean offOrderById(Integer id) {
         boolean flag = false;
         if(orderMapper.offOrderById(id) > 0){
+            flag = true;
+        }
+        return flag;
+    }
+
+    /**
+     *
+     * @author: 任一
+     * @Description 查询某时间段里订单数
+     * @Date: 14:31 2018/10/11
+     * @Param：
+     * @return：
+     */
+    @Override
+    public Integer getMonthOrder(Integer id, String _start, String _end){
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date start = null;
+        Date end = null;
+        try{
+            start = format.parse(_start);
+            end = format.parse(_end);
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+        return orderMapper.getMonthOrder(id,start,end);
+    }
+
+    /**
+     *
+     * @author: 任一
+     * @Description 完成支付修改是否支付的状态
+     * @Date: 16:27 2018/10/12
+     * @Param：
+     * @return：
+     */
+    @Override
+    public boolean payDone(String orderNum){
+        boolean flag = false;
+        if(workorderMapper.payDone(orderNum) > 0){
             flag = true;
         }
         return flag;

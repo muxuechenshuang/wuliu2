@@ -20,4 +20,6 @@ public interface OutstorageMapper {
     int updateByPrimaryKey(Outstorage record);
 
     List<Outstorage> selectOutstorageList(Outstorage outstorage);
+
+    Outstorage selectOutStorageByWorkNum(String workorderId);
 }

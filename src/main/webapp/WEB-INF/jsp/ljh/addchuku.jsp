@@ -8,14 +8,14 @@
 		<div class="x_panel">
 			<div class="x_title">
 				<h2>
-					新增入库<i class="fa fa-user"></i><small>${devUserSession.devName}</small>
+					新增出库<i class="fa fa-user"></i><small>${user.username}</small>
 				</h2>
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
 				<div class="clearfix"></div>
 				<form id="myForm" class="form-horizontal form-label-left"
-					action="${pageContext.request.contextPath}/filiale/saveinstorage" method="post" enctype="multipart/form-data">
+					action="${pageContext.request.contextPath}/filiale/saveoutstorage" method="post">
 					<input  hidden="hidden" type="text" name="id"  value="${workorder.id}">
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
@@ -94,7 +94,7 @@
 					<div class="ln_solid"></div>
 					<div class="form-group">
 						<div class="col-md-6 col-md-offset-3">
-							<button id="send" type="submit" class="btn btn-success">入库</button>
+							<button id="send" type="submit" class="btn btn-success">出库</button>
 							<button type="button" class="btn btn-primary" id="back">返回</button>
 							<br /> <br />
 						</div>
@@ -108,6 +108,6 @@
 <%@include file="../common/footer.jsp"%>
 <script>
     $("#back").on("click", function () {
-        window.location.href = "../putinstorage";
+        window.location.href = "../putoutstorage";
     });
 </script>
