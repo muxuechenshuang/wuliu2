@@ -72,7 +72,7 @@
 							   for="select">寄件人城市 <span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<input type="text" class="form-control col-md-7 col-xs-12"
-								   value="${workorder.sCity}" readonly="readonly">
+								   value="${workorder.sCityName}" readonly="readonly">
 
 						</div>
 					</div>
@@ -83,19 +83,10 @@
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<input type="text" class="form-control col-md-7 col-xs-12"
-								   value="${workorder.sPoint}" readonly="readonly">
+								   value="${workorder.sPointName}" readonly="readonly">
 						</div>
 					</div>
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							   for="textarea">寄件人详细地址<span class="required">*</span>
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<textarea class="form-control col-md-7 col-xs-12"
-									  readonly="readonly">
-								${workorder.sAddress}</textarea>
-						</div>
-					</div>
+
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
 							   for="name">收件人姓名<span class="required">*</span>
@@ -119,7 +110,7 @@
 							   for="number">收件人城市 <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" value="${workorder.gCity}"
+							<input type="text" value="${workorder.gCityName}"
 								   class="form-control col-md-7 col-xs-12" readonly="readonly">
 						</div>
 					</div>
@@ -129,20 +120,11 @@
 							   for="number">收件人网点 <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" value="${workorder.gPoint}"
+							<input type="text" value="${workorder.gPointName}"
 								   class="form-control col-md-7 col-xs-12" readonly="readonly">
 						</div>
 					</div>
 
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							   for="select">收件人详细地址<span class="required">*</span></label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" class="form-control col-md-7 col-xs-12"
-								   value="${workorder.gAddress}" readonly="readonly">
-
-						</div>
-					</div>
 
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
@@ -150,7 +132,7 @@
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<input type="text" class="form-control col-md-7 col-xs-12"
-								   value="${workorder.productType}" readonly="readonly">
+								   value="${workorder.productTypeName}" readonly="readonly">
 						</div>
 					</div>
 					<div class="item form-group">
@@ -168,7 +150,7 @@
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<input class="form-control col-md-7 col-xs-12"
-								   readonly="readonly" value="${workorder.workStatus} " type="text">
+								   readonly="readonly" value="${workorder.workStatusName} " type="text">
 						</div>
 					</div>
 
@@ -222,41 +204,24 @@
 
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							   for="number">初次入库时间 <span class="required">*</span>
+							   for="number">入库时间 <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" value="<fmt:formatDate value='${workorder.firInStorage}' pattern='yyyy-MM-dd HH:mm:ss'/>"
+							<input type="text" value="<fmt:formatDate value='${workorder.inStorageTime}' pattern='yyyy-MM-dd HH:mm:ss'/>"
 								   class="form-control col-md-7 col-xs-12" readonly="readonly">
 						</div>
 					</div>
 
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							   for="select">初次出库时间<span class="required">*</span></label>
+							   for="select">出库时间<span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<input type="text" class="form-control col-md-7 col-xs-12"
-								   value="<fmt:formatDate value='${workorder.firOutStorage}' pattern='yyyy-MM-dd HH:mm:ss'/>" readonly="readonly">
+								   value="<fmt:formatDate value='${workorder.outStorageTime}' pattern='yyyy-MM-dd HH:mm:ss'/>" readonly="readonly">
 						</div>
 					</div>
 
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							   for="name">二次入库时间<span class="required">*</span>
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input class="form-control col-md-7 col-xs-12" value="<fmt:formatDate value='${workorder.secInStorage}' pattern='yyyy-MM-dd HH:mm:ss'/>"
-								   type="text" readonly="readonly">
-						</div>
-					</div>
-					<div class="item form-group">
-						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							   for="name">二次出库时间<span class="required">*</span>
-						</label>
-						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input class="form-control col-md-7 col-xs-12"
-								   readonly="readonly" value="<fmt:formatDate value='${workorder.secOutStorage}' pattern='yyyy-MM-dd HH:mm:ss'/> " type="text">
-						</div>
-					</div>
+
 					<div class="item form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
 							   for="number">完成时间 <span class="required">*</span>
@@ -272,7 +237,7 @@
 							   for="number">物件位置 <span class="required">*</span>
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" value="${workorder.productLocation}"
+							<input type="text" value="${workorder.productLocationName}"
 								   class="form-control col-md-7 col-xs-12" readonly="readonly">
 						</div>
 					</div>
@@ -282,7 +247,7 @@
 							   for="select">审核结果<span class="required">*</span></label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<input type="text" class="form-control col-md-7 col-xs-12"
-								   value="${workorder.result}" readonly="readonly">
+								   value="${workorder.auditStatusName}" readonly="readonly">
 						</div>
 					</div>
 
@@ -303,8 +268,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-md-6 col-md-offset-3">
-					<button type="button" class="btn btn-primary" id="back">保存</button>
-					<button type="button" class="btn btn-primary" id="bac">返回</button>
+					<a href="JavaScript:history.back(-1)" class="btn btn-primary">返回</a>
 				</div>
 			</div>
 			<div class="clearfix"></div>

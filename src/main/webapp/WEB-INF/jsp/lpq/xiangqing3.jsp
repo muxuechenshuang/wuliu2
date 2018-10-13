@@ -20,7 +20,7 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input class="form-control col-md-7 col-xs-12" name="id" value="${order_info.id}"
-              type="number" >
+              type="number" readonly="readonly" >
             </div>
           </div>
           <div class="item form-group">
@@ -28,7 +28,7 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="number" class="form-control col-md-7 col-xs-12" name="gTel"
-              value="${order_info.gTel}" >
+              value="${order_info.gTel}" readonly="readonly" >
             </div>
           </div>
           
@@ -37,7 +37,7 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input class="form-control col-md-7 col-xs-12" name="gAddress"
-              	value="${order_info.gAddress}" type="text" >
+              	value="${order_info.gAddress}" type="text" readonly="readonly"  >
             </div>
           </div>
           <div class="item form-group">
@@ -45,7 +45,7 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input class="form-control col-md-7 col-xs-12" name="product"
-              	value="${order_info.product} " type="text">
+              	value="${order_info.product} " type="text" readonly="readonly" >
             </div>
           </div>
           <div class="item form-group">
@@ -53,7 +53,7 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="text" value="${order_info.sName}" name="sName"
-              class="form-control col-md-7 col-xs-12" >
+              class="form-control col-md-7 col-xs-12" readonly="readonly" >
             </div>
           </div>
           
@@ -62,7 +62,7 @@
             </label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="text" value="${order_info.sTel}" name="sTel"
-               class="form-control col-md-7 col-xs-12" >
+               class="form-control col-md-7 col-xs-12" readonly="readonly" >
             </div>
           </div>
           
@@ -70,7 +70,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="select">收件人地址 <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="text" class="form-control col-md-7 col-xs-12" name="sAddress"
-              	value="${order_info.sAddress}" >
+              	value="${order_info.sAddress}"readonly="readonly"  >
             
             </div>
           </div>
@@ -78,7 +78,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="select">重量 <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="text" class="form-control col-md-7 col-xs-12" name="preWeight"
-                     value="${order_info.preWeight}" >
+                     value="${order_info.preWeight}" readonly="readonly"  >
 
             </div>
           </div>
@@ -86,7 +86,7 @@
             <label class="control-label col-md-3 col-sm-3 col-xs-12"  for="select">订单号 <span class="required">*</span></label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <input type="text" class="form-control col-md-7 col-xs-12" name="orderNumber"
-                     value="${order_info.orderNumber}" >
+                     value="${order_info.orderNumber}" readonly="readonly" >
 
             </div>
           </div>
@@ -102,7 +102,7 @@
           <div class="form-group">
             <div class="col-md-6 col-md-offset-3">
               <input type="submit" class="btn btn-primary" id="back" value="保存"/>
-              <input type="button" class="btn btn-primary" id="ba" value="返回"/>
+              <a href="JavaScript:history.back(-1)" class="btn btn-primary">返回</a>
             </div>
           </div>
         </form>

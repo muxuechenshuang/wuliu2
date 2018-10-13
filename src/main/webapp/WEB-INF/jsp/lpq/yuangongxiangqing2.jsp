@@ -61,7 +61,7 @@
           <div class="form-group">
             <div class="col-md-6 col-md-offset-3">
               <input type="submit" class="btn btn-primary" id="back" value="修改"/>
-              <input type="button" class="btn btn-primary" id="hh" value="返回"/>
+              <a href="JavaScript:history.back(-1)" class="btn btn-primary">返回</a>
             </div>
           </div>
         </form>

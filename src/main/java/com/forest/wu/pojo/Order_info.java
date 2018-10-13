@@ -22,7 +22,25 @@ public class Order_info {
     private String sAddress;
 
     private String gAddress;
+    private String usernamekuai;//分配的快递员名字
 
+    public String getUsernamekuai() {
+        return usernamekuai;
+    }
+
+    public void setUsernamekuai(String usernamekuai) {
+        this.usernamekuai = usernamekuai;
+    }
+
+    private  String username;//委托的快递员名字
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     private Integer typeId;
 

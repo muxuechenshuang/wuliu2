@@ -123,6 +123,10 @@ public class ClientController {
             }
         }
 
+        //站内信息
+        Integer id = ((User)session.getAttribute("user")).getId();
+        getNote(id,model);
+
         //查询城市不为空
         Integer cityId = null;
         if (null != _cityId && !_cityId.equals("")) {
@@ -164,6 +168,7 @@ public class ClientController {
             e.printStackTrace();
         }
 
+
         //限制分公司
         if (branchList.size() == 0) {
             model.addAttribute("nullErro", "该城市网点正在紧张建设中");
@@ -181,9 +186,6 @@ public class ClientController {
         model.addAttribute("cityId", cityId);
         model.addAttribute("pages", pages);
 
-        //站内信息
-        Integer userId = ((User) session.getAttribute("user")).getId();
-        getNote(userId, model);
         return "ry/branchquery_ry";
     }
 
@@ -375,9 +377,8 @@ public class ClientController {
         String orderNumber = order_info.getUserId() + format.format(date) + num;
         order_info.setOrderNumber(orderNumber);
 
-        //订单状态,委托状态
+        //订单状态
         order_info.setStatus(1);
-        order_info.setEntrust(1);
 
         //创建时间
         order_info.setRiseTime(new Date());

@@ -136,7 +136,7 @@
 
 									<tr>
 										<td class="hao">${order.id}</td>
-										<td>${order.gName}</td>
+										<td>${order.sName}</td>
 										<td>${order.sTel}</td>
 										<td>${order.sAddress}</td>
 										<td>${order.preWeight}</td>
@@ -156,8 +156,13 @@
 											</div>
 
 										</td>
-										<td >分配：<span class="pei2">  </span></td>
-										<td>${order.entrust}</td>
+										<td class="pei2" <c:if test="${!empty order.usernamekuai}">style="color: red" </c:if>  >
+											<c:choose>
+											<c:when test="${empty order.usernamekuai}">未分配</c:when>
+											<c:otherwise>${order.usernamekuai}</c:otherwise>
+										    </c:choose>
+										</td>
+										<td>${order.username}</td>
 										<td><a href="javascript:;" class="btn btn-primary pp"  >分配</a>
 											<a href="${pageContext.request.contextPath}/wuliu/xiangqing?id=${order.id}" class="btn btn-primary">订单详情</a>
 										</td>
@@ -171,7 +176,7 @@
 					<div class="row">
 						<div class="col-sm-5">
 							<div class="dataTables_info" id="datatable-responsive_info"
-								 role="status" aria-live="polite">共${pages.pages }条记录
+								 role="status" aria-live="polite">共${pages.total }条记录
 								${pages.pageNum }/${pages.pages }页</div>
 						</div>
 						<div class="col-sm-7">
@@ -203,6 +208,6 @@
 			</div>
 		</div>
 	</div>
-<%@include file="../common/footer.jsp"%>
+	<%@include file="../common/footer.jsp"%>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/statics/js/jquery.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/statics/localjs/fenpei.js"></script>

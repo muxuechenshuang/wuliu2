@@ -59,9 +59,9 @@ public interface UserMapper {
     * @Param：[用户名, 邮箱, 手机号]
     * @return：对象集合
     **/
-    User find(String username);
-    User find1(String email);
-    User find2(String phone);
+    User find(@Param(value = "username")String username);
+    User find1(@Param(value = "email")String email);
+    User find2(@Param(value = "phone")String phone);
 
 
 

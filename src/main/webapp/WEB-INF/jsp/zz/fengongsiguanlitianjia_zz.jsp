@@ -67,24 +67,12 @@
                                 class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <%--<input id="sex" class="form-control col-md-7 col-xs-12"--%>
-                                   <%--data-validate-length-range="20" data-validate-words="1" name="sex"--%>
-                                   <%--required="required"--%>
-                                   <%--placeholder="分公司管理员性别" type="text" maxlength="50">--%>
+
                                 &nbsp;&nbsp;&nbsp;<input type="radio" name="sex" id="sex" checked value="男">男 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="radio" name="sex" id="sex1" value="女">女
                         </div>
                     </div>
-                    <%--<div class="item form-group">--%>
-                        <%--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">分公司管理员logo <span--%>
-                                <%--class="required">*</span>--%>
-                        <%--</label>--%>
-                        <%--<div class="col-md-6 col-sm-6 col-xs-12">--%>
-                            <%--<input id="supportROM" class="form-control col-md-7 col-xs-12" name="supportROM"--%>
-                                   <%--data-validate-length-range="20" data-validate-words="1" required="required"--%>
-                                   <%--placeholder="请输入分公司电话" type="text" maxlength="50">--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
+
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="parentid">管理员所属分公司 <span
                                 class="required">*</span>
@@ -106,14 +94,14 @@
                             <input type="file" class="form-control col-md-7 col-xs-12" name="picpath"
                                    required="required" id="picpath"/>
                             <span><img src="" id="showpic" width="400" /></span>
-                            <h3 style="color:red">${fileUploadError}</h3>
+                            <h2 style="color:red">${fileUploadError}</h2>
                         </div>
                     </div>
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
                             <button id="send" type="submit" class="btn btn-success">保存</button>
-                            <button type="button" class="btn btn-primary" id="back">返回</button>
+                            <a href="JavaScript:history.back(-1)" class="btn btn-primary">返回</a>
                             <br/><br/>
                         </div>
                     </div>
