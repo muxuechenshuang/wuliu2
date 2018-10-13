@@ -23,7 +23,7 @@ public interface FilialeWorkOrderService {
      * @Param：[]
      * @return：java.util.List<com.forest.wu.pojo.Workorder>
      **/
-    List<Workorder> queryReadyInStorageWorkOrderList();
+    List<Workorder> queryReadyInStorageWorkOrderList(Integer filialeId);
 
 
     /**
@@ -33,7 +33,7 @@ public interface FilialeWorkOrderService {
      * @Param：[]
      * @return：java.util.List<com.forest.wu.pojo.Workorder>
      **/
-    List<Workorder> queryReadyOutStorageWorkOrderList();
+    List<Workorder> queryReadyOutStorageWorkOrderList(Integer filialeId);
 
     /**
      * @author: 李家和
