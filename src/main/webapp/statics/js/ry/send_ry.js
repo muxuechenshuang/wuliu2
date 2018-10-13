@@ -46,6 +46,10 @@ $("#form").submit(function () {
        return false;
    }
 
+   //限制上门时间段
+   // var mydate = new Date();
+   // var time = mydate.toDateString();
+
    //判断是否选择城市
    var sCity = $("#sCity").val();
    if(sCity!=null&&sCity!=""){

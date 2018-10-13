@@ -13,6 +13,9 @@ public class WuApplication {
         SpringApplication.run(WuApplication.class, args);
     }
 
+
+
+
     /**
      *
      * @author: 任一
