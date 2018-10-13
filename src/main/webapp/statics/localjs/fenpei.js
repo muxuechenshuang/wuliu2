@@ -11,6 +11,7 @@ $(function () {//查询订单的分配js
               success:function (data) {
                   alert("分配成功！");
                   ku.parents("tr").find(".pei2").html(data.username);
+                  ku.parents("tr").find(".pei2").css("color","red");
               }
           });
       }

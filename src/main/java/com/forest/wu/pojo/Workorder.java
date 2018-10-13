@@ -58,6 +58,15 @@ public class Workorder {
     private Date outStorageTime;//出库时间
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date finishedTime;
+    private String username;//收件快递员名字
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     private Integer productLocation;
 

@@ -19,8 +19,13 @@
     id, username, password, email, phone, sex, logo, parentid, type ,time ,picpath
   </sql>
     <sql id="Query_Column_List">
-    o.*,(select u.username from user u where o.entrustNumber=u.id) username
+    o.*,(select u.username from user u where o.entrustNumber=u.id) username,
+    (select u.username from user u where o.courierNumber=u.id) usernamekuai
   </sql>
+
+
+
+
     <!--肖林辉-->
     <!--查询条件   登录的快递员  网点下的所有快递员  除本身-->
     <select id="selectCouriers" parameterType="java.lang.Integer" resultType="com.forest.wu.pojo.User">
@@ -75,9 +80,9 @@
 
     <!--查询出工单对象集合-->
     <select id="selectWor" resultType="com.forest.wu.pojo.Workorder">
-        SELECT w.*,o.site FROM WORKORDER w,organization o where
+        SELECT w.*,o.site,u.username FROM WORKORDER w,organization o ,user u where
 
-        w.sPoint=o.id or w.gPoint=o.id
+        w.sPoint=o.id or w.gPoint=o.id and u.id=w.gCourier
         <if test="id!=null">
             and w.id=#{id}
         </if>
@@ -137,7 +142,7 @@
         <if test="gName!=null">
             and o.gName like concat('%',#{gName},'%')
         </if>
-
+        order  by riseTime desc
     </select>
     <!--分配订单后更新订单表信息-->
     <update id="updateOrder">
