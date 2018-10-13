@@ -1,8 +1,7 @@
 package com.forest.wu.dao;
 
-import com.forest.wu.pojo.Dictionary;
 import com.forest.wu.pojo.Workorder;
-import org.omg.CORBA.INTERNAL;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -99,5 +98,14 @@ public interface WorkorderMapper {
 
     public Workorder selectByPrimaryKeyByCourier(Integer id);
 
+    /**
+     *
+     * @author: 任一
+     * @Description 完成支付修改是否支付的状态
+     * @Date: 16:27 2018/10/12
+     * @Param：
+     * @return：
+     */
+    int payDone(@Param(value = "orderNum") String orderNum);
 
 }

@@ -20,6 +20,9 @@
      <script src="${pageContext.request.contextPath }/statics/js/icheck.min.js"></script>
 
    <script src="${pageContext.request.contextPath}/statics/js/bootstrap-datetimepicker.min.js"></script>
+
+   <script src="${pageContext.request.contextPath}/statics/localjs/rollpage.js"></script>
+
    <script src="${pageContext.request.contextPath}/statics/js/dataTables.responsive.min.js"></script>
    <script src="${pageContext.request.contextPath}/statics/js/responsive.bootstrap.js"></script>
       <!-- Bootstrap -->
