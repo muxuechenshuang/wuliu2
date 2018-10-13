@@ -25,7 +25,7 @@
                                for="id">工单ID <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12"
+                            <input class="form-control col-md-7 col-xs-12" readonly
                                    type="text" name="id" id="id" value="${workorder.id}">
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                                for="workNum">工单号 <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12"
+                            <input class="form-control col-md-7 col-xs-12" readonly
                                    type="text" name="workNum" id="workNum" value="${workorder.workNum}">
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                                for="orderNum">关联订单号 <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" class="form-control col-md-7 col-xs-12"
+                            <input type="text" class="form-control col-md-7 col-xs-12" readonly
                                    value="${workorder.orderNum}" name="orderNum" id="orderNum">
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                             <c:forEach var="cityList" items="${cityList}">
                                    <c:if test="${workorder.sCity eq cityList.id}">value="${cityList.city}"</c:if>
                             </c:forEach>
-                                    name="sCity" id="sCity">
+                                   name="sCity" id="sCity">
                         </div>
                     </div>
 
@@ -208,7 +208,7 @@
                                for="expenses">运费 <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" value="${workorder.expenses}"
+                            <input type="text" value="${workorder.expenses}" readonly
                                    class="form-control col-md-7 col-xs-12" name="expenses" id="expenses">
                         </div>
                     </div>
@@ -236,7 +236,7 @@
                                for="preVolume">实际体积 <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12"
+                            <input class="form-control col-md-7 col-xs-12" readonly
                                    name="preVolume" id="preVolume" value="${workorder.preVolume}" type="text">
                         </div>
                     </div>
@@ -245,52 +245,76 @@
                                for="riseTime">生成时间 <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text"
+                            <input type="text" readonly
                                    value="<fmt:formatDate value="${workorder.riseTime}" pattern='yyyy-MM-dd HH:mm:ss'/>"
                                    class="form-control col-md-7 col-xs-12" name="riseTime" id="riseTime">
                         </div>
                     </div>
-
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                               for="firInStorage">初次入库时间 <span class="required">*</span>
+                               for="inStorageStatus">入库状态</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" class="form-control col-md-7 col-xs-12" readonly="readonly"
+                                   value="${workorder.inStorageStatusName}" name="inStorageStatus" id="inStorageStatus">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                               for="outStorageStatus">出库状态</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <c:choose>
+                                <c:when test="${workorder.outStorageStatusName!=null}">
+                                    <input type="text" class="form-control col-md-7 col-xs-12" readonly="readonly"
+                                           value="${workorder.outStorageStatusName}" name="outStorageStatus"
+                                           id="outStorageStatus">
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="text" value="暂无" id="inStorageTime"
+                                           class="form-control col-md-7 col-xs-12" name="inStorageTime"
+                                           readonly="readonly">
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                               for="inStorageTime">入库时间
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text"
-                                   value="<fmt:formatDate value="${workorder.firInStorage}" pattern='yyyy-MM-dd HH:mm:ss'/>"
-                                   class="form-control col-md-7 col-xs-12" name="firInStorage" id="firInStorage">
+                            <c:choose>
+                                <c:when test="${workorder.inStorageTime!=null and workorder.inStorageTime!=''}">
+                                    <input type="text"
+                                           value="<fmt:formatDate value="${workorder.inStorageTime}" pattern='yyyy-MM-dd HH:mm:ss'/>"
+                                           class="form-control col-md-7 col-xs-12" name="inStorageTime"
+                                           id="inStorageTime"
+                                           readonly="readonly">
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="text" value="暂无" id="inStorageTime"
+                                           class="form-control col-md-7 col-xs-12" name="inStorageTime"
+                                           readonly="readonly">
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
 
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                               for="firOutStorage">初次出库时间<span class="required">*</span></label>
+                               for="outStorageTime">出库时间</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" class="form-control col-md-7 col-xs-12"
-                                   value="<fmt:formatDate value="${workorder.firOutStorage}" pattern='yyyy-MM-dd HH:mm:ss'/>"
-                                   name="firOutStorage" id="firOutStorage">
-                        </div>
-                    </div>
-
-                    <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                               for="secInStorage">二次入库时间<span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12"
-                                   value="<fmt:formatDate value="${workorder.secInStorage}" pattern='yyyy-MM-dd HH:mm:ss'/>"
-                                   type="text" name="secInStorage" id="secInStorage">
-                        </div>
-                    </div>
-                    <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                               for="secOutStorage">二次出库时间<span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12"
-                                   name="secOutStorage" id="secOutStorage"
-                                   value="<fmt:formatDate value="${workorder.secOutStorage}" pattern='yyyy-MM-dd HH:mm:ss'/>"
-                                   type="text">
+                            <c:choose>
+                                <c:when test="${workorder.outStorageTime!=null and workorder.outStorageTime!=''}">
+                                    <input type="text" class="form-control col-md-7 col-xs-12" readonly="readonly"
+                                           value="<fmt:formatDate value="${workorder.outStorageTime}" pattern='yyyy-MM-dd HH:mm:ss'/>"
+                                           name="outStorageTime" id="outStorageTime">
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="text" value="暂无"
+                                           class="form-control col-md-7 col-xs-12" name="inStorageTime"
+                                           id="inStorageTime"
+                                           readonly="readonly">
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                     <div class="item form-group">
@@ -298,12 +322,21 @@
                                for="finishedTime">完成时间 <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text"
-                                   value="<fmt:formatDate value="${workorder.finishedTime}" pattern='yyyy-MM-dd HH:mm:ss'/>"
-                                   class="form-control col-md-7 col-xs-12" name="finishedTime" id="finishedTime">
+                            <c:choose>
+                                <c:when test="${workorder.outStorageTime!=null and workorder.outStorageTime!=''}">
+                                    <input type="text" class="form-control col-md-7 col-xs-12" readonly="readonly"
+                                           value="<fmt:formatDate value="${workorder.finishedTime}" pattern='yyyy-MM-dd HH:mm:ss'/>"
+                                           name="finishedTime" id="finishedTime">
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="text" value="暂无"
+                                           class="form-control col-md-7 col-xs-12" name="inStorageTime"
+                                           id="inStorageTime"
+                                           readonly="readonly">
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
-
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12"
                                for="productLocation">物件位置 <span class="required">*</span>
