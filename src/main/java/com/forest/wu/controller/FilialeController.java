@@ -1,4 +1,4 @@
-package com.forest.wu.controller.filiale;
+package com.forest.wu.controller;
 
 import com.forest.wu.pojo.*;
 import com.forest.wu.service.*;
@@ -15,7 +15,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
