@@ -34,6 +34,9 @@ public class Order_infoController {
     @Autowired
     private Order_infoService  orderService;
 
+    @Autowired
+    private  ReturnMapper returnMapper;
+
 
     @Autowired
     private UserMapper userMapper;
@@ -416,6 +419,72 @@ public class Order_infoController {
         return list;
     }
 
+
+    /**
+    * @author: 肖林辉
+    * @Description  去到订单页面
+    * @Date: 16:10 2018/10/13/013
+    * @Param：[session, model, id]
+    * @return：java.lang.String
+    **/
+
+    @RequestMapping("toreturn")
+    public String toreturn(HttpSession session,Model model,
+                                  @RequestParam(value = "id")Integer id){
+        /*User user=(User)session.getAttribute("user");*/
+        try {
+            Workorder workorder=orderService.selectByPrimaryKeyByCourier(id);
+            model.addAttribute(workorder);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "xlh/return_xlh";
+    }
+
+
+    /**
+    * @author: 肖林辉
+    * @Description 生成返货单
+    * @Date: 15:28 2018/10/13/013
+    * @Param：[session, workId]
+    * @return：java.lang.String
+    **/
+
+    @RequestMapping(value="returnorder")
+    public String  insertReturn(HttpSession session,
+                                   @RequestParam(value = "id" )String workId,
+                                Return retun){
+        User user = (User) session.getAttribute("user");
+
+        String uuid=UUID.randomUUID().toString();
+        retun.setId(uuid);
+        retun.setYid(user.getId().toString());
+        retun.setStatus(1);
+        retun.setCtreaTime(new Date());
+        /*Workorder work=workorderMapper.selectWorkOrderById(Integer.parseInt(workId));*/
+        /*Return ret=new Return();*/
+       /* ret.setId(uuid);
+        ret.setGid(work.getWorkNum());
+        ret.setYid(user.getId().toString());
+        ret.setCtreaTime(new Date());
+        ret.setgName(work.getgName());
+        ret.setgPhone(work.getgTel());
+        ret.setgCity(work.getgCityName());
+        ret.setgPoint(work.getgPointName());
+        ret.setgAddress(work.getgAddress());
+        ret.setsName(work.getsName());
+        ret.setsPhone(work.getsTel());
+        ret.setsCity(work.getsCityName());
+        ret.setsPoint(work.getsPointName());
+        ret.setsAddress(work.getsAddress());*/
+
+        /*ret.setStatus(1);*/
+        int id=user.getId();
+        returnMapper.insertSelective(retun);
+        return  "redirect:toworkorder/?courierNum="+id;
+    }
 
 
 
