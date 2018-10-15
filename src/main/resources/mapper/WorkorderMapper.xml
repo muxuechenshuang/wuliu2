@@ -76,7 +76,7 @@
     (SELECT valueName FROM dictionary d WHERE typeCode='workStatus' and w.workStatus = d.valueId) as workStatusName,
     comment,expenses, packageWeight,gCourier, sCourier, preVolume, riseTime, inStorageTime, outStorageTime,
     finishedTime, productLocation,
-    (SELECT name FROM organization o WHERE w.productLocation=o.id) as productLocationName,
+    (SELECT valueName FROM dictionary d WHERE d.typeCode='productLocation' and w.productLocation=d.valueId) as productLocationName,
     auditStatus,
     (SELECT valueName FROM dictionary d WHERE d.typeCode='auditStatus' and w.auditStatus = d.valueId) as auditStatusName,
     invalidatedState,
@@ -595,7 +595,7 @@
         select
         <include refid="filiale_workorder_List"/>
         from workorder w
-        where inStorageStatus=1
+        where inStorageStatus=1 and (sCity=#{filialeId} or gCity=#{filialeId})
     </select>
 
 
@@ -604,7 +604,7 @@
         select
         <include refid="filiale_workorder_List"/>
         from workorder w
-        where inStorageStatus=2 and outStorageStatus=1
+        where inStorageStatus=2 and outStorageStatus=1 and (sCity=#{filialeId} or gCity=#{filialeId})
     </select>
 
     <!--根据工单号查询单个工单-->

@@ -44,12 +44,12 @@ public class FilialeWorkOrderServiceImpl implements FilialeWorkOrderService {
     }
 
     @Override
-    public List<Workorder> queryReadyInStorageWorkOrderList() {
-        return workorderMapper.selectReadyInStorageWorkOrderList();
+    public List<Workorder> queryReadyInStorageWorkOrderList(Integer filialeId) {
+        return workorderMapper.selectReadyInStorageWorkOrderList(filialeId);
     }
 
     @Override
-    public List<Workorder> queryReadyOutStorageWorkOrderList() {
-        return workorderMapper.selectOutStorageWorkOrderList();
+    public List<Workorder> queryReadyOutStorageWorkOrderList(Integer filialeId) {
+        return workorderMapper.selectOutStorageWorkOrderList( filialeId);
     }
 }
