@@ -11,6 +11,7 @@
 </div>
     <div class="x_content">
         <div class="clearfix"></div>
+        <%--跟新数据--%>
         <form class="form-horizontal form-label-left" action="personal" method="post" enctype="multipart/form-data" id="biaodan">
             <input type="hidden" value="${sessionScope.user.id}" name="userid" id="userid">
             <div class="item form-group">
@@ -63,6 +64,8 @@
                 </div>
             </div>
         </form>
+
+            <%--更换头像--%>
             <form class="form-horizontal form-label-left" action="personal2" method="post" enctype="multipart/form-data" id="touxinag" style="display: none;">
                 <input type="hidden" value="${sessionScope.user.id}" name="userid" id="userid1">
                 <input type="hidden" value="${user.type}" name="type" >
