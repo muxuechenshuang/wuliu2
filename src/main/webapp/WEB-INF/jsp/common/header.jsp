@@ -101,11 +101,11 @@
 										class="fa fa-chevron-down"></span>
 								</a>
 									<ul class="nav child_menu">
-										<li><a href="/order/someorder?courierNum=${user.id}">订单查询</a>
+										<li><a href="/order/someorder?courierNum=${user.id}">订单</a>
 										</li>
-										<li><a href="/order/toworkorder?courierNum=${user.id}">查询工单</a>
+										<li><a href="/order/toworkorder?courierNum=${user.id}">工单</a>
 										</li>
-										<li><a href="/order/baobiao_someorder?courierNum=${user.id}">图形报表</a>
+										<li><a href="/order/baobiao_someorder?courierNum=${user.id}">报表</a>
 										</li>
 									</ul></li>
 								</c:if>

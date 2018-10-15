@@ -236,6 +236,13 @@ public class BranchController {
         System.out.print(id+"\t"+gid+"李普强");
         //id为快递员id，gid为工单id，分配工单后需要更新工单表
         User user=courierService.getUser(id);
+        //查询出一个工单
+        /*Workorder workorder= courierService.selectWorkor(Integer.valueOf(gid));
+        Integer productLocation=null;
+        if(workorder.getProductLocation()==null){
+            productLocation=2;
+            workorder.setProductLocation(productLocation);
+        }*/
         courierService.updateWorkor(Integer.valueOf(id),Integer.valueOf(gid));
         return user;
     }

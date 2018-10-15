@@ -34,6 +34,12 @@ public class Order_infoController {
     @Autowired
     private Order_infoService  orderService;
 
+    @Autowired
+    private Order_infoMapper   order_infoMapper;
+
+    @Autowired
+    private  ReturnMapper returnMapper;
+
 
     @Autowired
     private UserMapper userMapper;
@@ -190,6 +196,7 @@ public class Order_infoController {
         workorder.setProductNum(Long.valueOf(id));
         workorder.setgCourier(user.getId());
         workorder.setWorkStatus(1);  // 工单状态为待审核
+        workorder.setInStorageStatus(1);//工单状态为待入库
        orderService.addWorkorderByCourier(workorder);
        //修改订单中的状态   1为预订  2 已接单  将1 修改为2
         Order_info order = new Order_info();
@@ -387,7 +394,13 @@ public class Order_infoController {
         workorder.setWorkStatus(5);
         Date date=new Date();
         workorder.setFinishedTime(date);
+        workorder.setProductLocation(6);
         workorderMapper.updateByPrimaryKeySelective(workorder);
+        Order_info order_info=new Order_info();
+        order_info.setStatus(3);
+        Workorder wo=workorderMapper.selectWorkOrderById(Integer.parseInt(workId));
+        order_info.setOrderNumber(wo.getOrderNum());
+        order_infoMapper.updateByOrderNum(order_info);
         int id=user.getId();
         return  "redirect:toworkorder/?courierNum="+id;
     }
@@ -415,6 +428,72 @@ public class Order_infoController {
         return list;
     }
 
+
+    /**
+    * @author: 肖林辉
+    * @Description  去到订单页面
+    * @Date: 16:10 2018/10/13/013
+    * @Param：[session, model, id]
+    * @return：java.lang.String
+    **/
+
+    @RequestMapping("toreturn")
+    public String toreturn(HttpSession session,Model model,
+                                  @RequestParam(value = "id")Integer id){
+        /*User user=(User)session.getAttribute("user");*/
+        try {
+            Workorder workorder=orderService.selectByPrimaryKeyByCourier(id);
+            model.addAttribute(workorder);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "xlh/return_xlh";
+    }
+
+
+    /**
+    * @author: 肖林辉
+    * @Description 生成返货单
+    * @Date: 15:28 2018/10/13/013
+    * @Param：[session, workId]
+    * @return：java.lang.String
+    **/
+
+    @RequestMapping(value="returnorder")
+    public String  insertReturn(HttpSession session,
+                                   @RequestParam(value = "id" )String workId,
+                                Return retun){
+        User user = (User) session.getAttribute("user");
+
+        String uuid=UUID.randomUUID().toString();
+        retun.setId(uuid);
+        retun.setYid(user.getId().toString());
+        retun.setStatus(1);
+        retun.setCtreaTime(new Date());
+        /*Workorder work=workorderMapper.selectWorkOrderById(Integer.parseInt(workId));*/
+        /*Return ret=new Return();*/
+       /* ret.setId(uuid);
+        ret.setGid(work.getWorkNum());
+        ret.setYid(user.getId().toString());
+        ret.setCtreaTime(new Date());
+        ret.setgName(work.getgName());
+        ret.setgPhone(work.getgTel());
+        ret.setgCity(work.getgCityName());
+        ret.setgPoint(work.getgPointName());
+        ret.setgAddress(work.getgAddress());
+        ret.setsName(work.getsName());
+        ret.setsPhone(work.getsTel());
+        ret.setsCity(work.getsCityName());
+        ret.setsPoint(work.getsPointName());
+        ret.setsAddress(work.getsAddress());*/
+
+        /*ret.setStatus(1);*/
+        int id=user.getId();
+        returnMapper.insertSelective(retun);
+        return  "redirect:toworkorder/?courierNum="+id;
+    }
 
 
 
