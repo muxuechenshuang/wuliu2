@@ -50,7 +50,7 @@ $("#form").submit(function () {
     var nowTime = new Date();
     var doorTime = new Date(sTime.replace("-","/").replace("-","/"));
     //如果上门时间不在当前时间两小时后
-   if(doorTime.getHours() < nowTime.getHours()+2){
+   if(doorTime.getHours() < nowTime.getHours()+2 && doorTime.getDate() == nowTime.getDate()){
        $("#sTimeR").html("很抱歉，请将上门时间选择在两小时之后！");
        return false;
    }else{

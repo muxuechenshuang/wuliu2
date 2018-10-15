@@ -66,4 +66,13 @@ public interface OrganizationService {
     **/
     public  Organization queryOrganizationById(Integer id);
 
+    /**
+    * author: 张展
+    * 查询所有网点列表
+    * Date: 14:36 2018/10/13
+    * Param：[]
+    * Return：java.util.List<com.forest.wu.pojo.Organization>
+    **/
+//    List<Organization> wdlist();
+
 }
