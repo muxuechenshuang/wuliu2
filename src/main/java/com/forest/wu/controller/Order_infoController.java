@@ -35,6 +35,9 @@ public class Order_infoController {
     private Order_infoService  orderService;
 
     @Autowired
+    private Order_infoMapper   order_infoMapper;
+
+    @Autowired
     private  ReturnMapper returnMapper;
 
 
@@ -391,7 +394,13 @@ public class Order_infoController {
         workorder.setWorkStatus(5);
         Date date=new Date();
         workorder.setFinishedTime(date);
+        workorder.setProductLocation(6);
         workorderMapper.updateByPrimaryKeySelective(workorder);
+        Order_info order_info=new Order_info();
+        order_info.setStatus(3);
+        Workorder wo=workorderMapper.selectWorkOrderById(Integer.parseInt(workId));
+        order_info.setOrderNumber(wo.getOrderNum());
+        order_infoMapper.updateByOrderNum(order_info);
         int id=user.getId();
         return  "redirect:toworkorder/?courierNum="+id;
     }
