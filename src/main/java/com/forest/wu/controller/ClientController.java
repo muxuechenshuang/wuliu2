@@ -461,6 +461,7 @@ public class ClientController {
         String body = comment;
 
 
+         //相当于拼接成一个form表单
         alipayRequest.setBizContent("{\"out_trade_no\":\"" + out_trade_no + "\","
                 + "\"total_amount\":\"" + total_amount + "\","
                 + "\"subject\":\"" + subject + "\","
@@ -473,7 +474,7 @@ public class ClientController {
         } catch (AlipayApiException e) {
             e.printStackTrace();
         }
-        //输出
+        //输出跳转到----支付宝网关
         return result;
     }
 
