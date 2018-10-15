@@ -1,10 +1,17 @@
+import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
 /**
  * @Author 肖林辉
  * @Description //TODO $end$
  * @create 2018-10-10 18:32
  **/
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class test {
-
     public static int binary(int[] array, int value) {
         int low=0;
         int high=array.length-1;
@@ -30,6 +37,8 @@ public class test {
     public static void main(String[] args) {
         int[] a = {1, 2, 3, 4, 5, 6, 7, 8, 9};
         int value = binary(a, 9);
-        System.out.println(value);
+       System.out.print(value);
     }
+
+
 }

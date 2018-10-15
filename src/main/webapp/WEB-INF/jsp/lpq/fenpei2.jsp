@@ -177,10 +177,10 @@
 												</div>
 											</div>
 										</td>
-										<td class="pei3" <c:if test="${!empty workor.username}">style="color: red" </c:if>  >
+										<td class="pei3" <c:if test="${!empty workor.sCourier}">style="color: red" </c:if>  >
 										<c:choose>
-											<c:when test="${empty workor.username}">未分配</c:when>
-											<c:otherwise>${workor.username}</c:otherwise>
+											<c:when test="${empty workor.sCourier}">未分配</c:when>
+											<c:otherwise>${workor.sCourier}</c:otherwise>
 										</c:choose>
 										</td>
 										<td>${workor.entrust}</td>
