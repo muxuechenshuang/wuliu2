@@ -664,6 +664,7 @@ public class CenterController {
         return branchList;
     }
 
+
     @RequestMapping(value = "/baobiao3")
     public String baobiao2(){
         return "zz/baobiao3";
