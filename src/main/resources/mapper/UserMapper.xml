@@ -115,7 +115,7 @@
         <if test="gPoint!=null and gPoint != ''">
             and w.gPoint like concat('%',#{gPoint},'%')
         </if>
-        order  by w.risetime desc
+        order  by w.risetime ,w.sCourier desc
 
     </select>
 
@@ -145,7 +145,7 @@
         <if test="gName!=null">
             and o.gName like concat('%',#{gName},'%')
         </if>
-        order  by riseTime desc
+        order  by courierNumber
     </select>
     <!--分配订单后更新订单表信息-->
     <update id="updateOrder">
