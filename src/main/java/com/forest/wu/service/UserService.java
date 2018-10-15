@@ -15,10 +15,9 @@ public interface UserService {
     //注册
     int addLogin(User user);
     //检查用户名、手机号和邮箱是否重复
-    User findUser(String username);
-    User findUser1(String email);
-    User findUser2(String phone);
-
+    User findUser(String username); // 验证用户名
+    User findUser1(String email);   // 验证邮箱
+    User findUser2(String phone);   // 验证手机号
     //更新个人信息
     int upHome(User user);
 

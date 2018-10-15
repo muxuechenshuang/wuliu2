@@ -70,9 +70,6 @@ public interface UserMapper {
     User find(@Param(value = "username")String username);
     User find1(@Param(value = "email")String email);
     User find2(@Param(value = "phone")String phone);
-
-
-
     /*
      * @author:李普强
      * @Description描述：用户输入的条件查询出对应的快递员信息，并分页

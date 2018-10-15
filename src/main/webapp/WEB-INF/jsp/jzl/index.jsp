@@ -123,7 +123,7 @@
                     <input type="button" id="zy" value="点击发送验证码" onclick="sendCode(this)" />
                     <br/><span style="color: white;"></span>
 
-					<input type="text" required="required" placeholder="邮箱" onblur="login()" maxlength="18"  name="email" id="email">
+					<input type="text" required="required" placeholder="邮箱" onblur="login()" maxlength="25"  name="email" id="email">
                     <br/><span style="color: white;"></span><br/>
 					<input type="submit" value="注册" id="submit">
 				</form>
