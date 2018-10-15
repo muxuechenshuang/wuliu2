@@ -1,4 +1,4 @@
-package com.forest.wu.controller.filiale;
+package com.forest.wu.controller;
 
 import com.forest.wu.pojo.*;
 import com.forest.wu.service.*;
@@ -15,7 +15,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -387,7 +386,7 @@ public class FilialeController {
      * @return：java.lang.String
      **/
     @RequestMapping(value = "/putinstorage")
-    public String putInStorage(Model model, @RequestParam(value = "receiptId", required = false) String receiptId,
+    public String putInStorage(Model model, HttpSession session, @RequestParam(value = "receiptId", required = false) String receiptId,
                                @RequestParam(value = "workorderId", required = false) String workorderId,
                                @RequestParam(value = "packageId", required = false) String packageId,
                                @RequestParam(value = "inStorageStatus", required = false) String inStorageStatus,
@@ -407,6 +406,9 @@ public class FilialeController {
         if (!StringUtils.isEmpty(packageId)) {
             instorage.setPackageId(Long.valueOf(packageId));
         }
+
+        instorage.setStorageId(((User) session.getAttribute("user")).getParentid());
+
         if (!StringUtils.isEmpty(inStorageStatus)) {
             if (!"1".equals(inStorageStatus)) {
                 //入库状态不为1，表示查询已入库的交接单
@@ -415,7 +417,8 @@ public class FilialeController {
                 //待入库工单列表
                 List<Workorder> readyInWorkOrderList = null;
                 PageHelper.startPage(Integer.parseInt(pageIndex), Constants.PAGE_SIZE, "id desc");
-                readyInWorkOrderList = workOrderService.queryReadyInStorageWorkOrderList();
+
+                readyInWorkOrderList = workOrderService.queryReadyInStorageWorkOrderList(((User) session.getAttribute("user")).getParentid());
                 PageInfo<Workorder> p2 = new PageInfo<Workorder>(readyInWorkOrderList);
                 model.addAttribute("readyInWorkOrderList", readyInWorkOrderList);
                 model.addAttribute("page2", p2);
@@ -563,6 +566,11 @@ public class FilialeController {
         workorder1.setInStorageStatus(2);//设置工单为已入库
         workorder1.setOutStorageStatus(1);//设置工单为待出库
         workorder1.setInStorageTime(new Date(System.currentTimeMillis()));//设置工单的入库时间
+        if ("寄件网点".equals(workorder.getProductLocationName())) {
+            //修改物件所在地为寄件分公司
+            workorder1.setProductLocation(3);
+        }
+
         workorder1.setProductLocation(((User) session.getAttribute("user")).getParentid());//设置物件所在位置为当前分公司
         if (storageService.saveInstorage(instorage) && workOrderService.saveWorkOrder(workorder1)) {
             //入库成功
@@ -580,7 +588,7 @@ public class FilialeController {
      * @return：java.lang.String
      **/
     @RequestMapping(value = "/putoutstorage")
-    public String outInstorage(Model model, @RequestParam(value = "outId", required = false) String outId,
+    public String outInstorage(Model model, HttpSession session, @RequestParam(value = "outId", required = false) String outId,
                                @RequestParam(value = "workorderId", required = false) String workorderId,
                                @RequestParam(value = "packageId", required = false) String packageId,
                                @RequestParam(value = "outStorageStatus", required = false) String outStorageStatus,
@@ -601,6 +609,9 @@ public class FilialeController {
         if (!StringUtils.isEmpty(packageId)) {
             outstorage.setPackageId(Long.valueOf(packageId));
         }
+        if (!StringUtils.isEmpty(((User) session.getAttribute("user")).getId())) {
+            outstorage.setStorageId(((User) session.getAttribute("user")).getId());
+        }
         if (!StringUtils.isEmpty(outStorageStatus)) {
             if (!"1".equals(outStorageStatus)) {
                 //出库状态不为1，表示查询已出库的交接单
@@ -609,7 +620,7 @@ public class FilialeController {
                 //待出库工单列表
                 List<Workorder> readyOutWorkOrderList = null;
                 PageHelper.startPage(Integer.parseInt(pageIndex), Constants.PAGE_SIZE, "id desc");
-                readyOutWorkOrderList = workOrderService.queryReadyOutStorageWorkOrderList();
+                readyOutWorkOrderList = workOrderService.queryReadyOutStorageWorkOrderList(((User) session.getAttribute("user")).getParentid());
                 PageInfo<Workorder> p2 = new PageInfo<Workorder>(readyOutWorkOrderList);
                 model.addAttribute("readyOutWorkOrderList", readyOutWorkOrderList);
                 model.addAttribute("page2", p2);
@@ -686,16 +697,21 @@ public class FilialeController {
         if (!StringUtils.isEmpty(workorder1.getWorkNum())) {
             Outstorage.setWorkorderId(workorder1.getWorkNum());
         }
-        if (!StringUtils.isEmpty(((User) session.getAttribute("user")).getParentid())) {
-            Outstorage.setStorageId(((User) session.getAttribute("user")).getParentid());
-        }
-
+        Outstorage.setStorageId(((User) session.getAttribute("user")).getParentid());
 
 
         Outstorage.setOutStorageStatus(2);//设置出库交接单为已出库
         workorder1.setOutStorageStatus(2);//设置工单为已出库
+        workorder1.setInStorageStatus(1);//设置工单为待入库
         workorder1.setOutStorageTime(new Date(System.currentTimeMillis()));//设置工单的出库时间
-        workorder1.setProductLocation(((User) session.getAttribute("user")).getParentid());//设置物件所在位置为当前分公司
+        if ("寄件分公司".equals(workorder.getProductLocationName())) {
+            //修改物件位置为收件分公司
+            workorder1.setProductLocation(4);
+        }
+        if ("收件分公司".equals(workorder.getProductLocationName())) {
+            //修改物件位置为目标网点
+            workorder1.setProductLocation(5);
+        }
         if (storageService.saveOutstorage(Outstorage) && workOrderService.saveWorkOrder(workorder1)) {
             //入库成功
             return "redirect:/filiale/putoutstorage";
@@ -704,13 +720,13 @@ public class FilialeController {
     }
 
 
-   /**
-   * @author: 李家和
-   * @Description 跳转到拆包界面
-   * @Date: 15:11 2018/10/12
-   * @Param：[workNum, model]
-   * @return：java.lang.String
-   **/
+    /**
+     * @author: 李家和
+     * @Description 跳转到拆包界面
+     * @Date: 15:11 2018/10/12
+     * @Param：[workNum, model]
+     * @return：java.lang.String
+     **/
     @RequestMapping(value = "/unpackage/{workNum}", method = RequestMethod.GET)
     public String unPackage(@PathVariable String workNum, Model model) {
         Workorder workorder = null;
@@ -720,14 +736,13 @@ public class FilialeController {
     }
 
 
-
     /**
-    * @author: 李家和
-    * @Description 拆包
-    * @Date: 15:11 2018/10/12
-    * @Param：[workorder, rs]
-    * @return：java.lang.String
-    **/
+     * @author: 李家和
+     * @Description 拆包
+     * @Date: 15:11 2018/10/12
+     * @Param：[workorder, rs]
+     * @return：java.lang.String
+     **/
     @RequestMapping(value = "saveunpackage", method = RequestMethod.POST)
     public String saveUnPackage(Workorder workorder, BindingResult rs) {
         workorder.setPackageId(null);
@@ -742,12 +757,12 @@ public class FilialeController {
 
 
     /**
-    * @author: 李家和
-    * @Description 查看出库交际单详情
-    * @Date: 15:25 2018/10/12
-    * @Param：[receiptId, model]
-    * @return：java.lang.String
-    **/
+     * @author: 李家和
+     * @Description 查看出库交际单详情
+     * @Date: 15:25 2018/10/12
+     * @Param：[receiptId, model]
+     * @return：java.lang.String
+     **/
     @RequestMapping(value = "/outstorageview/{outId}", method = RequestMethod.GET)
     public String viewOutstorage(@PathVariable String outId, Model model) {
         Outstorage outstorage = storageService.queryOutstorageById(Long.valueOf(outId));

@@ -3,7 +3,7 @@ package com.forest.wu.utils;
 public class AlipayConfig {
 	// 支付宝网关
 	public static String gatewayUrl = "https://openapi.alipaydev.com/gateway.do";
-	//同步跳转的地址
+	//支付成功同步通知页面
 	public static String return_url = "http://localhost:8080/calculate/success";
 	//异步通知地址
 	public static String notify_url = "http://localhost:8080/calculate/notify";

@@ -54,7 +54,7 @@
 			                <li class="cl-effect-7 scroll"><a href="#cover">Coverage</a></li>
 			                <li class="cl-effect-7 scroll"><a href="#about">About</a></li>
 			                <li class="cl-effect-7 scroll"><a href="#gallery">Gallery</a></li>
-			                <li class="cl-effect-7 scroll"><a onclick="show()">登录/注册</a></li>
+			                <li class="cl-effect-7 scroll"><a onclick="show()">Login/register</a></li>
 		                </ul>
 		            </div>
 		            <!-- //Navbar-collapse -->
@@ -119,7 +119,8 @@
 					<input type="text" required="required" placeholder="手机号" onblur="login()" maxlength="11"  name="phone" id="phone">
                     <br/><span style="color: white;"></span>
                     <input type="hidden" value="" id="judge" />
-                    <input type="text" required="required" placeholder="输入手机验证码" onblur="Mobile()" maxlength="6" name="yzm" id="yzm"><input type="button" id="zy" value="点击发送验证码" onclick="sendCode(this)" />
+                    <input type="text" required="required" placeholder="输入手机验证码" onblur="Mobile()" maxlength="6" name="yzm" id="yzm">
+                    <input type="button" id="zy" value="点击发送验证码" onclick="sendCode(this)" />
                     <br/><span style="color: white;"></span>
 
 					<input type="text" required="required" placeholder="邮箱" onblur="login()" maxlength="18"  name="email" id="email">
@@ -230,7 +231,7 @@
             </div>
         </div>    
         <!-- //Area-Ends-Here -->
-        <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
+        <div class="copyrights">Collect from</div>
 
         <!-- Offer-Starts-Here -->
         <div class="offer slideanim" id="offer">
@@ -546,7 +547,7 @@
             </div>
 
             <div class="copyright slideanim">
-                <p>Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+                <p>Copyright &copy; 2016.Company name All rights reserved.More Templates - Collect from </p>
             </div>
 
         </div>

@@ -123,6 +123,10 @@ public class ClientController {
             }
         }
 
+        //站内信息
+        Integer id = ((User)session.getAttribute("user")).getId();
+        getNote(id,model);
+
         //查询城市不为空
         Integer cityId = null;
         if (null != _cityId && !_cityId.equals("")) {
@@ -164,6 +168,7 @@ public class ClientController {
             e.printStackTrace();
         }
 
+
         //限制分公司
         if (branchList.size() == 0) {
             model.addAttribute("nullErro", "该城市网点正在紧张建设中");
@@ -181,9 +186,6 @@ public class ClientController {
         model.addAttribute("cityId", cityId);
         model.addAttribute("pages", pages);
 
-        //站内信息
-        Integer userId = ((User) session.getAttribute("user")).getId();
-        getNote(userId, model);
         return "ry/branchquery_ry";
     }
 
@@ -375,9 +377,8 @@ public class ClientController {
         String orderNumber = order_info.getUserId() + format.format(date) + num;
         order_info.setOrderNumber(orderNumber);
 
-        //订单状态,委托状态
+        //订单状态
         order_info.setStatus(1);
-        order_info.setEntrust(1);
 
         //创建时间
         order_info.setRiseTime(new Date());
@@ -437,7 +438,12 @@ public class ClientController {
 
         //向支付宝发起请求
         //获得初始化的AlipayClient
-        AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl, AlipayConfig.app_id, AlipayConfig.merchant_private_key, "json", AlipayConfig.charset, AlipayConfig.alipay_public_key, AlipayConfig.sign_type);
+        AlipayClient alipayClient = new DefaultAlipayClient(AlipayConfig.gatewayUrl,
+                AlipayConfig.app_id,
+                AlipayConfig.merchant_private_key,
+                "json", AlipayConfig.charset,
+                AlipayConfig.alipay_public_key,
+                AlipayConfig.sign_type);
         //设置请求参数
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
         alipayRequest.setReturnUrl(AlipayConfig.return_url);
@@ -455,6 +461,7 @@ public class ClientController {
         String body = comment;
 
 
+         //相当于拼接成一个form表单
         alipayRequest.setBizContent("{\"out_trade_no\":\"" + out_trade_no + "\","
                 + "\"total_amount\":\"" + total_amount + "\","
                 + "\"subject\":\"" + subject + "\","
@@ -467,7 +474,7 @@ public class ClientController {
         } catch (AlipayApiException e) {
             e.printStackTrace();
         }
-        //输出
+        //输出跳转到----支付宝网关
         return result;
     }
 

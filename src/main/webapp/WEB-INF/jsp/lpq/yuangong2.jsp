@@ -71,7 +71,7 @@
 					   </li> --%>
 				
 					<li><button type="submit" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询 </button>
-					<button type="button" class="btn btn-primary"> 返 &nbsp;&nbsp;&nbsp;&nbsp;回 </button></li>
+						<a href="JavaScript:history.back(-1)" class="btn btn-primary">返回</a>
 				</ul>
 			</form>
 			

@@ -1,6 +1,7 @@
 &nbsp;<%@ page language="java" contentType="text/html; charset=UTF-8"
 			   pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@include file="../common/header.jsp"%>
 <div class="clearfix"></div>
 <div class="row">
@@ -18,7 +19,7 @@
 					<ul>
 						<li>
 							<div class="form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">工单编号：</label>
+								<label class="control-label col-md-5 col-sm-5 col-xs-12">工单编号：</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input name="id" type="number" class="form-control col-md-7 col-xs-12" value="">
 								</div>
@@ -26,7 +27,7 @@
 						</li>
 						<li>
 							<div class="form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">寄件人姓名：</label>
+								<label class="control-label col-md-5 col-sm-5 col-xs-12">寄件人姓名：</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input name="sName" type="text" class="form-control col-md-7 col-xs-12" value="">
 								</div>
@@ -35,7 +36,7 @@
 
 						<li>
 							<div class="form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">寄件人手机：</label>
+								<label class="control-label col-md-5 col-sm-5 col-xs-12">寄件人手机：</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input name="sTel" type="text" class="form-control col-md-7 col-xs-12" value="">
 								</div>
@@ -44,7 +45,7 @@
 
 						<li>
 							<div class="form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">收件人姓名：</label>
+								<label class="control-label col-md-5 col-sm-5 col-xs-12">收件人姓名：</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input name="gName" type="text" class="form-control col-md-7 col-xs-12" value="">
 								</div>
@@ -53,7 +54,7 @@
 
 						<li>
 							<div class="form-group">
-								<label class="control-label col-md-4 col-sm-4 col-xs-12">收件人手机：</label>
+								<label class="control-label col-md-5 col-sm-5 col-xs-12">收件人手机：</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
 									<input name="gTel" type="text" class="form-control col-md-7 col-xs-12" value="">
 								</div>
@@ -138,7 +139,7 @@
 										<td>${workor.gTel}</td>
 										<td>${workor.gAddress}</td>
 										<td>${workor.gCourier}</td>
-										<td>${workor.riseTime}</td>
+										<td><fmt:formatDate value="${workor.riseTime}" pattern="yyyy-MM-dd"></fmt:formatDate></td>
 										<td><a href="${pageContext.request.contextPath}/wuliu/que?id=${workor.id}" class="btn btn-primary">确认</a></td>
 									</tr>
 								</c:forEach>

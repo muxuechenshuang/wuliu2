@@ -30,6 +30,14 @@ public interface UserMapper {
     /*
     * @author: 蒋梓伦
     * @Description
+    * @Date: 16:46 2018/10/13
+    * @Param：[id]
+    * @return：根据ID删除图片
+    **/
+    boolean deleteAppLogo(Integer id);
+    /*
+    * @author: 蒋梓伦
+    * @Description
     * @Date: 15:17 2018/10/9
     * @Param：[id]
     * @return：根据Id查找数据
@@ -59,9 +67,9 @@ public interface UserMapper {
     * @Param：[用户名, 邮箱, 手机号]
     * @return：对象集合
     **/
-    User find(String username);
-    User find1(String email);
-    User find2(String phone);
+    User find(@Param(value = "username")String username);
+    User find1(@Param(value = "email")String email);
+    User find2(@Param(value = "phone")String phone);
 
 
 
