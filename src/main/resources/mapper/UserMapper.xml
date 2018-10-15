@@ -380,4 +380,10 @@
     <select id="find2" resultType="com.forest.wu.pojo.User">
         select * from  user  WHERE phone=#{phone}
     </select>
+    <!-- 删除图片-->
+    <update id="deleteAppLogo" parameterType="java.lang.Integer">
+        update user
+        set picPath=null,
+        where id = #{id}
+    </update>
 </mapper>

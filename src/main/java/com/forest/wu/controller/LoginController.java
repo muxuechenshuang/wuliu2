@@ -1,6 +1,5 @@
 package com.forest.wu.controller;
 
-import com.alibaba.fastjson.JSONArray;
 import com.forest.wu.pojo.User;
 import com.forest.wu.service.UserService;
 import com.forest.wu.utils.Constants;
@@ -54,7 +53,7 @@ public class LoginController {
                session.setAttribute(Constants.CENTER_USER_SESSION, ss);
            }
            session.setMaxInactiveInterval(3600);
-           return "xlh/main_xlh";
+           return "redirect:/wu/main";
        }
         return "jzl/index";
     }
@@ -92,40 +91,20 @@ public class LoginController {
 
             if(userService.findUser(username)!=null){
                 resultMap.put("username", "nameVerification");
-                return resultMap;
+            }else {
+                resultMap.put("username", "name");
             }
             if(userService.findUser1(email)!=null){
                 resultMap.put("email", "emailVerification");
-                return resultMap;
+            }else {
+                resultMap.put("email", "email");
             }
             if(userService.findUser2(phone)!=null){
                 resultMap.put("phone", "phoneVerification");
-                return resultMap;
+            }else {
+                resultMap.put("phone", "phone");
             }
-
-        return JSONArray.toJSONString(resultMap);
-
-
-//        for (int i = 0; i < name.size(); i++) {
-//            //判断用户名是否已经存在
-//            if (name.get(i).getUsername().equals(username)) {
-//                resultMap.put("username", "nameVerification");
-//                return resultMap;
-//
-//            }
-//            //判断邮箱是否已经存在
-//            if (name.get(i).getEmail().equals(email)) {
-//                resultMap.put("email", "emailVerification");
-//                return resultMap;
-//            }
-//            //判断手机号是否已经存在
-//            if (name.get(i).getPhone().equals(phone)) {
-//                resultMap.put("phone", "phoneVerification");
-//                return resultMap;
-//            }
-//        }
-//
-//        return JSONArray.toJSONString(resultMap);
+        return resultMap;
     }
 
     //注册页面
