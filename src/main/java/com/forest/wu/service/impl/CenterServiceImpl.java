@@ -144,4 +144,14 @@ public class CenterServiceImpl implements CenterService {
         return userMapper.updateByPrimaryKeySelective(user);
     }
 
+    @Override
+    public int workorderCount(Integer cityid) throws Exception {
+        return workorderMapper.workorderCount(cityid);
+    }
+
+    @Override
+    public List workStatus() {
+        return workorderMapper.workStatus();
+    }
+
 }

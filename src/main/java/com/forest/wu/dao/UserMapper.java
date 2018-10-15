@@ -30,6 +30,14 @@ public interface UserMapper {
     /*
     * @author: 蒋梓伦
     * @Description
+    * @Date: 16:46 2018/10/13
+    * @Param：[id]
+    * @return：根据ID删除图片
+    **/
+    boolean deleteAppLogo(Integer id);
+    /*
+    * @author: 蒋梓伦
+    * @Description
     * @Date: 15:17 2018/10/9
     * @Param：[id]
     * @return：根据Id查找数据

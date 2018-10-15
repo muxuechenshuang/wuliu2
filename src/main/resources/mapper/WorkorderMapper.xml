@@ -503,8 +503,9 @@
 
     <!--总公司工单查询-->
     <select id="selectWorkOrder" resultMap="BaseResultMap">
-        select *
-        from workorder
+        select
+        <include refid="filiale_workorder_List"/>
+        from workorder w
         <trim prefix="where" prefixOverrides="and | or">
             <if test="workNum!=null and workNum!=''">
                 and workNum like CONCAT ('%',#{workNum},'%')
@@ -647,6 +648,7 @@
         <if test="gAddress!=null  ">
             and gAddress like CONCAT ('%',#{gAddress},'%')
         </if>
+        order by risetime desc
     </select>
 
 
@@ -667,7 +669,16 @@
         where orderNum = #{orderNum}
     </update>
 
+    <select id="workorderCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select count(1) from
+        workorder where
+        gcity = #{cityid} OR scity = #{cityid}
+    </select>
 
-
+    <select id="workStatus" resultType="com.forest.wu.pojo.Dictionary">
+        select *
+        from dictionary
+        where typeCode = 'workStatus';
+    </select>
 
 </mapper>
