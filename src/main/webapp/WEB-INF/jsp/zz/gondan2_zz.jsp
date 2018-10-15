@@ -87,7 +87,7 @@
 										<option value="">--请选择--</option>
 										<c:forEach var="cityList" items="${cityList}">
 											<option value="${cityList.id}"
-													<c:if test="${cityList.id == cityId}">selected="selected"</c:if>
+													<c:if test="${cityList.id == sCity}">selected="selected"</c:if>
 											>${cityList.city}</option>
 										</c:forEach>
 									</select>
@@ -141,7 +141,7 @@
 										<option value="">--请选择--</option>
 										<c:forEach var="cityList" items="${cityList}">
 											<option value="${cityList.id}"
-													<c:if test="${cityList.id == cityId}">selected="selected"</c:if>
+													<c:if test="${cityList.id == gCity}">selected="selected"</c:if>
 											>${cityList.city}</option>
 										</c:forEach>
 									</select>
