@@ -31,7 +31,7 @@ function add() {
     var phone = $("#phone").val();
 
     $.ajax({
-        url: "/wuliu/login",
+        url: "/log/login",
         type: "POST",
         data: {
             username: username,

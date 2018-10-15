@@ -75,27 +75,29 @@
 
     <!--分配工单后更新工单表-->
     <update id="updateWorkor" >
-        update workorder set sCourier=#{id} where id=#{gid}
+        update workorder set sCourier=#{id} ,productLocation=5 where id=#{gid}
     </update>
 
     <!--查询出工单对象集合-->
     <select id="selectWor" resultType="com.forest.wu.pojo.Workorder">
-        SELECT w.*,o.site,u.username FROM WORKORDER w,organization o ,user u where
-
-        w.sPoint=o.id or w.gPoint=o.id and u.id=w.gCourier
+        SELECT w.*,o.site,u.username
+        FROM workorder w
+        INNER JOIN organization o ON w.`sPoint` = o.`id`
+        INNER JOIN organization o2 ON w.`gPoint` = o2.id
+        LEFT JOIN USER u ON w.`sCourier` = u.`id`
         <if test="id!=null">
             and w.id=#{id}
         </if>
-        <if test="gName!=null">
+        <if test="gName!=null and gName!=''">
             and w.gName like concat('%',#{gName},'%')
         </if>
-        <if test="gTel!=null">
+        <if test="gTel!=null and gTel != ''" >
             and w.gTel like concat('%',#{gTel},'%')
         </if>
-        <if test="sName!=null">
+        <if test="sName!=null and sName != ''">
             and w.sName like concat('%',#{sName},'%')
         </if>
-        <if test="sTel!=null">
+        <if test="sTel!=null and sTel !=''">
             and w.sTel like concat('%',#{sTel},'%')
         </if>
         <if test="workStatus!=null">
@@ -104,16 +106,17 @@
         <if test="gCourier!=null">
             and w.gCourier=#{gCourier}
         </if>
-        <if test="workNum!=null">
+        <if test="workNum!=null and workNum != 0">
             and w.workNum=#{workNum}
         </if>
-        <if test="orderNum!=null">
+        <if test="orderNum!=null and orderNum != 0">
             and w.orderNum=#{orderNum}
         </if>
-        <if test="gPoint!=null">
+        <if test="gPoint!=null and gPoint != ''">
             and w.gPoint like concat('%',#{gPoint},'%')
         </if>
         order  by w.risetime desc
+
     </select>
 
     <!--通过id查询一个订单对象-->
@@ -388,4 +391,10 @@
     <select id="find2" resultType="com.forest.wu.pojo.User">
         select * from  user  WHERE phone=#{phone}
     </select>
+    <!-- 删除图片-->
+    <update id="deleteAppLogo" parameterType="java.lang.Integer">
+        update user
+        set picPath=null,
+        where id = #{id}
+    </update>
 </mapper>

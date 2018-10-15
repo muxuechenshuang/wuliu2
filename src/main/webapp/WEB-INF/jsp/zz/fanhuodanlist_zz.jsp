@@ -60,8 +60,11 @@
                             <div class="form-group">
                                 <label class="control-label col-md-4 col-sm-4 col-xs-12">审核状态</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select name="status" class="form-control" id="status" value="${status}">
+                                    <select name="status" class="form-control" id="status" >
                                         <option value="">--请选择--</option>
+                                        <option value="1">-尚未审核-</option>
+                                        <option value="2">-审核通过-</option>
+                                        <option value="3">-审核未过-</option>
                                     </select>
                                 </div>
                             </div>
@@ -84,15 +87,15 @@
                      class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                     <div class="row">
                         <div class="col-sm-12">
-                            <table id="datatable-responsive"
+                            <table id="datatable-responsive" style="table-layout: fixed;"
                                    class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
                                    cellspacing="0" width="100%" role="grid" aria-describedby="datatable-responsive_info"
-                                   style="width: 100%;">
+                                   style="table-layout: fixed;width: 100%;">
                                 <thead>
                                 <tr role="row">
                                     <th class="sorting_asc" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                        style="width: 124px;"
+                                        style="width: 150px;"
                                         aria-label="First name: activate to sort column descending"
                                         aria-sort="ascending">返货单号
                                     </th>
@@ -104,7 +107,7 @@
                                     </th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                        style="width: 0px;"
+                                        style="width: 150px;"
                                         aria-label="Last name: activate to sort column ascending">
                                         相关工单单号
                                     </th>
@@ -122,19 +125,13 @@
                                     </th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                        style=""
+                                        style="width: 200px;"
                                         aria-label="Last name: activate to sort column ascending">
                                         审核状态
                                     </th>
                                     <th class="sorting" tabindex="0"
                                         aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                        style="width: 150px;"
-                                        aria-label="Last name: activate to sort column ascending">
-                                        审核时间
-                                    </th>
-                                    <th class="sorting" tabindex="0"
-                                        aria-controls="datatable-responsive" rowspan="1" colspan="1"
-                                        style="width: 166px;"
+                                        style="width: 100px;"
                                         aria-label="Last name: activate to sort column ascending">
                                         备注
                                     </th>
@@ -147,17 +144,19 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="returnorder" items="${list1 }" varStatus="status">
+                                <c:forEach var="returnorder"  items="${list1 }" varStatus="status">
                                     <tr role="row" class="odd">
-                                        <td tabindex="0" class="sorting_1">${returnorder.id}</td>
-                                        <td>${returnorder.yid }</td>
-                                        <td>${returnorder.gid }</td>
+                                        <td tabindex="0" class="sorting_1" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${returnorder.id}</td>
+                                        <td >${returnorder.yid }</td>
+                                        <td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${returnorder.gid }</td>
                                         <td>${returnorder.result }</td>
                                         <td><fmt:formatDate value="${returnorder.ctreaTime}"
                                                             pattern='yyyy-MM-dd HH:mm:ss'/></td>
-                                        <td>${returnorder.status }</td>
-                                        <td><fmt:formatDate value="${returnorder.auditTime}"
-                                                            pattern='yyyy-MM-dd HH:mm:ss'/></td>
+                                        <td><c:if test="${returnorder.status eq 1}">未审核</c:if>
+                                            <c:if test="${returnorder.status eq 2}">审核通过，同意返货</c:if>
+                                            <c:if test="${returnorder.status eq 3}">审核不通过，请继续联系配送</c:if></td>
+                                        <%--<td><fmt:formatDate value="${returnorder.auditTime}"--%>
+                                                            <%--pattern='yyyy-MM-dd HH:mm:ss'/></td>--%>
                                         <td>${returnorder.comment }</td>
                                         <td><a id="audit" href="/center/returndetail?id=${returnorder.id}"
                                                class="btn btn-primary">审核</a></td>

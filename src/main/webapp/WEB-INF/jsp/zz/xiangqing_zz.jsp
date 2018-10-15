@@ -104,7 +104,7 @@
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" class="form-control col-md-7 col-xs-12"
-                                   value="${workorder.sPoint}" name="sPoint" id="sPoint">
+                                   value="${workorder.sPointName}" name="sPoint" id="sPoint">
                         </div>
                     </div>
                     <div class="item form-group">
@@ -152,7 +152,7 @@
                                for="gPoint">收件人网点 <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" value="${workorder.gPoint}"
+                            <input type="text" value="${workorder.gPointName}"
                                    class="form-control col-md-7 col-xs-12" name="gPoint" id="gPoint">
                         </div>
                     </div>
@@ -171,8 +171,8 @@
                                for="productType">货物类型<span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" class="form-control col-md-7 col-xs-12"
-                                   value="${workorder.productType}" name="productType" id="productType">
+                            <input type="text" class="form-control col-md-7 col-xs-12" readonly="readonly"
+                                   value="${workorder.productTypeName}" name="productType" id="productType">
                         </div>
                     </div>
                     <div class="item form-group">
@@ -189,19 +189,12 @@
                                for="workStatus">工单状态 <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input class="form-control col-md-7 col-xs-12" value="${workorder.workStatus}"
+                            <input class="form-control col-md-7 col-xs-12" value="${workorder.workStatusName}"
+                                   readonly="readonly"
                                    name="workStatus" id="workStatus" type="text">
                         </div>
                     </div>
-                    <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                               for="comment">备注 <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" value="${workorder.comment}"
-                                   class="form-control col-md-7 col-xs-12" name="comment" id="comment">
-                        </div>
-                    </div>
+
 
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12"
@@ -342,8 +335,9 @@
                                for="productLocation">物件位置 <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" value="${workorder.productLocation}"
-                                   class="form-control col-md-7 col-xs-12" name="productLocation" id="productLocation">
+                            <input type="text" value="${workorder.productLocationName}"
+                                   class="form-control col-md-7 col-xs-12" name="productLocation" id="productLocation"
+                                   readonly="readonly">
                         </div>
                     </div>
 
@@ -363,20 +357,21 @@
                                    value="${workorder.invalidatedState}" name="invalidatedState" id="invalidatedState">
                         </div>
                     </div>
-                    <%--<div class="item form-group">--%>
-                    <%--<label class="control-label col-md-3 col-sm-3 col-xs-12"--%>
-                    <%--for="inStorageStatus">出入库状态<span class="required">*</span></label>--%>
-                    <%--<div class="col-md-6 col-sm-6 col-xs-12">--%>
-                    <%--<input type="text" class="form-control col-md-7 col-xs-12"--%>
-                    <%--value="${workorder.inStorageStatus}"  name="inStorageStatus" id="inStorageStatus">--%>
-                    <%--</div>--%>
-                    <%--</div>--%>
                     <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12"
                                for="entrust">委托状态<span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <input type="text" class="form-control col-md-7 col-xs-12"
                                    value="${workorder.entrust}" name="entrust" id="entrust">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
+                               for="comment">备注 <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <textarea class="form-control col-md-7 col-xs-12" name="gAddress"
+                                      id="comment">${workorder.comment}</textarea>
                         </div>
                     </div>
                     <div class="x_content" style="display: block;">

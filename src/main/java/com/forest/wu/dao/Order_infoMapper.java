@@ -23,6 +23,17 @@ public interface Order_infoMapper {
 
 
     /**
+    * @author: 肖林辉
+    * @Description 根据订单号查询订单并更新订单状态
+    * @Date: 10:40 2018/10/15/015
+    * @Param：[order_info]
+    * @return：int
+    **/
+
+    int updateByOrderNum(Order_info order_info);
+
+
+    /**
      * @author: 肖林辉
      * @Description
      * @Date: 9:20 2018/9/29/029

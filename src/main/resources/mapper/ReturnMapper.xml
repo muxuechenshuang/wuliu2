@@ -271,4 +271,10 @@
             </if>
         </trim>
     </select>
+
+    <select id="workStatus" resultType="com.forest.wu.pojo.Dictionary">
+        select *
+        from dictionary
+        where typeCode = 'workStatus';
+    </select>
 </mapper>

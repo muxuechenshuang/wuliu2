@@ -128,7 +128,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sCity">城市：<span
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sCity">目标城市：<span
                                 class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <select id="sCity" name="gCity"
@@ -144,7 +144,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sBranch">网点：<span
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="sBranch">目标网点：<span
                                 class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <select id="sBranch" name="gPoint"

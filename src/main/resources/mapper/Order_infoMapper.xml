@@ -489,4 +489,20 @@
         select count(*) from order_info
         where userId = #{userId} and riseTime between #{start} and #{end}
     </select>
+
+
+    <!--肖林辉 -->
+
+    <update id="updateByOrderNum" parameterType="com.forest.wu.pojo.Order_info">
+        update order_info
+        <set>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+
+        </set>
+        where orderNumber = #{orderNumber}
+
+
+    </update>
 </mapper>

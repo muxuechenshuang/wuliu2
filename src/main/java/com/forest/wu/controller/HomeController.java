@@ -1,21 +1,28 @@
 package com.forest.wu.controller;
 
+import com.alibaba.fastjson.JSONArray;
+import com.forest.wu.pojo.Note;
 import com.forest.wu.pojo.User;
+import com.forest.wu.service.NoteService;
 import com.forest.wu.service.UserService;
 import com.forest.wu.utils.Constants;
-import com.forest.wu.utils.interceptor.Auth;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * 个人主页
@@ -29,10 +36,28 @@ public class HomeController {
 
     @Autowired
     private UserService userService;
-
+    @Resource
+    private NoteService noteService;
+    //登录后的页面
+    @RequestMapping(value = "/main")
+    public String main(Model model,HttpSession session){
+        //增加站内信，只有用户才有
+        Integer type =((User)session.getAttribute("user")).getType();
+        if(type == 1){
+            Integer id = ((User) session.getAttribute("user")).getId();
+            getNote(id, model);
+        }
+        return "xlh/main_xlh";
+    }
     //个人主页
     @RequestMapping(value = "/homepage")
-    public String home(){
+    public String home(Model model,HttpSession session){
+        //增加站内信，只有用户才有
+        Integer type =((User)session.getAttribute("user")).getType();
+        if(type == 1){
+            Integer id = ((User) session.getAttribute("user")).getId();
+            getNote(id, model);
+        }
         return "jzl/personal";
     }
 
@@ -78,7 +103,58 @@ public class HomeController {
         user.setId(Integer.parseInt(userid));
         userService.upHome(user);
         session.setAttribute("user",user);
-        return "jzl/personal";
+        return "xlh/main_xlh";
 
+    }
+    //站内信息
+    public void getNote(Integer id, Model model) {
+        //信息集合
+        List<Note> noteList = noteService.getNoteSelf(id);
+        model.addAttribute("noteList", noteList);
+
+        //未读邮件数
+        Integer noRead = noteService.noReadCount(id);
+        model.addAttribute("noRead", noRead);
+    }
+    //删除图片
+    @RequestMapping(value = "/delfile",method=RequestMethod.GET)
+    @ResponseBody
+    public Object delFile(@RequestParam(value="flag",required=false) String flag,
+                          @RequestParam(value="id",required=false) String id,HttpServletRequest request){
+        HashMap<String, String> resultMap = new HashMap<String, String>();
+        String path = request.getSession().getServletContext().getRealPath("statics"+File.separator+"uploadfiles");
+        String fileLocPath = null;
+        if(flag == null || flag.equals("") ||
+                id == null || id.equals("")){
+            resultMap.put("result", "failed");
+        }else if (flag.equals("logc")){
+
+            try {
+
+                fileLocPath = path+"/"+(userService.selectByPrimaryKey(Integer.parseInt(id))).getPicPath();
+                File file = new File(fileLocPath);
+                if(file.exists())
+                    resultMap.put("result", "success");
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            }else if(flag.equals("logo")){//删除logo图片（操作app_info）
+            try {
+                File file = new File(fileLocPath);
+                if(file.delete()){//删除服务器存储的物理文件
+                    if(userService.deleteAppLogo(Integer.parseInt(id))){//更新表
+                        resultMap.put("result", "success");
+                    }
+                }
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        return JSONArray.toJSONString(resultMap);
     }
 }

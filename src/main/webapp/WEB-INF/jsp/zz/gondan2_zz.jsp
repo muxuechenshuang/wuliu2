@@ -189,9 +189,17 @@
 							<div class="form-group">
 								<label class="control-label col-md-4 col-sm-4 col-xs-12">工单状态</label>
 								<div class="col-md-6 col-sm-6 col-xs-12">
-									<!-- 							queryStatus要与controller中参数保持一致,queryStatus为APP状态参数 -->
 									<select name="workStatus" class="form-control">
-										<option value="">--请选择--</option>
+										<c:if test="${workStatusList!=null}">
+											<option value="">--请选择--</option>
+											<c:forEach items="${workStatusList}" var="status">
+												<option
+														<c:if test="${status.valueId == workStatus }">selected="selected"</c:if>
+														value="${status.valueId}">
+														${status.valueName}
+												</option>
+											</c:forEach>
+										</c:if>
 									</select>
 								</div>
 							</div>
@@ -240,11 +248,10 @@
 				<div id="datatable-responsive_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row">
 						<div class="col-sm-12">
-							<table id="datatable-responsive"
+							<table id="datatable-responsive" style="table-layout: fixed;width: 100%;"
 								class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
 								cellspacing="0" width="100%" role="grid"
-								aria-describedby="datatable-responsive_info"
-								style="width: 100%;">
+								aria-describedby="datatable-responsive_info">
 								<thead>
 									<tr role="row">
 										<th class="sorting_asc" tabindex="0"
@@ -265,7 +272,7 @@
 											目标城市</th>
 										<th class="sorting" tabindex="0"
 											aria-controls="datatable-responsive" rowspan="1" colspan="1"
-											style="width: 80px;"
+											style="width: 150px;"
 											aria-label="Last name: activate to sort column ascending">
 											目标网点</th>
 										<th class="sorting" tabindex="0"
@@ -275,7 +282,7 @@
 											收件人</th>
 										<<th class="sorting" tabindex="0"
 											 aria-controls="datatable-responsive" rowspan="1" colspan="1"
-											 style="width: 200px;"
+											 style="width: 150px;"
 											 aria-label="Last name: activate to sort column ascending">
 											收件人地址</th>
 										<th class="sorting" tabindex="0"
@@ -283,17 +290,16 @@
 											style="width: 124px;"
 											aria-label="Last name: activate to sort column ascending">
 											收件人电话</th>
-
 										<th class="sorting" tabindex="0"
 											aria-controls="datatable-responsive" rowspan="1" colspan="1"
 											style="width: 66px;"
 											aria-label="Last name: activate to sort column ascending">
 											重量</th>
-										<th class="sorting_asc" tabindex="0"
+										<th class="sorting_asc" tabindex="0" style="width: 80px;"
 											aria-controls="datatable-responsive" rowspan="1" colspan="1"
 											aria-label="First name: activate to sort column descending"
 											aria-sort="ascending">取件员ID</th>
-										<th class="sorting_asc" tabindex="0"
+										<th class="sorting_asc" tabindex="0" style="text-align: center;"
 											aria-controls="datatable-responsive" rowspan="1" colspan="1"
 											aria-label="First name: activate to sort column descending"
 											aria-sort="ascending">操作</th>
@@ -303,11 +309,15 @@
 								<c:forEach var="workorder" items="${workorderList }" varStatus="status">
 									<tr role="row" class="odd">
 										<td tabindex="0" class="sorting_1">${workorder.id}</td>
-										<td>${workorder.workNum }</td>
-										<td>${workorder.gCity }</td>
-										<td>${workorder.gPoint }</td>
+										<td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${workorder.workNum }</td>
+										<td>${workorder.gCityName}
+										<%--<c:forEach var="cityList" items="${cityList}">--%>
+										<%--<c:if test="${workorder.gCity eq cityList.id}">${cityList.city}</c:if>--%>
+										<%--</c:forEach>--%>
+										</td>
+										<td>${workorder.gPointName}</td>
 										<td>${workorder.gName }</td>
-										<td>${workorder.gAddress }</td>
+										<td style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">${workorder.gAddress }</td>
 										<td>${workorder.gTel }</td>
 										<td>${workorder.realWeight }</td>
 										<td>${workorder.sCourier }</td>
