@@ -59,7 +59,8 @@
                                            type="text" name="packageId" id="packageId" readonly="readonly">
                                 </c:when>
                                 <c:otherwise>
-                                    暂无
+                                    <input class="form-control col-md-7 col-xs-12" value="暂无"
+                                           type="text" name="packageId" id="packageId" readonly="readonly">
                                 </c:otherwise>
                             </c:choose>
 
@@ -275,7 +276,11 @@
                                            readonly="readonly">
                                 </c:when>
                                 <c:otherwise>
-                                    暂无
+                                    <input type="text"
+                                           value="暂无"
+                                           class="form-control col-md-7 col-xs-12" name="inStorageTime" id="inStorageTime"
+                                           readonly="readonly">
+
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -292,7 +297,10 @@
                                            name="outStorageTime" id="outStorageTime">
                                 </c:when>
                                 <c:otherwise>
-                                    暂无
+                                    <input type="text"
+                                           value="暂无"
+                                           class="form-control col-md-7 col-xs-12" name="inStorageTime" id="inStorageTime"
+                                           readonly="readonly">
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -316,7 +324,10 @@
                                            readonly="readonly">
                                 </c:when>
                                 <c:otherwise>
-                                    暂无
+                                    <input type="text"
+                                           value="暂无"
+                                           class="form-control col-md-7 col-xs-12" name="inStorageTime" id="inStorageTime"
+                                           readonly="readonly">
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -370,7 +381,10 @@
                                            id="outStorageStatus">
                                 </c:when>
                                 <c:otherwise>
-                                    暂无
+                                    <input type="text"
+                                           value="暂无"
+                                           class="form-control col-md-7 col-xs-12" name="inStorageTime" id="inStorageTime"
+                                           readonly="readonly">
                                 </c:otherwise>
                             </c:choose>
                         </div>
@@ -379,8 +393,17 @@
                         <label class="control-label col-md-3 col-sm-3 col-xs-12"
                                for="entrust">委托状态</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" class="form-control col-md-7 col-xs-12" readonly="readonly"
-                                   value="${workorder.entrustName}" name="entrust" id="entrust">
+                            <c:choose>
+                                <c:when test="${workorder.entrustName!=null}">
+                                    <input type="text" class="form-control col-md-7 col-xs-12" readonly="readonly"
+                                           value="${workorder.entrustName}" name="entrust" id="entrust">
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="text" class="form-control col-md-7 col-xs-12" readonly="readonly"
+                                           value="暂无" name="entrust" id="entrust">
+                                </c:otherwise>
+                            </c:choose>
+
                         </div>
                     </div>
                 </form>

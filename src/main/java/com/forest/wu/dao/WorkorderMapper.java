@@ -57,7 +57,7 @@ public interface WorkorderMapper {
      * @Param：[]
      * @return：java.util.List<com.forest.wu.pojo.Workorder>
      **/
-    public List<Workorder> selectReadyInStorageWorkOrderList();
+    public List<Workorder> selectReadyInStorageWorkOrderList(Integer filialeId);
 
     /**
      * @author: 李家和
@@ -66,7 +66,7 @@ public interface WorkorderMapper {
      * @Param：[]
      * @return：java.util.List<com.forest.wu.pojo.Workorder>
      **/
-    public List<Workorder> selectOutStorageWorkOrderList();
+    public List<Workorder> selectOutStorageWorkOrderList(Integer filialeId);
 
     /**
      * @author: 李家和

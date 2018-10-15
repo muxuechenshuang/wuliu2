@@ -144,8 +144,8 @@
 									<ul class="nav child_menu">
 										<li><a href="${pageContext.request.contextPath}/filiale/wdquery">网点管理</a></li>
 										<li><a href="${pageContext.request.contextPath}/filiale/queryworkorder">工单查询</a>
-										<li><a href="${pageContext.request.contextPath}/filiale/putinstorage">入库</a></li>
-										<li><a href="${pageContext.request.contextPath}/filiale/putoutstorage">出库</a></li>
+										<li><a href="${pageContext.request.contextPath}/filiale/putinstorage?inStorageStatus=1">入库</a></li>
+										<li><a href="${pageContext.request.contextPath}/filiale/putoutstorage?outStorageStatus=1">出库</a></li>
 									</ul>
 
 								</li>

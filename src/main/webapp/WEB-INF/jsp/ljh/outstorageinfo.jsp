@@ -86,7 +86,8 @@
                                        class="form-control col-md-7 col-xs-12" name="packageId" id="sTel">
                             </c:when>
                             <c:otherwise>
-                                暂无
+                                <input type="text" value="暂无" readonly="readonly"
+                                       class="form-control col-md-7 col-xs-12" name="packageId" id="sTel">
                             </c:otherwise>
                         </c:choose>
                     </div>
@@ -102,7 +103,8 @@
                                        value="${outstorage.packageWeight}" name="packageWeight" id="sCity">
                             </c:when>
                             <c:otherwise>
-                                暂无
+                                <input type="text" class="form-control col-md-7 col-xs-12" readonly="readonly"
+                                       value="暂无" name="packageWeight" id="sCity">
                             </c:otherwise>
                         </c:choose>
 

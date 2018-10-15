@@ -57,7 +57,6 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select name="outStorageStatus" class="form-control">
                                         <c:if test="${outStorageStatusList!=null}">
-                                            <option value="">--请选择--</option>
                                             <c:forEach items="${outStorageStatusList}" var="outStatus">
                                                 <option class=""
                                                         <c:if test="${outStatus.valueId == outStorageStatus }">selected="selected"</c:if>

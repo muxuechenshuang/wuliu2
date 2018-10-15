@@ -46,7 +46,9 @@
 										   type="text" readonly="readonly" name="packageId" id="packageId">
 								</c:when>
 								<c:otherwise>
-									暂未进行合包
+									<input class="form-control col-md-7 col-xs-12" value="暂未进行合包"
+										   type="text" readonly="readonly" name="packageId" id="packageId">
+
 								</c:otherwise>
 							</c:choose>
 						</div>
@@ -76,7 +78,7 @@
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<input class="form-control col-md-7 col-xs-12" value="${workorder.realWeight}"
-								   required="required"
+								   readonly="readonly"
 								   type="number" name="realWeight" id="realWeight">
 						</div>
 					</div>

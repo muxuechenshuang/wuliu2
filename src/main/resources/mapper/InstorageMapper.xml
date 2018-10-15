@@ -51,6 +51,7 @@
             <if test="inStorageStatus != null">
                 and inStorageStatus=#{inStorageStatus}
             </if>
+            and storageId=#{storageId}
         </trim>
     </select>
 

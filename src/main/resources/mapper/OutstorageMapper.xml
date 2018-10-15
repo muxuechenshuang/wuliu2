@@ -50,6 +50,7 @@
             <if test="outStorageStatus != null">
                 and outStorageStatus=#{outStorageStatus}
             </if>
+            and storageId=#{storageId}
         </trim>
     </select>
     <!--根据工单号查询出库交接单-->
