@@ -59,6 +59,15 @@ $(".showOrder").on("click", function () {
                     $("#productLocation li:eq("+i+") a").removeClass();
                     $("#productLocation li:eq("+i+") a").addClass("done");
                 }
+            }else {
+                $("#productLocation li a").removeClass();
+                $("#productLocation li a:gt(0)").addClass("disabled");
+                $("#productLocation li a:eq(0)").addClass("done");
+                $("#sCityName").html("寄件城市");
+                $("#sBranchName").html("寄件网点");
+                $("#gBranchName").html("收件网点");
+                $("#gCityName").html("收件城市");
+
             }
         }
     })

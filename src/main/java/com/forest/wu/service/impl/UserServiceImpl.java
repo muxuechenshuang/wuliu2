@@ -45,6 +45,14 @@ public class UserServiceImpl implements UserService {
     public int upHome(User user) {
         return mapper.updateByPrimaryKeySelective(user);
     }
-
+    //根据ID查找
+    @Override
+    public User selectByPrimaryKey(Integer id) {
+        return mapper.selectByPrimaryKey(id);
+    }
+    //删除图片
+    public boolean deleteAppLogo(Integer id){
+        return mapper.deleteAppLogo(id);
+    }
 
 }

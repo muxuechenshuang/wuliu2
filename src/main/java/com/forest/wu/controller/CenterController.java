@@ -362,7 +362,7 @@ public class CenterController {
                 return "zz/fengongsiguanlitianjia_zz";
             } else if (prefix.equalsIgnoreCase("jpg") || prefix.equalsIgnoreCase("png")
                     || prefix.equalsIgnoreCase("jepg") || prefix.equalsIgnoreCase("pneg")) {//上传图片格式
-                String fileName = user.getUsername() + ".jpg";//上传头像图片重命名
+                String fileName = user.getUsername() + "."+prefix;//上传头像图片重命名
                 File targetFile = new File(path, fileName);
 
 
@@ -494,6 +494,8 @@ public class CenterController {
                                   Workorder workorder, Model model) {
         List<Organization> cityList = organizationService.filialeList();
         model.addAttribute("cityList", cityList);
+        List workStatusList = centerService.workStatus();
+        model.addAttribute("workStatusList", workStatusList);
         try {
             PageHelper.startPage(Integer.parseInt(pageIndex), Constants.PAGE_SIZE, "id desc");
             List<Workorder> workorderList = centerService.selectWorkOrder(workorder);
@@ -662,6 +664,7 @@ public class CenterController {
         return branchList;
     }
 
+
     @RequestMapping(value = "/baobiao3")
     public String baobiao2(){
         return "zz/baobiao3";
@@ -669,17 +672,30 @@ public class CenterController {
 
     @ResponseBody
     @RequestMapping(value = "/shuju3.json")
-    public Object shuju3(Model model){
-        Map<String,Object> map = new HashMap<String,Object>();
-        List x = new ArrayList();
+    public Object shuju3(Model model) {
         List y = new ArrayList();
+//        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            int a = centerService.workorderCount(2);
+            y.add(a);
+            int b = centerService.workorderCount(3);
+            y.add(b);
+            int c = centerService.workorderCount(9);
+            y.add(c);
+            int d = centerService.workorderCount(10);
+            y.add(d);
 
-        for (int i=1;i<21;i++){
-            x.add(i);
-            y.add(i + 1);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+//        List x = new ArrayList();
+//        List y = new ArrayList();
+//        for (int i=1;i<21;i++){
+//            x.add(i);
+//            y.add(a);
+//        }
 //        model.addAttribute("x",x);
 //        model.addAttribute("y",y);
-        return x;
+        return y;
     }
 }

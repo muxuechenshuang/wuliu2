@@ -21,4 +21,10 @@ public interface UserService {
 
     //更新个人信息
     int upHome(User user);
+
+    //按ID查找
+    User selectByPrimaryKey(Integer id);
+
+    // 删除图片
+    boolean deleteAppLogo(Integer id);
 }

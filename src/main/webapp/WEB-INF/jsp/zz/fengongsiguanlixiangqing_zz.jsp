@@ -113,7 +113,8 @@
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-3">
                             <button type="submit" class="btn btn-primary" id="send">确认</button>
-                            <button type="button" class="btn btn-primary" id="back">返回</button>
+                            <a href="JavaScript:history.back(-1)" class="btn btn-primary">返回</a>
+
                         </div>
                     </div>
                 </form>
