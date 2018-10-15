@@ -119,7 +119,8 @@
 					<input type="text" required="required" placeholder="手机号" onblur="login()" maxlength="11"  name="phone" id="phone">
                     <br/><span style="color: white;"></span>
                     <input type="hidden" value="" id="judge" />
-                    <input type="text" required="required" placeholder="输入手机验证码" onblur="Mobile()" maxlength="6" name="yzm" id="yzm"><input type="button" id="zy" value="点击发送验证码" onclick="sendCode(this)" />
+                    <input type="text" required="required" placeholder="输入手机验证码" onblur="Mobile()" maxlength="6" name="yzm" id="yzm">
+                    <input type="button" id="zy" value="点击发送验证码" onclick="sendCode(this)" />
                     <br/><span style="color: white;"></span>
 
 					<input type="text" required="required" placeholder="邮箱" onblur="login()" maxlength="18"  name="email" id="email">

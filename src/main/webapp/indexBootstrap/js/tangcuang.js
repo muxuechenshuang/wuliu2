@@ -108,12 +108,10 @@ function checkMobile(phone) {
     }
 }
 //发送短信
-
 var clock = '';
 var nums = 120;
 var btn;
 function sendCode(thisBtn) {
-
     $.ajax({
         url: "/log/Verification",
         type: "POST",
@@ -125,7 +123,6 @@ function sendCode(thisBtn) {
                 $("#judge").val(data)
             }
         })
-
     //倒计时
     btn = thisBtn;
     btn.disabled = true; //将按钮置为不可点击

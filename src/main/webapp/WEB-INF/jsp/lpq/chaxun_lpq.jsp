@@ -15,6 +15,8 @@
 			</div>
 			<div class="x_content">
 				<form method="post" action="${pageContext.request.contextPath}/wuliu/ding">
+				   <%--用于分页--%>
+					<input type="hidden" name="pageIndex" value="1"/>
 					<ul>
 						<li>
 							<div class="form-group">
@@ -78,6 +80,7 @@
 							<table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
 								   cellspacing="0" width="100%" role="grid" aria-describedby="datatable-responsive_info" style="width: 100%;">
 								<thead>
+
 								<tr role="row">
 									<th class="sorting_asc" tabindex="0"
 										aria-controls="datatable-responsive" rowspan="1" colspan="1"
@@ -183,22 +186,30 @@
 							<div class="dataTables_paginate paging_simple_numbers"
 								 id="datatable-responsive_paginate">
 								<ul class="pagination">
-									<c:if test="${pages.pageNum > 1}">
-										<li class="paginate_button previous">
-											<a href="${pageContext.request.contextPath}/wuliu/ding?pageIndex=1">首页</a>
-										</li>
-										<li class="paginate_button ">
-											<a href="${pageContext.request.contextPath}/wuliu/ding?pageIndex=${pages.pageNum-1<1?1:pages.pageNum-1}">上一页</a>
-										</li>
-									</c:if>
-									<c:if test="${pages.pageNum < pages.pages }">
-										<li class="paginate_button ">
-											<a href="${pageContext.request.contextPath}/wuliu/ding?pageIndex=${pages.pageNum+1>pages.pages?pages.pages:pages.pageNum+1}">下一页</a>
-										</li>
-										<li class="paginate_button next">
-											<a href="${pageContext.request.contextPath}/wuliu/ding?pageIndex=${pages.pages}">最后一页</a>
-										</li>
-									</c:if>
+											<c:if test="${pages.hasPreviousPage eq true }">
+												<li class="paginate_button previous"><a
+														href="javascript:page_nav(document.forms[0],1);"
+														aria-controls="datatable-responsive" data-dt-idx="0"
+														tabindex="0">首页</a>
+												</li>
+												<li class="paginate_button "><a
+														href="javascript:page_nav(document.forms[0],${pages.prePage});"
+														aria-controls="datatable-responsive" data-dt-idx="1"
+														tabindex="0">上一页</a>
+												</li>
+											</c:if>
+											<c:if test="${pages.hasNextPage eq true }">
+												<li class="paginate_button "><a
+														href="javascript:page_nav(document.forms[0],${pages.nextPage});"
+														aria-controls="datatable-responsive" data-dt-idx="1"
+														tabindex="0">下一页</a>
+												</li>
+												<li class="paginate_button next"><a
+														href="javascript:page_nav(document.forms[0],${pages.lastPage});"
+														aria-controls="datatable-responsive" data-dt-idx="7"
+														tabindex="0">最后一页</a>
+												</li>
+											</c:if>
 								</ul>
 							</div>
 						</div>
@@ -209,5 +220,5 @@
 		</div>
 	</div>
 	<%@include file="../common/footer.jsp"%>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/statics/js/jquery.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/statics/localjs/fenpei.js"></script>
+	<script src="${pageContext.request.contextPath }/statics/localjs/rollpage.js"></script>
