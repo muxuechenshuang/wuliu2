@@ -1,11 +1,13 @@
 package com.forest.wu.controller;
 
 import com.forest.wu.dao.Order_infoMapper;
+import com.forest.wu.dao.WorkorderMapper;
 import com.forest.wu.pojo.Order_info;
 import com.forest.wu.pojo.Organization;
 import com.forest.wu.pojo.User;
 import com.forest.wu.pojo.Workorder;
 import com.forest.wu.service.CourierService;
+import com.forest.wu.service.FilialeWorkOrderService;
 import com.forest.wu.utils.Constants;
 import com.forest.wu.utils.Page;
 import com.github.pagehelper.PageHelper;
@@ -42,6 +44,8 @@ import java.util.List;
 public class BranchController {
     @Autowired
     private CourierService  courierService;
+    @Autowired
+    private FilialeWorkOrderService filialeWorkOrderService;
 
     @Autowired
     private Order_infoMapper order_infoMapper;
@@ -299,7 +303,7 @@ public class BranchController {
     //确认工单页面点击确认按钮后
     @RequestMapping(value = "que")
     public String getWorkor2(Model model,@RequestParam(value = "id")String id){
-        Workorder workorder= courierService.selectWorkor(Integer.valueOf(id));
+        Workorder workorder= filialeWorkOrderService.queryWorkOrderById(Integer.valueOf(id));
         model.addAttribute("workorder",workorder);
         return "lpq/querengongdan2";
     }

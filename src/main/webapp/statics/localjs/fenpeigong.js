@@ -10,7 +10,8 @@ $(function () {//分配工单js
                 dataType:"json",
                 success:function (data) {
                     alert("分配成功！");
-                    g.parents("tr").find(".pei2").html(data.username);
+                    g.parents("tr").find(".pei3").html(data.username);
+                    g.parents("tr").find(".pei3").css("color","red");
                 }
             });
         }

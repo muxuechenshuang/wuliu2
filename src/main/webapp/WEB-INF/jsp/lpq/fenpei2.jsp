@@ -81,7 +81,7 @@
 							</div>
 						</li>
 						<li><input type="submit" class="btn btn-primary" value="查询"></input>
-							<input type="button" class="btn btn-primary" value="返回"/></li>
+							<a href="JavaScript:history.back(-1)" class="btn btn-primary">返回</a>
 						<li></li>
 					</ul>
 				</form>
@@ -156,33 +156,38 @@
 								</thead>
 								<tbody class="go">
 								<c:forEach items="${listWorkorder}" var="workor" varStatus="add">
-                                <input type="hidden" class="gid" value="${workor.id}" />
-								<tr>
-									<td>${workor.workNum}</td>
-									<td>${workor.orderNum}</td>
-									<td>${workor.gName}</td>
-									<td>${workor.gTel}</td>
-									<td>${workor.realWeight}</td>
-									<td>${workor.expenses}</td>
-									<td>${workor.comment}</td>
-									<td>
-										<div class="form-group">
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<select id="kuai2" name="username" class="form-control">
-													<option value="">--请选择--</option>
-													<c:forEach items="${listUser}" var="user">
-														<option value="${user.id}">${user.username}</option>
-													</c:forEach>
-												</select>
+									<input type="hidden" class="gid" value="${workor.id}" />
+									<tr>
+										<td>${workor.workNum}</td>
+										<td>${workor.orderNum}</td>
+										<td>${workor.gName}</td>
+										<td>${workor.gTel}</td>
+										<td>${workor.realWeight}</td>
+										<td>${workor.expenses}</td>
+										<td>${workor.comment}</td>
+										<td>
+											<div class="form-group">
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<select id="kuai2" name="username" class="form-control">
+														<option value="">--请选择--</option>
+														<c:forEach items="${listUser}" var="user">
+															<option value="${user.id}">${user.username}</option>
+														</c:forEach>
+													</select>
+												</div>
 											</div>
-										</div>
-									</td>
-									<td>分配：<span class="pei2"></span></td>
-									<td>${workor.entrust}</td>
+										</td>
+										<td class="pei3" <c:if test="${!empty workor.sCourier}">style="color: red" </c:if>  >
+										<c:choose>
+											<c:when test="${empty workor.sCourier}">未分配</c:when>
+											<c:otherwise>${workor.sCourier}</c:otherwise>
+										</c:choose>
+										</td>
+										<td>${workor.entrust}</td>
 
-									<td><a href="javascript:;" class="btn btn-primary gg">分配</a>
-										<a href="${pageContext.request.contextPath}/wuliu/gongxiang?id=${workor.id}" class="btn btn-primary">工单详情</a></td>
-								</tr>
+										<td><a href="javascript:;" class="btn btn-primary gg">分配</a>
+											<a href="${pageContext.request.contextPath}/wuliu/gongxiang?id=${workor.id}" class="btn btn-primary">工单详情</a></td>
+									</tr>
 								</c:forEach>
 								</tbody>
 							</table>
@@ -198,26 +203,26 @@
 							<div class="dataTables_paginate paging_simple_numbers"
 								 id="datatable-responsive_paginate">
 								<ul class="pagination">
-										<li class="paginate_button previous">
-											<a href="${pageContext.request.contextPath}/wuliu/fengongdan?pageIndex=1">首页</a>
-										</li>
-										<li class="paginate_button ">
-											<a href="${pageContext.request.contextPath}/wuliu/fengongdan?pageIndex=${pages.pageNum-1<1?1:pages.pageNum-1}">上一页</a>
-										</li>
-										<li class="paginate_button ">
-											<a href="${pageContext.request.contextPath}/wuliu/fengongdan?pageIndex=${pages.pageNum+1>pages.pages?pages.pages:pages.pageNum+1}">下一页</a>
-										</li>
-										<li class="paginate_button next">
-											<a href="${pageContext.request.contextPath}/wuliu/fengongdan?pageIndex=${pages.pages}">最后一页</a>
-										</li>
+									<li class="paginate_button previous">
+										<a href="${pageContext.request.contextPath}/wuliu/fengongdan?pageIndex=1">首页</a>
+									</li>
+									<li class="paginate_button ">
+										<a href="${pageContext.request.contextPath}/wuliu/fengongdan?pageIndex=${pages.pageNum-1<1?1:pages.pageNum-1}">上一页</a>
+									</li>
+									<li class="paginate_button ">
+										<a href="${pageContext.request.contextPath}/wuliu/fengongdan?pageIndex=${pages.pageNum+1>pages.pages?pages.pages:pages.pageNum+1}">下一页</a>
+									</li>
+									<li class="paginate_button next">
+										<a href="${pageContext.request.contextPath}/wuliu/fengongdan?pageIndex=${pages.pages}">最后一页</a>
+									</li>
 								</ul>
 							</div>
 						</div>
 					</div>
 				</div>
+			</div>
 		</div>
-	</div>
-<%@include file="../common/footer.jsp"%>
+		<%@include file="../common/footer.jsp"%>
 		<script src="${pageContext.request.contextPath}/statics/js/jquery.min.js"></script>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/statics/localjs/fenpeigong.js">
 		</script>
