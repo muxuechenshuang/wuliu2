@@ -96,9 +96,17 @@
 				<div id="datatable-responsive_wrapper"
 					 class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row">
-						<div class="col-sm-12">
-							<a href="" class="btn btn-success btn-sm">审核工单列表</a>
-							<table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
+						<div class="col-sm-12" id="gong">
+							<input type="button" id="selectAll" class="btn btn-primary " value="全选"/>
+							<input type="button" id="selectAll2" class="btn btn-primary " value="取消全选"></input>
+							<select id="qiang" >
+								<option value="" selected="selected">---请选择-</option>
+								<c:forEach items="${listUser}" var="user">
+									<option value="${user.id}">${user.username}</option>
+								</c:forEach>
+							</select>
+							<input type="button" id="selectAll3" class="btn btn-primary " value="批量操作"></input>
+								<table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
 								   cellspacing="0" width="100%" role="grid" aria-describedby="datatable-responsive_info" style="width: 100%;">
 								<thead>
 								<tr role="row">
@@ -158,7 +166,10 @@
 								<c:forEach items="${listWorkorder}" var="workor" varStatus="add">
 									<input type="hidden" class="gid" value="${workor.id}" />
 									<tr>
-										<td>${workor.workNum}</td>
+										<td>
+											<input type="checkbox"  name="id" class="choose"/>强哥
+											<input type="hidden"  name="id" value="${workor.id}" class="choose2"/>
+										</td>
 										<td>${workor.orderNum}</td>
 										<td>${workor.gName}</td>
 										<td>${workor.gTel}</td>
@@ -183,7 +194,7 @@
 											<c:otherwise>${workor.username}</c:otherwise>
 										</c:choose>
 										</td>
-										<td>${workor.entrust}</td>
+										<td>${workor.entrustNumber}</td>
 
 										<td><a href="javascript:;" class="btn btn-primary gg">分配</a>
 											<a href="${pageContext.request.contextPath}/wuliu/gongxiang?id=${workor.id}" class="btn btn-primary">工单详情</a></td>
