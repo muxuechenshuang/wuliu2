@@ -1,26 +1,30 @@
 package com.forest.wu.pojo;
 
+import com.alibaba.excel.annotation.ExcelProperty;
+import com.alibaba.excel.metadata.BaseRowModel;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-public class Order_info {
+
+public class Order_info extends BaseRowModel {
     private Integer id;
-
+    //value是excel表中的列名，index=0就是第一列
+    @ExcelProperty(value = {"表头1"},index = 0)
     private String sName;
-
+    @ExcelProperty(value = {"表头2"},index = 1)
     private String gName;
-
+    @ExcelProperty(value = {"表头3"},index = 2)
     private String sTel;
-
+    @ExcelProperty(value = {"表头4"},index = 3)
     private String gTel;
-
+    @ExcelProperty(value = {"表头5"},index = 4)
     private Integer cityId;
-
+    @ExcelProperty(value = {"表头6"},index = 5)
     private Integer branchId;
-
+    @ExcelProperty(value = {"表头7"},index = 6)
     private String sAddress;
-
+    @ExcelProperty(value = {"表头8"},index = 7)
     private String gAddress;
     private String usernamekuai;//分配的快递员名字
 
@@ -47,9 +51,27 @@ public class Order_info {
     //任一    货物类型名字
     private String typeName;
 
+
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date doorTime;
+    @ExcelProperty(value = {"表头9"},index = 8)
+    private String doorTimename;//用于excel表时间类型转换而创建
 
+    public String getDoorTimename() {
+        return doorTimename;
+    }
+
+    public void setDoorTimename(String doorTimename) {
+        this.doorTimename = doorTimename;
+    }
+
+    public String getRiseTimename() {
+        return riseTimename;
+    }
+
+    public void setRiseTimename(String riseTimename) {
+        this.riseTimename = riseTimename;
+    }
 
 
     private String product;
@@ -58,17 +80,25 @@ public class Order_info {
 
     private String comment;
 
+    @ExcelProperty(value = {"表头10"},index = 9)
     private String orderNumber;
 
     private Integer status;
 
     private String preVolume;
 
+
+
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date riseTime;
 
+    @ExcelProperty(value = {"表头11"},index = 10)
+    private String  riseTimename;//用于excel表时间类型转换而创建
+
+
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date finishTime;
+
 
     private String reasonForCancle;
 
