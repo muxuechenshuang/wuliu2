@@ -486,7 +486,7 @@
 
     <!--任一-->
     <select id="getMonthOrder" resultType="java.lang.Integer">
-        select count(*) from order_info
+        select count(1) from order_info
         where userId = #{userId} and riseTime between #{start} and #{end}
     </select>
 

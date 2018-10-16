@@ -50,5 +50,35 @@ public interface NoteService {
      * @Param：
      * @return：
      */
-    List<Note> getAllSelf(Integer clientId);
+    List<Note> getAllSelf(Integer clientId,Integer pageNo, Integer pageSize);
+
+    /**
+     *
+     * @author: 任一
+     * @Description 根据用户id返回信息总数
+     * @Date: 19:48 2018/10/15
+     * @Param：
+     * @return：
+     */
+    int noteCountSelf(Integer clientId);
+
+    /**
+     *
+     * @author: 任一
+     * @Description 根据id删除站内信
+     * @Date: 8:18 2018/10/16
+     * @Param：
+     * @return：
+     */
+    boolean deleteNoteById(String id);
+
+    /**
+     *
+     * @author: 任一
+     * @Description 添加站内信
+     * @Date: 8:45 2018/10/16
+     * @Param：
+     * @return：
+     */
+    boolean addNote(Integer clientId , String noteText);
 }

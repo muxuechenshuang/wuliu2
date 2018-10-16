@@ -220,7 +220,7 @@
 								</ul></li>
 
 
-                        <c:if test="${noteList!=null}">
+                        <c:if test="${noteList!=null && readAll!='yes'}">
                         <li role="presentation" class="dropdown">
 
                             <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
@@ -241,7 +241,7 @@
 
                                 <li>
                                     <div class="text-center">
-                                        <a class="selectAll">
+                                        <a class="selectAll" href="/calculate/readAll">
                                             <strong>See All Alerts</strong>
                                             <i class="fa fa-angle-right"></i>
                                         </a>
@@ -271,26 +271,6 @@
 						}
                     })
                 });
-                $(".selectAll").on("click",function () {
-					$.ajax({
-                        type:"GET",
-                        url: "readAll.json",
-                        dataType: "json",
-						success:function (result) {
-							$("#note").find("li").remove();
-							for(var i = 0; i < result.length; i++){
-							    $("#note").append("<li><a>\n" +
-                                    "<span>"+result[i].clientName+"</span>\n" +
-                                    "<span class=\"time\">"+result[i].sendTime+"<%--<fmt:formatDate value=\""+result[i].sendTime+"\" pattern=\"yyyy-MM-dd HH:ss:mm\"/>--%></span>\n" +
-                                    "<span class=\"message\">"+result[i].noteText+"</span>\n" +
-                                    "</a></li>")
-							}
-							$(".dropdown").addClass("open");
-							$(".dropdown-toggle").attr("aria-expanded","true");
-                        }
-
-					})
-                })
             </script>
 
 
