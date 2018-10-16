@@ -63,7 +63,55 @@ public class NoteServiceImpl implements NoteService {
      * @return：
      */
     @Override
-    public List<Note> getAllSelf(Integer clientId){
-        return noteMapper.getAllSelf(clientId);
+    public List<Note> getAllSelf(Integer clientId,Integer pageNo, Integer pageSize){
+        return noteMapper.getAllSelf(clientId,(pageNo-1)*pageSize,pageSize);
+    }
+
+    /**
+     *
+     * @author: 任一
+     * @Description 根据用户id返回信息总数
+     * @Date: 19:48 2018/10/15
+     * @Param：
+     * @return：
+     */
+    @Override
+    public int noteCountSelf(Integer clientId){
+        return noteMapper.noteCountSelf(clientId);
+    }
+
+    /**
+     *
+     * @author: 任一
+     * @Description 根据id删除站内信
+     * @Date: 8:18 2018/10/16
+     * @Param：
+     * @return：
+     */
+    @Override
+    public boolean deleteNoteById(String _id) {
+        boolean flag = false;
+        Long id = Long.parseLong(_id);
+        if(noteMapper.deleteByPrimaryKey(id) > 0){
+            flag = true;
+        }
+        return flag;
+    }
+
+    /**
+     *
+     * @author: 任一
+     * @Description 添加站内信
+     * @Date: 8:45 2018/10/16
+     * @Param：
+     * @return：
+     */
+    @Override
+    public boolean addNote(Integer clientId, String noteText) {
+        boolean flag = false;
+        if(noteMapper.addNote(clientId,noteText) > 0){
+            flag = true;
+        }
+        return flag;
     }
 }

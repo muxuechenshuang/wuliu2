@@ -86,13 +86,13 @@
     (select username from user where id = a.clientId)as clientName
     from note a
     where clientId = #{clientId}
-    group by sendTime DESC
+    order by sendTime DESC
     limit 0,5
   </select>
 
   <!--任一-->
   <select id="noReadCount" resultType="java.lang.Integer">
-    select count(*)
+    select count(1)
     from note
     where clientId = #{clientId} and status = 1
   </select>
@@ -110,6 +110,21 @@
     (select username from user where id = a.clientId)as clientName
     from note a
     where clientId = #{clientId}
-    group by sendTime DESC
+    order by sendTime DESC
+    limit #{from},#{pageSize}
   </select>
+
+  <!--任一-->
+  <select id="noteCountSelf" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select count(1)
+    from note
+    where clientId = #{clientId}
+  </select>
+
+  <!--任一-->
+  <insert id="addNote">
+    insert into note
+    (clientId,noteText,sendTime,status)
+    values (#{clientId}, #{noteText}, now() ,1)
+  </insert>
 </mapper>

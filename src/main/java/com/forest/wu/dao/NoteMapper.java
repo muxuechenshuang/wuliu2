@@ -31,12 +31,13 @@ public interface NoteMapper {
     /**
      *
      * @author: 任一
-     * @Description 根据用户id返回用户所有信息
+     * @Description 根据用户id返回用户所有信息(带分页)
      * @Date: 9:35 2018/10/12
      * @Param：
      * @return：
      */
-    List<Note> getAllSelf(@Param(value = "clientId") Integer clientId);
+    List<Note> getAllSelf(@Param(value = "clientId") Integer clientId,
+                          @Param(value = "from") Integer pageNo, @Param(value = "pageSize") Integer pageSize);
 
     /**
      *
@@ -57,4 +58,25 @@ public interface NoteMapper {
      * @return：
      */
     int readDone(@Param(value = "clientId") Integer clientId);
+
+    /**
+     *
+     * @author: 任一
+     * @Description 根据用户id返回信息总数
+     * @Date: 19:48 2018/10/15
+     * @Param：
+     * @return：
+     */
+    int noteCountSelf(@Param(value = "clientId") Integer clientId);
+
+    /**
+     *
+     * @author: 任一
+     * @Description 添加站内信
+     * @Date: 8:45 2018/10/16
+     * @Param：
+     * @return：
+     */
+    int addNote(@Param(value = "clientId") Integer clientId,
+                @Param(value = "noteText") String noteText);
 }
