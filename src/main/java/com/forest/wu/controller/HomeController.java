@@ -60,10 +60,48 @@ public class HomeController {
         }
         return "jzl/personal";
     }
+    //跟新验证
+    @RequestMapping(value = "/login")
+    @ResponseBody
+    public Object login(@RequestParam String email, @RequestParam String phone,HttpSession session) {
+        HashMap<String, String> resultMap = new HashMap<String, String>();
+        Integer id = ((User) session.getAttribute("user")).getId();
+        User user = userService.selectByPrimaryKey(id);
+
+        if (!user.getEmail().equals(email)) {
+            System.out.println(user.getEmail());
+         if (userService.findUser1(email) != null) {
+            resultMap.put("email", "emailVerification");
+        } else {
+            resultMap.put("email", "email");
+        }
+        }
+
+        if(!user.getPhone().equals(phone)){
+            System.out.println(user.getPhone());
+         if (userService.findUser2(phone) != null) {
+            resultMap.put("phone", "phoneVerification");
+        } else {
+            resultMap.put("phone", "phone");
+        }
+        }
+        return resultMap;
+    }
 
     //个人主页修改用户信息
     @RequestMapping(value = "/personal", method = RequestMethod.POST)
-    public String persona(User user, BindingResult bindingResult, HttpServletRequest request, HttpSession session, @RequestParam(value="picPath",required= false) MultipartFile attach,
+    public String persona(User user, BindingResult bindingResult, HttpSession session,
+                          @RequestParam (value = "userid")String userid) {
+        user.setId(Integer.parseInt(userid));
+        userService.upHome(user);
+        session.setAttribute("user",user);
+        return "xlh/main_xlh";
+    }
+
+
+    //个人主页头像
+    @RequestMapping(value = "/personal2", method = RequestMethod.POST)
+    public String persona1(User user, BindingResult bindingResult, HttpServletRequest request, HttpSession session, @RequestParam(value="picPath",required= false) MultipartFile attach,
                           @RequestParam (value = "userid")String userid) {
 //文件上传
         String PicPath = null;
@@ -106,6 +144,7 @@ public class HomeController {
         return "xlh/main_xlh";
 
     }
+
     //站内信息
     public void getNote(Integer id, Model model) {
         //信息集合
