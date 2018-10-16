@@ -524,4 +524,19 @@ public class BranchController {
         /*List<Integer> result=courierService.selectYueDin();*/
         return result;
     }
+
+
+    //全选分配
+    @RequestMapping(value = "quan")
+    @ResponseBody
+    public Object allGong(@RequestParam(value = "id",required = false) String id
+                            ,@RequestParam(value = "selectva" ,required = false) String[] selectva  ){
+       //id查询对应的快递员对象
+        User user=courierService.getUser(id);
+        for (int i = 0; i <selectva.length ; i++) {
+            courierService.updateWorkor(Integer.valueOf(id),Integer.valueOf(selectva[i]));
+        }
+        return user;
+    }
+
 }

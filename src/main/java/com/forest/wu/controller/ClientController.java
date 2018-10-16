@@ -12,6 +12,7 @@ import com.forest.wu.service.OrganizationService;
 import com.forest.wu.utils.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -575,14 +576,91 @@ public class ClientController {
         return result;
     }
 
-    @RequestMapping(value = "readAll.json")
-    @ResponseBody
-    public Object readAll(HttpSession session) {
-//        List<Note> allNote = new ArrayList<Note>();
+    @RequestMapping(value = "/readAll")
+    public String readAll(HttpSession session,Model model,
+                          @RequestParam(value = "pageIndex", required = false) String pageIndex) {
+        readNote(session);
         Integer id = ((User) session.getAttribute("user")).getId();
-        List<Note> allNote = noteService.getAllSelf(id);
-        return allNote;
+        List<Note> allNote = null;
+        //页面容量
+        int pageSize = Constants.PAGE_SIZE;
+        //当前页码
+        Integer pageNo = 1;
+        if (pageIndex != null) {
+            try {
+                pageNo = Integer.valueOf(pageIndex);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+        //总数量
+        int totalCount = 0;
+        try {
+            totalCount = noteService.noteCountSelf(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //总页数
+        Page pages = new Page();
+        pages.setPageNo(pageNo);//当前页
+        pages.setPageSize(pageSize);//页大小
+        pages.setCount(totalCount);//数据数量
+        int totalPageCount = pages.getPageCount();
+
+        //控制首页和尾页
+        if (pageNo < 1) {
+            pageNo = 1;
+        } else if (pageNo > totalPageCount) {
+            pageNo = totalPageCount;
+        }
+
+        try {
+            allNote = noteService.getAllSelf(id, pageNo, pageSize);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        model.addAttribute("pages", pages);
+        model.addAttribute("noteList",allNote);
+        model.addAttribute("readAll","yes");
+        return "ry/note_ry";
     }
+
+    @RequestMapping(value = "deleteNote.json")
+    @ResponseBody
+    public Object deleteNote(@RequestParam String id){
+        HashMap<String,String> result = new HashMap<String, String>();
+        if(StringUtils.isEmpty(id)){
+            result.put("delResult","notexist");
+        }else {
+            try {
+                if (noteService.deleteNoteById(id)) {
+                    result.put("delResult", "true");
+                }else {
+                    result.put("delResult", "false");
+                }
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+    /**
+     *
+     * @author: 添加接口测试类
+     * @Description 
+     * @Date: 8:58 2018/10/16
+     * @Param：
+     * @return：
+     */
+    public void addNote(){
+          noteService.addNote(15,"测试1");
+    }
+
 
 
     //报表
