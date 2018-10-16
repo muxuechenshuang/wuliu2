@@ -2,10 +2,8 @@ package com.forest.wu.controller;
 
 import com.forest.wu.dao.Order_infoMapper;
 import com.forest.wu.dao.WorkorderMapper;
-import com.forest.wu.pojo.Order_info;
-import com.forest.wu.pojo.Organization;
-import com.forest.wu.pojo.User;
-import com.forest.wu.pojo.Workorder;
+import com.forest.wu.excel.ExcelUtil;
+import com.forest.wu.pojo.*;
 import com.forest.wu.service.CourierService;
 import com.forest.wu.service.FilialeWorkOrderService;
 import com.forest.wu.utils.Constants;
@@ -27,8 +25,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -184,7 +184,15 @@ public class BranchController {
         PageHelper.startPage(pageNum, Constants.PAGE_SIZE);//Constants.PAGE_SIZE=5
         List<Order_info> listOrder= courierService.selectOrder(id, gName, sTel,status,user.getParentid());
         PageInfo<Order_info> pages = new PageInfo<Order_info>(listOrder);
+        //所有快递员
         List<User>listUser=courierService.allUser(user.getParentid());
+
+        //listOrder1用于生产Excel表查询出的订单集合名字和上面的listOrder区别下就好了
+        List<Order_info> listOrder1= courierService.selectOrder(id, gName, sTel,status,user.getParentid());
+        //放入session中，用于导出excel表
+        session.setAttribute("listOrder1",listOrder1);
+
+
         model.addAttribute("listUser",listUser);
         model.addAttribute("listOrder",listOrder);
         model.addAttribute("pages",pages);
@@ -530,13 +538,47 @@ public class BranchController {
     @RequestMapping(value = "quan")
     @ResponseBody
     public Object allGong(@RequestParam(value = "id",required = false) String id
-                            ,@RequestParam(value = "selectva" ,required = false) String[] selectva  ){
-       //id查询对应的快递员对象
+            ,@RequestParam(value = "selectva" ,required = false) String[] selectva  ){
+        //id查询对应的快递员对象
         User user=courierService.getUser(id);
         for (int i = 0; i <selectva.length ; i++) {
             courierService.updateWorkor(Integer.valueOf(id),Integer.valueOf(selectva[i]));
         }
         return user;
     }
+
+
+    @RequestMapping(value = "excel2")
+    public void excel(HttpServletResponse response, HttpSession session, Model model) {
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+            List<Order_info> listOrder2 = (List<Order_info>) session.getAttribute("listOrder1");
+            for (int j = 0; j < listOrder2.size(); j++) {
+//RiseTimename和DoorTimename 是新增的属性，用于将转换后的时间映射给新增属性
+                if(listOrder2.get(j).getRiseTime()!=null){
+                    listOrder2.get(j).setRiseTimename(simpleDateFormat.format(listOrder2.get(j).getRiseTime()));
+                }
+                if(listOrder2.get(j).getDoorTime()!=null){
+                    listOrder2.get(j).setDoorTimename(simpleDateFormat.format(listOrder2.get(j).getDoorTime()));
+                }
+            }
+//new Order_info()就是改造后的实体类
+            ExcelUtil.writeExcel(response, listOrder2, "返货单列表", "返货单", new Order_info());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+  /*  //用于获取所有订单集合，并存在session中
+    @RequestMapping(value = "excel3")
+    public String selectOrder2(HttpSession session){
+        User user =(User)session.getAttribute("user");
+       List<Order_info> listOrder3= courierService.selectOrder(null, null, null,null,user.getParentid());
+       session.setAttribute("listOrder3",listOrder3);
+       return "redirect:/wuliu/excel2";
+    }*/
 
 }

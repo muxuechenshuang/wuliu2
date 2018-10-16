@@ -106,7 +106,8 @@
 								</c:forEach>
 							</select>
 							<input type="button" id="selectAll3" class="btn btn-primary " value="批量操作"></input>
-								<table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
+
+							<table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
 								   cellspacing="0" width="100%" role="grid" aria-describedby="datatable-responsive_info" style="width: 100%;">
 								<thead>
 								<tr role="row">
@@ -167,7 +168,7 @@
 									<input type="hidden" class="gid" value="${workor.id}" />
 									<tr>
 										<td>
-											<input type="checkbox"  name="id" class="choose"/>强哥
+											<input type="checkbox"  name="id" class="choose" />
 											<input type="hidden"  name="id" value="${workor.id}" class="choose2"/>
 										</td>
 										<td>${workor.orderNum}</td>

@@ -40,21 +40,21 @@ $(function () {//分配工单js
             selectva.push($(this).next().val());
         });
 
-
-        alert(id);
-        alert(selectva);
-        $.ajax({
-            url:"quan",                        //id快递员id
-            data:{"id":id,"selectva":selectva},//selectva工单id数组
-            dataType: "json",
-            success:function (data) {
-                alert("批量操作成功！");
-                for (let i = 0; i <selectva.length ; i++) {
-                    g.parents("tr").find(".pei3").html(data.username);
-                    g.parents("tr").find(".pei3").css("color","red");
+        if(confirm("是否确定批量操作？")){
+            $.ajax({
+                url:"quan",                        //id快递员id
+                data:{"id":id,"selectva":selectva},//selectva工单id数组
+                dataType: "json",
+                success:function (data) {
+                    alert("批量操作成功！");
+                    for (let i = 0; i <selectva.length ; i++) {
+                        g.parents("tr").find(".pei3").html(data.username);
+                        g.parents("tr").find(".pei3").css("color","red");
+                    }
                 }
-            }
-        });
+            });
+        }
+
     });
 
 
