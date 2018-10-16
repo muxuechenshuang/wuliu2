@@ -51,13 +51,22 @@ public class CenterController {
     @RequestMapping(value = "/returnlist")
     public String returnlist( @RequestParam(value = "pageIndex", required = false, defaultValue = "1") String pageIndex,
                               Return returnorder, Model model,HttpSession session) {
+        List<Return> list2 = null;
+        try {
+            //将未修改过的list保存在session中，在导出时候获得
+            list2 = centerService.selectReturn(returnorder);
+            session.setAttribute("list2",list2);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         try {
             PageHelper.startPage(Integer.parseInt(pageIndex), Constants.PAGE_SIZE);
             List<Return> list1 = centerService.selectReturn(returnorder);
             PageInfo<Return> p = new PageInfo<Return>(list1);
             model.addAttribute("page", p);
             model.addAttribute("list1", list1);
-            session.setAttribute("list1",list1);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -608,22 +617,7 @@ public class CenterController {
         return "center/todetail?workoderid="+id;
     }
 
-    /**
-     * author: 张展
-     * 总部查询所有工单
-     * Date: 10:03 2018/10/2
-     * Param：[pageIndex, model]
-     * Return：java.lang.String
-     **/
-//    @RequestMapping("/allorder_c")
-//    public String allOrder_c(@RequestParam(required = true, defaultValue = "1") Integer pageIndex, Model model) {
-//        PageHelper.startPage(pageIndex, Constants.PAGE_SIZE);
-//        List<Order_info> orderList=orderService.selectAllOrder();
-//        PageInfo<Order_info> p=new PageInfo<Order_info>(orderList);
-//        model.addAttribute("pageIndex",p);
-//        model.addAttribute("order",orderList);
-//        return "zz/xiangqing_zz";
-//    }
+
     /**
      * @author: 张展
      * @Description 获取下拉框
@@ -672,6 +666,13 @@ public class CenterController {
         return "zz/baobiao3";
     }
 
+    /**
+    * author: 张展
+    * 报表3数据获取
+    * Date: 10:32 2018/10/16
+    * Param：[model]
+    * Return：java.lang.Object
+    **/
     @ResponseBody
     @RequestMapping(value = "/shuju3.json")
     public Object shuju3(Model model) {
@@ -712,13 +713,12 @@ public class CenterController {
     public void excel(HttpServletResponse response,HttpSession session, Model model){
         try {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
-            List<Return> list1 = (List<Return>) session.getAttribute("list1");
+            List<Return> list1 = (List<Return>) session.getAttribute("list2");
 //            for (int j=0;j<list1.size();j++) {
 //                list1.get(j).setCtreatimeName(simpleDateFormat.format(list1.get(j).getCtreaTime()));
 ////                list1.get(j).setAuditTimeName(simpleDateFormat.format(list1.get(j).getAuditTime()));
 //            }
-            for (Return r:list1
-                 ) {
+            for (Return r:list1) {
                 if (r.getCtreaTime()!=null){
                     r.setCtreatimeName(simpleDateFormat.format(r.getCtreaTime()));
                 }
@@ -731,4 +731,29 @@ public class CenterController {
             e.printStackTrace();
         }
     }
+
+    /**
+    * author: 张展
+    *
+    * Date: 10:44 2018/10/16
+    * Param：[produckName, models, model]
+    * Return：java.lang.Object
+    **/
+//    @RequestMapping(value = "echars")
+//    @ResponseBody
+//    public Object echars(@RequestParam(value = "produckName", required = false) String produckName,
+//                         @RequestParam(value = "models", required = false) String models,
+//                         Model model){
+//        goods = new Goods();
+//        if (null != produckName && !("".equals(produckName))) {
+//            produckName = "%" + produckName + "%";
+//        }
+//        if (null != models) {
+//            models = "%" + models + "%";
+//        }
+//        goods.setProduckName(produckName);
+//        goods.setModels(models);
+//        List<Goods> goodsList=goodsService.selectByName(goods);
+//        return goodsList;
+//    }
 }
