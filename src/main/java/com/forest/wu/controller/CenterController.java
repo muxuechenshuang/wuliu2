@@ -1,10 +1,8 @@
 package com.forest.wu.controller;
 
+import com.forest.wu.excel.ExcelUtil;
 import com.forest.wu.pojo.*;
-import com.forest.wu.service.CenterService;
-import com.forest.wu.service.FilialeWorkOrderService;
-import com.forest.wu.service.OrganizationService;
-import com.forest.wu.service.WdService;
+import com.forest.wu.service.*;
 import com.forest.wu.utils.Constants;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -18,8 +16,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -35,8 +36,9 @@ public class CenterController {
     private CenterService centerService;
     @Autowired
     private OrganizationService organizationService;
+
     @Autowired
-    private FilialeWorkOrderService filialeWorkOrderService;
+    private NoteService noteService;
 
 
     /**
@@ -48,14 +50,14 @@ public class CenterController {
     **/
     @RequestMapping(value = "/returnlist")
     public String returnlist( @RequestParam(value = "pageIndex", required = false, defaultValue = "1") String pageIndex,
-                              Return returnorder, Model model) {
+                              Return returnorder, Model model,HttpSession session) {
         try {
             PageHelper.startPage(Integer.parseInt(pageIndex), Constants.PAGE_SIZE);
             List<Return> list1 = centerService.selectReturn(returnorder);
             PageInfo<Return> p = new PageInfo<Return>(list1);
             model.addAttribute("page", p);
             model.addAttribute("list1", list1);
-
+            session.setAttribute("list1",list1);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -697,5 +699,36 @@ public class CenterController {
 //        model.addAttribute("x",x);
 //        model.addAttribute("y",y);
         return y;
+    }
+
+    /**
+    * author: 张展
+    * 导出返货单列表
+    * Date: 18:37 2018/10/15
+    * Param：[session, model]
+    * Return：void
+    **/
+    @RequestMapping(value = "excel")
+    public void excel(HttpServletResponse response,HttpSession session, Model model){
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+            List<Return> list1 = (List<Return>) session.getAttribute("list1");
+//            for (int j=0;j<list1.size();j++) {
+//                list1.get(j).setCtreatimeName(simpleDateFormat.format(list1.get(j).getCtreaTime()));
+////                list1.get(j).setAuditTimeName(simpleDateFormat.format(list1.get(j).getAuditTime()));
+//            }
+            for (Return r:list1
+                 ) {
+                if (r.getCtreaTime()!=null){
+                    r.setCtreatimeName(simpleDateFormat.format(r.getCtreaTime()));
+                }
+                if (r.getAuditTime()!=null){
+                    r.setAuditTimeName(simpleDateFormat.format(r.getAuditTime()));
+                }
+            }
+            ExcelUtil.writeExcel(response,list1,"返货单列表","返货单",new Return());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

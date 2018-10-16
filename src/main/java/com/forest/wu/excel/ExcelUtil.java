@@ -5,7 +5,6 @@ import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.metadata.BaseRowModel;
 import com.alibaba.excel.metadata.Sheet;
 import com.alibaba.excel.support.ExcelTypeEnum;
-import com.forest.wu.pojo.Return;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -75,7 +74,7 @@ public class ExcelUtil {
      * @param sheetName 导入文件的 sheet 名
      * @param object    映射实体类，Excel 模型
      */
-    public static void writeExcel(HttpServletResponse response, List<Return> list,
+    public static void writeExcel(HttpServletResponse response, List<? extends BaseRowModel> list,
                                   String fileName, String sheetName, BaseRowModel object) throws IOException {
         //创建本地文件
         String filePath = fileName + ".xlsx";

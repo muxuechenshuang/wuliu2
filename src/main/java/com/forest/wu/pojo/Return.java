@@ -16,9 +16,11 @@ public class Return extends BaseRowModel {
     private String yid;
     @ExcelProperty(value = "返货原因",index = 3)
     private String result;
-    @ExcelProperty(value = "创建时间",index = 4)
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date ctreaTime;
+    @ExcelProperty(value = "创建时间",index = 4)
+
+    private String ctreatimeName;
     @ExcelProperty(value = "收件人姓名",index = 5)
     private String gName;
     @ExcelProperty(value = "收件人电话",index = 6)
@@ -39,13 +41,24 @@ public class Return extends BaseRowModel {
     private String sPoint;
     @ExcelProperty(value = "寄件人地址",index = 14)
     private String sAddress;
-    @ExcelProperty(value = "审核时间",index = 15)
+
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date auditTime;
-    @ExcelProperty(value = "审核状态",index = 0)
+    @ExcelProperty(value = "审核时间",index = 15)
+
+    private String auditTimeName;
+    @ExcelProperty(value = "审核状态",index = 16)
     private Integer status;
-    @ExcelProperty(value = "备注",index = 0)
+    @ExcelProperty(value = "备注",index = 17)
     private String comment;
+
+    public String getAuditTimeName() {
+        return auditTimeName;
+    }
+
+    public void setAuditTimeName(String auditTimeName) {
+        this.auditTimeName = auditTimeName;
+    }
 
     public String getId() {
         return id;
@@ -189,5 +202,13 @@ public class Return extends BaseRowModel {
 
     public void setComment(String comment) {
         this.comment = comment == null ? null : comment.trim();
+    }
+
+    public String getCtreatimeName() {
+        return ctreatimeName;
+    }
+
+    public void setCtreatimeName(String ctreatimeName) {
+        this.ctreatimeName = ctreatimeName;
     }
 }
